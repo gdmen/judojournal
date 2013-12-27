@@ -1,23 +1,29 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Location(models.Model):
+class HasUser(models.Model):
+  user = models.ForeignKey(User)
+  class Meta:
+    abstract = True
+
+class Location(HasUser):
   name = models.CharField(max_length=100)
   address = models.CharField(max_length=250)
 
-class Goal(models.Model):
+class Goal(HasUser):
   brief = models.CharField(max_length=100)
-  details = models.TextField()
+  details = models.TextField(blank=True)
 
-class Question(models.Model):
+class Question(HasUser):
   brief = models.CharField(max_length=100)
-  details = models.TextField()
-  answer = models.TextField()
+  details = models.TextField(blank=True)
+  answer = models.TextField(blank=True)
 
-class Status(models.Model):
-  text = models.TextField()
-  lb = models.DecimalField(max_digits=4, decimal_places=4)
+class Status(HasUser):
+  text = models.TextField(blank=True)
+  lbs = models.DecimalField(max_digits=4, decimal_places=4)
 
-class Event(models.Model):
+class Event(HasUser):
   start_time = models.DateTimeField()
   end_time = models.DateTimeField()
   prior_status = models.OneToOneField(Status)
@@ -25,7 +31,7 @@ class Event(models.Model):
   goals = models.ManyToManyField(Goal)
   questions = models.ManyToManyField(Question)
 
-class Rating(models.Model):
+class Rating(HasUser):
   rating = models.SmallIntegerField()
   goal = models.ForeignKey(Goal)
   question = models.ForeignKey(Question)
