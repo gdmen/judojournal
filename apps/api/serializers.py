@@ -1,13 +1,18 @@
 from rest_framework import serializers
 from apps.api.models import *
+from django.contrib.auth.models import User
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+  class Meta:
+    model = User
 
 class LocationSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Location
 
-class RatingSerializer(serializers.HyperlinkedModelSerializer):
-  class Meta:
-    model = Rating
+#class RatingSerializer(serializers.HyperlinkedModelSerializer):
+#  class Meta:
+#    model = Rating
 
 class GoalSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:

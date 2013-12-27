@@ -1,13 +1,17 @@
 from rest_framework import viewsets
 from apps.api.serializers import *
 
+class UserViewSet(viewsets.ModelViewSet):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+
 class LocationViewSet(viewsets.ModelViewSet):
   queryset = Location.objects.all()
   serializer_class = LocationSerializer
 
-class RatingViewSet(viewsets.ModelViewSet):
-  queryset = Rating.objects.all()
-  serializer_class = RatingSerializer
+#class RatingViewSet(viewsets.ModelViewSet):
+#  queryset = Rating.objects.all()
+#  serializer_class = RatingSerializer
 
 class GoalViewSet(viewsets.ModelViewSet):
   queryset = Goal.objects.all()
