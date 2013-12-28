@@ -7,9 +7,10 @@ from rest_framework import routers
 from apps.api import views
 
 router = routers.DefaultRouter()
+router.register(r'permissions', views.PermissionViewSet)
+router.register(r'groups', views.GroupViewSet)
 router.register(r'users', views.UserViewSet)
 router.register(r'locations', views.LocationViewSet)
-#router.register(r'ratings', views.RatingViewSet)
 router.register(r'goals', views.GoalViewSet)
 router.register(r'questions', views.QuestionViewSet)
 router.register(r'statuses', views.StatusViewSet)

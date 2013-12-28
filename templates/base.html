@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>I have a back bone</title>
+    <meta name="csrf-token" content="{{csrf_token}}">
 </head>
 <body>
   <script src="{% static 'libs/jquery.min.js' %}"></script>
@@ -16,15 +17,33 @@
 	</script>
 
 	<script type="text/javascript">
-	  var LocationModel = Backbone.Model.extend({
-      urlRoot: '/api/locations',
-	  });
-	  var loc = new LocationModel({id: "2"});
-    loc.fetch({
-      success: function (loc) {
-        console.log(loc.toJSON());
-      }
-    });
+    $(function(){
+      var _sync = Backbone.sync;
+      Backbone.sync = function(method, model, options){
+        options.beforeSend = function(xhr){
+          var token = $('meta[name="csrf-token"]').attr('content');
+          xhr.setRequestHeader('X-CSRFToken', token);
+        };
+        return _sync(method, model, options);
+      };
+      
+      
+      var LocationModel = Backbone.Model.extend({
+        urlRoot: '/api/locations/',
+      });
+      var loc = new LocationModel({id: "1"});
+      loc.fetch({
+        success: function (loc) {
+          console.log(loc.toJSON());
+        }
+      });
+      var new_loc = new LocationModel();
+      new_loc.save({ name: "bb location", address: "addr" }, {
+        success: function (l) {
+          console.log(l.toJSON());
+        }
+      });
+    })
 	</script>
 </body>
 </html>

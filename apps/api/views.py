@@ -1,17 +1,32 @@
 from rest_framework import viewsets
 from apps.api.serializers import *
 
+class PermissionViewSet(viewsets.ModelViewSet):
+  queryset = Permission.objects.all()
+  serializer_class = PermissionSerializer
+
+class GroupViewSet(viewsets.ModelViewSet):
+  queryset = Group.objects.all()
+  serializer_class = GroupSerializer
+
 class UserViewSet(viewsets.ModelViewSet):
   queryset = User.objects.all()
   serializer_class = UserSerializer
 
-class LocationViewSet(viewsets.ModelViewSet):
-  queryset = Location.objects.all()
-  serializer_class = LocationSerializer
+class HasUserViewSet(viewsets.ModelViewSet):
+  model = None
+  def pre_save(self, obj):
+    obj.user = self.request.user
+  def get_queryset(self):
+    if self.request.user.is_superuser:
+      return self.model.objects.all()
+    return self.model.objects.filter(user=self.request.user)
+  class Meta:
+    abstract = True
 
-#class RatingViewSet(viewsets.ModelViewSet):
-#  queryset = Rating.objects.all()
-#  serializer_class = RatingSerializer
+class LocationViewSet(HasUserViewSet):
+  model = Location
+  serializer_class = LocationSerializer
 
 class GoalViewSet(viewsets.ModelViewSet):
   queryset = Goal.objects.all()

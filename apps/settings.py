@@ -54,7 +54,7 @@ ROOT_URLCONF = 'apps.urls'
 WSGI_APPLICATION = 'apps.wsgi.application'
 
 REST_FRAMEWORK = {
-  'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+  'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
   'PAGINATE_BY': 10
 }
 
