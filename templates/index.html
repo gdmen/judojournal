@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% comment %}
+  Main page of django_consultant's website.
+{% endcomment %}
+
+{% block content %}
+  <header>
+      <h1>Django Consultants</h1>
+  </header>
+
+  <section>
+      <p>Welcome to Django Consultants. Please click <a href="/accounts/login/">here</a> to log into our web portal.</p>
+  </section>
+{% endblock %}
+
+{% block js %}
+  var LocationModel = Backbone.Model.extend({
+    urlRoot: '/api/locations/',
+  });
+  var loc = new LocationModel({id: "2"});
+  loc.fetch({
+    success: function (loc) {
+      console.log(loc.toJSON());
+    }
+  });
+  var new_loc = new LocationModel();
+  new_loc.save({ name: "bb location", address: "addr" }, {
+    success: function (l) {
+      console.log(l.toJSON());
+    }
+  });
+{% endblock %}

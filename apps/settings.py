@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# URL of the login page.
+LOGIN_URL = '/login/'
 
 # Application definition
 
@@ -36,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
     'rest_framework',
     'apps.api'
 )
@@ -52,6 +55,11 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'apps.urls'
 
 WSGI_APPLICATION = 'apps.wsgi.application'
+
+ACCOUNT_ACTIVATION_DAYS = 7
+EMAIL_HOST = 'localhost'
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+LOGIN_REDIRECT_URL = '/'
 
 REST_FRAMEWORK = {
   'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),

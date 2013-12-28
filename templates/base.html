@@ -1,21 +1,40 @@
 <!DOCTYPE html>
+{% load i18n %}
 {% load static %}
 <html>
 <head>
-    <title>I have a back bone</title>
     <meta name="csrf-token" content="{{csrf_token}}">
+    <title>{% block title %}Base Title{% endblock %}</title>
 </head>
 <body>
+  <div id="header">
+    {% block header %}
+      <a href="{% url 'index' %}">{% trans "Home" %}</a> | 
+
+      {% if user.is_authenticated %}
+      {% trans "Logged in" %}: {{ user.username }} 
+      (<a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> | 
+      <a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a>)
+      {% else %}
+      <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
+      {% endif %}
+      <hr />
+    {% endblock %}
+  </div>
+
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
+
+  <div id="footer">
+    {% block footer %}
+    <hr />
+    {% endblock %}
+  </div>
+  
   <script src="{% static 'libs/jquery.min.js' %}"></script>
   <script src="{% static 'libs/backbone/underscore-min.js' %}"></script>
   <script src="{% static 'libs/backbone/backbone-min.js' %}"></script>
-	<div id="search_container"></div>
-	<script type="text/template" id="search_template">
-		<label>Search</label>
-		<input type="text" id="search_input" />
-		<input type="button" id="search_button" value="Search" />
-	</script>
-
 	<script type="text/javascript">
     $(function(){
       var _sync = Backbone.sync;
@@ -26,23 +45,8 @@
         };
         return _sync(method, model, options);
       };
-      
-      
-      var LocationModel = Backbone.Model.extend({
-        urlRoot: '/api/locations/',
-      });
-      var loc = new LocationModel({id: "1"});
-      loc.fetch({
-        success: function (loc) {
-          console.log(loc.toJSON());
-        }
-      });
-      var new_loc = new LocationModel();
-      new_loc.save({ name: "bb location", address: "addr" }, {
-        success: function (l) {
-          console.log(l.toJSON());
-        }
-      });
+      {% block js %}
+      {% endblock %}
     })
 	</script>
 </body>
