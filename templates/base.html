@@ -3,8 +3,8 @@
 {% load static %}
 <html>
 <head>
-    <meta name="csrf-token" content="{{csrf_token}}">
-    <title>{% block title %}Base Title{% endblock %}</title>
+  <meta name="csrf-token" content="{{csrf_token}}">
+  <title>{% block title %}Base Title{% endblock %}</title>
 </head>
 <body>
   <div id="header">
@@ -32,9 +32,9 @@
     {% endblock %}
   </div>
   
-  <script src="{% static 'libs/jquery.min.js' %}"></script>
-  <script src="{% static 'libs/backbone/underscore-min.js' %}"></script>
-  <script src="{% static 'libs/backbone/backbone-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'libs/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'libs/backbone/underscore-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'libs/backbone/backbone-min.js' %}"></script>
 	<script type="text/javascript">
     $(function(){
       var _sync = Backbone.sync;
@@ -45,9 +45,9 @@
         };
         return _sync(method, model, options);
       };
-      {% block js %}
-      {% endblock %}
     })
 	</script>
+  {% block js %}
+  {% endblock %}
 </body>
 </html>
