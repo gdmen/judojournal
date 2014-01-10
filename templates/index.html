@@ -6,39 +6,17 @@
 {% endcomment %}
 
 {% block content %}
-  <header>
-    <h1>JudoJournal</h1>
-  </header>
-
-  <section>
-    <p>Welcome to Django Consultants. Please click <a href="/accounts/login/">here</a> to log into our web portal.</p>
-  </section>
-  <div id="test"></div>
 {% endblock %}
 
 {% block js %}
+  <script type="text/javascript">
+  </script>
   <script type="text/javascript" src="{% static 'js/models.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/templates.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/views.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   <script type="text/javascript">
-    var AppRouter = Backbone.Router.extend({
-        routes: {
-            "posts/:id": "getPost",
-            "*actions": "defaultRoute" // Backbone will try match the route above first
-        }
-    });
-    // Instantiate the router
-    var app_router = new AppRouter;
-    app_router.on('route:getPost', function (id) {
-        // Note the variable in the route definition being passed in here
-        console.log( "Get post number " + id );   
-    });
-    app_router.on('route:defaultRoute', function (actions) {
-        console.log( actions );
-    });
-    // Start Backbone history a necessary step for bookmarkable URL's
-    Backbone.history.start();
-
+  /*
     $(function(){
       var status = new StatusModel({id: "1"});
       status.fetch({
@@ -47,6 +25,28 @@
           var view = new StatusView({model: m, el: $('#test')});
         }
       });
-    });
+      var event = new EventModel({id: "2"});
+      event.fetch({
+        success: function (x) {
+          console.log(x.toJSON());
+          console.log(x.get('start_time'));
+          console.log(Date.parse(x.get('start_time')));
+        }
+      });
+      
+      event = new EventModel();
+      event.save({
+          rating: 3,
+          start_time: new Date(),
+          end_time: new Date(),
+          prior_status: 2
+        },{
+          success: function (x) {
+            console.log(x.toJSON());
+          }
+        }
+      );
+      
+    });*/
   </script>
 {% endblock %}
