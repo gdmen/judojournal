@@ -7,15 +7,15 @@ admin.autodiscover()
 from rest_framework import routers
 from apps.api import views
 
-router = routers.DefaultRouter()
-router.register(r'permissions', views.PermissionViewSet)
-router.register(r'groups', views.GroupViewSet)
-router.register(r'users', views.UserViewSet)
-router.register(r'locations', views.LocationViewSet)
-router.register(r'goals', views.GoalViewSet)
-router.register(r'questions', views.QuestionViewSet)
-router.register(r'statuses', views.StatusViewSet)
-router.register(r'events', views.EventViewSet)
+api_router = routers.DefaultRouter(trailing_slash=False)
+api_router.register(r'permissions', views.PermissionViewSet)
+api_router.register(r'groups', views.GroupViewSet)
+api_router.register(r'users', views.UserViewSet)
+api_router.register(r'locations', views.LocationViewSet)
+api_router.register(r'goals', views.GoalViewSet)
+api_router.register(r'questions', views.QuestionViewSet)
+api_router.register(r'statuses', views.StatusViewSet)
+api_router.register(r'events', views.EventViewSet)
 
 urlpatterns = patterns('',
     # Examples:
@@ -24,10 +24,12 @@ urlpatterns = patterns('',
 
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
     
-    (r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
+    
+    url(r'^account/', include('django.contrib.auth.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
     
-    url(r'^api/', include(router.urls)),
+    url(r'^api/', include(api_router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 )
