@@ -34,6 +34,11 @@ class StatusSerializer(serializers.ModelSerializer):
     model = Status
     read_only_fields = ('user',)
 
+class ActivitySerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Activity
+    read_only_fields = ('user',)
+
 class EventSerializer(serializers.ModelSerializer):
   class Meta:
     model = Event

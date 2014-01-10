@@ -15,6 +15,7 @@ api_router.register(r'locations', views.LocationViewSet)
 api_router.register(r'goals', views.GoalViewSet)
 api_router.register(r'questions', views.QuestionViewSet)
 api_router.register(r'statuses', views.StatusViewSet)
+api_router.register(r'activities', views.ActivityViewSet)
 api_router.register(r'events', views.EventViewSet)
 
 urlpatterns = patterns('',

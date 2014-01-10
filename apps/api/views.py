@@ -52,6 +52,10 @@ class StatusViewSet(HasUserViewSet):
   model = Status
   serializer_class = StatusSerializer
 
+class ActivityViewSet(HasUserViewSet):
+  model = Activity
+  serializer_class = ActivitySerializer
+
 class EventViewSet(HasUserViewSet):
   model = Event
   serializer_class = EventSerializer

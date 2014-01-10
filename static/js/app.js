@@ -23,39 +23,37 @@ function home() {
 }
 
 function editEvent(id) {
-  console.log( "Edit event number " + id );
-  var event;
   if (id === "#") {
-    event = new EventModel();
+    var m = new EventModel();
+    new EditEventView({model: m, el: $('#content'), prior_status: new StatusModel()});
   } else {
-    event = new EventModel({id: id});
+    var event = new EventModel({id: id});
     event.fetch({
       success: function (m) {
-        console.log('event loaded');
+        var prior_status = new StatusModel({id: m.get('prior_status')});
+        prior_status.fetch();
+        new EditEventView({model: m, el: $('#content'), prior_status: prior_status});
       },
       error: handleUnknownRoute
     });
   }
 }
 
-function handleUnknownRoute() {
-  //window.location = "/";
-  console.log("UNKNOWN ROUTE");
-}
 function showEvent(id) {
   event = new EventModel({id: id});
   event.fetch({
     success: function (m) {
-      console.log('event loaded');
       var prior_status = new StatusModel({id: m.get('prior_status')});
-      prior_status.fetch({
-        success: function (n) {
-          console.log('FETCHED STATUS');
-        }});
-      new EventView({model: m, el: $('#content'), prior_status: prior_status});
+      prior_status.fetch();
+      new ShowEventView({model: m, el: $('#content'), prior_status: prior_status});
     },
     error: handleUnknownRoute
   });
+}
+
+function handleUnknownRoute() {
+  //window.location = "/";
+  console.log("UNKNOWN ROUTE");
 }
 
 });

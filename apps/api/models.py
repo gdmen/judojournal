@@ -27,10 +27,15 @@ class Question(HasUser):
 class Status(HasUser, HasRating):
   text = models.TextField(blank=True)
   lbs = models.DecimalField(max_digits=8, decimal_places=4)
+  
+class Activity(HasUser):
+  activity = models.TextField(blank=True)
+  type = models.TextField(blank=True)
 
 class Event(HasUser, HasRating):
   start_time = models.DateTimeField()
   end_time = models.DateTimeField()
+  activity = models.OneToOneField(Activity, blank=True, null=True)
   prior_status = models.OneToOneField(Status, blank=True, null=True)
   location = models.ForeignKey(Location, blank=True, null=True)
   goals = models.ManyToManyField(Goal, blank=True, null=True)
