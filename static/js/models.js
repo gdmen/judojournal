@@ -2,6 +2,7 @@ var LocationModel = Backbone.Model.extend({
   urlRoot: '/api/locations',
   defaults: {
     "name": "",
+    "url": "",
     "address": "",
   }
 });
@@ -10,7 +11,7 @@ var GoalModel = Backbone.Model.extend({
   defaults: {
     "brief": "",
     "details": "",
-    "rating": "",
+    "rating": "3",
   }
 });
 var QuestionModel = Backbone.Model.extend({
@@ -26,14 +27,21 @@ var StatusModel = Backbone.Model.extend({
   defaults: {
     "text": "",
     "lbs": "",
-    "rating": "",
+    "rating": "3",
+  }
+});
+var ActivityModel = Backbone.Model.extend({
+  urlRoot: '/api/activities',
+  defaults: {
+    "activity": "",
+    "type": "",
   }
 });
 var EventModel = Backbone.Model.extend({
   urlRoot: '/api/events',
   defaults: {
-    "start_time": "",
-    "end_time": "",
-    "rating": "",
+    "start_time": new Date(),
+    "end_time": new Date(),
+    "rating": "3",
   }
 });

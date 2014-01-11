@@ -24,15 +24,19 @@ function home() {
 
 function editEvent(id) {
   if (id === "#") {
-    var m = new EventModel();
-    new EditEventView({model: m, el: $('#content'), prior_status: new StatusModel()});
+    var event = new EventModel();
+    new EditEventView({model: event, el: $('#content'), prior_status: new StatusModel(), location: new LocationModel(), activity: new ActivityModel()});
   } else {
     var event = new EventModel({id: id});
     event.fetch({
       success: function (m) {
         var prior_status = new StatusModel({id: m.get('prior_status')});
         prior_status.fetch();
-        new EditEventView({model: m, el: $('#content'), prior_status: prior_status});
+        var location = new LocationModel({id: m.get('location')});
+        location.fetch();
+        var activity = new ActivityModel({id: m.get('activity')});
+        activity.fetch();
+        new EditEventView({model: m, el: $('#content'), prior_status: prior_status, location: location, activity: activity});
       },
       error: handleUnknownRoute
     });

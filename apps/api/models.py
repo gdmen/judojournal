@@ -12,8 +12,9 @@ class HasRating(models.Model):
     abstract = True
 
 class Location(HasUser):
-  name = models.CharField(max_length=100)
-  address = models.CharField(max_length=250)
+  name = models.CharField(max_length=100, blank=True)
+  url = models.CharField(max_length=250, blank=True)
+  address = models.CharField(max_length=250, blank=True)
 
 class Goal(HasUser, HasRating):
   brief = models.CharField(max_length=100)
@@ -26,7 +27,7 @@ class Question(HasUser):
 
 class Status(HasUser, HasRating):
   text = models.TextField(blank=True)
-  lbs = models.DecimalField(max_digits=8, decimal_places=4)
+  lbs = models.DecimalField(max_digits=8, decimal_places=4, blank=True, null=True)
   
 class Activity(HasUser):
   activity = models.TextField(blank=True)
@@ -35,7 +36,7 @@ class Activity(HasUser):
 class Event(HasUser, HasRating):
   start_time = models.DateTimeField()
   end_time = models.DateTimeField()
-  activity = models.OneToOneField(Activity, blank=True, null=True)
+  activity = models.ForeignKey(Activity, blank=True, null=True)
   prior_status = models.OneToOneField(Status, blank=True, null=True)
   location = models.ForeignKey(Location, blank=True, null=True)
   goals = models.ManyToManyField(Goal, blank=True, null=True)
