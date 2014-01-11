@@ -78,6 +78,7 @@ var EditEventView = AbstractEditModelView.extend({
     var location = this.location;
     var activity = this.activity;
     console.log("**********SAVING**********");
+    //TODO: add error handling here to print improper input warning
     prior_status.save(null, {
       success: function (m) {
         console.log("SAVED PRIOR_STATUS...");
