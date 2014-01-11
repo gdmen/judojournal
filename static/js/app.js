@@ -1,3 +1,5 @@
+$(document).foundation();
+
 $(function() {
 
 var AppRouter = Backbone.Router.extend({

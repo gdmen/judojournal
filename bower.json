@@ -1,0 +1,10 @@
+{
+  "name":  "JudoJournal",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "latest",
+    "underscore": "latest",
+    "backbone": "latest",
+    "foundation": "latest"
+  }
+}

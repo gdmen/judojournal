@@ -2,8 +2,12 @@
 {% load static %}
 <html>
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{csrf_token}}" onload="setCSRF()">
   <title>{% block title %}Base Title{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+  <script type="text/javascript" src="{% static 'components/modernizr/modernizr.js' %}"></script>
 </head>
 <body>
   <div id="header">
@@ -31,14 +35,9 @@
     {% endblock %}
   </div>
   
-  <!--
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
-  -->
-  <script type="text/javascript" src="{% static 'libs/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'libs/backbone/underscore-min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'libs/backbone/backbone-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'components/jquery/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'components/underscore/underscore-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'components/backbone/backbone-min.js' %}"></script>
 	<script type="text/javascript">
     $(function(){
       var _sync = Backbone.sync;
@@ -53,6 +52,7 @@
       };
     });
 	</script>
+  <script type="text/javascript" src="{% static 'components/foundation/js/foundation.min.js' %}"></script>
   {% block js %}
   {% endblock %}
 </body>
