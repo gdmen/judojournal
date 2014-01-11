@@ -1,5 +1,5 @@
 var ShowStatusView = Backbone.View.extend({
-  template: TEMPLATES['model/status/show'],
+  template: Handlebars.templates.status_show,//TEMPLATES['model/status/show'],
   initialize: function(options) {
     this.model.on('change', this.render, this);
     this.render();
@@ -11,7 +11,7 @@ var ShowStatusView = Backbone.View.extend({
 });
 
 var ShowEventView = Backbone.View.extend({
-  template: TEMPLATES['model/event/show'],
+  template: Handlebars.templates.event_show,//TEMPLATES['model/event/show'],
   
   initialize: function(options) {
     this.model.on('change', this.render, this);
