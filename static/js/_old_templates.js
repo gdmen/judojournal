@@ -1,27 +1,5 @@
 var TEMPLATES = {};
 
-TEMPLATES['model/status/show'] = _.template([
-  '<div class="status">',
-  "<%= rating %>",
-  '<br />',
-  "<%= text %>",
-  '<br />',
-  "<%= lbs %>",
-  '</div>',
-].join(""));
-
-TEMPLATES['model/event/show'] = _.template([
-  '<div id="prior_status"></div>',
-  '<br />',
-  '<hr />',
-  '<br />',
-  "<%= rating %>",
-  '<br />',
-  "<%= start_time %>",
-  '<br />',
-  "<%= end_time %>",
-].join(""));
-
 TEMPLATES['model/status/edit'] = _.template([
   '<h4>Status</h2>',
   '<input type="text" name="rating" value="<%= rating %>" />',

@@ -10,17 +10,45 @@ var ShowStatusView = Backbone.View.extend({
   },
 });
 
+var ShowLocationView = Backbone.View.extend({
+  template: Handlebars.templates.location_show,
+  initialize: function(options) {
+    this.model.on('change', this.render, this);
+    this.render();
+  },
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
+  },
+});
+
+var ShowActivityView = Backbone.View.extend({
+  template: Handlebars.templates.activity_show,
+  initialize: function(options) {
+    this.model.on('change', this.render, this);
+    this.render();
+  },
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
+  },
+});
+
 var ShowEventView = Backbone.View.extend({
   template: Handlebars.templates.event_show,
   
   initialize: function(options) {
     this.model.on('change', this.render, this);
     this.prior_status = options.prior_status;
+    this.location = options.location;
+    this.activity = options.activity;
     this.render();
   },
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
     new ShowStatusView({model: this.prior_status, el: this.$("#prior_status")});
+    new ShowLocationView({model: this.location, el: this.$("#location")});
+    new ShowActivityView({model: this.activity, el: this.$("#activity")});
     return this;
   },
 });
@@ -53,19 +81,19 @@ var AbstractEditModelView = Backbone.View.extend({
 });
 
 var EditStatusView = AbstractEditModelView.extend({
-  template: TEMPLATES['model/status/edit'],
+  template: Handlebars.templates.status_edit,
 });
 
 var EditLocationView = AbstractEditModelView.extend({
-  template: TEMPLATES['model/location/edit'],
+  template: Handlebars.templates.location_edit,
 });
 
 var EditActivityView = AbstractEditModelView.extend({
-  template: TEMPLATES['model/activity/edit'],
+  template: Handlebars.templates.activity_edit,
 });
 
 var EditEventView = AbstractEditModelView.extend({
-  template: TEMPLATES['model/event/edit'],
+  template: Handlebars.templates.event_edit,
   events: {
     "change input": "changed",
     "change select": "changed",

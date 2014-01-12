@@ -51,7 +51,11 @@ function showEvent(id) {
     success: function (m) {
       var prior_status = new StatusModel({id: m.get('prior_status')});
       prior_status.fetch();
-      new ShowEventView({model: m, el: $('#content'), prior_status: prior_status});
+      var location = new LocationModel({id: m.get('location')});
+      location.fetch();
+      var activity = new ActivityModel({id: m.get('activity')});
+      activity.fetch();
+      new ShowEventView({model: m, el: $('#content'), prior_status: prior_status, location: location, activity: activity});
     },
     error: handleUnknownRoute
   });
