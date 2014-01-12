@@ -6,6 +6,5 @@
     "underscore": "latest",
     "backbone": "latest",
     "foundation": "latest",
-    "handlebars.js": "latest"
   }
 }
