@@ -1,62 +1,44 @@
-var TEMPLATES = {};
+(function() {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['event_show'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
-TEMPLATES['model/status/show'] = _.template([
-  '<div class="status">',
-  "<%= rating %>",
-  '<br />',
-  "<%= text %>",
-  '<br />',
-  "<%= lbs %>",
-  '</div>',
-].join(""));
 
-TEMPLATES['model/event/show'] = _.template([
-  '<div id="prior_status"></div>',
-  '<br />',
-  '<hr />',
-  '<br />',
-  "<%= rating %>",
-  '<br />',
-  "<%= start_time %>",
-  '<br />',
-  "<%= end_time %>",
-].join(""));
+  buffer += "<div id=\"prior_status\"></div>\r\n<br />\r\n<hr />\r\n<br />\r\n";
+  if (helper = helpers.rating) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.rating); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\r\n<br />\r\n";
+  if (helper = helpers.start_time) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.start_time); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\r\n<br />\r\n";
+  if (helper = helpers.end_time) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.end_time); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1);
+  return buffer;
+  });
+templates['status_show'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
-TEMPLATES['model/status/edit'] = _.template([
-  '<h4>Status</h2>',
-  '<input type="text" name="rating" value="<%= rating %>" />',
-  '<br />',
-  '<input type="text" name="text" value="<%= text %>" />',
-  '<br />',
-  '<input type="text" name="lbs" value="<%= lbs %>" />',
-].join(""));
 
-TEMPLATES['model/location/edit'] = _.template([
-  '<h4>location</h2>',
-  '<input type="text" name="name" value="<%= name %>" />',
-  '<br />',
-  '<input type="text" name="url" value="<%= url %>" />',
-  '<br />',
-  '<input type="text" name="address" value="<%= address %>" />',
-].join(""));
-
-TEMPLATES['model/activity/edit'] = _.template([
-  '<h4>activity</h2>',
-  '<input type="text" name="activity" value="<%= activity %>" />',
-  '<br />',
-  '<input type="text" name="type" value="<%= type %>" />',
-].join(""));
-
-TEMPLATES['model/event/edit'] = _.template([
-  '<h4>Event</h2>',
-  '<br />',
-  '<input type="text" name="rating" value="<%= rating %>" />',
-  '<br />',
-  '<input type="text" name="start_time" value="<%= start_time %>" />',
-  '<br />',
-  '<input type="text" name="end_time" value="<%= end_time %>" />',
-  '<div id="prior_status"></div>',
-  '<div id="location"></div>',
-  '<div id="activity"></div>',
-  '<button id="save">save</button>',
-].join(""));
+  buffer += "<div class=\"status\">\r\n";
+  if (helper = helpers.rating) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.rating); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\r\n<br />\r\n";
+  if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\r\n<br />\r\n";
+  if (helper = helpers.lbs) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.lbs); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\r\n</div>";
+  return buffer;
+  });
+})();
