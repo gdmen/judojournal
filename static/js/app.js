@@ -4,9 +4,9 @@ $(function() {
 
 var AppRouter = Backbone.Router.extend({
   routes: {
-    "": "home",
-    "entry/:id": "showEvent",
-    "entry/:id/edit": "editEvent",
+    "(/)": "home",
+    "entry/:id(/)": "showEvent",
+    "entry/:id/edit(/)": "editEvent",
     "*unknown": "unknownRoute" // Backbone will try match the route above first
   }
 });
@@ -16,7 +16,7 @@ var app_router = new AppRouter;
 app_router.on('route:home', home);
 app_router.on('route:editEvent', editEvent);
 app_router.on('route:showEvent', showEvent);
-app_router.on('route:unknownRoute', handleUnknownRoute);
+app_router.on('route:unknownRoute', function() { console.log("router problem"); handleUnknownRoute()});
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
 

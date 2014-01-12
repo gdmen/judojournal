@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{csrf_token}}" onload="setCSRF()">
   <title>{% block title %}Base Title{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   <script type="text/javascript" src="{% static 'components/modernizr/modernizr.js' %}"></script>
 </head>
 <body>
@@ -16,7 +16,7 @@
 
       {% if user.is_authenticated %}
       Logged in: {{ user.username }}
-      (<a href="{% url 'auth_logout' %}">Log out</a> | 
+      (<a href="{% url 'auth_logout' %}">Log out</a> |
       <a href="{% url 'auth_password_change' %}">Change password</a>)
       {% else %}
       <a href="{% url 'auth_login' %}">Log in</a>
