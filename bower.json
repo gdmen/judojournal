@@ -2,9 +2,10 @@
   "name":  "JudoJournal",
   "version": "0.0.1",
   "dependencies": {
-    "jquery": "latest",
-    "underscore": "latest",
     "backbone": "latest",
+    "fastclick": "latest",
     "foundation": "latest",
+    "jquery": "latest",
+    "underscore": "latest"
   }
 }

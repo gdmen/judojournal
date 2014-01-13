@@ -45,7 +45,7 @@
   </div>
 
   <div id="footer" class="row">
-    <div class="large-12 columns">
+    <div class="small-12 columns">
       {% block footer %}
         <p>&copy;
         <script type="text/javascript">document.write(new Date().getFullYear());</script> gdm</p>
@@ -57,6 +57,12 @@
   <script type="text/javascript" src="{% static 'components/foundation/js/foundation.min.js' %}"></script>
 	<script type="text/javascript">
     $(document).foundation();
+  </script>
+  <script type="text/javascript" src="{% static 'components/fastclick/lib/fastclick.js' %}"></script>
+  <script type="text/javascript">
+    $(function() {
+      FastClick.attach(document.body);
+    });
   </script>
   {% block js %}
   {% endblock %}
