@@ -39,6 +39,7 @@ INSTALLED_APPS = (
   'django.contrib.staticfiles',
   'registration',
   'tastypie',
+  'south',
   'apps.api'
 )
 
@@ -65,8 +66,14 @@ LOGIN_REDIRECT_URL = '/'
 
 DATABASES = {
   'default': {
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #'ENGINE': 'django.db.backends.sqlite3',
+    #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'garymene_journal',
+    'USER': 'garymene_journal',
+    'PASSWORD': 'PybwjPeUc6SvvULQ',
+    'HOST': 'localhost',
+    'PORT': '3306',
   }
 }
 

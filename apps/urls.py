@@ -4,11 +4,20 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 admin.autodiscover()
 
-from apps.api import views
+from tastypie.api import Api
+from api.resources import *
 
-from api.resources import LocationResource
-
-location_resource = LocationResource()
+v1_api = Api(api_name='v1')
+v1_api.register(EntryTypeResource())
+v1_api.register(LocationResource())
+v1_api.register(GoalResource())
+v1_api.register(GoalInstanceResource())
+v1_api.register(QuestionResource())
+v1_api.register(TechniqueResource())
+v1_api.register(TechniqueVariationResource())
+v1_api.register(DrillEntryModule())
+v1_api.register(RandoriEntryModule())
+v1_api.register(EntryAResource())
 
 urlpatterns = patterns('',
     # Examples:
@@ -23,5 +32,5 @@ urlpatterns = patterns('',
     
     url(r'^admin/', include(admin.site.urls)),
     
-    url(r'^api/', include(location_resource.urls)),
+    url(r'^api/', include(v1_api.urls)),
 )

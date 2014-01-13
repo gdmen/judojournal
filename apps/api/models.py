@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+"""
+  Abstract Helpers
+"""
 class HasUser(models.Model):
   user = models.ForeignKey(User)
   class Meta:
@@ -11,22 +14,9 @@ class HasRating(models.Model):
   class Meta:
     abstract = True
 
-class AbstractEntry(HasUser, HasRating):
-  start = models.DateTimeField()
-  end = models.DateTimeField()
-  pre_status = models.TextField(blank=True)
-  post_status = models.TextField(blank=True)
-  type = models.ForeignKey(EntryType)
-  location = models.ForeignKey(Location)
-  goals = models.ManyToManyField(GoalInstance, blank=True, null=True)
-  class Meta:
-    abstract = True
-    
-class AbstractCategory(HasUser, HasRating):
-  brief = models.CharField(max_length=140, blank=True)
-  class Meta:
-    abstract = True
-
+"""
+  Entry components
+"""
 class Location(HasUser):
   name = models.CharField(max_length=140)
   url = models.CharField(max_length=250, blank=True)
@@ -49,21 +39,44 @@ class EntryType(HasUser):
   type = models.TextField(blank=True)
 
 """
+  Abstract Entry
+"""
+class AbstractEntry(HasUser, HasRating):
+  start = models.DateTimeField()
+  end = models.DateTimeField()
+  pre_status = models.TextField(blank=True)
+  post_status = models.TextField(blank=True)
+  type = models.ForeignKey(EntryType)
+  location = models.ForeignKey(Location)
+  goals = models.ManyToManyField(GoalInstance, blank=True, null=True)
+  class Meta:
+    abstract = True
+    
+class AbstractEntryModule(HasUser, HasRating):
+  details = models.TextField(blank=True)
+  class Meta:
+    abstract = True
+
+"""
   Judo, BJJ entry
 """
 # Drills
-class EntryACategoryA(AbstractCategory):
+class DrillEntryModule(AbstractEntryModule):
   pass
 
 # Randori
-class EntryACategoryB(AbstractCategory):
+class RandoriEntryModule(AbstractEntryModule):
   partner = models.CharField(max_length=140, blank=True)
+  # duration
+  minutes = models.DecimalField(max_digits=5, decimal_places=2, null=True)
 
 class EntryA(AbstractEntry):
-  category_a = models.ManyToManyField(EntryACategoryA, blank=True, null=True)
-  category_b = models.ManyToManyField(EntryACategoryB, blank=True, null=True)
-  
+  drills = models.ManyToManyField(DrillEntryModule, blank=True, null=True)
+  randori = models.ManyToManyField(RandoriEntryModule, blank=True, null=True)
 
+"""
+  Misc
+"""
 class Question(HasUser):
   brief = models.CharField(max_length=140)
   details = models.TextField(blank=True)

@@ -36,15 +36,15 @@ class TechniqueVariationResource(ModelResource):
     queryset = TechniqueVariation.objects.all()
     resource_name = 'technique_variation'
 
-class EntryACategoryAResource(ModelResource):
+class DrillEntryModule(ModelResource):
   class Meta:
-    queryset = EntryACategoryA.objects.all()
-    resource_name = 'entry_a_category_a'
+    queryset = DrillEntryModule.objects.all()
+    resource_name = 'drill_entry_module'
 
-class EntryACategoryBResource(ModelResource):
+class RandoriEntryModule(ModelResource):
   class Meta:
-    queryset = EntryBCategoryB.objects.all()
-    resource_name = 'entry_a_category_b'
+    queryset = RandoriEntryModule.objects.all()
+    resource_name = 'randori_entry_module'
 
 class EntryAResource(ModelResource):
   class Meta:
