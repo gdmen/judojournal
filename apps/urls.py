@@ -4,19 +4,11 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 admin.autodiscover()
 
-from rest_framework import routers
 from apps.api import views
 
-api_router = routers.DefaultRouter(trailing_slash=False)
-api_router.register(r'permissions', views.PermissionViewSet)
-api_router.register(r'groups', views.GroupViewSet)
-api_router.register(r'users', views.UserViewSet)
-api_router.register(r'locations', views.LocationViewSet)
-api_router.register(r'goals', views.GoalViewSet)
-api_router.register(r'questions', views.QuestionViewSet)
-api_router.register(r'statuses', views.StatusViewSet)
-api_router.register(r'activities', views.ActivityViewSet)
-api_router.register(r'events', views.EventViewSet)
+from api.resources import LocationResource
+
+location_resource = LocationResource()
 
 urlpatterns = patterns('',
     # Examples:
@@ -31,6 +23,5 @@ urlpatterns = patterns('',
     
     url(r'^admin/', include(admin.site.urls)),
     
-    url(r'^api/', include(api_router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/', include(location_resource.urls)),
 )

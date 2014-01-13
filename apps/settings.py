@@ -38,7 +38,7 @@ INSTALLED_APPS = (
   'django.contrib.messages',
   'django.contrib.staticfiles',
   'registration',
-  'rest_framework',
+  'tastypie',
   'apps.api'
 )
 
@@ -59,11 +59,6 @@ ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_HOST = 'localhost'
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 LOGIN_REDIRECT_URL = '/'
-
-REST_FRAMEWORK = {
-  'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
-  'PAGINATE_BY': 10
-}
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
