@@ -1,12 +1,38 @@
-<div id="prior_status"></div>
-<hr />
-<div id="location"></div>
-<hr />
-<div id="activity"></div>
-<hr />
-<br />
-{{ rating }}
-<br />
-{{ start_time }}
-<br />
-{{ end_time }}
+<div class="row">
+  <div class="large-6 columns">
+    <div class="large-12 columns">
+      <div>{{ rating }}<span id="activity"></span> @ <span id="location"></span></div>
+      <br />from {{ start_time }} to {{ end_time }}
+    </div>
+    <div class="large-12 columns" id="prior_status">
+    </div>
+  </div>
+
+  <div class="large-6 columns" id="goals">
+    <h3>Goals</h3>
+    <ul>
+      <li>Coffee</li>
+      <li>Milk</li>
+      <li>Coffee</li>
+    </ul>
+  </div>
+  
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <div class="panel">
+      DRILLS
+    </div>
+  </div>
+  
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <div class="panel">
+      RANDORI
+    </div>
+  </div>
+  
+</div>

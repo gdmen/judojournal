@@ -5,34 +5,39 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{csrf_token}}" onload="setCSRF()">
-  <title>{% block title %}Base Title{% endblock %}</title>
+  <title>{% block title %}JudoJournal{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   <script type="text/javascript" src="{% static 'components/modernizr/modernizr.js' %}"></script>
 </head>
 <body>
-  <div id="header">
-    {% block header %}
-      <a href="{% url 'index' %}">Home</a> | 
-
-      {% if user.is_authenticated %}
-      Logged in: {{ user.username }}
-      (<a href="{% url 'auth_logout' %}">Log out</a> |
-      <a href="{% url 'auth_password_change' %}">Change password</a>)
-      {% else %}
-      <a href="{% url 'auth_login' %}">Log in</a>
-      {% endif %}
-      <hr />
-    {% endblock %}
+  <header>
+    <div class="large-12 columns">
+      {% block header %}
+        <h3><a href="{% url 'index' %}">JudoJournal</a></h3>
+        
+        {% if user.is_authenticated %}
+        {{ user.username }}
+        (<a href="{% url 'auth_logout' %}">Log out</a> |
+        <a href="{% url 'auth_password_change' %}">Change password</a>)
+        {% else %}
+        <a href="{% url 'auth_login' %}">Log in</a>
+        {% endif %}
+        <hr />
+      {% endblock %}
+    </div>
   </div>
 
   <div id="content">
     {% block content %}{% endblock %}
   </div>
 
-  <div id="footer">
-    {% block footer %}
-    <hr />
-    {% endblock %}
+  <div id="footer" class="row">
+    <div class="large-12 columns">
+      {% block footer %}
+        <p>&copy;
+        <script type="text/javascript">document.write(new Date().getFullYear());</script> gdm</p>
+      {% endblock %}
+    </div>
   </div>
   
   <script type="text/javascript" src="{% static 'components/jquery/jquery.min.js' %}"></script>
