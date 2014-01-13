@@ -9,42 +9,25 @@
 {% endblock %}
 
 {% block js %}
+  <script type="text/javascript" src="{% static 'components/underscore/underscore-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'components/backbone/backbone-min.js' %}"></script>
+	<script type="text/javascript">
+    $(function(){
+      var _sync = Backbone.sync;
+      Backbone.sync = function(method, model, options) {
+        if (method == 'create' || method == 'update' || method == 'delete') {
+          var csrf_token = $('meta[name="csrf-token"]').attr('content');
+          options.beforeSend = function(xhr){
+            xhr.setRequestHeader('X-CSRFToken', csrf_token);
+          };
+        }
+        return _sync(method, model, options);
+      };
+    });
+	</script>
+  <script type="text/javascript" src="{% static 'js/handlebars.runtime.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/models.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/templates.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/views.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-  <script type="text/javascript">
-  /*
-    $(function(){
-      var status = new StatusModel({id: "1"});
-      status.fetch({
-        success: function (m) {
-          console.log(m.toJSON());
-          var view = new StatusView({model: m, el: $('#test')});
-        }
-      });
-      var event = new EventModel({id: "2"});
-      event.fetch({
-        success: function (x) {
-          console.log(x.toJSON());
-          console.log(x.get('start_time'));
-          console.log(Date.parse(x.get('start_time')));
-        }
-      });
-      
-      event = new EventModel();
-      event.save({
-          rating: 3,
-          start_time: new Date(),
-          end_time: new Date(),
-          prior_status: 2
-        },{
-          success: function (x) {
-            console.log(x.toJSON());
-          }
-        }
-      );
-      
-    });*/
-  </script>
 {% endblock %}

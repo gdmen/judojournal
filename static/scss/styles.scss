@@ -1,22 +1,22 @@
 // Make sure the charset is set appropriately
 @charset "UTF-8";
 
-// Behold, here are all the Foundation components.
-
 /*
  * Foundation settings
  */
+  @import "../components/foundation/scss/foundation/_functions";
   $base-font-size: 14px;
   $rem-base: $base-font-size;
+  $topbar-bg: #0068C2;
+  $topbar-title-font-size: rem-calc(26);
+  $row-width: rem-calc(1400);
 @import
   "../components/foundation/scss/normalize",
   "../components/foundation/scss/foundation";
-  
+
 /*
- * Foundation overrides
+ * Custom styles
  */
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
-  
-  

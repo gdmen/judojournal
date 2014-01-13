@@ -10,21 +10,34 @@
   <script type="text/javascript" src="{% static 'components/modernizr/modernizr.js' %}"></script>
 </head>
 <body>
-  <header>
-    <div class="large-12 columns">
-      {% block header %}
-        <h3><a href="{% url 'index' %}">JudoJournal</a></h3>
+  <div class="contain-to-grid">
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="{% url 'index' %}">JudoJournal</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          {% if user.is_authenticated %}
+            <!-- {{ user.username }} -->
+            <li><a href="{% url 'auth_logout' %}">Log out</a></li>
+            <li><a href="{% url 'auth_password_change' %}">Change password</a></li>
+          {% else %}
+            <li><a href="{% url 'auth_login' %}">Log in</a></li>
+          {% endif %}
+        </ul>
         
-        {% if user.is_authenticated %}
-        {{ user.username }}
-        (<a href="{% url 'auth_logout' %}">Log out</a> |
-        <a href="{% url 'auth_password_change' %}">Change password</a>)
-        {% else %}
-        <a href="{% url 'auth_login' %}">Log in</a>
-        {% endif %}
-        <hr />
-      {% endblock %}
-    </div>
+        <!-- Left Nav Section -->
+        <ul class="left">
+          {% block main-menu %}
+          {% endblock %}
+        </ul>
+      </section>
+    </nav>
   </div>
 
   <div id="content">
@@ -41,24 +54,10 @@
   </div>
   
   <script type="text/javascript" src="{% static 'components/jquery/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'components/underscore/underscore-min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'components/backbone/backbone-min.js' %}"></script>
-	<script type="text/javascript">
-    $(function(){
-      var _sync = Backbone.sync;
-      Backbone.sync = function(method, model, options) {
-        if (method == 'create' || method == 'update' || method == 'delete') {
-          var csrf_token = $('meta[name="csrf-token"]').attr('content');
-          options.beforeSend = function(xhr){
-            xhr.setRequestHeader('X-CSRFToken', csrf_token);
-          };
-        }
-        return _sync(method, model, options);
-      };
-    });
-	</script>
   <script type="text/javascript" src="{% static 'components/foundation/js/foundation.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/handlebars.runtime.js' %}"></script>
+	<script type="text/javascript">
+    $(document).foundation();
+  </script>
   {% block js %}
   {% endblock %}
 </body>

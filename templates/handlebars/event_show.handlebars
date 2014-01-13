@@ -1,8 +1,8 @@
 <div class="row">
   <div class="large-6 columns">
     <div class="large-12 columns">
-      <div>{{ rating }}<span id="activity"></span> @ <span id="location"></span></div>
-      <br />from {{ start_time }} to {{ end_time }}
+      <div><span id="activity"></span> @ <span id="location"></span></div>
+      <br />{{ date }} for {{#if hours}}{{ hours }}h{{/if}}{{ minutes }}m from {{ start_time }} to {{ end_time }}
     </div>
     <div class="large-12 columns" id="prior_status">
     </div>

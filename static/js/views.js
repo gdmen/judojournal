@@ -45,7 +45,21 @@ var ShowEventView = Backbone.View.extend({
     this.render();
   },
   render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
+    var json = this.model.toJSON();
+    var start_date = new Date(Date.parse(json.start_time));
+    var end_date = new Date(Date.parse(json.end_time));
+    json.start_time = start_date.toLocaleTimeString();
+    json.end_time = end_date.toLocaleTimeString();
+    var ms_per_min = 1000*60;
+    var minutes = Math.floor((end_date - start_date) / ms_per_min);
+    json.hours = Math.floor(minutes / 60);
+    if(json.hours == 0) {
+      json.hours = false;
+    }
+    console.log(json);
+    json.minutes = minutes % 60;
+    json.date = start_date.toLocaleDateString();
+    this.$el.html(this.template(json));
     new ShowStatusView({model: this.prior_status, el: this.$("#prior_status")});
     new ShowLocationView({model: this.location, el: this.$("#location")});
     new ShowActivityView({model: this.activity, el: this.$("#activity")});
