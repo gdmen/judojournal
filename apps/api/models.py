@@ -20,7 +20,6 @@ class HasRating(models.Model):
 class Location(HasUser):
   name = models.CharField(max_length=140)
   url = models.CharField(max_length=250, blank=True)
-  address = models.CharField(max_length=250, blank=True)
 
 class Goal(HasUser):
   brief = models.CharField(max_length=140)
