@@ -13,6 +13,11 @@
 @import
   "../components/foundation/scss/normalize",
   "../components/foundation/scss/foundation";
+  
+/*
+ * Component CSS
+ */
+@import "CSS:../components/datetimepicker/jquery.datetimepicker";
 
 /*
  * Custom styles

@@ -6,6 +6,7 @@
     "fastclick": "latest",
     "foundation": "latest",
     "jquery": "latest",
+    "datetimepicker": "latest",
     "underscore": "latest"
   }
 }

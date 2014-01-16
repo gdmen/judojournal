@@ -1,52 +1,103 @@
+from tastypie.authentication import SessionAuthentication
+from tastypie.authorization import Authorization
 from tastypie.resources import ModelResource
+from tastypie import fields
 from apps.api.models import *
 
-class EntryTypeResource(ModelResource):
+class HasUserResource(ModelResource):
   class Meta:
-    queryset = EntryType.objects.all()
-    resource_name = 'entry_type'
+    abstract = True
+    always_return_data = True
+    excludes = ['is_superuser']
+    authentication = SessionAuthentication()
+    authorization = Authorization()
 
-class GoalResource(ModelResource):
-  class Meta:
+  def apply_authorization_limits(self, request, object_list):
+    return object_list.filter(user=request.user)
+
+class EntryTypeResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
+    queryset = EntryType.objects.all()
+    resource_name = 'entry/type'
+
+  def obj_create(self, bundle, **kwargs):
+    return super(EntryTypeResource, self).obj_create(bundle, user=bundle.request.user)
+
+class GoalResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
     queryset = Goal.objects.all()
     resource_name = 'goal'
 
-class GoalInstanceResource(ModelResource):
-  class Meta:
+  def obj_create(self, bundle, **kwargs):
+    return super(GoalResource, self).obj_create(bundle, user=bundle.request.user)
+
+class GoalInstanceResource(HasUserResource):
+  goal = fields.ForeignKey(GoalResource, 'goal', full=True)
+  class Meta(HasUserResource.Meta):
     queryset = GoalInstance.objects.all()
-    resource_name = 'goal_instance'
+    resource_name = 'goal/instance'
+
+  def obj_create(self, bundle, **kwargs):
+    return super(GoalInstanceResource, self).obj_create(bundle, user=bundle.request.user)
     
-class LocationResource(ModelResource):
-  class Meta:
+class LocationResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
     queryset = Location.objects.all()
     resource_name = 'location'
 
-class DrillEntryModuleResource(ModelResource):
-  class Meta:
+  def obj_create(self, bundle, **kwargs):
+    return super(LocationResource, self).obj_create(bundle, user=bundle.request.user)
+
+class DrillEntryModuleResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
     queryset = DrillEntryModule.objects.all()
-    resource_name = 'drill_entry_module'
+    resource_name = 'entry/module/drill'
 
-class SparringEntryModuleResource(ModelResource):
-  class Meta:
+  def obj_create(self, bundle, **kwargs):
+    return super(DrillEntryModuleResource, self).obj_create(bundle, user=bundle.request.user)
+
+class SparringEntryModuleResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
     queryset = SparringEntryModule.objects.all()
-    resource_name = 'randori_entry_module'
+    resource_name = 'entry/module/sparring'
 
-class EntryAResource(ModelResource):
-  class Meta:
+  def obj_create(self, bundle, **kwargs):
+    return super(SparringEntryModuleResource, self).obj_create(bundle, user=bundle.request.user)
+
+class EntryAResource(HasUserResource):
+  type = fields.ToOneField(EntryTypeResource, 'type', full=True)
+  location = fields.ToOneField(LocationResource, 'location', full=True)
+  goals = fields.ToManyField(GoalInstanceResource, 'goals', blank=True, null=True, full=True)
+  drills = fields.ToManyField(DrillEntryModuleResource, 'drills', blank=True, null=True, full=True)
+  sparring = fields.ToManyField(SparringEntryModuleResource, 'sparring', blank=True, null=True, full=True)
+  class Meta(HasUserResource.Meta):
     queryset = EntryA.objects.all()
-    resource_name = 'entry_a'
+    resource_name = 'entry/a'
 
-class QuestionResource(ModelResource):
-  class Meta:
+  def obj_create(self, bundle, **kwargs):
+    return super(EntryAResource, self).obj_create(bundle, user=bundle.request.user)
+
+class QuestionResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
     queryset = Question.objects.all()
     resource_name = 'question'
 
-class TechniqueResource(ModelResource):
-  class Meta:
+  def obj_create(self, bundle, **kwargs):
+    return super(QuestionResource, self).obj_create(bundle, user=bundle.request.user)
+
+class TechniqueResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
     queryset = Technique.objects.all()
     resource_name = 'technique'
 
-class TechniqueVariationResource(ModelResource):
-  class Meta:
+  def obj_create(self, bundle, **kwargs):
+    return super(TechniqueResource, self).obj_create(bundle, user=bundle.request.user)
+
+class TechniqueVariationResource(HasUserResource):
+  technique = fields.ToOneField(TechniqueResource, 'technique', full=True)
+  class Meta(HasUserResource.Meta):
     queryset = TechniqueVariation.objects.all()
-    resource_name = 'technique_variation'
+    resource_name = 'technique/variation'
+
+  def obj_create(self, bundle, **kwargs):
+    return super(TechniqueVariationResource, self).obj_create(bundle, user=bundle.request.user)

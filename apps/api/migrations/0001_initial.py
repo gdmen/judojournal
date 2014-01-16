@@ -53,6 +53,7 @@ class Migration(SchemaMigration):
             ('rating', self.gf('django.db.models.fields.SmallIntegerField')()),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('details', self.gf('django.db.models.fields.TextField')(blank=True)),
+            ('name', self.gf('django.db.models.fields.TextField')()),
         ))
         db.send_create_signal(u'api', ['DrillEntryModule'])
 
@@ -78,6 +79,8 @@ class Migration(SchemaMigration):
             ('post_status', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.EntryType'])),
             ('location', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.Location'])),
+            ('drills', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.DrillEntryModule'], null=True, blank=True)),
+            ('sparring', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.SparringEntryModule'], null=True, blank=True)),
         ))
         db.send_create_signal(u'api', ['EntryA'])
 
@@ -89,24 +92,6 @@ class Migration(SchemaMigration):
             ('goalinstance', models.ForeignKey(orm[u'api.goalinstance'], null=False))
         ))
         db.create_unique(m2m_table_name, ['entrya_id', 'goalinstance_id'])
-
-        # Adding M2M table for field drills on 'EntryA'
-        m2m_table_name = db.shorten_name(u'api_entrya_drills')
-        db.create_table(m2m_table_name, (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('entrya', models.ForeignKey(orm[u'api.entrya'], null=False)),
-            ('drillentrymodule', models.ForeignKey(orm[u'api.drillentrymodule'], null=False))
-        ))
-        db.create_unique(m2m_table_name, ['entrya_id', 'drillentrymodule_id'])
-
-        # Adding M2M table for field sparring on 'EntryA'
-        m2m_table_name = db.shorten_name(u'api_entrya_sparring')
-        db.create_table(m2m_table_name, (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('entrya', models.ForeignKey(orm[u'api.entrya'], null=False)),
-            ('sparringentrymodule', models.ForeignKey(orm[u'api.sparringentrymodule'], null=False))
-        ))
-        db.create_unique(m2m_table_name, ['entrya_id', 'sparringentrymodule_id'])
 
         # Adding model 'Question'
         db.create_table(u'api_question', (
@@ -165,12 +150,6 @@ class Migration(SchemaMigration):
         # Removing M2M table for field goals on 'EntryA'
         db.delete_table(db.shorten_name(u'api_entrya_goals'))
 
-        # Removing M2M table for field drills on 'EntryA'
-        db.delete_table(db.shorten_name(u'api_entrya_drills'))
-
-        # Removing M2M table for field sparring on 'EntryA'
-        db.delete_table(db.shorten_name(u'api_entrya_sparring'))
-
         # Deleting model 'Question'
         db.delete_table(u'api_question')
 
@@ -186,12 +165,13 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'DrillEntryModule'},
             'details': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.TextField', [], {}),
             'rating': ('django.db.models.fields.SmallIntegerField', [], {}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
         u'api.entrya': {
             'Meta': {'object_name': 'EntryA'},
-            'drills': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.DrillEntryModule']", 'null': 'True', 'blank': 'True'}),
+            'drills': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.DrillEntryModule']", 'null': 'True', 'blank': 'True'}),
             'end': ('django.db.models.fields.DateTimeField', [], {}),
             'goals': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.GoalInstance']", 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -199,7 +179,7 @@ class Migration(SchemaMigration):
             'post_status': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'pre_status': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'rating': ('django.db.models.fields.SmallIntegerField', [], {}),
-            'sparring': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.SparringEntryModule']", 'null': 'True', 'blank': 'True'}),
+            'sparring': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.SparringEntryModule']", 'null': 'True', 'blank': 'True'}),
             'start': ('django.db.models.fields.DateTimeField', [], {}),
             'type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.EntryType']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})

@@ -1,3 +1,4 @@
+/*
 var ShowStatusView = Backbone.View.extend({
   template: Handlebars.templates.status_show,
   initialize: function(options) {
@@ -34,7 +35,7 @@ var ShowActivityView = Backbone.View.extend({
   },
 });
 
-var ShowEventView = Backbone.View.extend({
+var ShowEntryView = Backbone.View.extend({
   template: Handlebars.templates.event_show,
   
   initialize: function(options) {
@@ -66,8 +67,9 @@ var ShowEventView = Backbone.View.extend({
     return this;
   },
 });
+*/
 
-var AbstractEditModelView = Backbone.View.extend({
+JJ.AbstractEditModelView = Backbone.View.extend({
   events: {
     "change input": "changed",
     "change select": "changed",
@@ -94,19 +96,15 @@ var AbstractEditModelView = Backbone.View.extend({
   },
 });
 
-var EditStatusView = AbstractEditModelView.extend({
-  template: Handlebars.templates.status_edit,
+JJ.EditTypeView = JJ.AbstractEditModelView.extend({
+  template: Handlebars.templates.type_edit,
 });
 
-var EditLocationView = AbstractEditModelView.extend({
+JJ.EditLocationView = JJ.AbstractEditModelView.extend({
   template: Handlebars.templates.location_edit,
 });
 
-var EditActivityView = AbstractEditModelView.extend({
-  template: Handlebars.templates.activity_edit,
-});
-
-var EditEventView = AbstractEditModelView.extend({
+JJ.EditEntryView = JJ.AbstractEditModelView.extend({
   template: Handlebars.templates.event_edit,
   events: {
     "change input": "changed",
@@ -116,51 +114,86 @@ var EditEventView = AbstractEditModelView.extend({
   
   save: function() {
     var event = this.model;
-    var prior_status = this.prior_status;
+    var type = this.type;
     var location = this.location;
-    var activity = this.activity;
     console.log("**********SAVING**********");
+        event.set('type', event.type.toJSON());
+        event.set('location', event.location.toJSON());
+            event.save(null, {
+              success: function (m) {
+                console.log("SAVED event...");
+                console.log(m.toJSON());
+                console.log("**********DONE SAVING**********");
+              },
+              error: function(response) {
+                console.log("ERROR");
+                console.log(response);
+              }
+            });
     //TODO: add error handling here to print improper input warning
-    prior_status.save(null, {
+    /*
+    type.save(null, {
       success: function (m) {
-        console.log("SAVED PRIOR_STATUS...");
-        event.set('prior_status', m.get('id'));
+        console.log("SAVED type...");
+        event.set('type', m.get('resource_uri'));
         location.save(null, {
           success: function (m) {
             console.log("SAVED location...");
-            event.set('location', m.get('id'));
-            activity.save(null, {
+            event.set('location', m.get('resource_uri'));
+            event.save(null, {
               success: function (m) {
-                console.log("SAVED activity...");
-                event.set('activity', m.get('id'));
-                event.save(null, {
-                  success: function (m) {
-                    console.log("SAVED event...");
-                    console.log(m.toJSON());
-                    console.log("**********DONE SAVING**********");
-                  }
-                });
+                console.log("SAVED event...");
+                console.log(m.toJSON());
+                console.log("**********DONE SAVING**********");
+              },
+              error: function(response) {
+                console.log("ERROR");
+                console.log(response);
               }
             });
+          },
+          error: function(response) {
+            console.log("ERROR");
+            console.log(response);
           }
         });
+      },
+      error: function(response) {
+        console.log("ERROR");
+        console.log(response);
       }
     });
+    */
   },
     
   initialize: function(options) {
-    this.prior_status = options.prior_status;
-    this.location = options.location;
-    this.activity = options.activity;
-    EditEventView.__super__.initialize.apply(this);
+    JJ.EditEntryView.__super__.initialize.apply(this);
   },
   
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
     console.log(this.model.toJSON());
-    new EditStatusView({model: this.prior_status, el: this.$("#prior_status")});
-    new EditLocationView({model: this.location, el: this.$("#location")});
-    new EditActivityView({model: this.activity, el: this.$("#activity")});
+    new JJ.EditTypeView({model: this.model.type, el: this.$("#type")});
+    new JJ.EditLocationView({model: this.model.location, el: this.$("#location")});
+    // UI library linking
+    $('#dtp_start').datetimepicker({
+      format: 'd.m.Y H:i',
+      hours12: true,
+      onShow:function( ct ){
+       this.setOptions({
+        maxDate:$('#dtp_end').val()?$('#dtp_end').val():false
+       })
+      },
+    });
+    $('#dtp_end').datetimepicker({
+      format: 'd.m.Y H:i',
+      hours12: true,
+      onShow:function( ct ){
+       this.setOptions({
+        minDate:$('#dtp_start').val()?$('#dtp_start').val():false
+       })
+      },
+    });
     return this;
   },
 });

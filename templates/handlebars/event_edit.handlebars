@@ -1,11 +1,52 @@
-<h4>Event</h2>
-<br />
-<input type="text" name="rating" value="{{ rating }}" />
-<br />
-<input type="text" name="start_time" value="{{ start_time }}" />
-<br />
-<input type="text" name="end_time" value="{{ end_time }}" />
-<div id="prior_status"></div>
-<div id="location"></div>
-<div id="activity"></div>
-<button id="save">save</button>
+<div class="row">
+  <div class="small-6 columns">
+    <div class="small-12 columns">
+      <input type="text" name="rating" value="{{ rating }}" />
+      <div><span id="type"></span> @ <span id="location"></span></div>
+      <br />
+      <input id="dtp_start" type="text" name="start" value="{{ start }}" />
+      <br />
+      <input id="dtp_end" type="text" name="end" value="{{ end }}" />
+    </div>
+    <div class="small-12 columns">
+      {{ pre_status }}
+    </div>
+    <div class="small-12 columns">
+      {{ post_status }}
+    </div>
+  </div>
+
+  <div class="small-6 columns" id="goals">
+    <h3>Goals</h3>
+    <ul>
+      <li>Coffee</li>
+      <li>Milk</li>
+      <li>Coffee</li>
+    </ul>
+  </div>
+  
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <div class="panel">
+      DRILLS
+    </div>
+  </div>
+  
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <div class="panel">
+      RANDORI
+    </div>
+  </div>
+  
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <button id="save">save</button>
+  </div>
+
+</div>

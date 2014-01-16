@@ -56,10 +56,13 @@ ROOT_URLCONF = 'apps.urls'
 
 WSGI_APPLICATION = 'apps.wsgi.application'
 
+# Django-registration
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_HOST = 'localhost'
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 LOGIN_REDIRECT_URL = '/'
+
+TASTYPIE_DEFAULT_FORMATS = ['json']
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases

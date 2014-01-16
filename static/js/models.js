@@ -1,39 +1,54 @@
-var EntryTypeModel = Backbone.Model.extend({
-  urlRoot: '/api/v1/entry_type',
+Backbone.Model.prototype.toJSON = function() {
+  if (this._isSerializing) {
+    return this.id || this.cid;
+  }
+  this._isSerializing = true;
+  var json = _.clone(this.attributes);
+  _.each(json, function(value, name) {
+    _.isFunction(value.toJSON) && (value[name] = value.toJSON());
+  });
+  this._isSerializing = false;
+  return json;
+}
+
+JJ.EntryTypeModel = Backbone.Model.extend({
+  urlRoot: '/api/v1/entry/type/',
 });
 
-var GoalModel = Backbone.Model.extend({
-  urlRoot: '/api/v1/goal',
+JJ.GoalModel = Backbone.Model.extend({
+  urlRoot: '/api/v1/goal/',
 });
 
-var GoalInstanceModel = Backbone.Model.extend({
-  urlRoot: '/api/v1/goal_instance',
+JJ.GoalInstanceModel = Backbone.Model.extend({
+  urlRoot: '/api/v1/goal/instance/',
   defaults: {
     "rating": "3",
   }
 });
 
-var LocationModel = Backbone.Model.extend({
-  urlRoot: '/api/v1/location',
+JJ.LocationModel = Backbone.Model.extend({
+  urlRoot: '/api/v1/location/',
 });
 
-var DrillEntryModulModel = Backbone.Model.extend({
-  urlRoot: '/api/v1/drill_entry_modul',
+JJ.DrillEntryModulModel = Backbone.Model.extend({
+  urlRoot: '/api/v1/entry/module/drill/',
   defaults: {
     "rating": "3",
   }
 });
 
-var SparringEntryModulModel = Backbone.Model.extend({
-  urlRoot: '/api/v1/sparring_entry_module',
+JJ.SparringEntryModulModel = Backbone.Model.extend({
+  urlRoot: '/api/v1/entry/module/sparring/',
   defaults: {
     "rating": "3",
   }
 });
 
-var EntryAModel = Backbone.Model.extend({
-  urlRoot: '/api/v1/entry_a',
+JJ.EntryAModel = Backbone.Model.extend({
+  urlRoot: '/api/v1/entry/a/',
   defaults: {
     "rating": "3",
+    "start": new Date(),
+    "end": new Date(),
   }
 });

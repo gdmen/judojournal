@@ -5,6 +5,9 @@
   Sample comment.
 {% endcomment %}
 
+{% block head %}
+{% endblock %}
+
 {% block content %}
 {% endblock %}
 
@@ -24,10 +27,22 @@
         return _sync(method, model, options);
       };
     });
+
+    // Bugfix
+    // Tastypie returns a 201 with empty response upon successful Backbone.Model.save
+    // jquery ajax considers the empty response an error
+    $.ajaxSetup({dataFilter: function(data, type) {
+      if (type == "json" && data == "") {
+        data = null;
+      }
+      return data;
+    }});
 	</script>
+  <script type="text/javascript" src="{% static 'components/datetimepicker/jquery.datetimepicker.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/handlebars.runtime.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/models.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/templates.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/views.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/routes.js' %}"></script>
 {% endblock %}
