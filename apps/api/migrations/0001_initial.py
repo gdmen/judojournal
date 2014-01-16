@@ -8,15 +8,14 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Location'
-        db.create_table(u'api_location', (
+        # Adding model 'EntryType'
+        db.create_table(u'api_entrytype', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=140)),
-            ('url', self.gf('django.db.models.fields.CharField')(max_length=250, blank=True)),
-            ('address', self.gf('django.db.models.fields.CharField')(max_length=250, blank=True)),
+            ('name', self.gf('django.db.models.fields.TextField')()),
+            ('type', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
-        db.send_create_signal(u'api', ['Location'])
+        db.send_create_signal(u'api', ['EntryType'])
 
         # Adding model 'Goal'
         db.create_table(u'api_goal', (
@@ -31,48 +30,48 @@ class Migration(SchemaMigration):
         # Adding model 'GoalInstance'
         db.create_table(u'api_goalinstance', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('rating', self.gf('django.db.models.fields.SmallIntegerField')()),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('goal', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.Goal'])),
             ('details', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal(u'api', ['GoalInstance'])
 
-        # Adding model 'EntryType'
-        db.create_table(u'api_entrytype', (
+        # Adding model 'Location'
+        db.create_table(u'api_location', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('name', self.gf('django.db.models.fields.TextField')()),
-            ('type', self.gf('django.db.models.fields.TextField')(blank=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=140)),
+            ('url', self.gf('django.db.models.fields.CharField')(max_length=250, blank=True)),
         ))
-        db.send_create_signal(u'api', ['EntryType'])
+        db.send_create_signal(u'api', ['Location'])
 
         # Adding model 'DrillEntryModule'
         db.create_table(u'api_drillentrymodule', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('rating', self.gf('django.db.models.fields.SmallIntegerField')()),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('details', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
         db.send_create_signal(u'api', ['DrillEntryModule'])
 
-        # Adding model 'RandoriEntryModule'
-        db.create_table(u'api_randorientrymodule', (
+        # Adding model 'SparringEntryModule'
+        db.create_table(u'api_sparringentrymodule', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('rating', self.gf('django.db.models.fields.SmallIntegerField')()),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('details', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('partner', self.gf('django.db.models.fields.CharField')(max_length=140, blank=True)),
             ('minutes', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=5, decimal_places=2)),
         ))
-        db.send_create_signal(u'api', ['RandoriEntryModule'])
+        db.send_create_signal(u'api', ['SparringEntryModule'])
 
         # Adding model 'EntryA'
         db.create_table(u'api_entrya', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('rating', self.gf('django.db.models.fields.SmallIntegerField')()),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('start', self.gf('django.db.models.fields.DateTimeField')()),
             ('end', self.gf('django.db.models.fields.DateTimeField')()),
             ('pre_status', self.gf('django.db.models.fields.TextField')(blank=True)),
@@ -100,14 +99,14 @@ class Migration(SchemaMigration):
         ))
         db.create_unique(m2m_table_name, ['entrya_id', 'drillentrymodule_id'])
 
-        # Adding M2M table for field randori on 'EntryA'
-        m2m_table_name = db.shorten_name(u'api_entrya_randori')
+        # Adding M2M table for field sparring on 'EntryA'
+        m2m_table_name = db.shorten_name(u'api_entrya_sparring')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('entrya', models.ForeignKey(orm[u'api.entrya'], null=False)),
-            ('randorientrymodule', models.ForeignKey(orm[u'api.randorientrymodule'], null=False))
+            ('sparringentrymodule', models.ForeignKey(orm[u'api.sparringentrymodule'], null=False))
         ))
-        db.create_unique(m2m_table_name, ['entrya_id', 'randorientrymodule_id'])
+        db.create_unique(m2m_table_name, ['entrya_id', 'sparringentrymodule_id'])
 
         # Adding model 'Question'
         db.create_table(u'api_question', (
@@ -142,8 +141,8 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        # Deleting model 'Location'
-        db.delete_table(u'api_location')
+        # Deleting model 'EntryType'
+        db.delete_table(u'api_entrytype')
 
         # Deleting model 'Goal'
         db.delete_table(u'api_goal')
@@ -151,14 +150,14 @@ class Migration(SchemaMigration):
         # Deleting model 'GoalInstance'
         db.delete_table(u'api_goalinstance')
 
-        # Deleting model 'EntryType'
-        db.delete_table(u'api_entrytype')
+        # Deleting model 'Location'
+        db.delete_table(u'api_location')
 
         # Deleting model 'DrillEntryModule'
         db.delete_table(u'api_drillentrymodule')
 
-        # Deleting model 'RandoriEntryModule'
-        db.delete_table(u'api_randorientrymodule')
+        # Deleting model 'SparringEntryModule'
+        db.delete_table(u'api_sparringentrymodule')
 
         # Deleting model 'EntryA'
         db.delete_table(u'api_entrya')
@@ -169,8 +168,8 @@ class Migration(SchemaMigration):
         # Removing M2M table for field drills on 'EntryA'
         db.delete_table(db.shorten_name(u'api_entrya_drills'))
 
-        # Removing M2M table for field randori on 'EntryA'
-        db.delete_table(db.shorten_name(u'api_entrya_randori'))
+        # Removing M2M table for field sparring on 'EntryA'
+        db.delete_table(db.shorten_name(u'api_entrya_sparring'))
 
         # Deleting model 'Question'
         db.delete_table(u'api_question')
@@ -199,8 +198,8 @@ class Migration(SchemaMigration):
             'location': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.Location']"}),
             'post_status': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'pre_status': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'randori': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.RandoriEntryModule']", 'null': 'True', 'blank': 'True'}),
             'rating': ('django.db.models.fields.SmallIntegerField', [], {}),
+            'sparring': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.SparringEntryModule']", 'null': 'True', 'blank': 'True'}),
             'start': ('django.db.models.fields.DateTimeField', [], {}),
             'type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.EntryType']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
@@ -231,7 +230,6 @@ class Migration(SchemaMigration):
         },
         u'api.location': {
             'Meta': {'object_name': 'Location'},
-            'address': ('django.db.models.fields.CharField', [], {'max_length': '250', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '140'}),
             'url': ('django.db.models.fields.CharField', [], {'max_length': '250', 'blank': 'True'}),
@@ -246,8 +244,8 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
-        u'api.randorientrymodule': {
-            'Meta': {'object_name': 'RandoriEntryModule'},
+        u'api.sparringentrymodule': {
+            'Meta': {'object_name': 'SparringEntryModule'},
             'details': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'minutes': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '5', 'decimal_places': '2'}),

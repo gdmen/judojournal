@@ -4,22 +4,24 @@ from django.contrib.auth.models import User
 """
   Abstract Helpers
 """
-class HasUser(models.Model):
-  user = models.ForeignKey(User)
-  class Meta:
-    abstract = True
-    
 class HasRating(models.Model):
   rating = models.SmallIntegerField()
+  class Meta:
+    abstract = True
+
+class HasUser(models.Model):
+  user = models.ForeignKey(User)
   class Meta:
     abstract = True
 
 """
   Entry components
 """
-class Location(HasUser):
-  name = models.CharField(max_length=140)
-  url = models.CharField(max_length=250, blank=True)
+class EntryType(HasUser):
+  # e.g. 'Judo'
+  name = models.TextField()
+  # e.g. 'Open Mat'
+  type = models.TextField(blank=True)
 
 class Goal(HasUser):
   brief = models.CharField(max_length=140)
@@ -31,11 +33,9 @@ class GoalInstance(HasUser, HasRating):
   details = models.TextField(blank=True)
   created = models.DateTimeField(auto_now_add=True)
 
-class EntryType(HasUser):
-  # e.g. 'Judo'
-  name = models.TextField()
-  # e.g. 'Open Mat'
-  type = models.TextField(blank=True)
+class Location(HasUser):
+  name = models.CharField(max_length=140)
+  url = models.CharField(max_length=250, blank=True)
 
 """
   Abstract Entry
@@ -63,18 +63,18 @@ class AbstractEntryModule(HasUser, HasRating):
 class DrillEntryModule(AbstractEntryModule):
   pass
 
-# Randori
-class RandoriEntryModule(AbstractEntryModule):
+# Sparring
+class SparringEntryModule(AbstractEntryModule):
   partner = models.CharField(max_length=140, blank=True)
   # duration
   minutes = models.DecimalField(max_digits=5, decimal_places=2, null=True)
 
 class EntryA(AbstractEntry):
   drills = models.ManyToManyField(DrillEntryModule, blank=True, null=True)
-  randori = models.ManyToManyField(RandoriEntryModule, blank=True, null=True)
+  sparring = models.ManyToManyField(SparringEntryModule, blank=True, null=True)
 
 """
-  Misc
+  Stand Alone
 """
 class Question(HasUser):
   brief = models.CharField(max_length=140)
