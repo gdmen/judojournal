@@ -24,15 +24,17 @@ function editEvent(id) {
   var view = null;
   if (id === "#") {
     var event = new JJ.EntryAModel();
-    //event.set('type', new JJ.EntryTypeModel());
-    //event.set('location', new JJ.LocationModel());
-    event.type = new JJ.EntryTypeModel();
-    event.location = new JJ.LocationModel();
+    event.set('type', new JJ.EntryTypeModel());
+    event.set('location', new JJ.LocationModel());
+    //event.type = new JJ.EntryTypeModel();
+    //event.location = new JJ.LocationModel();
     view = new JJ.EditEntryView({model: event, el: $('#content')});
   } else {
     var event = new JJ.EntryAModel({id: id});
     event.fetch({
-      success: function (m) {
+      success: function(m) {
+        //event.type = new JJ.EntryTypeModel(event.get('type'));
+        //event.location = new JJ.LocationModel(event.get('location'));
         view = new JJ.EditEntryView({model: m, el: $('#content')});
       },
       error: handleUnknownRoute
@@ -43,7 +45,7 @@ function editEvent(id) {
 function showEntry(id) {
   event = new EntryAModel({id: id});
   event.fetch({
-    success: function (m) {
+    success: function(m) {
       var prior_status = new StatusModel({id: m.get('prior_status')});
       prior_status.fetch();
       var location = new LocationModel({id: m.get('location')});

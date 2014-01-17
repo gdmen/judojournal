@@ -17,12 +17,6 @@ class HasUserModel(models.Model):
 """
   Entry components
 """
-class EntryType(HasUserModel):
-  # e.g. 'Judo'
-  name = models.TextField()
-  # e.g. 'Open Mat'
-  type = models.TextField(blank=True)
-
 class Goal(HasUserModel):
   brief = models.CharField(max_length=140)
   details = models.TextField(blank=True)
@@ -32,6 +26,12 @@ class GoalInstance(HasUserModel, HasRatingModel):
   goal = models.ForeignKey(Goal)
   details = models.TextField(blank=True)
   created = models.DateTimeField(auto_now_add=True)
+
+class EntryType(HasUserModel):
+  # e.g. 'Judo'
+  name = models.TextField()
+  # e.g. 'Open Mat'
+  type = models.TextField(blank=True)
 
 class Location(HasUserModel):
   name = models.CharField(max_length=140)
@@ -70,8 +70,8 @@ class SparringEntryModule(AbstractEntryModule):
   minutes = models.DecimalField(max_digits=5, decimal_places=2, null=True)
 
 class EntryA(AbstractEntry):
-  drills = models.ForeignKey(DrillEntryModule, blank=True, null=True)
-  sparring = models.ForeignKey(SparringEntryModule, blank=True, null=True)
+  drills = models.ManyToManyField(DrillEntryModule, blank=True, null=True)
+  sparring = models.ManyToManyField(SparringEntryModule, blank=True, null=True)
 
 """
   Stand Alone

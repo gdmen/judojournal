@@ -68,6 +68,38 @@ var ShowEntryView = Backbone.View.extend({
   },
 });
 */
+JJ.AbstractSelectModelView = Backbone.View.extend({
+  field: '',
+  events: {
+    "change select": "changed",
+  },
+ 
+  changed: function(e){
+    var value = $(e.currentTarget).val();
+    this.parent.set(this.field, value);
+    this.render();
+  },
+  
+  initialize: function(options) {
+    this.parent = options.parent;
+    this.render();
+  },
+  
+  render: function() {
+    var selected = this.parent.get(this.field);
+    var json = {collection: this.collection.toJSON()};
+    for(var i=json.collection.length; i--;) {
+       json.collection[i]['selected'] = (json.collection[i].resource_uri === selected);
+    }
+    this.$el.html(this.template(json));
+    return this;
+  },
+});
+
+JJ.SelectLocationView = JJ.AbstractSelectModelView.extend({
+  template: Handlebars.templates['entry/location/select/single'],
+  field: 'location',
+}); 
 
 JJ.AbstractEditModelView = Backbone.View.extend({
   events: {
@@ -78,15 +110,11 @@ JJ.AbstractEditModelView = Backbone.View.extend({
   changed: function(e){
     var changed = e.currentTarget;
     var value = $(e.currentTarget).val();
-    var obj = {};
-    obj[changed.name] = value;
-    this.model.set(obj);
-    console.log(this.model.toJSON());
+    this.model.set(changed.name, value);
+    this.render();
   },
   
   initialize: function(options) {
-    _.bindAll(this, "changed");
-    this.model.on('change', this.render, this);
     this.render();
   },
   
@@ -97,15 +125,15 @@ JJ.AbstractEditModelView = Backbone.View.extend({
 });
 
 JJ.EditTypeView = JJ.AbstractEditModelView.extend({
-  template: Handlebars.templates.type_edit,
+  template: Handlebars.templates['entry/type/edit/single'],
 });
 
 JJ.EditLocationView = JJ.AbstractEditModelView.extend({
-  template: Handlebars.templates.location_edit,
+  template: Handlebars.templates['entry/location/edit/single'],
 });
 
 JJ.EditEntryView = JJ.AbstractEditModelView.extend({
-  template: Handlebars.templates.event_edit,
+  template: Handlebars.templates['entry/a/edit/single'],
   events: {
     "change input": "changed",
     "change select": "changed",
@@ -114,34 +142,33 @@ JJ.EditEntryView = JJ.AbstractEditModelView.extend({
   
   save: function() {
     var event = this.model;
-    var type = this.type;
-    var location = this.location;
     console.log("**********SAVING**********");
-        event.set('type', event.type.toJSON());
-        event.set('location', event.location.toJSON());
-            event.save(null, {
-              success: function (m) {
-                console.log("SAVED event...");
-                console.log(m.toJSON());
-                console.log("**********DONE SAVING**********");
-              },
-              error: function(response) {
-                console.log("ERROR");
-                console.log(response);
-              }
-            });
+    //event.set('type', event.type.toJSON());
+    //event.set('location', event.location.toJSON());
+    console.log(event.toJSON());
+    event.save(null, {
+      success: function(m) {
+        console.log("SAVED event...");
+        console.log(m.toJSON());
+        console.log("**********DONE SAVING**********");
+      },
+      error: function(response) {
+        console.log("ERROR");
+        console.log(response);
+      }
+    });
     //TODO: add error handling here to print improper input warning
     /*
     type.save(null, {
-      success: function (m) {
+      success: function(m) {
         console.log("SAVED type...");
         event.set('type', m.get('resource_uri'));
         location.save(null, {
-          success: function (m) {
+          success: function(m) {
             console.log("SAVED location...");
             event.set('location', m.get('resource_uri'));
             event.save(null, {
-              success: function (m) {
+              success: function(m) {
                 console.log("SAVED event...");
                 console.log(m.toJSON());
                 console.log("**********DONE SAVING**********");
@@ -171,10 +198,18 @@ JJ.EditEntryView = JJ.AbstractEditModelView.extend({
   },
   
   render: function() {
+    this.model.stayHydrated();
     this.$el.html(this.template(this.model.toJSON()));
-    console.log(this.model.toJSON());
-    new JJ.EditTypeView({model: this.model.type, el: this.$("#type")});
-    new JJ.EditLocationView({model: this.model.location, el: this.$("#location")});
+    new JJ.EditTypeView({model: this.model.get('type'), el: this.$("#type")});
+    //new JJ.EditLocationView({model: this.model.get('location'), el: this.$("#location")});
+    var entry = this.model;
+    var locations = new JJ.LocationCollection();
+    locations.fetch({
+      success: function(m) {
+        new JJ.SelectLocationView({collection: m, parent: entry, el: this.$("#location")});
+      },
+      //error: handleUnknownRoute
+    });
     // UI library linking
     $('#dtp_start').datetimepicker({
       format: 'd.m.Y H:i',

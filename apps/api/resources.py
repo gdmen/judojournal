@@ -15,14 +15,6 @@ class HasUserResource(ModelResource):
   def apply_authorization_limits(self, request, object_list):
     return object_list.filter(user=request.user)
 
-class EntryTypeResource(HasUserResource):
-  class Meta(HasUserResource.Meta):
-    queryset = EntryType.objects.all()
-    resource_name = 'entry/type'
-
-  def obj_create(self, bundle, **kwargs):
-    return super(EntryTypeResource, self).obj_create(bundle, user=bundle.request.user)
-
 class GoalResource(HasUserResource):
   class Meta(HasUserResource.Meta):
     queryset = Goal.objects.all()
@@ -37,13 +29,21 @@ class GoalInstanceResource(HasUserResource):
     queryset = GoalInstance.objects.all()
     resource_name = 'goal/instance'
 
+class EntryTypeResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
+    queryset = EntryType.objects.all()
+    resource_name = 'entry/type'
+
+  def obj_create(self, bundle, **kwargs):
+    return super(EntryTypeResource, self).obj_create(bundle, user=bundle.request.user)
+
   def obj_create(self, bundle, **kwargs):
     return super(GoalInstanceResource, self).obj_create(bundle, user=bundle.request.user)
     
 class LocationResource(HasUserResource):
   class Meta(HasUserResource.Meta):
     queryset = Location.objects.all()
-    resource_name = 'location'
+    resource_name = 'entry/location'
 
   def obj_create(self, bundle, **kwargs):
     return super(LocationResource, self).obj_create(bundle, user=bundle.request.user)
@@ -66,7 +66,7 @@ class SparringEntryModuleResource(HasUserResource):
 
 class EntryAResource(HasUserResource):
   type = fields.ToOneField(EntryTypeResource, 'type', full=True)
-  location = fields.ToOneField(LocationResource, 'location', full=True)
+  location = fields.ToOneField(LocationResource, 'location')
   goals = fields.ToManyField(GoalInstanceResource, 'goals', blank=True, null=True, full=True)
   drills = fields.ToManyField(DrillEntryModuleResource, 'drills', blank=True, null=True, full=True)
   sparring = fields.ToManyField(SparringEntryModuleResource, 'sparring', blank=True, null=True, full=True)

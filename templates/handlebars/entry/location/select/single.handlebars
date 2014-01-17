@@ -1,0 +1,5 @@
+<select name="location">
+{{#each collection}}
+  <option value="{{ resource_uri }}"{{#if selected}}selected{{/if}}>{{ name }}</option>
+{{/each}}
+</select>
