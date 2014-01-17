@@ -6,27 +6,27 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"row\">\n  <div class=\"small-6 columns\">\n    <div class=\"small-12 columns\">\n      <input type=\"text\" name=\"rating\" value=\"";
+  buffer += "<div class=\"row\">\r\n  <div class=\"small-6 columns\">\r\n    <div class=\"small-12 columns\">\r\n      <input type=\"text\" name=\"rating\" value=\"";
   if (helper = helpers.rating) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.rating); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\n      <div><span id=\"type\"></span> @ <span id=\"location\"></span></div>\n      <br />\n      <input id=\"dtp_start\" type=\"text\" name=\"start\" value=\"";
+    + "\" />\r\n      <div><span id=\"type\"></span> @ <span id=\"location\"></span></div>\r\n      <br />\r\n      <input id=\"dtp_start\" type=\"text\" name=\"start\" value=\"";
   if (helper = helpers.start) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.start); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\n      <br />\n      <input id=\"dtp_end\" type=\"text\" name=\"end\" value=\"";
+    + "\" />\r\n      <br />\r\n      <input id=\"dtp_end\" type=\"text\" name=\"end\" value=\"";
   if (helper = helpers.end) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.end); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\n    </div>\n    <div class=\"small-12 columns\">\n      ";
+    + "\" />\r\n    </div>\r\n    <div class=\"small-12 columns\">\r\n      ";
   if (helper = helpers.pre_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.pre_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\n    </div>\n    <div class=\"small-12 columns\">\n      ";
+    + "\r\n    </div>\r\n    <div class=\"small-12 columns\">\r\n      ";
   if (helper = helpers.post_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.post_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\n    </div>\n  </div>\n\n  <div class=\"small-6 columns\" id=\"goals\">\n    <h3>Goals</h3>\n    <ul>\n      <li>Coffee</li>\n      <li>Milk</li>\n      <li>Coffee</li>\n    </ul>\n  </div>\n  \n</div>\n\n<div class=\"row\">\n  <div class=\"small-12 columns\">\n    <div class=\"panel\">\n      DRILLS\n    </div>\n  </div>\n  \n</div>\n\n<div class=\"row\">\n  <div class=\"small-12 columns\">\n    <div class=\"panel\">\n      RANDORI\n    </div>\n  </div>\n  \n</div>\n<div class=\"row\">\n  <div class=\"small-12 columns\">\n    <button id=\"save\">save</button>\n  </div>\n\n</div>";
+    + "\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"small-6 columns\" id=\"goals\">\r\n    <h3>Goals</h3>\r\n    <ul>\r\n      <li>Coffee</li>\r\n      <li>Milk</li>\r\n      <li>Coffee</li>\r\n    </ul>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"small-12 columns\">\r\n    <div class=\"panel\">\r\n      DRILLS\r\n    </div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"small-12 columns\">\r\n    <div class=\"panel\">\r\n      RANDORI\r\n    </div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"small-12 columns\">\r\n    <button id=\"save\">save</button>\r\n  </div>\r\n\r\n</div>";
   return buffer;
   });
 templates['event_show'] = template(function (Handlebars,depth0,helpers,partials,data) {
