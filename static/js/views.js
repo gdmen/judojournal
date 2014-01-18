@@ -79,6 +79,7 @@ JJ.AbstractEditModelView = Backbone.View.extend({
     var changed = e.currentTarget;
     var value = $(e.currentTarget).val();
     this.model.set(changed.name, value);
+    console.log(this.model.toJSON());
     this.render();
   },
   

@@ -25,3 +25,21 @@
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
+
+/*
+ * Widgets
+ */
+ // Rating
+.rating label {
+  display: inline-block;
+  input[type=radio]{
+    display: none;
+  }
+}
+input[type=radio] + img{
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+input[type=radio]:checked + img{
+  border: 2px solid #f00;
+}

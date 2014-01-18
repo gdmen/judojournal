@@ -8560,3 +8560,26 @@ th.hide-for-touch {
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
+
+/*
+ * Widgets
+ */
+/* line 33, ../scss/styles.scss */
+.rating label {
+  display: inline-block;
+}
+/* line 35, ../scss/styles.scss */
+.rating label input[type=radio] {
+  display: none;
+}
+
+/* line 39, ../scss/styles.scss */
+input[type=radio] + img {
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+/* line 43, ../scss/styles.scss */
+input[type=radio]:checked + img {
+  border: 2px solid #f00;
+}
