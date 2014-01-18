@@ -82,7 +82,7 @@ JJ.EntryAModel = JJ.TastypieModel.extend({
     "sparring": [],
   },
   stayHydrated: function() {
-    for(var i=this.get('drills').length; i--) {
+    for(var i=this.get('drills').length; i--;) {
       var drill = this.get('drills')[i];
       if(!(drill instanceof JJ.DrillEntryModuleModel)) {
         this.get('drills')[i] = new JJ.DrillEntryModuleModel(drill);

@@ -68,40 +68,106 @@ var ShowEntryView = Backbone.View.extend({
   },
 });
 */
+
+JJ.AbstractEditModelView = Backbone.View.extend({
+  events: {
+    "change input": "changed",
+    "change select": "changed",
+  },
+ 
+  changed: function(e){
+    var changed = e.currentTarget;
+    var value = $(e.currentTarget).val();
+    this.model.set(changed.name, value);
+    this.render();
+  },
+  
+  initialize: function(options) {
+    this.render();
+  },
+  
+  // Link DOM to third party JS libraries
+  linkDOM: function() {
+  },
+  
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    this.linkDOM();
+    return this;
+  },
+});
+
+JJ.EditDrillView = JJ.AbstractEditModelView.extend({
+  template: Handlebars.templates['entry/module/drill/edit/single'],
+  
+  remove: function() {
+    console.log('removing');
+    this.parent_view.remove_model(this.model);
+  },
+  
+  initialize: function(options) {
+    this.parent_view = options.parent_view;
+    this.render();
+  },
+}); 
+
 JJ.AbstractEditListModelView = Backbone.View.extend({
   field: '',
   parent_model: null,
-  added_model: null,
+  new_view: null,
+  new_model: null,
   events: {
-    "click .add": "add",
+    "click #add": "add",
   },
  
   add: function(e) {
     console.log('add');
+    var model = new this.new_model();
+    var this_view = this;
+    var model_array = this.model_array;
+    console.log(model_array);
+    
+    model.save(null, {
+      success: function(m) {
+        console.log("SAVED new model...");
+        console.log(m);
+        model_array.push(m);
+        this_view.render();
+      },
+      error: function(response) {
+        console.log("ERROR");
+        console.log(response);
+      }
+    });
   },
   
   addModel: function(m) {
     console.log('addModel');
-    //this.$el.append(
-  }
+    var div = $( "<div/>" );
+    var id = m.get('resource_uri');
+    this.$el.append(div);
+    div.attr('id', id);
+    new this.new_view({model: m, parent_view: this, el: this.$(document.getElementById(id))});
+  },
   
   initialize: function(options) {
-    this.parent_model = options.parent_model;
+    this.model_array = options.parent_model.get(this.field);
     this.render();
   },
   
   render: function() {
-    this.$el.html(this.template(json));
-    for
+    this.$el.html(this.template());
+    for(var i=this.model_array.length; i--;) {
+      this.addModel(this.model_array[i]);
+    }
     return this;
   },
 });
 JJ.EditListDrillView = JJ.AbstractEditListModelView.extend({
   template: Handlebars.templates['entry/module/drill/edit/list'],
-  field: '',
-  parent_model: null,
-  added_model: DrillEntryModuleModel,
-  
+  field: 'drills',
+  new_view: JJ.EditDrillView,
+  new_model: JJ.DrillEntryModuleModel,
 });
 
 JJ.AbstractSelectModelView = Backbone.View.extend({
@@ -144,33 +210,8 @@ JJ.SelectEntryTypeView = JJ.AbstractSelectModelView.extend({
   field: 'type',
 }); 
 
-JJ.AbstractEditModelView = Backbone.View.extend({
-  events: {
-    "change input": "changed",
-    "change select": "changed",
-  },
- 
-  changed: function(e){
-    var changed = e.currentTarget;
-    var value = $(e.currentTarget).val();
-    this.model.set(changed.name, value);
-    this.render();
-  },
-  
-  initialize: function(options) {
-    this.render();
-  },
-  
-  // Link DOM to third party JS libraries
-  linkDOM: function() {
-  },
-  
-  render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
-    this.linkDOM();
-    return this;
-  },
-});
+
+
 
 JJ.EditTypeView = JJ.AbstractEditModelView.extend({
   template: Handlebars.templates['entry/type/edit/single'],
@@ -270,20 +311,20 @@ JJ.EditEntryView = JJ.AbstractEditModelView.extend({
     this.$el.html(this.template(entry.toJSON()));
     
     // ADD / REMOVE oneToMany
-    new JJ.
+    new JJ.EditListDrillView({parent_model: entry, el: this.$('#drills')});
     
     // SELECT foreign key
     var locations = new JJ.LocationCollection();
     locations.fetch({
       success: function(m) {
-        new JJ.SelectLocationView({collection: m, parent_model: entry, el: this.$("#location")});
+        new JJ.SelectLocationView({collection: m, parent_model: entry, el: this.$('#location')});
       },
       //error: handleUnknownRoute
     });
     var types = new JJ.EntryTypeCollection();
     types.fetch({
       success: function(m) {
-        new JJ.SelectEntryTypeView({collection: m, parent_model: entry, el: this.$("#type")});
+        new JJ.SelectEntryTypeView({collection: m, parent_model: entry, el: this.$('#type')});
       },
       //error: handleUnknownRoute
     });
