@@ -65,7 +65,7 @@ class SparringEntryModuleResource(HasUserResource):
     return super(SparringEntryModuleResource, self).obj_create(bundle, user=bundle.request.user)
 
 class EntryAResource(HasUserResource):
-  type = fields.ToOneField(EntryTypeResource, 'type', full=True)
+  type = fields.ToOneField(EntryTypeResource, 'type')
   location = fields.ToOneField(LocationResource, 'location')
   goals = fields.ToManyField(GoalInstanceResource, 'goals', blank=True, null=True, full=True)
   drills = fields.ToManyField(DrillEntryModuleResource, 'drills', blank=True, null=True, full=True)

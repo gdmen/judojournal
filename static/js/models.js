@@ -30,58 +30,71 @@ JJ.TastypieCollection = Backbone.Collection.extend({
 });
 
 JJ.GoalModel = JJ.TastypieModel.extend({
-  urlRoot: '/api/v1/goal/',
+  urlRoot: "/api/v1/goal/",
 });
 
 JJ.GoalInstanceModel = JJ.TastypieModel.extend({
-  urlRoot: '/api/v1/goal/instance/',
+  urlRoot: "/api/v1/goal/instance/",
   defaults: {
     "rating": "3",
   }
 });
 
 JJ.EntryTypeModel = JJ.TastypieModel.extend({
-  urlRoot: '/api/v1/entry/type/',
+  urlRoot: "/api/v1/entry/type/",
+});
+
+JJ.EntryTypeCollection = JJ.TastypieCollection.extend({
+  model: JJ.EntryTypeModel,
+  url: "/api/v1/entry/type/",
 });
 
 JJ.LocationModel = JJ.TastypieModel.extend({
-  urlRoot: '/api/v1/entry/location/',
+  urlRoot: "/api/v1/entry/location/",
 });
 
 JJ.LocationCollection = JJ.TastypieCollection.extend({
   model: JJ.LocationModel,
-  url: '/api/v1/entry/location/',
+  url: "/api/v1/entry/location/",
 });
 
-JJ.DrillEntryModulModel = JJ.TastypieModel.extend({
-  urlRoot: '/api/v1/entry/module/drill/',
+JJ.DrillEntryModuleModel = JJ.TastypieModel.extend({
+  urlRoot: "/api/v1/entry/module/drill/",
   defaults: {
     "rating": "3",
   }
 });
 
-JJ.SparringEntryModulModel = JJ.TastypieModel.extend({
-  urlRoot: '/api/v1/entry/module/sparring/',
+JJ.SparringEntryModuleModel = JJ.TastypieModel.extend({
+  urlRoot: "/api/v1/entry/module/sparring/",
   defaults: {
     "rating": "3",
   }
 });
 
 JJ.EntryAModel = JJ.TastypieModel.extend({
-  urlRoot: '/api/v1/entry/a/',
+  urlRoot: "/api/v1/entry/a/",
   defaults: {
     "rating": "3",
     "start": new Date(),
     "end": new Date(),
+    "drills": [],
+    "sparring": [],
   },
   stayHydrated: function() {
-    var type = this.get('type');
-    if(!(type instanceof JJ.EntryTypeModel)) {
-      this.set('type', new JJ.EntryTypeModel(type));
+    for(var i=this.get('drills').length; i--) {
+      var drill = this.get('drills')[i];
+      if(!(drill instanceof JJ.DrillEntryModuleModel)) {
+        this.get('drills')[i] = new JJ.DrillEntryModuleModel(drill);
+      }
     }
-    //var location = this.get('location');
+    //var type = this.get("type");
+    //if(!(type instanceof JJ.EntryTypeModel)) {
+    //  this.set("type", new JJ.EntryTypeModel(type));
+    //}
+    //var location = this.get("location");
     //if(!(location instanceof JJ.LocationModel)) {
-    //  this.set('location', new JJ.LocationModel(location));
+    //  this.set("location", new JJ.LocationModel(location));
     //}
   },
 });

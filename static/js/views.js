@@ -68,28 +68,66 @@ var ShowEntryView = Backbone.View.extend({
   },
 });
 */
+JJ.AbstractEditListModelView = Backbone.View.extend({
+  field: '',
+  parent_model: null,
+  added_model: null,
+  events: {
+    "click .add": "add",
+  },
+ 
+  add: function(e) {
+    console.log('add');
+  },
+  
+  addModel: function(m) {
+    console.log('addModel');
+    //this.$el.append(
+  }
+  
+  initialize: function(options) {
+    this.parent_model = options.parent_model;
+    this.render();
+  },
+  
+  render: function() {
+    this.$el.html(this.template(json));
+    for
+    return this;
+  },
+});
+JJ.EditListDrillView = JJ.AbstractEditListModelView.extend({
+  template: Handlebars.templates['entry/module/drill/edit/list'],
+  field: '',
+  parent_model: null,
+  added_model: DrillEntryModuleModel,
+  
+});
+
 JJ.AbstractSelectModelView = Backbone.View.extend({
   field: '',
+  parent_model: null,
   events: {
     "change select": "changed",
   },
  
   changed: function(e){
     var value = $(e.currentTarget).val();
-    this.parent.set(this.field, value);
+    this.parent_model.set(this.field, value);
+    console.log(this.parent_model);
     this.render();
   },
   
   initialize: function(options) {
-    this.parent = options.parent;
+    this.parent_model = options.parent_model;
     this.render();
   },
   
   render: function() {
-    var selected = this.parent.get(this.field);
+    var selected = this.parent_model.get(this.field);
     var json = {collection: this.collection.toJSON()};
     for(var i=json.collection.length; i--;) {
-       json.collection[i]['selected'] = (json.collection[i].resource_uri === selected);
+      json.collection[i]['selected'] = (json.collection[i].resource_uri === selected);
     }
     this.$el.html(this.template(json));
     return this;
@@ -99,6 +137,11 @@ JJ.AbstractSelectModelView = Backbone.View.extend({
 JJ.SelectLocationView = JJ.AbstractSelectModelView.extend({
   template: Handlebars.templates['entry/location/select/single'],
   field: 'location',
+}); 
+
+JJ.SelectEntryTypeView = JJ.AbstractSelectModelView.extend({
+  template: Handlebars.templates['entry/type/select/single'],
+  field: 'type',
 }); 
 
 JJ.AbstractEditModelView = Backbone.View.extend({
@@ -118,8 +161,13 @@ JJ.AbstractEditModelView = Backbone.View.extend({
     this.render();
   },
   
+  // Link DOM to third party JS libraries
+  linkDOM: function() {
+  },
+  
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
+    this.linkDOM();
     return this;
   },
 });
@@ -141,14 +189,12 @@ JJ.EditEntryView = JJ.AbstractEditModelView.extend({
   },
   
   save: function() {
-    var event = this.model;
+    var entry = this.model;
     console.log("**********SAVING**********");
-    //event.set('type', event.type.toJSON());
-    //event.set('location', event.location.toJSON());
-    console.log(event.toJSON());
-    event.save(null, {
+    console.log(entry.toJSON());
+    entry.save(null, {
       success: function(m) {
-        console.log("SAVED event...");
+        console.log("SAVED entry...");
         console.log(m.toJSON());
         console.log("**********DONE SAVING**********");
       },
@@ -197,20 +243,7 @@ JJ.EditEntryView = JJ.AbstractEditModelView.extend({
     JJ.EditEntryView.__super__.initialize.apply(this);
   },
   
-  render: function() {
-    this.model.stayHydrated();
-    this.$el.html(this.template(this.model.toJSON()));
-    new JJ.EditTypeView({model: this.model.get('type'), el: this.$("#type")});
-    //new JJ.EditLocationView({model: this.model.get('location'), el: this.$("#location")});
-    var entry = this.model;
-    var locations = new JJ.LocationCollection();
-    locations.fetch({
-      success: function(m) {
-        new JJ.SelectLocationView({collection: m, parent: entry, el: this.$("#location")});
-      },
-      //error: handleUnknownRoute
-    });
-    // UI library linking
+  linkDOM: function() {
     $('#dtp_start').datetimepicker({
       format: 'd.m.Y H:i',
       hours12: true,
@@ -229,6 +262,35 @@ JJ.EditEntryView = JJ.AbstractEditModelView.extend({
        })
       },
     });
+  },
+  
+  render: function() {
+    var entry = this.model;
+    entry.stayHydrated();
+    this.$el.html(this.template(entry.toJSON()));
+    
+    // ADD / REMOVE oneToMany
+    new JJ.
+    
+    // SELECT foreign key
+    var locations = new JJ.LocationCollection();
+    locations.fetch({
+      success: function(m) {
+        new JJ.SelectLocationView({collection: m, parent_model: entry, el: this.$("#location")});
+      },
+      //error: handleUnknownRoute
+    });
+    var types = new JJ.EntryTypeCollection();
+    types.fetch({
+      success: function(m) {
+        new JJ.SelectEntryTypeView({collection: m, parent_model: entry, el: this.$("#type")});
+      },
+      //error: handleUnknownRoute
+    });
+    
+    // DOM JS linking
+    this.linkDOM();
+    
     return this;
   },
 });

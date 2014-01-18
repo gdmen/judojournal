@@ -2,7 +2,7 @@ JJ.Router = Backbone.Router.extend({
   routes: {
     "(/)": "home",
     //"entry/:id(/)": "showEntry",
-    "entry/:id/edit(/)": "editEvent",
+    "entry/:id/edit(/)": "editEntry",
     "*unknown": "unknownRoute" // Backbone will try match the route above first
   }
 });
@@ -10,7 +10,7 @@ JJ.Router = Backbone.Router.extend({
 JJ.router = new JJ.Router;
 
 JJ.router.on('route:home', home);
-JJ.router.on('route:editEvent', editEvent);
+JJ.router.on('route:editEntry', editEntry);
 //JJ.router.on('route:showEntry', showEntry);
 JJ.router.on('route:unknownRoute', function() { console.log("router problem"); handleUnknownRoute()});
 // Start Backbone history a necessary step for bookmarkable URL's
@@ -20,21 +20,19 @@ function home() {
   console.log("HOME!");
 }
 
-function editEvent(id) {
+function editEntry(id) {
   var view = null;
   if (id === "#") {
-    var event = new JJ.EntryAModel();
-    event.set('type', new JJ.EntryTypeModel());
-    event.set('location', new JJ.LocationModel());
+    var entry = new JJ.EntryAModel();
+    entry.set('type', new JJ.EntryTypeModel());
+    entry.set('location', new JJ.LocationModel());
     //event.type = new JJ.EntryTypeModel();
     //event.location = new JJ.LocationModel();
-    view = new JJ.EditEntryView({model: event, el: $('#content')});
+    view = new JJ.EditEntryView({model: entry, el: $('#content')});
   } else {
-    var event = new JJ.EntryAModel({id: id});
-    event.fetch({
+    var entry = new JJ.EntryAModel({id: id});
+    entry.fetch({
       success: function(m) {
-        //event.type = new JJ.EntryTypeModel(event.get('type'));
-        //event.location = new JJ.LocationModel(event.get('location'));
         view = new JJ.EditEntryView({model: m, el: $('#content')});
       },
       error: handleUnknownRoute
@@ -43,8 +41,8 @@ function editEvent(id) {
 }
 /*
 function showEntry(id) {
-  event = new EntryAModel({id: id});
-  event.fetch({
+  entry = new EntryAModel({id: id});
+  entry.fetch({
     success: function(m) {
       var prior_status = new StatusModel({id: m.get('prior_status')});
       prior_status.fetch();

@@ -14,6 +14,7 @@
 {% block js %}
   <script type="text/javascript" src="{% static 'components/underscore/underscore-min.js' %}"></script>
   <script type="text/javascript" src="{% static 'components/backbone/backbone-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/handlebars.runtime.js' %}"></script>
 	<script type="text/javascript">
     $(function(){
       var _sync = Backbone.sync;
@@ -40,7 +41,6 @@
 	</script>
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
   <script type="text/javascript" src="{% static 'components/datetimepicker/jquery.datetimepicker.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/handlebars.runtime.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/models.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/templates.js' %}"></script>
