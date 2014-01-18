@@ -129,21 +129,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['entry/module/drill/edit/list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var buffer = "";
 
-function program1(depth0,data) {
-  
-  var buffer = "", helper, options;
-  buffer += "\r\n  "
-    + escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},data:data},helper ? helper.call(depth0, "entry/module/drill/edit/single", options) : helperMissing.call(depth0, "partial", "entry/module/drill/edit/single", options)))
-    + "\r\n";
-  return buffer;
-  }
 
-  buffer += "\r\n<select name=\"drills\">\r\n";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.collection), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</select>\r\n\r\n";
+  buffer += "\r\n<button id=\"add\">add</button>\r\n\r\n";
   return buffer;
   });
 templates['entry/module/drill/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
