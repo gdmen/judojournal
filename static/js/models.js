@@ -1,109 +1,120 @@
 /*
-attribution:
-http://paltman.com/2012/04/30/integration-backbonejs-tastypie/
-*/
-JJ.TastypieModel = Backbone.Model.extend({
-    base_url: function() {
-      var temp_url = Backbone.Model.prototype.url.call(this);
-      return (temp_url.charAt(temp_url.length - 1) == "/" ? temp_url : temp_url+"/");
-    },
-    url: function() {
-      return this.base_url();
-    },
-    toJSON: function() {
-      if (this._isSerializing) {
-        return this.id || this.cid;
-      }
-      this._isSerializing = true;
-      var json = _.clone(this.attributes);
-      _.each(json, function(value, name) {
-        _.isFunction(value.toJSON) && (value[name] = value.toJSON());
-      });
-      this._isSerializing = false;
-      return json;
-    },
-    
-});
-JJ.TastypieCollection = Backbone.Collection.extend({
-    parse: function(response) {
-        this.recent_meta = response.meta || {};
-        return response.objects || response;
-    }
+ * attribution:
+ * http://paltman.com/2012/04/30/integration-backbonejs-tastypie/
+ * Tastypie Models avoid redirects for ending '/'s and have recursive toJSON()
+ */
+JJ.Models.Tastypie = Backbone.Model.extend({
+  base_url: function() {
+    var temp_url = Backbone.Model.prototype.url.call(this);
+    return (temp_url.charAt(temp_url.length - 1) === "/" ? temp_url : temp_url+"/");
+  },
+  url: function() {
+    return this.base_url();
+  },
+  toJSON: function() {
+  if (this._isSerializing) {
+    return this.id || this.cid;
+  }
+  this._isSerializing = true;
+  var json = _.clone(this.attributes);
+  _.each(json, function(value, name) {
+    _.isFunction(value.toJSON) && (value[name] = value.toJSON());
+  });
+  this._isSerializing = false;
+  return json;
+  },
 });
 /*
-end attribution
-*/
+ * end attribution
+ */
 
-JJ.GoalModel = JJ.TastypieModel.extend({
+/*
+ * Goal
+ * GoalInstance
+ */
+JJ.Models.Goal = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/goal/",
 });
 
-JJ.GoalInstanceModel = JJ.TastypieModel.extend({
+JJ.Models.GoalInstance = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/goal/instance/",
   defaults: {
     "rating": "3",
   }
 });
 
-JJ.EntryTypeModel = JJ.TastypieModel.extend({
+/*
+ * EntryType
+ */
+JJ.Models.EntryType = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/type/",
 });
 
-JJ.EntryTypeCollection = JJ.TastypieCollection.extend({
-  model: JJ.EntryTypeModel,
+JJ.Models.EntryTypeCollection = JJ.Models.TastypieCollection.extend({
+  model: JJ.Models.EntryType,
   url: "/api/v1/entry/type/",
 });
 
-JJ.LocationModel = JJ.TastypieModel.extend({
+/*
+ * Location
+ */
+JJ.Models.Location = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/location/",
 });
 
-JJ.LocationCollection = JJ.TastypieCollection.extend({
-  model: JJ.LocationModel,
+JJ.Models.LocationCollection = JJ.Models.TastypieCollection.extend({
+  model: JJ.Models.Location,
   url: "/api/v1/entry/location/",
 });
 
-JJ.DrillEntryModuleModel = JJ.TastypieModel.extend({
+/*
+ * DrillEntryModule
+ */
+JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/module/drill/",
   defaults: {
     "rating": "3",
   }
 });
 
-JJ.SparringEntryModuleModel = JJ.TastypieModel.extend({
+/*
+ * SparringEntryModule
+ */
+JJ.Models.SparringEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/module/sparring/",
   defaults: {
     "rating": "3",
   }
 });
 
-JJ.JudoEntryModel = JJ.TastypieModel.extend({
+/*
+ * JudoEntry
+ */
+JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/judo/",
   defaults: {
     "rating": "3",
     "start": new Date(),
     "end": new Date(),
   },
+  /*
+   * Expands JSON elements for easier manipulation.
+   */
   stayHydrated: function() {
-    if(!(this.get("start") instanceof Date)) {
-      this.set("start", new Date(this.get("start")));
+    var start = this.get("start");
+    if (!(start instanceof Date)) {
+      this.set("start", new Date(start));
     }
-    if(!(this.get("end") instanceof Date)) {
-      this.set("end", new Date(this.get("end")));
+    var end = this.get("end");
+    if (!(end instanceof Date)) {
+      this.set("end", new Date(end));
     }
-    for(var i=this.get("drills").length; i--;) {
-      var drill = this.get("drills")[i];
-      if(!(drill instanceof JJ.DrillEntryModuleModel)) {
-        this.get("drills")[i] = new JJ.DrillEntryModuleModel(drill);
+    var drills = this.get("drills");
+    for (var i=drills.length; i--;) {
+      var drill = drills[i];
+      if (!(drill instanceof JJ.Models.DrillEntryModule)) {
+        drills[i] = new JJ.Models.DrillEntryModule(drill);
       }
     }
-    //var type = this.get("type");
-    //if(!(type instanceof JJ.EntryTypeModel)) {
-    //  this.set("type", new JJ.EntryTypeModel(type));
-    //}
-    //var location = this.get("location");
-    //if(!(location instanceof JJ.LocationModel)) {
-    //  this.set("location", new JJ.LocationModel(location));
-    //}
   },
 });
