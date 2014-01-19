@@ -211,12 +211,12 @@ JJ.AbstractSelectModelView = Backbone.View.extend({
 });
 
 JJ.SelectLocationView = JJ.AbstractSelectModelView.extend({
-  template: Handlebars.templates['entry/location/select/single'],
+  template: Handlebars.templates['entry/location/select/one'],
   field: 'location',
 }); 
 
 JJ.SelectEntryTypeView = JJ.AbstractSelectModelView.extend({
-  template: Handlebars.templates['entry/type/select/single'],
+  template: Handlebars.templates['entry/type/select/one'],
   field: 'type',
 }); 
 
