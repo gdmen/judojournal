@@ -5,15 +5,15 @@
       {{> widgets/rating }}
       <div><span id="type"></span> @ <span id="location"></span></div>
       <br />
-      <input id="dtp_start" type="text" name="start" value="{{ start }}" />
+      <input id="dtp_start" type="text" name="{{ resource_uri }}:start" value="{{ start }}" />
       <br />
-      <input id="dtp_end" type="text" name="end" value="{{ end }}" />
+      <input id="dtp_end" type="text" name="{{ resource_uri }}:end" value="{{ end }}" />
     </div>
     <div class="small-12 columns">
-      <textarea name="pre_status"> {{ pre_status }}</textarea>
+      <textarea name="{{ resource_uri }}:pre_status"> {{ pre_status }}</textarea>
     </div>
     <div class="small-12 columns">
-      <textarea name="post_status"> {{ post_status }}</textarea>
+      <textarea name="{{ resource_uri }}:post_status"> {{ post_status }}</textarea>
     </div>
   </div>
 

@@ -70,30 +70,38 @@ var ShowEntryView = Backbone.View.extend({
 */
 
 JJ.AbstractEditModelView = Backbone.View.extend({
-  events: {
+  baseEvents: {
     "change input": "changed",
+    "change textarea": "changed",
     "change select": "changed",
+  },
+  extendEvents: {},
+  events: function() {
+    return _.extend({},this.baseEvents,this.extendEvents);
   },
  
   changed: function(e){
-    var changed = e.currentTarget;
+    console.log("CHANGED");
+    var name = e.currentTarget.name.split(":");
+    if(name[0] !== this.model.get('resource_uri')) {
+      console.log("NOT ME!");
+      console.log(name[0]);
+      console.log(this.model.get('resource_uri'));
+      return;
+    }
+    var field = name.pop();
+    console.log(field);
     var value = $(e.currentTarget).val();
-    this.model.set(changed.name, value);
+    this.model.set(field, value);
     console.log(this.model.toJSON());
-    this.render();
   },
   
   initialize: function(options) {
     this.render();
   },
   
-  // Link DOM to third party JS libraries
-  linkDOM: function() {
-  },
-  
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
-    this.linkDOM();
     return this;
   },
 });
@@ -133,7 +141,8 @@ JJ.AbstractEditListModelView = Backbone.View.extend({
         console.log("SAVED new model...");
         console.log(m);
         model_array.push(m);
-        this_view.render();
+        this_view.addModel(m);
+        //this_view.render();
       },
       error: function(response) {
         console.log("ERROR");
@@ -158,7 +167,7 @@ JJ.AbstractEditListModelView = Backbone.View.extend({
   
   render: function() {
     this.$el.html(this.template());
-    for(var i=this.model_array.length; i--;) {
+    for(var i=0; i < this.model_array.length; i++) {
       this.addModel(this.model_array[i]);
     }
     return this;
@@ -182,7 +191,7 @@ JJ.AbstractSelectModelView = Backbone.View.extend({
     var value = $(e.currentTarget).val();
     this.parent_model.set(this.field, value);
     console.log(this.parent_model);
-    this.render();
+    //this.render();
   },
   
   initialize: function(options) {
@@ -224,9 +233,7 @@ JJ.EditLocationView = JJ.AbstractEditModelView.extend({
 
 JJ.EditEntryView = JJ.AbstractEditModelView.extend({
   template: Handlebars.templates['entry/a/edit/single'],
-  events: {
-    "change input": "changed",
-    "change select": "changed",
+  extendEvents: {
     "click #save": "save",
   },
   
@@ -285,23 +292,30 @@ JJ.EditEntryView = JJ.AbstractEditModelView.extend({
     JJ.EditEntryView.__super__.initialize.apply(this);
   },
   
+  // Link DOM to third party JS libraries
   linkDOM: function() {
     $('#dtp_start').datetimepicker({
-      format: 'd.m.Y H:i',
-      hours12: true,
+      format: 'M d, Y H:i:s',
+      //hours12: true,
       onShow:function( ct ){
        this.setOptions({
         maxDate:$('#dtp_end').val()?$('#dtp_end').val():false
        })
       },
+      onChangeDateTime:function(ct,$input){
+        $input.change();
+      },
     });
     $('#dtp_end').datetimepicker({
-      format: 'd.m.Y H:i',
-      hours12: true,
+      format: 'M d, Y H:i:s',
+      //hours12: true,
       onShow:function( ct ){
        this.setOptions({
         minDate:$('#dtp_start').val()?$('#dtp_start').val():false
        })
+      },
+      onChangeDateTime:function(ct,$input){
+        $input.change();
       },
     });
   },
@@ -309,7 +323,12 @@ JJ.EditEntryView = JJ.AbstractEditModelView.extend({
   render: function() {
     var entry = this.model;
     entry.stayHydrated();
-    this.$el.html(this.template(entry.toJSON()));
+    var json = entry.toJSON();
+    
+    // Entry formatting
+    json['start'] = dateFormat(entry.get('start'), "mmm d, yyyy HH:MM:ss");
+    json['end'] = dateFormat(entry.get('end'), "mmm d, yyyy HH:MM:ss");
+    this.$el.html(this.template(json));
     
     // ADD / REMOVE oneToMany
     new JJ.EditListDrillView({parent_model: entry, el: this.$('#drills')});

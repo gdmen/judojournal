@@ -9,19 +9,35 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   buffer += "\r\n<div class=\"row\">\r\n  <div class=\"small-6 columns\">\r\n    <div class=\"small-12 columns\">\r\n      ";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n      <div><span id=\"type\"></span> @ <span id=\"location\"></span></div>\r\n      <br />\r\n      <input id=\"dtp_start\" type=\"text\" name=\"start\" value=\"";
+  buffer += "\r\n      <div><span id=\"type\"></span> @ <span id=\"location\"></span></div>\r\n      <br />\r\n      <input id=\"dtp_start\" type=\"text\" name=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":start\" value=\"";
   if (helper = helpers.start) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.start); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n      <br />\r\n      <input id=\"dtp_end\" type=\"text\" name=\"end\" value=\"";
+    + "\" />\r\n      <br />\r\n      <input id=\"dtp_end\" type=\"text\" name=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":end\" value=\"";
   if (helper = helpers.end) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.end); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n    </div>\r\n    <div class=\"small-12 columns\">\r\n      <textarea name=\"pre_status\"> ";
+    + "\" />\r\n    </div>\r\n    <div class=\"small-12 columns\">\r\n      <textarea name=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":pre_status\"> ";
   if (helper = helpers.pre_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.pre_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n    </div>\r\n    <div class=\"small-12 columns\">\r\n      <textarea name=\"post_status\"> ";
+    + "</textarea>\r\n    </div>\r\n    <div class=\"small-12 columns\">\r\n      <textarea name=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":post_status\"> ";
   if (helper = helpers.post_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.post_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -140,7 +156,11 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "\r\n<h4><input type=\"text\" name=\"name\" value=\"";
+  buffer += "\r\n<h4><input type=\"text\" name=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":name\" value=\"";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -151,7 +171,11 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
     + "\r\n<br />\r\n";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n<br />\r\n<textarea name=\"details\"> ";
+  buffer += "\r\n<br />\r\n<textarea name=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":details\"> ";
   if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -231,43 +255,63 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-1\">\r\n    <input id=\"";
+    + ":rating-1\">\r\n    <input id=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-1\" type=\"radio\" name=\"rating\" value=\"1\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n  <label for=\"";
+    + ":rating-1\" type=\"radio\" name=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-2\">\r\n    <input id=\"";
+    + ":rating\" value=\"1\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n  <label for=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-2\" type=\"radio\" name=\"rating\" value=\"2\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n  <label for=\"";
+    + ":rating-2\">\r\n    <input id=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-3\">\r\n    <input id=\"";
+    + ":rating-2\" type=\"radio\" name=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-3\" type=\"radio\" name=\"rating\" value=\"3\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n  <label for=\"";
+    + ":rating\" value=\"2\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n  <label for=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-4\">\r\n    <input id=\"";
+    + ":rating-3\">\r\n    <input id=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-4\" type=\"radio\" name=\"rating\" value=\"4\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n  <label for=\"";
+    + ":rating-3\" type=\"radio\" name=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-5\">\r\n    <input id=\"";
+    + ":rating\" value=\"3\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n  <label for=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-rating-5\" type=\"radio\" name=\"rating\" value=\"5\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n</div>";
+    + ":rating-4\">\r\n    <input id=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":rating-4\" type=\"radio\" name=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":rating\" value=\"4\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n  <label for=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":rating-5\">\r\n    <input id=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":rating-5\" type=\"radio\" name=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":rating\" value=\"5\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n</div>";
   return buffer;
   });
 })();

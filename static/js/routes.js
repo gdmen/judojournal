@@ -26,8 +26,6 @@ function editEntry(id) {
     var entry = new JJ.EntryAModel();
     entry.set('type', new JJ.EntryTypeModel());
     entry.set('location', new JJ.LocationModel());
-    //event.type = new JJ.EntryTypeModel();
-    //event.location = new JJ.LocationModel();
     view = new JJ.EditEntryView({model: entry, el: $('#content')});
   } else {
     var entry = new JJ.EntryAModel({id: id});

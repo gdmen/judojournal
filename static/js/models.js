@@ -82,6 +82,12 @@ JJ.EntryAModel = JJ.TastypieModel.extend({
     "sparring": [],
   },
   stayHydrated: function() {
+    if(!(this.get('start') instanceof Date)) {
+      this.set('start', new Date(this.get('start')));
+    }
+    if(!(this.get('end') instanceof Date)) {
+      this.set('end', new Date(this.get('end')));
+    }
     for(var i=this.get('drills').length; i--;) {
       var drill = this.get('drills')[i];
       if(!(drill instanceof JJ.DrillEntryModuleModel)) {
