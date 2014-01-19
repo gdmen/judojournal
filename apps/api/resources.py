@@ -64,18 +64,18 @@ class SparringEntryModuleResource(HasUserResource):
   def obj_create(self, bundle, **kwargs):
     return super(SparringEntryModuleResource, self).obj_create(bundle, user=bundle.request.user)
 
-class EntryAResource(HasUserResource):
+class JudoEntryResource(HasUserResource):
   type = fields.ToOneField(EntryTypeResource, 'type')
   location = fields.ToOneField(LocationResource, 'location')
   goals = fields.ToManyField(GoalInstanceResource, 'goals', blank=True, null=True, full=True)
   drills = fields.ToManyField(DrillEntryModuleResource, 'drills', blank=True, null=True, full=True)
   sparring = fields.ToManyField(SparringEntryModuleResource, 'sparring', blank=True, null=True, full=True)
   class Meta(HasUserResource.Meta):
-    queryset = EntryA.objects.all()
-    resource_name = 'entry/a'
+    queryset = JudoEntry.objects.all()
+    resource_name = 'entry/judo'
 
   def obj_create(self, bundle, **kwargs):
-    return super(EntryAResource, self).obj_create(bundle, user=bundle.request.user)
+    return super(JudoEntryResource, self).obj_create(bundle, user=bundle.request.user)
 
 class QuestionResource(HasUserResource):
   class Meta(HasUserResource.Meta):

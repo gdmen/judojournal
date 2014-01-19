@@ -23,12 +23,12 @@ function home() {
 function editEntry(id) {
   var view = null;
   if (id === "#") {
-    var entry = new JJ.EntryAModel();
+    var entry = new JJ.JudoEntryModel();
     entry.set('type', new JJ.EntryTypeModel());
     entry.set('location', new JJ.LocationModel());
     view = new JJ.EditEntryView({model: entry, el: $('#content')});
   } else {
-    var entry = new JJ.EntryAModel({id: id});
+    var entry = new JJ.JudoEntryModel({id: id});
     entry.fetch({
       success: function(m) {
         view = new JJ.EditEntryView({model: m, el: $('#content')});

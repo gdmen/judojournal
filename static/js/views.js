@@ -232,7 +232,7 @@ JJ.EditLocationView = JJ.AbstractEditModelView.extend({
 });
 
 JJ.EditEntryView = JJ.AbstractEditModelView.extend({
-  template: Handlebars.templates['entry/a/edit/single'],
+  template: Handlebars.templates['entry/judo/edit/single'],
   extendEvents: {
     "click #save": "save",
   },

@@ -1,8 +1,11 @@
-//http://paltman.com/2012/04/30/integration-backbonejs-tastypie/
+/*
+attribution:
+http://paltman.com/2012/04/30/integration-backbonejs-tastypie/
+*/
 JJ.TastypieModel = Backbone.Model.extend({
     base_url: function() {
       var temp_url = Backbone.Model.prototype.url.call(this);
-      return (temp_url.charAt(temp_url.length - 1) == '/' ? temp_url : temp_url+'/');
+      return (temp_url.charAt(temp_url.length - 1) == "/" ? temp_url : temp_url+"/");
     },
     url: function() {
       return this.base_url();
@@ -21,13 +24,15 @@ JJ.TastypieModel = Backbone.Model.extend({
     },
     
 });
-
 JJ.TastypieCollection = Backbone.Collection.extend({
     parse: function(response) {
         this.recent_meta = response.meta || {};
         return response.objects || response;
     }
 });
+/*
+end attribution
+*/
 
 JJ.GoalModel = JJ.TastypieModel.extend({
   urlRoot: "/api/v1/goal/",
@@ -72,26 +77,24 @@ JJ.SparringEntryModuleModel = JJ.TastypieModel.extend({
   }
 });
 
-JJ.EntryAModel = JJ.TastypieModel.extend({
-  urlRoot: "/api/v1/entry/a/",
+JJ.JudoEntryModel = JJ.TastypieModel.extend({
+  urlRoot: "/api/v1/entry/judo/",
   defaults: {
     "rating": "3",
     "start": new Date(),
     "end": new Date(),
-    "drills": [],
-    "sparring": [],
   },
   stayHydrated: function() {
-    if(!(this.get('start') instanceof Date)) {
-      this.set('start', new Date(this.get('start')));
+    if(!(this.get("start") instanceof Date)) {
+      this.set("start", new Date(this.get("start")));
     }
-    if(!(this.get('end') instanceof Date)) {
-      this.set('end', new Date(this.get('end')));
+    if(!(this.get("end") instanceof Date)) {
+      this.set("end", new Date(this.get("end")));
     }
-    for(var i=this.get('drills').length; i--;) {
-      var drill = this.get('drills')[i];
+    for(var i=this.get("drills").length; i--;) {
+      var drill = this.get("drills")[i];
       if(!(drill instanceof JJ.DrillEntryModuleModel)) {
-        this.get('drills')[i] = new JJ.DrillEntryModuleModel(drill);
+        this.get("drills")[i] = new JJ.DrillEntryModuleModel(drill);
       }
     }
     //var type = this.get("type");

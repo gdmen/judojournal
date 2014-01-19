@@ -69,7 +69,7 @@ class SparringEntryModule(AbstractEntryModule):
   # duration
   minutes = models.DecimalField(max_digits=5, decimal_places=2, null=True)
 
-class EntryA(AbstractEntry):
+class JudoEntry(AbstractEntry):
   drills = models.ManyToManyField(DrillEntryModule, blank=True, null=True)
   sparring = models.ManyToManyField(SparringEntryModule, blank=True, null=True)
 
