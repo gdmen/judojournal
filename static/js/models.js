@@ -1,5 +1,5 @@
 /*
- * attribution:
+ * Attribution:
  * http://paltman.com/2012/04/30/integration-backbonejs-tastypie/
  * Tastypie Models avoid redirects for ending '/'s and have recursive toJSON()
  */
@@ -27,7 +27,7 @@ JJ.Models.Tastypie = Backbone.Model.extend({
   },
 });
 /*
- * end attribution
+ * End Attribution
  */
 
 /*

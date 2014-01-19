@@ -80,6 +80,10 @@ var ShowEntryView = Backbone.View.extend({
 
 
 
+    
+  initialize: function(options) {
+    JJ.Views.EditEntry.__super__.initialize.apply(this);
+  },
 
 
 

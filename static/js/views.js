@@ -252,10 +252,6 @@ JJ.Views.EditEntry = JJ.Views.AbstractEditModel.extend({
       error: JJ.debug.backboneError,
     });
   },
-    
-  initialize: function(options) {
-    JJ.Views.EditEntry.__super__.initialize.apply(this);
-  },
   
   /*
    * Links DOM to third party JS libraries.
