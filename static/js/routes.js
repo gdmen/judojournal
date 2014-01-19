@@ -12,12 +12,12 @@ JJ.router = new JJ.Router;
 JJ.router.on('route:home', home);
 JJ.router.on('route:editEntry', editEntry);
 //JJ.router.on('route:showEntry', showEntry);
-JJ.router.on('route:unknownRoute', function() { console.log("router problem"); handleUnknownRoute()});
+JJ.router.on('route:unknownRoute', function() { JJ.debug.log("router problem"); handleUnknownRoute()});
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
 
 function home() {
-  console.log("HOME!");
+  JJ.debug.log("HOME!");
 }
 
 function editEntry(id) {
@@ -56,5 +56,5 @@ function showEntry(id) {
 */
 function handleUnknownRoute() {
   //window.location = "/";
-  console.log("UNKNOWN ROUTE");
+  JJ.debug.log("UNKNOWN ROUTE");
 }

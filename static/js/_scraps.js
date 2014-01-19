@@ -57,7 +57,7 @@ var ShowEntryView = Backbone.View.extend({
     if(json.hours === 0) {
       json.hours = false;
     }
-    console.log(json);
+    JJ.debug.log(json);
     json.minutes = minutes % 60;
     json.date = start_date.toLocaleDateString();
     this.$el.html(this.template(json));
@@ -68,3 +68,60 @@ var ShowEntryView = Backbone.View.extend({
   },
 });
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //TODO: add error handling here to print improper input warning
+    /*
+    type.save(null, {
+      success: function(m) {
+        JJ.debug.log("SAVED type...");
+        event.set('type', m.get('resource_uri'));
+        location.save(null, {
+          success: function(m) {
+            JJ.debug.log("SAVED location...");
+            event.set('location', m.get('resource_uri'));
+            event.save(null, {
+              success: function(m) {
+                JJ.debug.log("SAVED event...");
+                JJ.debug.log(m.toJSON());
+                JJ.debug.log("**********DONE SAVING**********");
+              },
+              error: function(response) {
+                JJ.debug.log("ERROR");
+                JJ.debug.log(response);
+              }
+            });
+          },
+          error: function(response) {
+            JJ.debug.log("ERROR");
+            JJ.debug.log(response);
+          }
+        });
+      },
+      error: function(response) {
+        JJ.debug.log("ERROR");
+        JJ.debug.log(response);
+      }
+    });
+    */

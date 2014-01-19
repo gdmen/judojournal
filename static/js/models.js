@@ -8,20 +8,22 @@ JJ.Models.Tastypie = Backbone.Model.extend({
     var temp_url = Backbone.Model.prototype.url.call(this);
     return (temp_url.charAt(temp_url.length - 1) === "/" ? temp_url : temp_url+"/");
   },
+  
   url: function() {
     return this.base_url();
   },
+  
   toJSON: function() {
-  if (this._isSerializing) {
-    return this.id || this.cid;
-  }
-  this._isSerializing = true;
-  var json = _.clone(this.attributes);
-  _.each(json, function(value, name) {
-    _.isFunction(value.toJSON) && (value[name] = value.toJSON());
-  });
-  this._isSerializing = false;
-  return json;
+    if (this._isSerializing) {
+      return this.id || this.cid;
+    }
+    this._isSerializing = true;
+    var json = _.clone(this.attributes);
+    _.each(json, function(value, name) {
+      _.isFunction(value.toJSON) && (value[name] = value.toJSON());
+    });
+    this._isSerializing = false;
+    return json;
   },
 });
 /*
@@ -97,6 +99,7 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
     "start": new Date(),
     "end": new Date(),
   },
+  
   /*
    * Expands JSON elements for easier manipulation.
    */
