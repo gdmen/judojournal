@@ -23,8 +23,16 @@ JJ.Models.Tastypie = Backbone.Model.extend({
       _.isFunction(value.toJSON) && (value[name] = value.toJSON());
     });
     this._isSerializing = false;
+    // Also return cid
+    json['cid'] = this.cid;
     return json;
   },
+});
+JJ.Models.TastypieCollection = Backbone.Collection.extend({
+  parse: function(response) {
+    this.recent_meta = response.meta || {};
+    return response.objects || response;
+  }
 });
 /*
  * End Attribution
@@ -98,6 +106,8 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
     "rating": "3",
     "start": new Date(),
     "end": new Date(),
+    "drills": [],
+    "sparring": [],
   },
   
   /*
@@ -106,11 +116,15 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
   stayHydrated: function() {
     var start = this.get("start");
     if (!(start instanceof Date)) {
-      this.set("start", new Date(start));
+      console.log(this.get('start'));
+      this.set("start", new Date(Date.parse(start)));
+      console.log(this.get('start'));
     }
     var end = this.get("end");
     if (!(end instanceof Date)) {
-      this.set("end", new Date(end));
+      console.log(this.get('end'));
+      this.set("end", new Date(Date.parse(end)));
+      console.log(this.get('end'));
     }
     var drills = this.get("drills");
     for (var i=drills.length; i--;) {

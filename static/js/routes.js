@@ -7,32 +7,32 @@ JJ.Router = Backbone.Router.extend({
   }
 });
 
-// Instantiate the router
 JJ.router = new JJ.Router;
-
 JJ.router.on('route:home', home);
 JJ.router.on('route:editEntry', editEntry);
 //JJ.router.on('route:showEntry', showEntry);
-JJ.router.on('route:unknownRoute', JJ.handleUnknownRoute);
+JJ.router.on('route:unknownRoute', JJ.Util.handleUnknownRoute);
 
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
 
 function home() {
-  JJ.debug.log("HOME!");
+  console.log("HOME!");
 }
 
 function editEntry(id) {
+  // # signifies a new Entry is being created.
   if (id === "#") {
     var entry = new JJ.Models.JudoEntry();
-    new JJ.Views.EditEntry({model: entry, el: $('#content')});
+    new JJ.Views.EditJudoEntry({model: entry, el: $('#content')});
   } else {
+  // Else load an existing Entry.
     var entry = new JJ.Models.JudoEntry({id: id});
     entry.fetch({
       success: function(m) {
-        new JJ.Views.EditEntry({model: m, el: $('#content')});
+        new JJ.Views.EditJudoEntry({model: m, el: $('#content')});
       },
-      error: JJ.handleUnknownRoute
+      error: JJ.Util.handleUnknownRoute
     });
   }
 }
@@ -49,7 +49,7 @@ function showEntry(id) {
       activity.fetch();
       new ShowEntryView({model: m, el: $('#content'), prior_status: prior_status, location: location, activity: activity});
     },
-    error: JJ.handleUnknownRoute
+    error: JJ.Util.handleUnknownRoute
   });
 }
 */

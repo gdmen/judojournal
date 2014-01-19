@@ -23,19 +23,19 @@ JJ.Views.AbstractEditModel = Backbone.View.extend({
    * Updates the model on input changes.
    */
   changed: function(e) {
-    JJ.debug.log("CHANGED");
+    console.log("CHANGED");
     var splitName = e.currentTarget.name.split(":");
-    if (splitName[0] === this.model.get("resource_uri")) {
+    if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
-      JJ.debug.log(field);
+      console.log(field);
       var value = $(e.currentTarget).val();
       this.model.set(field, value);
     } else {
-      JJ.debug.log("NOT ME!");
-      JJ.debug.log(splitName[0]);
-      JJ.debug.log(this.model.get("resource_uri"));
+      console.log("NOT ME!");
+      console.log(splitName[0]);
+      console.log(this.model.cid);
     }
-    JJ.debug.log(this.model.toJSON());
+    console.log(this.model.toJSON());
   },
   
   initialize: function(options) {
@@ -69,7 +69,7 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
    * Delete this view's model.
    */
   remove: function() {
-    JJ.debug.log("removing");
+    console.log("removing");
     this.parentView.removeModel(this.model);
     this.$el.remove();
   },
@@ -101,7 +101,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   changed: function(e) {
     var value = $(e.currentTarget).val();
     this.parentModel.set(this.field, value);
-    JJ.debug.log(this.parentModel);
+    console.log(this.parentModel);
   },
   
   initialize: function(options) {
@@ -113,6 +113,10 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     // Sets the currently selected element before rendering view.
     var selected = this.parentModel.get(this.field);
     var json = {collection: this.collection.toJSON()};
+    if (typeof selected === "undefined" && json.collection.length > 0) {
+      this.parentModel.set(this.field, json.collection[0].resource_uri);
+      selected = this.parentModel.get(this.field);
+    }
     for (var i=json.collection.length; i--;) {
       json.collection[i]["selected"] = (json.collection[i].resource_uri === selected);
     }
@@ -157,18 +161,18 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
    * Adds a new model to the parent model's list.
    */
   addModel: function(e) {
-    JJ.debug.log("addModel");
+    console.log("addModel");
     var model = new this.insertModelConstructor();
-    var successCallback = function(m) {
-      JJ.debug.log("SAVED new model...");
-      JJ.debug.log(m);
-      this.modelArray.push(m);
-      this.addView(m);
-      JJ.debug.log(this.modelArray);
-    }
+    var parentView = this;
     model.save(null, {
-      success: successCallback,
-      error: JJ.debug.log.backboneError,
+      success: function(m) {
+        console.log("SAVED new model...");
+        console.log(m);
+        parentView.modelArray.push(m);
+        parentView.addView(m);
+        console.log(parentView.modelArray);
+      },
+      error: console.log.backboneError,
     });
   },
   
@@ -176,17 +180,17 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
    * Backbone destroys a model and removes it from the parent model's list.
    */
   removeModel: function(m) {
-    JJ.debug.log("removeModel");
-    var successCallback = function(m) {
-      JJ.debug.log("Destroyed a model...");
-      JJ.debug.log(m);
-      var index = this.modelArray.indexOf(m);
-      this.modelArray.splice(index, 1);
-      JJ.debug.log(this.modelArray);
-    }
+    console.log("removeModel");
+    var parentView = this;
     m.destroy({
-      success: successCallback,
-      error: JJ.debug.log.backboneError,
+      success: function(m) {
+        console.log("Destroyed a model...");
+        console.log(m);
+        var index = parentView.modelArray.indexOf(m);
+        parentView.modelArray.splice(index, 1);
+        console.log(parentView.modelArray);
+      },
+      error: console.log.backboneError,
     });
   },
   
@@ -195,7 +199,7 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
    * @params: The model to append.
    */
   addView: function(m) {
-    JJ.debug.log("addView");
+    console.log("addView");
     var id = m.get("resource_uri");
     var div = $( "<div/>" );
     div.attr("id", id);
@@ -230,10 +234,10 @@ JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
 
 /************************************************************
  *
- * Parent view for Entry form.
+ * Parent view for JudoEntry form.
  *
  ************************************************************/
-JJ.Views.EditEntry = JJ.Views.AbstractEditModel.extend({
+JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["entry/judo/edit/single"],
   extendEvents: {
     "click #save": "save",
@@ -243,13 +247,16 @@ JJ.Views.EditEntry = JJ.Views.AbstractEditModel.extend({
    * Saves this view's model.
    */
   save: function() {
-    JJ.debug.log("**********SAVING**********");
+    console.log("**********SAVING**********");
+    console.log(this.model.toJSON());
+    this.model.stayHydrated();
+    console.log(this.model.toJSON());
     this.model.save(null, {
       success: function(m) {
-        JJ.debug.log(m.toJSON());
-        JJ.debug.log("**********DONE SAVING**********");
+        console.log(m.toJSON());
+        console.log("**********DONE SAVING**********");
       },
-      error: JJ.debug.backboneError,
+      error: JJ.Util.backboneError,
     });
   },
   
@@ -257,27 +264,96 @@ JJ.Views.EditEntry = JJ.Views.AbstractEditModel.extend({
    * Links DOM to third party JS libraries.
    */
   linkDOM: function() {
-    var dtpFormat = "M d, Y H:i:s";
-    var dtpOnChangeDateTime = function(ct,$input) {
-      $input.change();
-    }
-    $("#dtp_start").datetimepicker({
-      format: dtpFormat,
-      onShow: function(ct) {
+    $(function(){
+      var dtpDate = "D, d M Y";
+      var dtpTime = "H:i";
+      var dtpSeparator = " ";
+      var dtpDateTime = dtpDate + dtpSeparator + dtpTime;
+      var dFDate = "ddd, dd mmm yyyy";
+      var dFTime = "HH:MM";
+      var dtpStartSetBounds = function(ct) {
+        var end = $("#dtp_end").val();
+        var maxDate = false;
+        var maxTime = false;
+        if (end) {
+          split = end.split(dtpSeparator);
+          maxTime = split.pop();
+          maxDate = split.join(dtpSeparator);
+          if (dateFormat(ct, dFDate) !== maxDate) {
+            maxTime = false;
+          }
+        }
         this.setOptions({
-          maxDate: $("#dtp_end").val() ? $("#dtp_end").val() : false
-        })
-      },
-      onChangeDateTime: dtpOnChangeDateTime,
-    });
-    $("#dtp_end").datetimepicker({
-      format: dtpFormat,
-      onShow: function(ct) {
+          maxDate: maxDate,
+          maxTime: maxTime,
+        });
+      }
+      $("#dtp_start").datetimepicker({
+        formatDate: dtpDate,
+        formatTime: dtpTime,
+        format: dtpDateTime,
+        onShow: dtpStartSetBounds,
+        onSelectDate: dtpStartSetBounds,
+        onChangeDateTime: function(ct,$input) {
+          // Validate.
+          var end = $("#dtp_end").val();
+          console.log(ct);
+          if (end) {
+            split = end.split(dtpSeparator);
+            var cDate = dateFormat(ct, dFDate);
+            var cTime = dateFormat(ct, dFTime)
+            var endTime = split.pop();
+            var endDate = split.join(dtpSeparator);
+            if (cDate > endDate || (cDate === endDate && cTime > endTime)) {
+              this.setOptions({
+                value: end,
+              });
+            }
+          }
+          $input.change();
+        },
+      });
+      var dtpEndSetBounds = function(ct) {
+        var start = $("#dtp_start").val();
+        var minDate = false;
+        var minTime = false;
+        if (start) {
+          split = start.split(dtpSeparator);
+          minTime = split.pop();
+          minDate = split.join(dtpSeparator);
+          if (dateFormat(ct, dFDate) !== minDate) {
+            minTime = false;
+          }
+        }
         this.setOptions({
-          minDate: $("#dtp_start").val() ? $("#dtp_start").val() : false
-        })
-      },
-      onChangeDateTime: dtpOnChangeDateTime,
+          minDate: minDate,
+          minTime: minTime,
+        });
+      }
+      $("#dtp_end").datetimepicker({
+        formatDate: dtpDate,
+        formatTime: dtpTime,
+        format: dtpDateTime,
+        onShow: dtpEndSetBounds,
+        onSelectDate: dtpEndSetBounds,
+        onChangeDateTime: function(ct,$input) {
+          // Validate.
+          var start = $("#dtp_start").val();
+          if (start) {
+            split = start.split(dtpSeparator);
+            var cDate = dateFormat(ct, dFDate);
+            var cTime = dateFormat(ct, dFTime)
+            var startTime = split.pop();
+            var startDate = split.join(dtpSeparator);
+            if (cDate < startDate || (cDate === startDate && cTime < startTime)) {
+              this.setOptions({
+                value: start,
+              });
+            }
+          }
+          $input.change();
+        },
+      });
     });
   },
   
@@ -287,28 +363,28 @@ JJ.Views.EditEntry = JJ.Views.AbstractEditModel.extend({
     var json = entry.toJSON();
     
     // Entry formatting
-    var dateFormat = "mmm d, yyyy HH:MM:ss";
-    json["start"] = dateFormat(entry.get("start"), dateFormat);
-    json["end"] = dateFormat(entry.get("end"), dateFormat);
+    var formatString = "ddd, dd mmm yyyy HH:MM";
+    json["start"] = dateFormat(entry.get("start"), formatString);
+    json["end"] = dateFormat(entry.get("end"), formatString);
     this.$el.html(this.template(json));
     
     // AbstractEditModelList's
     new JJ.Views.EditDrillList({parentModel: entry, el: this.$("#drills")});
     
     // AbstractSelectModelList's
-    var locations = new JJ.Views.LocationCollection();
+    var locations = new JJ.Models.LocationCollection();
     locations.fetch({
       success: function(m) {
         new JJ.Views.SelectLocation({collection: m, parentModel: entry, el: this.$("#location")});
       },
-      error: JJ.debug.backboneError,
+      error: JJ.Util.backboneError,
     });
-    var types = new JJ.Views.EntryTypeCollection();
+    var types = new JJ.Models.EntryTypeCollection();
     types.fetch({
       success: function(m) {
         new JJ.Views.SelectEntryType({collection: m, parentModel: entry, el: this.$("#type")});
       },
-      error: JJ.debug.backboneError,
+      error: JJ.Util.backboneError,
     });
     
     // DOM JS linking

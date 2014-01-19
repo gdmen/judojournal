@@ -1,8 +1,8 @@
 {{! entry/module/drill/edit/single }}
-<h4><input type="text" name="{{ resource_uri }}:name" value="{{ name }}" /></h4>
+<h4><input type="text" name="{{ cid }}:name" value="{{ name }}" /></h4>
 <br />
-<button class="remove-this">add</button>
+<button class="remove-this">remove</button>
 <br />
 {{> widgets/rating }}
 <br />
-<textarea name="{{ resource_uri }}:details"> {{ details }}</textarea>
+<textarea name="{{ cid }}:details"> {{ details }}</textarea>

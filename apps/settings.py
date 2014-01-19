@@ -63,6 +63,7 @@ DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 LOGIN_REDIRECT_URL = '/'
 
 TASTYPIE_DEFAULT_FORMATS = ['json']
+TASTYPIE_DATETIME_FORMATTING  = 'rfc-2822'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
