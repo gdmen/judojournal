@@ -27,11 +27,9 @@ class GoalInstance(HasUserModel, HasRatingModel):
   details = models.TextField(blank=True)
   created = models.DateTimeField(auto_now_add=True)
 
-class EntryType(HasUserModel):
+class Art(HasUserModel):
   # e.g. 'Judo'
   name = models.TextField()
-  # e.g. 'Open Mat'
-  type = models.TextField(blank=True)
 
 class Location(HasUserModel):
   name = models.CharField(max_length=140)
@@ -45,7 +43,9 @@ class AbstractEntry(HasUserModel, HasRatingModel):
   end = models.DateTimeField()
   pre_status = models.TextField(blank=True)
   post_status = models.TextField(blank=True)
-  type = models.ForeignKey(EntryType)
+  # e.g. 'Open Mat'
+  type = models.TextField(blank=True)
+  art = models.ForeignKey(Art)
   location = models.ForeignKey(Location)
   goals = models.ManyToManyField(GoalInstance, blank=True, null=True)
   class Meta:

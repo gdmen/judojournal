@@ -33,7 +33,7 @@
                     <li><a href="{% url 'django.contrib.auth.views.logout' %}?next=/">Log out</a></li>
                     <li><a href="{% url 'django.contrib.auth.views.password_change' %}">Change password</a></li>
                   {% else %}
-                    <li><a href="{% url 'django.contrib.auth.views.login' %}?next={{ request.get_full_path|urlencode }}">Log in</a></li>
+                    <li><a href="{% url 'django.contrib.auth.views.login' %}">Log in</a></li>
                   {% endif %}
                 {% endblock %}
               </ul>

@@ -54,15 +54,15 @@ JJ.Views.AbstractEditModel = Backbone.View.extend({
  */
 
 JJ.Views.EditType = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["entry/type/edit/single"],
+  template: Handlebars.templates["models/entry/type/edit/single"],
 });
 
 JJ.Views.EditLocation = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["entry/location/edit/single"],
+  template: Handlebars.templates["models/entry/location/edit/single"],
 });
 
 JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["entry/module/drill/edit/single"],
+  template: Handlebars.templates["models/entry/module/drill/edit/single"],
   extendEvents: {
     "click .remove-this": "remove",
   },
@@ -132,13 +132,13 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
  */
 
 JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["entry/location/select/one"],
+  template: Handlebars.templates["models/entry/location/select/one"],
   field: "location",
 }); 
 
-JJ.Views.SelectEntryType = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["entry/type/select/one"],
-  field: "type",
+JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
+  template: Handlebars.templates["models/art/select/one"],
+  field: "art",
 });
 
 
@@ -228,7 +228,7 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
  * JJ.Views.AbstractEditModelList instances
  */
 JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["entry/module/drill/edit/list"],
+  template: Handlebars.templates["models/entry/module/drill/edit/list"],
   field: "drills",
   insertViewConstructor: JJ.Views.EditDrill,
   insertModelConstructor: JJ.Models.DrillEntryModule,
@@ -237,11 +237,11 @@ JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
 
 /************************************************************
  *
- * Parent view for JudoEntry form.
+ * Main(parent) view for JudoEntry form.
  *
  ************************************************************/
 JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["entry/judo/edit/single"],
+  template: Handlebars.templates["models/entry/judo/edit/single"],
   extendEvents: {
     "click #save": "save",
   },
@@ -382,10 +382,10 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
       },
       error: JJ.Util.backboneError,
     });
-    var types = new JJ.Models.EntryTypeCollection();
+    var types = new JJ.Models.ArtCollection();
     types.fetch({
       success: function(m) {
-        new JJ.Views.SelectEntryType({collection: m, parentModel: entry, el: this.$("#type")});
+        new JJ.Views.SelectArt({collection: m, parentModel: entry, el: this.$("#type")});
       },
       error: JJ.Util.backboneError,
     });
@@ -420,5 +420,15 @@ JJ.Views.AbstractStaticPage = Backbone.View.extend({
  * JJ.Views.AbstractStaticPage instances
  */
 JJ.Views.StaticLanding = JJ.Views.AbstractStaticPage.extend({
-  template: Handlebars.templates["static/landing"],
+  template: Handlebars.templates["pages/landing"],
+});
+
+
+/************************************************************
+ *
+ * Main(parent) view for Home page.
+ *
+ ************************************************************/
+JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({
+  template: Handlebars.templates["pages/home"],
 });

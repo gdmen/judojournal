@@ -10,7 +10,7 @@ from api.resources import *
 v1_api = Api(api_name='v1')
 v1_api.register(GoalResource())
 v1_api.register(GoalInstanceResource())
-v1_api.register(EntryTypeResource())
+v1_api.register(ArtResource())
 v1_api.register(LocationResource())
 v1_api.register(DrillEntryModuleResource())
 v1_api.register(SparringEntryModuleResource())

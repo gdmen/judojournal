@@ -23,6 +23,10 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+if DEBUG:
+  import mimetypes
+  mimetypes.add_type("image/png", ".png", True)
+    
 ALLOWED_HOSTS = []
 
 # URL of the login page.
@@ -37,7 +41,6 @@ INSTALLED_APPS = (
   'django.contrib.sessions',
   'django.contrib.messages',
   'django.contrib.staticfiles',
-  'registration',
   'tastypie',
   'south',
   'apps.api'
@@ -56,11 +59,7 @@ ROOT_URLCONF = 'apps.urls'
 
 WSGI_APPLICATION = 'apps.wsgi.application'
 
-# Django-registration
-ACCOUNT_ACTIVATION_DAYS = 7
-EMAIL_HOST = 'localhost'
-DEFAULT_FROM_EMAIL = 'webmaster@localhost'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/#/home'
 
 TASTYPIE_DEFAULT_FORMATS = ['json']
 TASTYPIE_DATETIME_FORMATTING  = 'rfc-2822'

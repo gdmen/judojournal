@@ -1,7 +1,7 @@
-{{! entry/type/select/one }}
+{{! models/art/select/one }}
 <select name="{{ cid }}:type">
 <!-- <option value='' disabled style='display:none;'>Please Choose</option> -->
 {{#each collection}}
-  <option value="{{ resource_uri }}"{{#if selected}}selected{{/if}}>{{ name }} | {{ type }}</option>
+  <option value="{{ resource_uri }}"{{#if selected}}selected{{/if}}>{{ name }}</option>
 {{/each}}
 </select>

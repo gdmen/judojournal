@@ -8,15 +8,6 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'EntryType'
-        db.create_table(u'api_entrytype', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('name', self.gf('django.db.models.fields.TextField')()),
-            ('type', self.gf('django.db.models.fields.TextField')(blank=True)),
-        ))
-        db.send_create_signal(u'api', ['EntryType'])
-
         # Adding model 'Goal'
         db.create_table(u'api_goal', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -37,6 +28,14 @@ class Migration(SchemaMigration):
             ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal(u'api', ['GoalInstance'])
+
+        # Adding model 'Art'
+        db.create_table(u'api_art', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('name', self.gf('django.db.models.fields.TextField')()),
+        ))
+        db.send_create_signal(u'api', ['Art'])
 
         # Adding model 'Location'
         db.create_table(u'api_location', (
@@ -68,8 +67,8 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'api', ['SparringEntryModule'])
 
-        # Adding model 'EntryA'
-        db.create_table(u'api_entrya', (
+        # Adding model 'JudoEntry'
+        db.create_table(u'api_judoentry', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('rating', self.gf('django.db.models.fields.SmallIntegerField')()),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
@@ -77,21 +76,38 @@ class Migration(SchemaMigration):
             ('end', self.gf('django.db.models.fields.DateTimeField')()),
             ('pre_status', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('post_status', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.EntryType'])),
+            ('type', self.gf('django.db.models.fields.TextField')(blank=True)),
+            ('art', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.Art'])),
             ('location', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.Location'])),
-            ('drills', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.DrillEntryModule'], null=True, blank=True)),
-            ('sparring', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['api.SparringEntryModule'], null=True, blank=True)),
         ))
-        db.send_create_signal(u'api', ['EntryA'])
+        db.send_create_signal(u'api', ['JudoEntry'])
 
-        # Adding M2M table for field goals on 'EntryA'
-        m2m_table_name = db.shorten_name(u'api_entrya_goals')
+        # Adding M2M table for field goals on 'JudoEntry'
+        m2m_table_name = db.shorten_name(u'api_judoentry_goals')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('entrya', models.ForeignKey(orm[u'api.entrya'], null=False)),
+            ('judoentry', models.ForeignKey(orm[u'api.judoentry'], null=False)),
             ('goalinstance', models.ForeignKey(orm[u'api.goalinstance'], null=False))
         ))
-        db.create_unique(m2m_table_name, ['entrya_id', 'goalinstance_id'])
+        db.create_unique(m2m_table_name, ['judoentry_id', 'goalinstance_id'])
+
+        # Adding M2M table for field drills on 'JudoEntry'
+        m2m_table_name = db.shorten_name(u'api_judoentry_drills')
+        db.create_table(m2m_table_name, (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('judoentry', models.ForeignKey(orm[u'api.judoentry'], null=False)),
+            ('drillentrymodule', models.ForeignKey(orm[u'api.drillentrymodule'], null=False))
+        ))
+        db.create_unique(m2m_table_name, ['judoentry_id', 'drillentrymodule_id'])
+
+        # Adding M2M table for field sparring on 'JudoEntry'
+        m2m_table_name = db.shorten_name(u'api_judoentry_sparring')
+        db.create_table(m2m_table_name, (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('judoentry', models.ForeignKey(orm[u'api.judoentry'], null=False)),
+            ('sparringentrymodule', models.ForeignKey(orm[u'api.sparringentrymodule'], null=False))
+        ))
+        db.create_unique(m2m_table_name, ['judoentry_id', 'sparringentrymodule_id'])
 
         # Adding model 'Question'
         db.create_table(u'api_question', (
@@ -126,14 +142,14 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        # Deleting model 'EntryType'
-        db.delete_table(u'api_entrytype')
-
         # Deleting model 'Goal'
         db.delete_table(u'api_goal')
 
         # Deleting model 'GoalInstance'
         db.delete_table(u'api_goalinstance')
+
+        # Deleting model 'Art'
+        db.delete_table(u'api_art')
 
         # Deleting model 'Location'
         db.delete_table(u'api_location')
@@ -144,11 +160,17 @@ class Migration(SchemaMigration):
         # Deleting model 'SparringEntryModule'
         db.delete_table(u'api_sparringentrymodule')
 
-        # Deleting model 'EntryA'
-        db.delete_table(u'api_entrya')
+        # Deleting model 'JudoEntry'
+        db.delete_table(u'api_judoentry')
 
-        # Removing M2M table for field goals on 'EntryA'
-        db.delete_table(db.shorten_name(u'api_entrya_goals'))
+        # Removing M2M table for field goals on 'JudoEntry'
+        db.delete_table(db.shorten_name(u'api_judoentry_goals'))
+
+        # Removing M2M table for field drills on 'JudoEntry'
+        db.delete_table(db.shorten_name(u'api_judoentry_drills'))
+
+        # Removing M2M table for field sparring on 'JudoEntry'
+        db.delete_table(db.shorten_name(u'api_judoentry_sparring'))
 
         # Deleting model 'Question'
         db.delete_table(u'api_question')
@@ -161,34 +183,18 @@ class Migration(SchemaMigration):
 
 
     models = {
+        u'api.art': {
+            'Meta': {'object_name': 'Art'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.TextField', [], {}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
+        },
         u'api.drillentrymodule': {
             'Meta': {'object_name': 'DrillEntryModule'},
             'details': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.TextField', [], {}),
             'rating': ('django.db.models.fields.SmallIntegerField', [], {}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
-        },
-        u'api.entrya': {
-            'Meta': {'object_name': 'EntryA'},
-            'drills': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.DrillEntryModule']", 'null': 'True', 'blank': 'True'}),
-            'end': ('django.db.models.fields.DateTimeField', [], {}),
-            'goals': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.GoalInstance']", 'null': 'True', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'location': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.Location']"}),
-            'post_status': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'pre_status': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'rating': ('django.db.models.fields.SmallIntegerField', [], {}),
-            'sparring': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.SparringEntryModule']", 'null': 'True', 'blank': 'True'}),
-            'start': ('django.db.models.fields.DateTimeField', [], {}),
-            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.EntryType']"}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
-        },
-        u'api.entrytype': {
-            'Meta': {'object_name': 'EntryType'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.TextField', [], {}),
-            'type': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
         u'api.goal': {
@@ -206,6 +212,22 @@ class Migration(SchemaMigration):
             'goal': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.Goal']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'rating': ('django.db.models.fields.SmallIntegerField', [], {}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
+        },
+        u'api.judoentry': {
+            'Meta': {'object_name': 'JudoEntry'},
+            'art': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.Art']"}),
+            'drills': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.DrillEntryModule']", 'null': 'True', 'blank': 'True'}),
+            'end': ('django.db.models.fields.DateTimeField', [], {}),
+            'goals': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.GoalInstance']", 'null': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'location': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['api.Location']"}),
+            'post_status': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'pre_status': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'rating': ('django.db.models.fields.SmallIntegerField', [], {}),
+            'sparring': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['api.SparringEntryModule']", 'null': 'True', 'blank': 'True'}),
+            'start': ('django.db.models.fields.DateTimeField', [], {}),
+            'type': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
         u'api.location': {

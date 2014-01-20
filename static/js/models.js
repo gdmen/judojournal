@@ -54,15 +54,15 @@ JJ.Models.GoalInstance = JJ.Models.Tastypie.extend({
 });
 
 /*
- * EntryType
+ * Art
  */
-JJ.Models.EntryType = JJ.Models.Tastypie.extend({
-  urlRoot: "/api/v1/entry/type/",
+JJ.Models.Art = JJ.Models.Tastypie.extend({
+  urlRoot: "/api/v1/art/",
 });
 
-JJ.Models.EntryTypeCollection = JJ.Models.TastypieCollection.extend({
-  model: JJ.Models.EntryType,
-  url: "/api/v1/entry/type/",
+JJ.Models.ArtCollection = JJ.Models.TastypieCollection.extend({
+  model: JJ.Models.Art,
+  url: "/api/v1/art/",
 });
 
 /*
