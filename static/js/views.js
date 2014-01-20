@@ -419,6 +419,6 @@ JJ.Views.AbstractStaticPage = Backbone.View.extend({
 /*
  * JJ.Views.AbstractStaticPage instances
  */
-JJ.Views.StaticHome = JJ.Views.AbstractStaticPage.extend({
-  template: Handlebars.templates["static/home"],
+JJ.Views.StaticLanding = JJ.Views.AbstractStaticPage.extend({
+  template: Handlebars.templates["static/landing"],
 });

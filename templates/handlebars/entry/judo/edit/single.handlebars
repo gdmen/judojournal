@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="small-6 columns">
-    <div class="small-12 columns">
+    <div class="columns">
       {{> widgets/rating }}
       <div><span id="type"></span> @ <span id="location"></span></div>
       <br />
@@ -10,10 +10,10 @@
       <br />
       <input id="dtp_end" type="text" name="{{ cid }}:end" value="{{ end }}" />
     </div>
-    <div class="small-12 columns">
+    <div class="columns">
       <textarea name="{{ cid }}:pre_status"> {{ pre_status }}</textarea>
     </div>
-    <div class="small-12 columns">
+    <div class="columns">
       <textarea name="{{ cid }}:post_status"> {{ post_status }}</textarea>
     </div>
   </div>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="row">
-  <div class="small-12 columns">
+  <div class="columns">
     <h2>DRILLS</h2>
     <div id="drills"></div>
   </div>
@@ -38,14 +38,14 @@
 </div>
 
 <div class="row">
-  <div class="small-12 columns">
+  <div class="columns">
     <h2>RANDORI</h2>
     <div id="sparring"></div>
   </div>
   
 </div>
 <div class="row">
-  <div class="small-12 columns">
+  <div class="columns">
     <button id="save">save</button>
   </div>
 

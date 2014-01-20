@@ -13,7 +13,8 @@ $base-font-size: 14px;
 $rem-base: $base-font-size;
 $topbar-title-font-size: rem-calc(26);
 $topbar-bg: $primary-color;
-$body-bg: #fff url(/static/img/fabric_of_squares_gray.png) repeat !default;
+//$body-bg: #fff url(/static/img/fabric_of_squares_gray.png) repeat !default;
+$body-bg: #fff url(/static/img/linedpaper.png) repeat !default;
 $row-width: rem-calc(1400);
 
 @import
