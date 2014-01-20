@@ -26,9 +26,9 @@ urlpatterns = patterns('',
 
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
     
-    url(r'^accounts/', include('registration.backends.default.urls')),
+    #url(r'', include('registration.backends.default.urls')),
     
-    url(r'^account/', include('django.contrib.auth.urls')),
+    url(r'', include('django.contrib.auth.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
     

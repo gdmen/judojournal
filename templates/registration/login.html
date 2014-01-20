@@ -1,13 +1,29 @@
 {% extends "single_page_form.html" %}
 
-{% block form%}
-<form method="post" action=".">{% csrf_token %}
-  {{ form.as_p }}
+{% block header %}
+  <div class="contain-to-grid">
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="{% url 'index' %}">JudoJournal</a></h1>
+        </li>
+      </ul>
+    </nav>
+  </div>
+{% endblock %}
 
-  <input type="submit" value="Log in" />
+{% block form%}
+<form method="post" action=".">
+  {% csrf_token %}
+  {{ form.as_p }}
+  
+  {% if next %}
   <input type="hidden" name="next" value="{{ next }}" />
+  {% endif %}
+
+  <button type="submit" class="expand">Login</button>
 </form>
 
-<p>Forgot password? <a href="{% url 'auth_password_reset' %}">Reset it</a>!</p>
-<p>Not member? <a href="{% url 'registration_register' %}">Register</a>!</p>
+<p><a href="{% url 'django.contrib.auth.views.password_reset' %}">Forgot password?</a></p>
+todo: registration
 {% endblock %}
