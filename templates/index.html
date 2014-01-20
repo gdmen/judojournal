@@ -8,6 +8,12 @@
 {% block head %}
 {% endblock %}
 
+{% block main_menu_left %}
+  {% if user.is_authenticated %}
+    <li><a class="button success radius" href="#">Add Question</a></li>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 {% endblock %}
 

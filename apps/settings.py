@@ -59,8 +59,6 @@ ROOT_URLCONF = 'apps.urls'
 
 WSGI_APPLICATION = 'apps.wsgi.application'
 
-LOGIN_REDIRECT_URL = '/#/home'
-
 TASTYPIE_DEFAULT_FORMATS = ['json']
 TASTYPIE_DATETIME_FORMATTING  = 'rfc-2822'
 

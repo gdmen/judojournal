@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 
 from django.contrib import admin
 admin.autodiscover()
@@ -24,7 +25,10 @@ urlpatterns = patterns('',
     # url(r'^$', 'apps.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+    
+    #url(r'^$', TemplateView.as_view(template_name='landing.html'), name='landing'),
+    
+    url(r'^$', login_required(TemplateView.as_view(template_name='index.html')), name='index'),
     
     #url(r'', include('registration.backends.default.urls')),
     

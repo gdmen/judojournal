@@ -29,9 +29,8 @@
               <ul class="right">
                 {% block main_menu_right %}
                   {% if user.is_authenticated %}
-                    <li>{{ user.username }}</li>
+                    <li><a href="/#/profile">{{ user.username }}</a></li>
                     <li><a href="{% url 'django.contrib.auth.views.logout' %}?next=/">Log out</a></li>
-                    <li><a href="{% url 'django.contrib.auth.views.password_change' %}">Change password</a></li>
                   {% else %}
                     <li><a href="{% url 'django.contrib.auth.views.login' %}">Log in</a></li>
                   {% endif %}
@@ -49,7 +48,7 @@
       {% endblock %}
 
       <div id="content">
-        {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
       </div>
     </div><!--/page-container -->
   </div><!--/non-footer -->

@@ -1,7 +1,6 @@
 JJ.Router = Backbone.Router.extend({
   routes: {
-    "(/)": "landing",
-    "home(/)": "home",
+    "(/)": "home",
     //"entry/:id(/)": "showEntry",
     "entry/:id/edit(/)": "editEntry",
     "*unknown": "unknownRoute"
@@ -9,7 +8,6 @@ JJ.Router = Backbone.Router.extend({
 });
 
 JJ.router = new JJ.Router;
-JJ.router.on('route:landing', landing);
 JJ.router.on('route:home', home);
 JJ.router.on('route:editEntry', editEntry);
 //JJ.router.on('route:showEntry', showEntry);
@@ -17,10 +15,6 @@ JJ.router.on('route:unknownRoute', JJ.Util.handleUnknownRoute);
 
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
-
-function landing() {
-  new JJ.Views.StaticLanding({name: JJ.Meta.name, el: $('#content')});
-}
 
 function home() {
   new JJ.Views.HomePage({name: JJ.Meta.name, el: $('#content')});

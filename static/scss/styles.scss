@@ -6,13 +6,19 @@
  */
 @import "../components/foundation/scss/foundation/_functions";
 $primary-color: #0068C2 !default;
-$secondary-color: #e7e7e7 !default;
-$alert-color: #fcf8e3 !default;
-$success-color: #dff0d8 !default;
+$alert-color: #F76565 !default;
+$secondary-color: #E7E7E7 !default;
 $base-font-size: 14px;
 $rem-base: $base-font-size;
 $topbar-title-font-size: rem-calc(26);
+
 $topbar-bg: $primary-color;
+$topbar-link-bg: $topbar-bg;
+$topbar-link-bg-hover: scale-color($topbar-link-bg, $lightness: -14%);
+$topbar-link-bg-active: $topbar-link-bg;
+$topbar-link-bg-active-hover: scale-color($topbar-link-bg, $lightness: -14%);
+$topbar-dropdown-bg: scale-color($topbar-bg, $lightness: -28%);
+
 //$body-bg: #fff url(/static/img/fabric_of_squares_gray.png) repeat !default;
 $body-bg: #fff url(/static/img/linedpaper.png) repeat !default;
 $row-width: rem-calc(1400);
@@ -38,6 +44,13 @@ $footer-bg: $topbar-bg;
  */
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
+}
+.top-bar-section {
+  .left {
+    li {
+      background-color: $topbar-bg;
+    }
+  }
 }
 
 /*
@@ -80,7 +93,7 @@ footer {
   padding: 0;
   li {
     background-color: $alert-color;
-    border: 1px solid #fbeed5;
+    border: 1px solid scale-color($alert-color, $lightness: 14%);
     padding: 0.5em 1em;
   }
 }

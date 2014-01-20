@@ -248,27 +248,10 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 templates['pages/home'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "";
 
 
-  buffer += "\r\n\r\n<div class=\"row\">\r\n  <div id=\"landing-hero\" class=\"small-centered columns\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"medium-7 large-6 columns\">\r\n        <h1>";
-  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</h1><br>\r\n        <h3>The most advanced responsive <br class=\"hide-for-small\">front-end framework in the world.</h3>\r\n        <br>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"large-4 medium-6 columns\">\r\n        <a href=\"/\" class=\"button expand\">Register Now!</a>\r\n      </div>\r\n    </div>\r\n    \r\n  </div>\r\n</div>";
-  return buffer;
-  });
-templates['pages/landing'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
-
-
-  buffer += "\r\n\r\n<div class=\"row\">\r\n  <div id=\"landing-hero\" class=\"small-centered columns\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"medium-7 large-6 columns\">\r\n        <h1>";
-  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</h1><br>\r\n        <h3>The most advanced responsive <br class=\"hide-for-small\">front-end framework in the world.</h3>\r\n        <br>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"large-4 medium-6 columns\">\r\n        <a href=\"/\" class=\"button expand\">Register Now!</a>\r\n      </div>\r\n    </div>\r\n    \r\n  </div>\r\n</div>";
+  buffer += "\r\n\r\n<div class=\"row\">\r\n  <h1>HOME</h1>\r\n  <h1>Add/manage location</h1>\r\n  <h1>Add/manage goal</h1>\r\n  <h1>Add/manage Art</h1>\r\n  <h1>View questions / answer questions</h1>\r\n  <h1>Add new entry</h1>\r\n</div>";
   return buffer;
   });
 templates['widgets/rating'] = template(function (Handlebars,depth0,helpers,partials,data) {
