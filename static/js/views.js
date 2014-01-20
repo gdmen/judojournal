@@ -6,6 +6,7 @@
  *
  ************************************************************/
 JJ.Views.AbstractEditModel = Backbone.View.extend({
+  template: null,
   baseEvents: {
     "change input": "changed",
     "change textarea": "changed",
@@ -88,6 +89,7 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
  *
  ************************************************************/
 JJ.Views.AbstractSelectModel = Backbone.View.extend({
+  template: null,
   parentModel: null,
   // Subclasses set to the parent model's field that is to be selected.
   field: "",
@@ -148,6 +150,7 @@ JJ.Views.SelectEntryType = JJ.Views.AbstractSelectModel.extend({
  *
  ************************************************************/
 JJ.Views.AbstractEditModelList = Backbone.View.extend({
+  template: null,
   parentModel: null,
   // Subclasses set to the parent model's array field that is to be managed.
   field: "",
@@ -392,4 +395,30 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     
     return this;
   },
+});
+
+
+/************************************************************
+ *
+ * JJ.Views.AbstractStaticPage
+ *  - Static template inputs only.
+ *
+ ************************************************************/
+JJ.Views.AbstractStaticPage = Backbone.View.extend({
+  initialize: function(options) {
+    this.options = options;
+    this.render();
+  },
+  
+  render: function() {
+    this.$el.html(this.template(this.options));
+    return this;
+  },
+});
+
+/*
+ * JJ.Views.AbstractStaticPage instances
+ */
+JJ.Views.StaticHome = JJ.Views.AbstractStaticPage.extend({
+  template: Handlebars.templates["static/home"],
 });

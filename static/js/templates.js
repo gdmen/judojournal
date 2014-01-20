@@ -6,7 +6,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "\r\n<div class=\"row\">\r\n  <div class=\"small-6 columns\">\r\n    <div class=\"small-12 columns\">\r\n      ";
+  buffer += "\r\n\r\n<div class=\"row\">\r\n  <div class=\"small-6 columns\">\r\n    <div class=\"small-12 columns\">\r\n      ";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n      <div><span id=\"type\"></span> @ <span id=\"location\"></span></div>\r\n      <br />\r\n      <input id=\"dtp_start\" type=\"text\" name=\"";
@@ -249,12 +249,17 @@ function program2(depth0,data) {
   buffer += "\r\n</select>";
   return buffer;
   });
-templates['home'] = template(function (Handlebars,depth0,helpers,partials,data) {
+templates['static/home'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "";
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
+  buffer += "\r\n\r\n<div class=\"row\">\r\n  <section id=\"homepage-hero\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"medium-7 large-6 columns\">\r\n        <h1>";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h1><br>\r\n        <h3>The most advanced responsive <br class=\"hide-for-small\">front-end framework in the world.</h3>\r\n        <br>\r\n      </div>\r\n    </div>\r\n\r\n\r\n    <div class=\"row\">\r\n      <div class=\"large-4 medium-6 columns\">\r\n        <a href=\"develop/download.html\" class=\"large button hide-for-small\">Download Foundation 5</a>\r\n        <a href=\"develop/download.html\" class=\"small button show-for-small\">View Download Options</a>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"small-12 columns\">\r\n        <div id=\"watch\">\r\n          <section id=\"stargazers\">\r\n            <a href=\"http://github.com/zurb/foundation\">15.4k stargazers</a>\r\n          </section>\r\n          <section id=\"twitter\">\r\n            <a href=\"http://twitter.com/foundationzurb\">@foundationzurb</a>\r\n          </section>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"floatingyeti\">\r\n      <img src=\"http://foundation.zurb.com/assets/img/homepage/hero-image.svg\">\r\n    </div>\r\n  </section>\r\n</div>";
   return buffer;
   });
 templates['widgets/rating'] = template(function (Handlebars,depth0,helpers,partials,data) {

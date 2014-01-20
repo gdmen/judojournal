@@ -6,12 +6,13 @@
  */
   @import "../components/foundation/scss/foundation/_functions";
   $primary-color: #0068C2 !default;
-  //$secondary-color: #e7e7e7 !default;
+  $secondary-color: #e7e7e7 !default;
   $alert-color: #fcf8e3 !default;
   $success-color: #dff0d8 !default;
   $base-font-size: 14px;
   $rem-base: $base-font-size;
   $topbar-title-font-size: rem-calc(26);
+  $topbar-bg: $primary-color;
   $row-width: rem-calc(1400);
 @import
   "../components/foundation/scss/normalize",

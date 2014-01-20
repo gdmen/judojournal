@@ -6776,7 +6776,7 @@ meta.foundation-mq-topbar {
 /* line 86, ../components/foundation/scss/foundation/components/_top-bar.scss */
 .contain-to-grid {
   width: 100%;
-  background: #333333;
+  background: #0068c2;
 }
 /* line 90, ../components/foundation/scss/foundation/components/_top-bar.scss */
 .contain-to-grid .top-bar {
@@ -6816,7 +6816,7 @@ meta.foundation-mq-topbar {
   height: 45px;
   line-height: 45px;
   position: relative;
-  background: #333333;
+  background: #0068c2;
   margin-bottom: 0;
 }
 /* line 129, ../components/foundation/scss/foundation/components/_top-bar.scss */
@@ -6923,7 +6923,7 @@ meta.foundation-mq-topbar {
 }
 /* line 234, ../components/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar.expanded .title-area {
-  background: #333333;
+  background: #0068c2;
 }
 /* line 237, ../components/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar.expanded .toggle-topbar a {
@@ -7103,7 +7103,7 @@ meta.foundation-mq-topbar {
 @media only screen and (min-width: 40.063em) {
   /* line 412, ../components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar {
-    background: #333333;
+    background: #0068c2;
     *zoom: 1;
     overflow: visible;
   }
@@ -7137,7 +7137,7 @@ meta.foundation-mq-topbar {
   }
   /* line 429, ../components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar.expanded {
-    background: #333333;
+    background: #0068c2;
   }
 
   /* line 432, ../components/foundation/scss/foundation/components/_top-bar.scss */
@@ -7177,7 +7177,7 @@ meta.foundation-mq-topbar {
   .top-bar-section li a:not(.button) {
     padding: 0 15px;
     line-height: 45px;
-    background: #333333;
+    background: #0068c2;
   }
   /* line 464, ../components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section li a:not(.button):hover {
@@ -7255,7 +7255,7 @@ meta.foundation-mq-topbar {
   }
   /* line 545, ../components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section .has-form {
-    background: #333333;
+    background: #0068c2;
     padding: 0 15px;
     height: 45px;
   }
@@ -8556,7 +8556,7 @@ th.hide-for-touch {
 /*
  * Custom styles
  */
-/* line 28, ../scss/styles.scss */
+/* line 29, ../scss/styles.scss */
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
@@ -8564,18 +8564,18 @@ h1, h2, h3, h4, h5, h6 {
 /*
  * Forms
  */
-/* line 35, ../scss/styles.scss */
+/* line 36, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1em;
 }
 
-/* line 42, ../scss/styles.scss */
+/* line 43, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 46, ../scss/styles.scss */
+/* line 47, ../scss/styles.scss */
 .errorlist li {
   background-color: #fcf8e3;
   border: 1px solid #fbeed5;
@@ -8585,22 +8585,22 @@ h1, h2, h3, h4, h5, h6 {
 /*
  * Widgets
  */
-/* line 57, ../scss/styles.scss */
+/* line 58, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 59, ../scss/styles.scss */
+/* line 60, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
 
-/* line 63, ../scss/styles.scss */
+/* line 64, ../scss/styles.scss */
 input[type=radio] + img {
   cursor: pointer;
   border: 2px solid transparent;
 }
 
-/* line 67, ../scss/styles.scss */
+/* line 68, ../scss/styles.scss */
 input[type=radio]:checked + img {
   border: 2px solid #f00;
 }

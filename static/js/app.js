@@ -36,9 +36,12 @@ Handlebars.partials = Handlebars.templates;
 window.JJ = {};
 
 // Instantiate subspaces.
+JJ.Meta = {};
 JJ.Util = {};
 JJ.Models = {};
 JJ.Views = {};
+
+JJ.Meta.name = "JudoJournal";
 
 JJ.Util.log = function(s) {
   console.log(s);
