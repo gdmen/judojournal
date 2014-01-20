@@ -4,16 +4,18 @@
 /*
  * Foundation settings
  */
-  @import "../components/foundation/scss/foundation/_functions";
-  $primary-color: #0068C2 !default;
-  $secondary-color: #e7e7e7 !default;
-  $alert-color: #fcf8e3 !default;
-  $success-color: #dff0d8 !default;
-  $base-font-size: 14px;
-  $rem-base: $base-font-size;
-  $topbar-title-font-size: rem-calc(26);
-  $topbar-bg: $primary-color;
-  $row-width: rem-calc(1400);
+@import "../components/foundation/scss/foundation/_functions";
+$primary-color: #0068C2 !default;
+$secondary-color: #e7e7e7 !default;
+$alert-color: #fcf8e3 !default;
+$success-color: #dff0d8 !default;
+$base-font-size: 14px;
+$rem-base: $base-font-size;
+$topbar-title-font-size: rem-calc(26);
+$topbar-bg: $primary-color;
+$body-bg: #fff url(/static/img/fabric_of_squares_gray.png) repeat !default;
+$row-width: rem-calc(1400);
+
 @import
   "../components/foundation/scss/normalize",
   "../components/foundation/scss/foundation";
@@ -23,6 +25,13 @@
  */
 @import "CSS:../components/datetimepicker/jquery.datetimepicker";
 
+
+/*
+ * Custom settings
+ */
+$footerHeight: 2em;
+$footer-bg: $topbar-bg;
+  
 /*
  * Custom styles
  */
@@ -31,14 +40,38 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*
+ * Sticky footer
+ */
+html, body {
+  height: 100%;
+}
+#non-footer {
+  min-height: 100%;
+  position: relative;
+}
+* html #non-footer {
+  height: 100%;
+}
+#page-container {
+  padding-bottom: $footerHeight;
+}
+footer {
+  background-color: $footer-bg;
+  height: $footerHeight;
+  margin-top: (-$footerHeight);
+  position: relative;
+  text-align: center;
+  div {
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+/*
  * Forms
  */
 .single-page-form {
   margin-top: 1em;
-  form {
-    button {
-    }
-  }
 }
 .errorlist {
   list-style-type: none;
@@ -60,11 +93,11 @@ h1, h2, h3, h4, h5, h6 {
   input[type=radio]{
     display: none;
   }
-}
-input[type=radio] + img{
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-input[type=radio]:checked + img{
-  border: 2px solid #f00;
+  input[type=radio] + img{
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+  input[type=radio]:checked + img{
+    border: 2px solid #f00;
+  }
 }

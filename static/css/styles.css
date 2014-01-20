@@ -470,7 +470,7 @@ body {
 
 /* line 325, ../components/foundation/scss/foundation/components/_global.scss */
 body {
-  background: white;
+  background: white url(/static/img/fabric_of_squares_gray.png) repeat;
   color: #222222;
   padding: 0;
   margin: 0;
@@ -8554,28 +8554,68 @@ th.hide-for-touch {
 }
 
 /*
+ * Custom settings
+ */
+/*
  * Custom styles
  */
-/* line 29, ../scss/styles.scss */
+/* line 38, ../scss/styles.scss */
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
 /*
+ * Sticky footer
+ */
+/* line 45, ../scss/styles.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 48, ../scss/styles.scss */
+#non-footer {
+  min-height: 100%;
+  position: relative;
+}
+
+/* line 52, ../scss/styles.scss */
+* html #non-footer {
+  height: 100%;
+}
+
+/* line 55, ../scss/styles.scss */
+#page-container {
+  padding-bottom: 2em;
+}
+
+/* line 58, ../scss/styles.scss */
+footer {
+  background-color: #0068c2;
+  height: 2em;
+  margin-top: -2em;
+  position: relative;
+  text-align: center;
+}
+/* line 65, ../scss/styles.scss */
+footer div p:last-child {
+  margin-bottom: 0;
+}
+
+/*
  * Forms
  */
-/* line 36, ../scss/styles.scss */
+/* line 73, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1em;
 }
 
-/* line 43, ../scss/styles.scss */
+/* line 76, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 47, ../scss/styles.scss */
+/* line 80, ../scss/styles.scss */
 .errorlist li {
   background-color: #fcf8e3;
   border: 1px solid #fbeed5;
@@ -8585,22 +8625,20 @@ h1, h2, h3, h4, h5, h6 {
 /*
  * Widgets
  */
-/* line 58, ../scss/styles.scss */
+/* line 91, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 60, ../scss/styles.scss */
+/* line 93, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-
-/* line 64, ../scss/styles.scss */
-input[type=radio] + img {
-  cursor: pointer;
+/* line 96, ../scss/styles.scss */
+.rating label input[type=radio] + img {
   border: 2px solid transparent;
+  cursor: pointer;
 }
-
-/* line 68, ../scss/styles.scss */
-input[type=radio]:checked + img {
+/* line 100, ../scss/styles.scss */
+.rating label input[type=radio]:checked + img {
   border: 2px solid #f00;
 }
