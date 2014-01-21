@@ -37,10 +37,17 @@ class ArtResource(HasUserResource):
   def obj_create(self, bundle, **kwargs):
     return super(ArtResource, self).obj_create(bundle, user=bundle.request.user)
     
+class TypeResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
+    queryset = Type.objects.all()
+    resource_name = 'type'
+  def obj_create(self, bundle, **kwargs):
+    return super(TypeResource, self).obj_create(bundle, user=bundle.request.user)
+    
 class LocationResource(HasUserResource):
   class Meta(HasUserResource.Meta):
     queryset = Location.objects.all()
-    resource_name = 'entry/location'
+    resource_name = 'location'
   def obj_create(self, bundle, **kwargs):
     return super(LocationResource, self).obj_create(bundle, user=bundle.request.user)
 
@@ -60,6 +67,7 @@ class SparringEntryModuleResource(HasUserResource):
 
 class JudoEntryResource(HasUserResource):
   art = fields.ToOneField(ArtResource, 'art')
+  type = fields.ToOneField(TypeResource, 'type')
   location = fields.ToOneField(LocationResource, 'location')
   goals = fields.ToManyField(GoalInstanceResource, 'goals', blank=True, null=True, full=True)
   drills = fields.ToManyField(DrillEntryModuleResource, 'drills', blank=True, null=True, full=True)

@@ -18,7 +18,7 @@ class HasUserModel(models.Model):
   Entry components
 """
 class Goal(HasUserModel):
-  brief = models.CharField(max_length=140)
+  brief = models.CharField(max_length=140, unique=True)
   details = models.TextField(blank=True)
   created = models.DateTimeField(auto_now_add=True)
 
@@ -29,11 +29,15 @@ class GoalInstance(HasUserModel, HasRatingModel):
 
 class Art(HasUserModel):
   # e.g. 'Judo'
-  name = models.TextField()
+  name = models.CharField(max_length=140, unique=True)
+
+class Type(HasUserModel):
+  # e.g. 'Open Mat'
+  name = models.CharField(max_length=140, unique=True)
 
 class Location(HasUserModel):
-  name = models.CharField(max_length=140)
-  url = models.CharField(max_length=250, blank=True)
+  name = models.CharField(max_length=140, unique=True)
+  url = models.URLField(blank=True)
 
 """
   Abstract Entry
@@ -43,9 +47,8 @@ class AbstractEntry(HasUserModel, HasRatingModel):
   end = models.DateTimeField()
   pre_status = models.TextField(blank=True)
   post_status = models.TextField(blank=True)
-  # e.g. 'Open Mat'
-  type = models.TextField(blank=True)
   art = models.ForeignKey(Art)
+  type = models.ForeignKey(Type)
   location = models.ForeignKey(Location)
   goals = models.ManyToManyField(GoalInstance, blank=True, null=True)
   class Meta:
@@ -74,10 +77,10 @@ class JudoEntry(AbstractEntry):
   sparring = models.ManyToManyField(SparringEntryModule, blank=True, null=True)
 
 """
-  Stand Alone
+  Stand-Alone Models
 """
 class Question(HasUserModel):
-  brief = models.CharField(max_length=140)
+  brief = models.CharField(max_length=140, unique=True)
   details = models.TextField(blank=True)
   answer = models.TextField(blank=True)
   created = models.DateTimeField(auto_now_add=True)

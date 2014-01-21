@@ -4,13 +4,14 @@
 /*
  * Foundation settings
  */
-@import "../components/foundation/scss/foundation/_functions";
+@import "../bower/foundation/scss/foundation/_functions";
 $primary-color: #0068C2 !default;
 $alert-color: #F76565 !default;
 $secondary-color: #E7E7E7 !default;
 $base-font-size: 14px;
 $rem-base: $base-font-size;
 $topbar-title-font-size: rem-calc(26);
+$topbar-margin-bottom: 1em;
 
 $topbar-bg: $primary-color;
 $topbar-link-bg: $topbar-bg;
@@ -24,14 +25,14 @@ $body-bg: #fff url(/static/img/linedpaper.png) repeat !default;
 $row-width: rem-calc(1400);
 
 @import
-  "../components/foundation/scss/normalize",
-  "../components/foundation/scss/foundation";
+  "../bower/foundation/scss/normalize",
+  "../bower/foundation/scss/foundation";
   
 /*
  * Component CSS / SCSS
  */
-@import "CSS:../components/datetimepicker/jquery.datetimepicker";
-@import "../components/font-awesome/scss/font-awesome";
+@import "CSS:../bower/datetimepicker/jquery.datetimepicker";
+@import "../bower/font-awesome/scss/font-awesome";
 
 
 /*
@@ -54,7 +55,7 @@ html, body {
   height: 100%;
 }
 #page-container {
-  padding-bottom: $footerHeight;
+  padding-bottom: $footerHeight + $topbar-margin-bottom;
 }
 footer {
   background-color: $footer-bg;
@@ -97,9 +98,9 @@ $widget-bg: $topbar-bg;
     @include clearfix;
     @include side-radius(left);
     background-color: $widget-bg;
-    margin-top: 1em;
+    margin-top: $topbar-margin-bottom;
     position: relative;
-    a {
+    a, .link {
       padding: 1em;
       h1, h2, h3, h4, h5, h6 {
         color: $topbar-link-color;
@@ -112,7 +113,7 @@ $widget-bg: $topbar-bg;
     a.left {
       width: 100%;
     }
-    a.right {
+    div.right {
       border-left: 1px solid scale-color($widget-bg, $lightness: -28%);
       position: absolute;
       right: 0;

@@ -1,10 +1,10 @@
 {{! entry/judo/edit/single }}
 
 <div class="row">
-  <div class="small-6 columns">
+  <div class="columns">
     <div class="columns">
       {{> widgets/rating }}
-      <div><span id="type"></span> @ <span id="location"></span></div>
+      <div><span id="art"></span><span id="type"></span> @ <span id="location"></span></div>
       <br />
       <input id="dtp_start" type="text" name="{{ cid }}:start" value="{{ start }}" />
       <br />
@@ -16,15 +16,6 @@
     <div class="columns">
       <textarea name="{{ cid }}:post_status"> {{ post_status }}</textarea>
     </div>
-  </div>
-
-  <div class="small-6 columns" id="goals">
-    <h3>Goals</h3>
-    <ul>
-      <li>Coffee</li>
-      <li>Milk</li>
-      <li>Coffee</li>
-    </ul>
   </div>
   
 </div>

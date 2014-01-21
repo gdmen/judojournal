@@ -66,15 +66,27 @@ JJ.Models.ArtCollection = JJ.Models.TastypieCollection.extend({
 });
 
 /*
+ * Art
+ */
+JJ.Models.Type = JJ.Models.Tastypie.extend({
+  urlRoot: "/api/v1/type/",
+});
+
+JJ.Models.TypeCollection = JJ.Models.TastypieCollection.extend({
+  model: JJ.Models.Type,
+  url: "/api/v1/type/",
+});
+
+/*
  * Location
  */
 JJ.Models.Location = JJ.Models.Tastypie.extend({
-  urlRoot: "/api/v1/entry/location/",
+  urlRoot: "/api/v1/location/",
 });
 
 JJ.Models.LocationCollection = JJ.Models.TastypieCollection.extend({
   model: JJ.Models.Location,
-  url: "/api/v1/entry/location/",
+  url: "/api/v1/location/",
 });
 
 /*

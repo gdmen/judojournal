@@ -7,6 +7,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="{% static 'libs/chosen/chosen.min.css' %}">
 {% endblock %}
 
 {% block main_menu_left %}
@@ -19,15 +20,15 @@
 {% endblock %}
 
 {% block js %}
-  <script type="text/javascript" src="{% static 'components/underscore/underscore-min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'components/backbone/backbone-min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/handlebars.runtime.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower/underscore/underscore-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower/backbone/backbone-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'libs/handlebars.runtime.js' %}"></script>
+  <script type="text/javascript" src="{% static 'libs/chosen/chosen.jquery.min.js' %}"></script>
   
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   
-  <script type="text/javascript" src="{% static 'components/datetimepicker/jquery.datetimepicker.js' %}"></script>
-  <script type="text/javascript" src="{% static 'components/date.format/date.format.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower/datetimepicker/jquery.datetimepicker.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower/date.format/date.format.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/templates.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/models.js' %}"></script>

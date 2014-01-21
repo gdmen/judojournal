@@ -58,7 +58,7 @@ JJ.Views.EditType = JJ.Views.AbstractEditModel.extend({
 });
 
 JJ.Views.EditLocation = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["models/entry/location/edit/single"],
+  template: Handlebars.templates["models/location/edit/single"],
 });
 
 JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
@@ -91,38 +91,114 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
 JJ.Views.AbstractSelectModel = Backbone.View.extend({
   template: null,
   parentModel: null,
-  // Subclasses set to the parent model's field that is to be selected.
+  // The parent model's field that is to be selected.
   field: "",
+  modelConstructor: null,
+  collectionConstructor: null,
+  modelParam: "",
+  placeholder: "",
   events: {
-    "change select": "changed",
+    "change select": "selectInput",
+    "click .customInput": "customInput",
   },
   
   /*
    * Updates the parent model on input changes.
    */
-  changed: function(e) {
+  selectInput: function(e) {
+    console.log("selectInput");
     var value = $(e.currentTarget).val();
+    if (value === "") {
+      return;
+    }
     this.parentModel.set(this.field, value);
-    console.log(this.parentModel);
+  },
+  
+  /*
+   * Updates the parent model on input changes.
+   */
+  customInput: function(e) {
+    console.log("customInput");
+    // Hacky grabbing the currently typed input in the 'chosen' (js lib) search input.
+    var value = $("#" + this.field + "-select").next().find(".chosen-search input").val();
+    if (value === "") {
+      return;
+    }
+    var params = {};
+    params[this.modelParam] = value;
+    var model = new this.modelConstructor(params);
+    var that = this;
+    model.save(null, {
+      success: function(m) {
+        console.log("SAVED new SelectModel...");
+        console.log(m);
+        that.parentModel.set(that.field, m.get("resource_uri"));
+        that.options.push({"name": m.get(that.modelParam), "resource_uri": m.get("resource_uri")});
+        that.render();
+      },
+      error: console.log.backboneError,
+    });
   },
   
   initialize: function(options) {
     this.parentModel = options.parentModel;
+    this.options = [];
     this.render();
+    // Load collection and store in valueURIDict. Re-link DOM on success.
+    var that = this;
+    (new this.collectionConstructor()).fetch({
+      success: function(c) {
+        c.each(function(m) {
+          that.options.push({name: m.get(that.modelParam), resource_uri: m.get("resource_uri")});
+        });
+        that.render();
+      },
+      error: JJ.Util.backboneError,
+    });
+  },
+
+  /*
+   * Links DOM to third party JS libraries.
+   */
+  linkDOM: function() {
+    $("#" + this.field + "-select").chosen({
+      no_results_text: "<div class='customInput button success radius'>Add a new " + this.field.charAt(0).toUpperCase() + this.field.slice(1) + ':</div>',
+      placeholder_text_single: this.placeholder,
+    });
+    var that = this;
+    $("#" + this.field + "-select").next().find(".chosen-search input").keypress(function(e) {
+      console.log($("#" + that.field + "-select").next().find(".chosen-search input").val());
+      var code = e.keyCode || e.which;
+      if(code == 13) { //Enter keycode
+        console.log($(e.currentTarget).val());
+      }
+    });
+    /*
+    var values = [];
+    for(var v in this.options) values.push(v);
+    $( "#" + this.field + "-select" ).autocomplete({
+      source: values,
+    });*/
   },
   
   render: function() {
     // Sets the currently selected element before rendering view.
     var selected = this.parentModel.get(this.field);
-    var json = {collection: this.collection.toJSON()};
-    if (typeof selected === "undefined" && json.collection.length > 0) {
-      this.parentModel.set(this.field, json.collection[0].resource_uri);
-      selected = this.parentModel.get(this.field);
+    
+    if (typeof selected === "undefined" && this.options.length > 0) {
+      selected = this.options[0].resource_uri;
+      this.parentModel.set(this.field, selected);
     }
-    for (var i=json.collection.length; i--;) {
-      json.collection[i]["selected"] = (json.collection[i].resource_uri === selected);
+    for (var i=this.options.length; i--;) {
+     this.options[i]["selected"] = (this.options[i].resource_uri === selected);
     }
+    var json = {
+      //cid: this.parentModel.cid,
+      field: this.field,
+      options: this.options,
+    };
     this.$el.html(this.template(json));
+    this.linkDOM();
     return this;
   },
 });
@@ -131,14 +207,31 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
  * JJ.Views.AbstractSelectModel instances
  */
 
-JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["models/entry/location/select/one"],
-  field: "location",
-}); 
-
 JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
   template: Handlebars.templates["models/art/select/one"],
   field: "art",
+  modelParam: "name",
+  modelConstructor: JJ.Models.Art,
+  collectionConstructor: JJ.Models.ArtCollection,
+  placeholder: "Art (e.g. Judo)",
+});
+
+JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
+  template: Handlebars.templates["models/type/select/one"],
+  field: "type",
+  modelParam: "name",
+  modelConstructor: JJ.Models.Type,
+  collectionConstructor: JJ.Models.TypeCollection,
+  placeholder: "Type (e.g. Practice)",
+});
+
+JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
+  template: Handlebars.templates["models/location/select/one"],
+  field: "location",
+  modelParam: "name",
+  modelConstructor: JJ.Models.Location,
+  collectionConstructor: JJ.Models.LocationCollection,
+  placeholder: "Club Name",
 });
 
 
@@ -166,14 +259,14 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
   addModel: function(e) {
     console.log("addModel");
     var model = new this.insertModelConstructor();
-    var parentView = this;
+    var that = this;
     model.save(null, {
       success: function(m) {
         console.log("SAVED new model...");
         console.log(m);
-        parentView.modelArray.push(m);
-        parentView.addView(m);
-        console.log(parentView.modelArray);
+        that.modelArray.push(m);
+        that.addView(m);
+        console.log(that.modelArray);
       },
       error: console.log.backboneError,
     });
@@ -184,14 +277,14 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
    */
   removeModel: function(m) {
     console.log("removeModel");
-    var parentView = this;
+    var that = this;
     m.destroy({
       success: function(m) {
         console.log("Destroyed a model...");
         console.log(m);
-        var index = parentView.modelArray.indexOf(m);
-        parentView.modelArray.splice(index, 1);
-        console.log(parentView.modelArray);
+        var index = that.modelArray.indexOf(m);
+        that.modelArray.splice(index, 1);
+        console.log(that.modelArray);
       },
       error: console.log.backboneError,
     });
@@ -361,34 +454,22 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   },
   
   render: function() {
-    var entry = this.model;
-    entry.stayHydrated();
-    var json = entry.toJSON();
+    this.model.stayHydrated();
+    var json = this.model.toJSON();
     
     // Entry formatting
     var formatString = "ddd, dd mmm yyyy HH:MM";
-    json["start"] = dateFormat(entry.get("start"), formatString);
-    json["end"] = dateFormat(entry.get("end"), formatString);
+    json["start"] = dateFormat(this.model.get("start"), formatString);
+    json["end"] = dateFormat(this.model.get("end"), formatString);
     this.$el.html(this.template(json));
     
     // AbstractEditModelList's
-    new JJ.Views.EditDrillList({parentModel: entry, el: this.$("#drills")});
+    new JJ.Views.EditDrillList({parentModel: this.model, el: this.$("#drills")});
     
     // AbstractSelectModelList's
-    var locations = new JJ.Models.LocationCollection();
-    locations.fetch({
-      success: function(m) {
-        new JJ.Views.SelectLocation({collection: m, parentModel: entry, el: this.$("#location")});
-      },
-      error: JJ.Util.backboneError,
-    });
-    var types = new JJ.Models.ArtCollection();
-    types.fetch({
-      success: function(m) {
-        new JJ.Views.SelectArt({collection: m, parentModel: entry, el: this.$("#type")});
-      },
-      error: JJ.Util.backboneError,
-    });
+    new JJ.Views.SelectArt({parentModel: this.model, el: this.$("#art")});
+    new JJ.Views.SelectType({parentModel: this.model, el: this.$("#type")});
+    new JJ.Views.SelectLocation({parentModel: this.model, el: this.$("#location")});
     
     // DOM JS linking
     this.linkDOM();
@@ -537,10 +618,9 @@ JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({
   
   render: function() {
     this.$el.html(this.template(this.options));
-    var widgets = this.widgets;
-    var parentView = this;
+    var that = this;
     Object.keys(widgets).forEach(function (name) {
-      new widgets[name]({name: name, el: parentView.addWidgetDiv("manage-" + name + "-div")});
+      new that.widgets[name]({name: name, el: that.addWidgetDiv("manage-" + name + "-div")});
     });    
     return this;
   },

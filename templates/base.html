@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="{{csrf_token}}" onload="setCSRF()">
   <title>{% block title %}JudoJournal{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  <script type="text/javascript" src="{% static 'components/modernizr/modernizr.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower/modernizr/modernizr.js' %}"></script>
   {% block head %}
   {% endblock %}
 </head>
@@ -64,11 +64,11 @@
   </footer>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="{% static 'components/foundation/js/foundation.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower/foundation/js/foundation.min.js' %}"></script>
 	<script type="text/javascript">
     $(document).foundation();
   </script>
-  <script type="text/javascript" src="{% static 'components/fastclick/lib/fastclick.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower/fastclick/lib/fastclick.js' %}"></script>
   <script type="text/javascript">
     $(function() {
       FastClick.attach(document.body);
