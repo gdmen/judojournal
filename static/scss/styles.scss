@@ -28,9 +28,10 @@ $row-width: rem-calc(1400);
   "../components/foundation/scss/foundation";
   
 /*
- * Component CSS
+ * Component CSS / SCSS
  */
 @import "CSS:../components/datetimepicker/jquery.datetimepicker";
+@import "../components/font-awesome/scss/font-awesome";
 
 
 /*
@@ -38,20 +39,6 @@ $row-width: rem-calc(1400);
  */
 $footerHeight: 2em;
 $footer-bg: $topbar-bg;
-  
-/*
- * Custom styles
- */
-h1, h2, h3, h4, h5, h6 {
-  display: inline-block;
-}
-.top-bar-section {
-  .left {
-    li {
-      background-color: $topbar-bg;
-    }
-  }
-}
 
 /*
  * Sticky footer
@@ -81,6 +68,67 @@ footer {
     }
   }
 }
+
+/*
+ * Custom styles
+ */
+.show {
+}
+.hide {
+  display: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  display: inline-block;
+}
+.top-bar-section {
+  .left {
+    li {
+      background-color: $topbar-bg;
+    }
+  }
+}
+
+/*
+ * Manage widget
+ */
+$widget-bg: $topbar-bg;
+.manage-widget {
+  .manage-header {
+    @include clearfix;
+    @include side-radius(left);
+    background-color: $widget-bg;
+    margin-top: 1em;
+    position: relative;
+    a {
+      padding: 1em;
+      h1, h2, h3, h4, h5, h6 {
+        color: $topbar-link-color;
+        height: 1em;
+        line-height: 1em;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    a.left {
+      width: 100%;
+    }
+    a.right {
+      border-left: 1px solid scale-color($widget-bg, $lightness: -28%);
+      position: absolute;
+      right: 0;
+    }
+  }
+  .manage-drop {
+    display: none;
+    margin-left: ($global-radius/2);
+    ul {
+      background-color: $widget-bg;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
 /*
  * Forms
  */

@@ -6,11 +6,12 @@
 {% endcomment %}
 
 {% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 {% endblock %}
 
 {% block main_menu_left %}
   {% if user.is_authenticated %}
-    <li><a class="button success radius" href="#">Add Question</a></li>
+    <li class="hide-for-small"><a class="button success radius" href="#">Add Question</a></li>
   {% endif %}
 {% endblock %}
 
@@ -21,7 +22,10 @@
   <script type="text/javascript" src="{% static 'components/underscore/underscore-min.js' %}"></script>
   <script type="text/javascript" src="{% static 'components/backbone/backbone-min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/handlebars.runtime.js' %}"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  
   <script type="text/javascript" src="{% static 'components/datetimepicker/jquery.datetimepicker.js' %}"></script>
   <script type="text/javascript" src="{% static 'components/date.format/date.format.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/templates.js' %}"></script>

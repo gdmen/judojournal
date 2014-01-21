@@ -400,6 +400,90 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 
 /************************************************************
  *
+ * JJ.Views.AbstractManageModelWidget
+ *  - Model management widget.
+ *
+ ************************************************************/
+JJ.Views.AbstractManageModelWidget = Backbone.View.extend({
+  name: "",
+  
+  toggle: function() {
+    var drop = $("#" + this.name + "-manage-drop");
+    var show = "show";
+    var hide = "hide";
+    if (drop.is(":hidden")) {
+      $("#" + this.name + "-manage-i-down").toggleClass(show, false);
+      $("#" + this.name + "-manage-i-down").toggleClass(hide, true);
+      $("#" + this.name + "-manage-i-up").toggleClass(show, true);
+      $("#" + this.name + "-manage-i-up").toggleClass(hide, false);
+      drop.slideDown("fast");
+    } else {
+      $("#" + this.name + "-manage-i-up").toggleClass(show, false);
+      $("#" + this.name + "-manage-i-up").toggleClass(hide, true);
+      $("#" + this.name + "-manage-i-down").toggleClass(show, true);
+      $("#" + this.name + "-manage-i-down").toggleClass(hide, false);
+      drop.slideUp("fast");
+    }
+  },
+  
+  initialize: function(options) {
+    this.options = options;
+    //this.events["click " + "#" + this.name + "-manage-click"] = "toggle";
+    this.render();
+  },
+  
+  render: function() {
+    this.$el.html(this.template(this.options));
+    return this;
+  },
+});
+
+/*
+ * JJ.Views.AbstractManageModelWidget instances
+ */
+
+JJ.Views.ManageQuestionsWidget = JJ.Views.AbstractManageModelWidget.extend({
+  template: Handlebars.templates["widgets/manage/question"],
+  name: 'question',
+  events: {
+    "click #question-manage-click": "toggle"
+  }
+});
+
+JJ.Views.ManageGoalsWidget = JJ.Views.AbstractManageModelWidget.extend({
+  template: Handlebars.templates["widgets/manage/goal"],
+  name: 'goal',
+  events: {
+    "click #goal-manage-click": "toggle"
+  }
+});
+
+JJ.Views.ManageTechniquesWidget = JJ.Views.AbstractManageModelWidget.extend({
+  template: Handlebars.templates["widgets/manage/technique"],
+  name: 'technique',
+  events: {
+    "click #technique-manage-click": "toggle"
+  }
+});
+
+JJ.Views.ManageLocationsWidget = JJ.Views.AbstractManageModelWidget.extend({
+  template: Handlebars.templates["widgets/manage/location"],
+  name: 'location',
+  events: {
+    "click #location-manage-click": "toggle"
+  }
+});
+
+JJ.Views.ManageArtsWidget = JJ.Views.AbstractManageModelWidget.extend({
+  template: Handlebars.templates["widgets/manage/art"],
+  name: 'art',
+  events: {
+    "click #art-manage-click": "toggle"
+  }
+});
+
+/************************************************************
+ *
  * JJ.Views.AbstractStaticPage
  *  - Static template inputs only.
  *
@@ -432,4 +516,32 @@ JJ.Views.StaticLanding = JJ.Views.AbstractStaticPage.extend({
  ************************************************************/
 JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({
   template: Handlebars.templates["pages/home"],
+  widgets: {
+    question: JJ.Views.ManageQuestionsWidget,
+    goal: JJ.Views.ManageGoalsWidget,
+    technique: JJ.Views.ManageTechniquesWidget,
+    location: JJ.Views.ManageLocationsWidget,
+    art: JJ.Views.ManageArtsWidget,
+  },
+  
+  /*
+   * Appends a new div.
+   * @params: The div id to append.
+   */
+  addWidgetDiv: function(id) {
+    var div = $( "<div/>" );
+    div.attr("id", id);
+    $("#widgets").append(div);
+    return div;
+  },
+  
+  render: function() {
+    this.$el.html(this.template(this.options));
+    var widgets = this.widgets;
+    var parentView = this;
+    Object.keys(widgets).forEach(function (name) {
+      new widgets[name]({name: name, el: parentView.addWidgetDiv("manage-" + name + "-div")});
+    });    
+    return this;
+  },
 });
