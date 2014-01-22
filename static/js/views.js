@@ -106,7 +106,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   placeholder: "",
   events: {
     "change select": "selectInput",
-    "click .customInput": "customInput",
+    "click .custom-input": "customInput",
   },
   
   /*
@@ -162,7 +162,6 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   
   initialize: function(options) {
     this.parentModel = options.parentModel;
-    this.displayField = this.field.charAt(0).toUpperCase() + this.field.slice(1);
     this.selector = "#" + this.field + "-select";
     this.buttonSelector = "#" + this.field + "-select-new-button";
     this.options = [];
@@ -185,7 +184,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
    */
   linkDOM: function() {
     $(this.selector).chosen({
-      no_results_text: "<div id='" + this.buttonSelector.slice(1) +"' class='customInput button success expand radius'>Add this " + this.displayField + "</div><br class='show-for-small-only' />",
+      no_results_text: "<div id='" + this.buttonSelector.slice(1) +"' class='custom-input button success expand radius'>Add this " + this.field + "</div><br class='show-for-small-only' />",
       placeholder_text_single: this.placeholder,
       width: "100%"
     });
@@ -351,6 +350,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   
   /*
    * Saves this view's model.
+   * If this is the first save, redirect to the saved-model edit page.
    */
   save: function() {
     console.log("**********SAVING**********");
@@ -358,11 +358,16 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     console.log(this.model.toJSON());
     this.model.stayHydrated();
     console.log(this.model.toJSON());
+    var id = this.model.get("id");
     var that = this;
     this.model.save(null, {
       success: function(m) {
         console.log(m.toJSON());
         that.endSaveUI();
+        if (typeof id === "undefined") {
+          console.log("REDIRECT");
+          window.location.replace(JJ.Views.Util.links.editEntry(m.get("id")));
+        }
         console.log("**********DONE SAVING**********");
       },
       error: JJ.Util.backboneError,
