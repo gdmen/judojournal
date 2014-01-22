@@ -11,7 +11,7 @@ $secondary-color: #E7E7E7 !default;
 $base-font-size: 14px;
 $rem-base: $base-font-size;
 $topbar-title-font-size: rem-calc(26);
-$topbar-margin-bottom: 1em;
+$topbar-margin-bottom: 1rem;
 
 $topbar-bg: $primary-color;
 $topbar-link-bg: $topbar-bg;
@@ -32,13 +32,14 @@ $row-width: rem-calc(1400);
  * Component CSS / SCSS
  */
 @import "CSS:../bower/datetimepicker/jquery.datetimepicker";
+@import "CSS:../libs/chosen/chosen.min";
 @import "../bower/font-awesome/scss/font-awesome";
 
 
 /*
  * Custom settings
  */
-$footerHeight: 2em;
+$footerHeight: 2rem;
 $footer-bg: $topbar-bg;
 
 /*
@@ -73,6 +74,11 @@ footer {
 /*
  * Custom styles
  */
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow:$top $left $blur $color #{$inset};
+  -moz-box-shadow:$top $left $blur $color #{$inset};
+  box-shadow:$top $left $blur $color #{$inset};
+}
 .show {
 }
 .hide {
@@ -81,10 +87,55 @@ footer {
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
+button, .button {
+  h1, h2, h3, h4, h5, h6 {
+    color: $topbar-link-color;
+  }
+  margin-bottom: 1rem;
+}
 .top-bar-section {
   .left {
     li {
       background-color: $topbar-bg;
+    }
+  }
+}
+
+/*
+ * Select widget (Entry form)
+ */
+// chosen jquery plugin
+.chosen-container,
+.chosen-container-single,
+.chosen-container-active,
+.chosen-with-drop,
+.chosen-container-active.chosen-with-drop {
+  .chosen-single {
+    @include box-shadow(0, 1px, 2px, rgba(0,0,0,0.1), inset);
+    @include radius($radius:0);
+    background: #fff;
+    border: 1pm solid #CCCCC6;
+    height: auto;
+    padding: 0.25rem 0.5rem;
+    div b {
+      background: none;
+      position: relative;
+    }
+    div b:before {
+      content: "\f078";
+      font-family: FontAwesome;
+      position: absolute;
+      top: 0.25em;
+    }
+  }
+  .chosen-drop {
+    .chosen-search input {
+      @include box-shadow(0, 1px, 2px, rgba(0,0,0,0.1), inset);
+    }
+    .chosen-results {
+      .no-results {
+        font-size: $h4-font-size;
+      }
     }
   }
 }
@@ -134,7 +185,7 @@ $widget-bg: $topbar-bg;
  * Forms
  */
 .single-page-form {
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 .errorlist {
   list-style-type: none;
@@ -143,7 +194,7 @@ $widget-bg: $topbar-bg;
   li {
     background-color: $alert-color;
     border: 1px solid scale-color($alert-color, $lightness: 14%);
-    padding: 0.5em 1em;
+    padding: 0.5rem 1rem;
   }
 }
  

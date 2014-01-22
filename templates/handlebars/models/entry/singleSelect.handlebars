@@ -1,0 +1,9 @@
+{{! models/entry/singleSelect }}
+<select id="{{ field }}-select" class="chosen-select" name="{{ cid }}:{{ field }}">
+  <option value="" {{#if selected}}selected{{/if}}></option>
+{{#each options}}
+  <option value="{{ resource_uri }}" {{#if selected}}selected{{/if}}>
+    {{ name }}
+  </option>
+{{/each}}
+</select>

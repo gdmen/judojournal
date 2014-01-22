@@ -118,14 +118,13 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
    */
   customInput: function(e) {
     console.log("customInput");
-    // Hacky grabbing the currently typed input in the 'chosen' (js lib) search input.
+    // Hacky grabbing the currently typed input in the chosen (jquery plugin) search input.
     var value = $(this.selector).next().find(".chosen-search input").val();
     if (value === "") {
       return;
     }
     // Swap to saving display
-    console.log($(this.buttonSelector));
-    $(this.buttonSelector + " h4").html(this.html["buttonSaving"]);
+    this.startSaveUI();
     
     var params = {};
     params[this.modelParam] = value;
@@ -137,19 +136,25 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
         console.log(m);
         that.parentModel.set(that.field, m.get("resource_uri"));
         that.options.push({"name": m.get(that.modelParam), "resource_uri": m.get("resource_uri")});
+        // TODO: minor improvement by using chosen's update instead of re-rendering
         that.render();
       },
       error: console.log.backboneError,
     });
   },
   
+  /*
+   * UI handling for starting and ending saving.
+   */
+  startSaveUI: function() {
+    $(this.buttonSelector).html("Saving <i class='fa fa-spinner fa-spin'></i>");
+  },
+  endSaveUI: function() {
+  },  
+  
   initialize: function(options) {
     this.parentModel = options.parentModel;
     this.displayField = this.field.charAt(0).toUpperCase() + this.field.slice(1);
-    this.html = {
-      button: "New " + this.displayField + ":",
-      buttonSaving: "Saving <i class='fa fa-spinner fa-spin'></i>",
-    };
     this.selector = "#" + this.field + "-select";
     this.buttonSelector = "#" + this.field + "-select-new-button";
     this.options = [];
@@ -172,8 +177,9 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
    */
   linkDOM: function() {
     $(this.selector).chosen({
-      no_results_text: "<div id='" + this.buttonSelector.slice(1) +"' class='customInput button success radius'><h4>" + this.html["button"] + "</h4></div>",
+      no_results_text: "<div id='" + this.buttonSelector.slice(1) +"' class='customInput button success expand radius'>Add this " + this.displayField + "</div><br class='show-for-small-only' />",
       placeholder_text_single: this.placeholder,
+      width: "100%"
     });
   },
   
@@ -204,7 +210,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
  */
 
 JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["models/art/select/one"],
+  template: Handlebars.templates["models/entry/singleSelect"],
   field: "art",
   modelParam: "name",
   modelConstructor: JJ.Models.Art,
@@ -213,7 +219,7 @@ JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
 });
 
 JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["models/type/select/one"],
+  template: Handlebars.templates["models/entry/singleSelect"],
   field: "type",
   modelParam: "name",
   modelConstructor: JJ.Models.Type,
@@ -222,7 +228,7 @@ JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
 });
 
 JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["models/location/select/one"],
+  template: Handlebars.templates["models/entry/singleSelect"],
   field: "location",
   modelParam: "name",
   modelConstructor: JJ.Models.Location,
@@ -340,17 +346,30 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
    */
   save: function() {
     console.log("**********SAVING**********");
+    this.startSaveUI();
     console.log(this.model.toJSON());
     this.model.stayHydrated();
     console.log(this.model.toJSON());
+    var that = this;
     this.model.save(null, {
       success: function(m) {
         console.log(m.toJSON());
+        that.endSaveUI();
         console.log("**********DONE SAVING**********");
       },
       error: JJ.Util.backboneError,
     });
   },
+  
+  /*
+   * UI handling for starting and ending saving.
+   */
+  startSaveUI: function() {
+    this.$("#save").html("Saving <i class='fa fa-spinner fa-spin'></i>");
+  },
+  endSaveUI: function() {
+    this.$("#save").html("Save");
+  },  
   
   /*
    * Links DOM to third party JS libraries.

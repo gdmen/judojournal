@@ -1,10 +1,25 @@
 {{! entry/judo/edit/single }}
 
 <div class="row">
-  <div class="columns">
+  <div class="small-6 columns">
+    <div id="art"></div>
+  </div>
+  <div class="small-6 columns">
+    <div id="type"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 columns">
+    <div id="location"></div>
+  </div>
+  <div class="small-6 columns">
+    <div id="type"></div>
+  </div>
+</div>
+  
+  
     <div class="columns">
       {{> widgets/rating }}
-      <div><span id="art"></span><span id="type"></span> @ <span id="location"></span></div>
       <br />
       <input id="dtp_start" type="text" name="{{ cid }}:start" value="{{ start }}" />
       <br />
@@ -37,7 +52,7 @@
 </div>
 <div class="row">
   <div class="columns">
-    <button id="save">save</button>
+    <button class="success expand radius" id="save">Save</button>
   </div>
 
 </div>
