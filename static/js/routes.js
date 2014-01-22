@@ -17,7 +17,7 @@ JJ.router.on('route:unknownRoute', JJ.Util.handleUnknownRoute);
 Backbone.history.start();
 
 function home() {
-  new JJ.Views.HomePage({name: JJ.Meta.name, el: $('#content')});
+  new JJ.Views.HomePage({el: $('#content')});
 }
 
 function editEntry(id) {

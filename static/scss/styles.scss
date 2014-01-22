@@ -105,6 +105,14 @@ button, .button {
  * Select widget (Entry form)
  */
 // chosen jquery plugin
+.select-container {
+  margin: 0;
+  margin-bottom: 1.14286rem;
+}
+.select-title {
+  margin: 0;
+  padding-left: 1rem;
+}
 .chosen-container,
 .chosen-container-single,
 .chosen-container-active,

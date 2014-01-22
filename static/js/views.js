@@ -1,3 +1,11 @@
+JJ.Views.Util = {
+  links: {
+    editEntry: function(id) {
+      return "/#/entry/" + id + "/edit";
+    }
+  }
+}
+
 /************************************************************
  *
  * JJ.Views.AbstractEditModel
@@ -587,6 +595,7 @@ JJ.Views.ManageArtsWidget = JJ.Views.AbstractManageModelWidget.extend({
 JJ.Views.AbstractStaticPage = Backbone.View.extend({
   initialize: function(options) {
     this.options = options;
+    this.options.links = {};
     this.render();
   },
   
@@ -632,6 +641,8 @@ JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({
   },
   
   render: function() {
+    this.options.name = JJ.Meta.name;
+    this.options.links.newEntry = JJ.Views.Util.links.editEntry("#");
     this.$el.html(this.template(this.options));
     var that = this;
     Object.keys(this.widgets).forEach(function (name) {

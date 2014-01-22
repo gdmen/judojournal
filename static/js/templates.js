@@ -28,13 +28,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['models/entry/judo/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <div class=\"columns\">\r\n      ";
-  stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n      <div><span id=\"art\"></span><span id=\"type\"></span> @ <span id=\"location\"></span></div>\r\n      <br />\r\n      <input id=\"dtp_start\" type=\"text\" name=\"";
+  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns\">\r\n    <div id=\"art\" class=\"select-container\"></div>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <div id=\"type\" class=\"select-container\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-2 columns\">\r\n    <h3>at</h3>\r\n  </div>\r\n  <div class=\"small-10 columns\">\r\n    <div id=\"location\" class=\"select-container\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-2 columns\">\r\n    <h3>from</h3>\r\n  </div>\r\n  <div class=\"small-10 columns\">\r\n    <input id=\"dtp_start\" type=\"text\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -42,7 +39,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.start) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.start); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n      <br />\r\n      <input id=\"dtp_end\" type=\"text\" name=\"";
+    + "\" />\r\n  </div>\r\n  \r\n  <div class=\"small-2 columns\">\r\n    <h3>until</h3>\r\n  </div>\r\n  <div class=\"small-10 columns\">\r\n    <input id=\"dtp_end\" type=\"text\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -50,23 +47,26 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.end) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.end); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n    </div>\r\n    <div class=\"columns\">\r\n      <textarea name=\"";
+    + "\" />\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>pre-event notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    <textarea name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":pre_status\"> ";
+    + ":pre_status\" placeholder=\"How did you feel before?\">";
   if (helper = helpers.pre_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.pre_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n    </div>\r\n    <div class=\"columns\">\r\n      <textarea name=\"";
+    + "</textarea>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>post-event notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    <textarea name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":post_status\"> ";
+    + ":post_status\" placeholder=\"How did you feel after?\">";
   if (helper = helpers.post_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.post_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n    </div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>RANDORI</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"success expand radius\" id=\"save\">Save</button>\r\n  </div>\r\n\r\n</div>";
+    + "</textarea>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
+  stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>RANDORI</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"success expand radius\" id=\"save\">Save</button>\r\n  </div>\r\n\r\n</div>";
   return buffer;
   });
 templates['models/entry/judo/view/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -247,10 +247,12 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['pages/home'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "";
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "\r\n\r\n<div class=\"row\">\r\n  <div id=\"widgets\" class=\"columns\">\r\n    <h1>HOME</h1>\r\n    <h1>Answer questions</h1>\r\n    <a href=\"/#/entry/#/edit\" class=\"button success\"><h2>Add New Entry</h2></a>\r\n  </div>\r\n</div>";
+  buffer += "\r\n\r\n<div class=\"row\">\r\n  <div id=\"widgets\" class=\"columns\">\r\n    <h1>HOME</h1>\r\n    <h1>Answer questions</h1>\r\n    <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.newEntry)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"button success\"><h2>Add New Entry</h2></a>\r\n  </div>\r\n</div>";
   return buffer;
   });
 templates['widgets/manage/art'] = template(function (Handlebars,depth0,helpers,partials,data) {
