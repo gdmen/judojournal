@@ -90,7 +90,6 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
  ************************************************************/
 JJ.Views.AbstractSelectModel = Backbone.View.extend({
   template: null,
-  parentModel: null,
   // The parent model's field that is to be selected.
   field: "",
   modelConstructor: null,
@@ -120,10 +119,14 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   customInput: function(e) {
     console.log("customInput");
     // Hacky grabbing the currently typed input in the 'chosen' (js lib) search input.
-    var value = $("#" + this.field + "-select").next().find(".chosen-search input").val();
+    var value = $(this.selector).next().find(".chosen-search input").val();
     if (value === "") {
       return;
     }
+    // Swap to saving display
+    console.log($(this.buttonSelector));
+    $(this.buttonSelector + " h4").html(this.html["buttonSaving"]);
+    
     var params = {};
     params[this.modelParam] = value;
     var model = new this.modelConstructor(params);
@@ -142,6 +145,13 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   
   initialize: function(options) {
     this.parentModel = options.parentModel;
+    this.displayField = this.field.charAt(0).toUpperCase() + this.field.slice(1);
+    this.html = {
+      button: "New " + this.displayField + ":",
+      buttonSaving: "Saving <i class='fa fa-spinner fa-spin'></i>",
+    };
+    this.selector = "#" + this.field + "-select";
+    this.buttonSelector = "#" + this.field + "-select-new-button";
     this.options = [];
     this.render();
     // Load collection and store in valueURIDict. Re-link DOM on success.
@@ -161,24 +171,10 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
    * Links DOM to third party JS libraries.
    */
   linkDOM: function() {
-    $("#" + this.field + "-select").chosen({
-      no_results_text: "<div class='customInput button success radius'>Add a new " + this.field.charAt(0).toUpperCase() + this.field.slice(1) + ':</div>',
+    $(this.selector).chosen({
+      no_results_text: "<div id='" + this.buttonSelector.slice(1) +"' class='customInput button success radius'><h4>" + this.html["button"] + "</h4></div>",
       placeholder_text_single: this.placeholder,
     });
-    var that = this;
-    $("#" + this.field + "-select").next().find(".chosen-search input").keypress(function(e) {
-      console.log($("#" + that.field + "-select").next().find(".chosen-search input").val());
-      var code = e.keyCode || e.which;
-      if(code == 13) { //Enter keycode
-        console.log($(e.currentTarget).val());
-      }
-    });
-    /*
-    var values = [];
-    for(var v in this.options) values.push(v);
-    $( "#" + this.field + "-select" ).autocomplete({
-      source: values,
-    });*/
   },
   
   render: function() {
@@ -619,7 +615,7 @@ JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({
   render: function() {
     this.$el.html(this.template(this.options));
     var that = this;
-    Object.keys(widgets).forEach(function (name) {
+    Object.keys(this.widgets).forEach(function (name) {
       new that.widgets[name]({name: name, el: that.addWidgetDiv("manage-" + name + "-div")});
     });    
     return this;
