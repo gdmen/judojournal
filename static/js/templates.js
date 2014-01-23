@@ -66,7 +66,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
     + "</textarea>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>RANDORI</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"expand success radius\" id=\"save\">Save</button>\r\n  </div>\r\n\r\n</div>";
+  buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>RANDORI</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"expand success radius\" id=\"save\">Save Entry</button>\r\n  </div>\r\n\r\n</div>";
   return buffer;
   });
 templates['models/entry/judo/view/single'] = template(function (Handlebars,depth0,helpers,partials,data) {

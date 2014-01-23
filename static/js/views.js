@@ -32,19 +32,12 @@ JJ.Views.AbstractEditModel = Backbone.View.extend({
    * Updates the model on input changes.
    */
   changed: function(e) {
-    console.log("CHANGED");
     var splitName = e.currentTarget.name.split(":");
     if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
-      console.log(field);
       var value = $(e.currentTarget).val();
       this.model.set(field, value);
-    } else {
-      console.log("NOT ME!");
-      console.log(splitName[0]);
-      console.log(this.model.cid);
     }
-    console.log(this.model.toJSON());
   },
   
   initialize: function(options) {
@@ -61,14 +54,6 @@ JJ.Views.AbstractEditModel = Backbone.View.extend({
  * JJ.Views.AbstractEditModel instances
  */
 
-JJ.Views.EditType = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["models/entry/type/edit/single"],
-});
-
-JJ.Views.EditLocation = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["models/location/edit/single"],
-});
-
 JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["models/entry/module/drill/edit/single"],
   extendEvents: {
@@ -78,7 +63,6 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
    * Delete this view's model.
    */
   remove: function() {
-    console.log("removing");
     this.parentView.removeModel(this.model);
     this.$el.remove();
   },
@@ -381,7 +365,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     this.$("#save").html("Saving <i class='fa fa-spinner fa-spin'></i>");
   },
   endSaveUI: function() {
-    this.$("#save").html("Save");
+    this.$("#save").html("Save Entry");
   },  
   
   /*
