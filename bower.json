@@ -9,7 +9,6 @@
     "datetimepicker": "latest",
     "underscore": "latest",
     "date.format": "latest",
-    "font-awesome": "latest",
-    "react": "latest"
+    "font-awesome": "latest"
   }
 }

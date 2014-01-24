@@ -32,7 +32,6 @@ $row-width: rem-calc(1400);
  * Component CSS / SCSS
  */
 @import "CSS:../bower/datetimepicker/jquery.datetimepicker";
-@import "CSS:../libs/chosen/chosen.min";
 @import "../bower/font-awesome/scss/font-awesome";
 
 
@@ -107,7 +106,27 @@ button, .button {
 /*
  * Select widget (Entry form)
  */
+.single-select {
+  &> input {
+    display: none;
+  }
+  .select-input {
+  }
+  .select-drop {
+    //display: none;
+    .select-options {
+      .option-selected {
+        background: green;
+      }
+    }
+  }
+  .select-create {
+    //display: none;
+  }
+}
+ 
 // chosen jquery plugin
+/*
 .select-container {
   margin: 0;
   margin-bottom: 1.14286rem;
@@ -153,7 +172,7 @@ button, .button {
     }
   }
 }
-
+*/
 /*
  * Manage widget
  */

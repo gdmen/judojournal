@@ -10,6 +10,7 @@ JJ.Views.Util = {
  *
  * JJ.Views.AbstractEditModel
  *  - Attaches a form view to a model.
+ *  - Updates the model on input changes.
  *  - Does *not* update the view on model changes.
  *
  ************************************************************/
@@ -33,10 +34,12 @@ JJ.Views.AbstractEditModel = Backbone.View.extend({
    */
   changed: function(e) {
     var splitName = e.currentTarget.name.split(":");
+    console.log("Changed: " + splitName[0]);
     if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
       var value = $(e.currentTarget).val();
       this.model.set(field, value);
+      console.log("Set " + field + " to " + value + " in " + this.model.cid);
     }
   },
   
@@ -84,13 +87,49 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   template: null,
   // The parent model's field that is to be selected.
   field: "",
-  modelConstructor: null,
   collectionConstructor: null,
-  modelParam: "",
+  uniqueKey: "",
   placeholder: "",
   events: {
-    "change select": "selectInput",
-    "click .custom-input": "customInput",
+    "click .select-input": "showDrop",
+    "keyup .select-search > input": "filterOptions",
+    "click .select-option": "selectOption",
+    "click .select-create": "addModel",
+  },
+  
+  showDrop: function(e) {
+    
+  },
+  
+  filterOptions: function(e) {
+    console.log("----- FILTER -----");
+    var filter = $(e.currentTarget).val().toLowerCase();
+    var that = this;
+    this.collection.each(function(m) {
+      var mSelector = "#" + that.getOptionId(m);
+      if (m.get(that.uniqueKey).toLowerCase().indexOf(filter) > -1) {
+        console.log("showing: " + m.get(that.uniqueKey));
+        $(mSelector).show();
+      } else {
+        console.log("hiding: " + m.get(that.uniqueKey));
+        $(mSelector).hide();
+      }
+    });
+  },
+  
+  getOptionId: function(model) {
+    return this.field + "-select-option-" + model.get("id");
+  },
+  
+  selectOption: function(e) {
+    var target = $(e.currentTarget);
+    target.addClass("option-selected").siblings().removeClass("option-selected");
+    $(this.selectors.input).val(target.data('value')).change();
+    this.render();
+  },
+  
+  addModel: function(e) {
+    
   },
   
   /*
@@ -102,7 +141,6 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     if (value === "") {
       return;
     }
-    this.parentModel.set(this.field, value);
   },
   
   /*
@@ -119,15 +157,15 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     this.startSaveUI();
     
     var params = {};
-    params[this.modelParam] = value;
+    params[this.uniqueKey] = value;
     var model = new this.modelConstructor(params);
     var that = this;
     model.save(null, {
       success: function(m) {
         console.log("SAVED new SelectModel...");
         console.log(m);
-        that.parentModel.set(that.field, m.get("resource_uri"));
-        that.options.push({"name": m.get(that.modelParam), "resource_uri": m.get("resource_uri")});
+        //that.model.set(that.field, m.get("resource_uri"));
+        that.options.push({"name": m.get(that.uniqueKey), "resource_uri": m.get("resource_uri")});
         // TODO: minor improvement by using chosen's update instead of re-rendering
         that.render();
       },
@@ -135,63 +173,73 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     });
   },
   
-  /*
-   * UI handling for starting and ending saving.
-   */
-  startSaveUI: function() {
-    $(this.buttonSelector).html("Saving <i class='fa fa-spinner fa-spin'></i>");
-  },
-  endSaveUI: function() {
-  },  
+  //$(this.buttonSelector).html("Saving <i class='fa fa-spinner fa-spin'></i>");
   
   initialize: function(options) {
-    this.parentModel = options.parentModel;
-    this.selector = "#" + this.field + "-select";
-    this.buttonSelector = "#" + this.field + "-select-new-button";
-    this.options = [];
+    this.model = options.model;
+    
+    var vs = {};
+    vs.div = "#" + this.field + "-select";
+    vs.input = vs.div + " .select-input";
+    vs.display = vs.div + " .select-display";
+    vs.drop = vs.div + " .select-drop";
+    vs.search = vs.drop + " .select-search > input";
+    vs.save = vs.drop + " .select-save";
+    
+    this.selectors = vs;
+    console.log(this.selectors);
+    
+    this.collection = new this.collectionConstructor();
+    
+    // TODO: this is kinda hinky
+    // Initially loaded Entry is hydrated => full object in this field rather
+    // than just the resource_uri
+    var selectedModel = this.model.get(this.field);
+    
+    if (!_.isUndefined(selectedModel)) {
+      this.selectedKey = selectedModel[this.uniqueKey];
+      this.model.set(this.field, selectedModel["resource_uri"]);
+    }
+    
     this.render();
-    // Load collection and store in valueURIDict. Re-link DOM on success.
+    // Load collection.
     var that = this;
-    (new this.collectionConstructor()).fetch({
+    this.collection.fetch({
       success: function(c) {
-        c.each(function(m) {
-          that.options.push({name: m.get(that.modelParam), resource_uri: m.get("resource_uri")});
-        });
         that.render();
       },
       error: JJ.Util.backboneError,
     });
   },
-
-  /*
-   * Links DOM to third party JS libraries.
-   */
-  linkDOM: function() {
-    $(this.selector).chosen({
-      no_results_text: "<div id='" + this.buttonSelector.slice(1) +"' class='custom-input button success expand radius'>Add this " + this.field + "</div><br class='show-for-small-only' />",
-      placeholder_text_single: this.placeholder,
-      width: "100%"
-    });
-  },
   
   render: function() {
+    var options = [];
     // Sets the currently selected element before rendering view.
-    var selected = this.parentModel.get(this.field);
+    var selectedURI = this.model.get(this.field);
     
-    if (typeof selected === "undefined" && this.options.length > 0) {
-      selected = this.options[0].resource_uri;
-      this.parentModel.set(this.field, selected);
-    }
-    for (var i=this.options.length; i--;) {
-     this.options[i]["selected"] = (this.options[i].resource_uri === selected);
-    }
+    var that = this;
+    this.collection.each(function(m) {
+      var isSelected = (m.get("resource_uri") === selectedURI);
+      options.push({
+        name: m.get(that.uniqueKey),
+        resource_uri: m.get("resource_uri"),
+        selected: isSelected,
+        id: that.getOptionId(m),
+      });
+      if (isSelected) {
+        that.selectedKey = m.get(that.uniqueKey);
+      }
+    });
+
     var json = {
-      //cid: this.parentModel.cid,
+      cid: this.model.cid,
       field: this.field,
-      options: this.options,
+      options: options,
+      placeholder: this.placeholder,
+      selectedKey: this.selectedKey,
     };
+    
     this.$el.html(this.template(json));
-    this.linkDOM();
     return this;
   },
 });
@@ -203,8 +251,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
 JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
   template: Handlebars.templates["models/entry/singleSelect"],
   field: "art",
-  modelParam: "name",
-  modelConstructor: JJ.Models.Art,
+  uniqueKey: "name",
   collectionConstructor: JJ.Models.ArtCollection,
   placeholder: "Art (e.g. Judo)",
 });
@@ -212,8 +259,7 @@ JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
 JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
   template: Handlebars.templates["models/entry/singleSelect"],
   field: "type",
-  modelParam: "name",
-  modelConstructor: JJ.Models.Type,
+  uniqueKey: "name",
   collectionConstructor: JJ.Models.TypeCollection,
   placeholder: "Type (e.g. Practice)",
 });
@@ -221,8 +267,7 @@ JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
 JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
   template: Handlebars.templates["models/entry/singleSelect"],
   field: "location",
-  modelParam: "name",
-  modelConstructor: JJ.Models.Location,
+  uniqueKey: "name",
   collectionConstructor: JJ.Models.LocationCollection,
   placeholder: "Club Name",
 });
@@ -237,7 +282,7 @@ JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
  ************************************************************/
 JJ.Views.AbstractEditModelList = Backbone.View.extend({
   template: null,
-  parentModel: null,
+  model: null,
   // Subclasses set to the parent model's array field that is to be managed.
   field: "",
   insertViewConstructor: null,
@@ -297,7 +342,7 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
   },
   
   initialize: function(options) {
-    this.modelArray = options.parentModel.get(this.field);
+    this.modelArray = options.model.get(this.field);
     this.render();
   },
   
@@ -348,7 +393,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
       success: function(m) {
         console.log(m.toJSON());
         that.endSaveUI();
-        if (typeof id === "undefined") {
+        if (_.isUndefined(id)) {
           console.log("REDIRECT");
           window.location.replace(JJ.Views.Util.links.editEntry(m.get("id")));
         }
@@ -475,13 +520,13 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     json["end"] = dateFormat(this.model.get("end"), formatString);
     this.$el.html(this.template(json));
     
-    // AbstractEditModelList's
-    new JJ.Views.EditDrillList({parentModel: this.model, el: this.$("#drills")});
-    
     // AbstractSelectModelList's
-    new JJ.Views.SelectArt({parentModel: this.model, el: this.$("#art")});
-    new JJ.Views.SelectType({parentModel: this.model, el: this.$("#type")});
-    new JJ.Views.SelectLocation({parentModel: this.model, el: this.$("#location")});
+    new JJ.Views.SelectArt({model: this.model, el: this.$("#art")});
+    new JJ.Views.SelectType({model: this.model, el: this.$("#type")});
+    new JJ.Views.SelectLocation({model: this.model, el: this.$("#location")});
+    
+    // AbstractEditModelList's
+    new JJ.Views.EditDrillList({model: this.model, el: this.$("#drills")});
     
     // DOM JS linking
     this.linkDOM();
@@ -499,6 +544,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
  ************************************************************/
 JJ.Views.AbstractManageModelWidget = Backbone.View.extend({
   name: "",
+  events: {},
   
   toggle: function() {
     var drop = $("#" + this.name + "-manage-drop");
@@ -521,7 +567,7 @@ JJ.Views.AbstractManageModelWidget = Backbone.View.extend({
   
   initialize: function(options) {
     this.options = options;
-    //this.events["click " + "#" + this.name + "-manage-click"] = "toggle";
+    this.events["click " + "#" + this.name + "-manage-click"] = "toggle";
     this.render();
   },
   
@@ -538,41 +584,26 @@ JJ.Views.AbstractManageModelWidget = Backbone.View.extend({
 JJ.Views.ManageQuestionsWidget = JJ.Views.AbstractManageModelWidget.extend({
   template: Handlebars.templates["widgets/manage/question"],
   name: 'question',
-  events: {
-    "click #question-manage-click": "toggle"
-  }
 });
 
 JJ.Views.ManageGoalsWidget = JJ.Views.AbstractManageModelWidget.extend({
   template: Handlebars.templates["widgets/manage/goal"],
   name: 'goal',
-  events: {
-    "click #goal-manage-click": "toggle"
-  }
 });
 
 JJ.Views.ManageTechniquesWidget = JJ.Views.AbstractManageModelWidget.extend({
   template: Handlebars.templates["widgets/manage/technique"],
   name: 'technique',
-  events: {
-    "click #technique-manage-click": "toggle"
-  }
 });
 
 JJ.Views.ManageLocationsWidget = JJ.Views.AbstractManageModelWidget.extend({
   template: Handlebars.templates["widgets/manage/location"],
   name: 'location',
-  events: {
-    "click #location-manage-click": "toggle"
-  }
 });
 
 JJ.Views.ManageArtsWidget = JJ.Views.AbstractManageModelWidget.extend({
   template: Handlebars.templates["widgets/manage/art"],
   name: 'art',
-  events: {
-    "click #art-manage-click": "toggle"
-  }
 });
 
 /************************************************************

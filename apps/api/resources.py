@@ -66,9 +66,9 @@ class SparringEntryModuleResource(HasUserResource):
     return super(SparringEntryModuleResource, self).obj_create(bundle, user=bundle.request.user)
 
 class JudoEntryResource(HasUserResource):
-  art = fields.ToOneField(ArtResource, 'art')
-  type = fields.ToOneField(TypeResource, 'type')
-  location = fields.ToOneField(LocationResource, 'location')
+  art = fields.ToOneField(ArtResource, 'art', full=True)
+  type = fields.ToOneField(TypeResource, 'type', full=True)
+  location = fields.ToOneField(LocationResource, 'location', full=True)
   goals = fields.ToManyField(GoalInstanceResource, 'goals', blank=True, null=True, full=True)
   drills = fields.ToManyField(DrillEntryModuleResource, 'drills', blank=True, null=True, full=True)
   sparring = fields.ToManyField(SparringEntryModuleResource, 'sparring', blank=True, null=True, full=True)
