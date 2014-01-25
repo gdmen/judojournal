@@ -1,5 +1,5 @@
 """
-Django settings for apps project.
+Django settings for judojournal project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -43,7 +43,7 @@ INSTALLED_APPS = (
   'django.contrib.staticfiles',
   'tastypie',
   'south',
-  'apps.api'
+  'judojournal.api'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,9 +55,9 @@ MIDDLEWARE_CLASSES = (
   'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'apps.urls'
+ROOT_URLCONF = 'judojournal.urls'
 
-WSGI_APPLICATION = 'apps.wsgi.application'
+WSGI_APPLICATION = 'judojournal.wsgi.application'
 
 TASTYPIE_DEFAULT_FORMATS = ['json']
 TASTYPIE_DATETIME_FORMATTING  = 'rfc-2822'

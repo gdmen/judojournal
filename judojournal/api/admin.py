@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.api.models import *
+from judojournal.api.models import *
 
 """
 class HasUserAdmin(admin.ModelAdmin):

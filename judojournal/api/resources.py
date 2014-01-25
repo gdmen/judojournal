@@ -2,7 +2,7 @@ from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import Authorization
 from tastypie.resources import ModelResource
 from tastypie import fields
-from apps.api.models import *
+from judojournal.api.models import *
 
 class HasUserResource(ModelResource):
   class Meta:
