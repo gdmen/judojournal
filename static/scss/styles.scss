@@ -40,7 +40,7 @@ $row-width: rem-calc(1400);
  */
 $footerHeight: 2rem;
 $footer-bg: $topbar-bg;
-
+$max-z-index: 9999998;
 /*
  * Sticky footer
  */
@@ -78,8 +78,14 @@ footer {
   -moz-box-shadow:$top $left $blur $color #{$inset};
   box-shadow:$top $left $blur $color #{$inset};
 }
-.show {
+@mixin opacity($trans) {
+  filter: alpha(opactiy=($trans * 100));
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})";
+  -moz-opacity: $trans;
+  -khtml-opacity: $trans;
+  opacity: $trans;
 }
+
 .hide {
   display: none;
 }
@@ -107,21 +113,67 @@ button, .button {
  * Select widget (Entry form)
  */
 .single-select {
-  &> input {
+  position: relative;
+  .click-away-overlay {
+    @include opacity(0.125);
+    background: gray;
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: ($max-z-index - 1);
+   }
+  .select-input {
     display: none;
   }
-  .select-input {
+  .select-display {
+    span {
+      border-bottom: 1px dashed $topbar-bg;
+      color: $anchor-font-color;
+      &:hover {
+        cursor: pointer;
+      }
+      &.placeholder {
+        color: gray;
+      }
+      i {
+        color: $body-font-color;
+      }
+    }
   }
   .select-drop {
-    //display: none;
-    .select-options {
-      .option-selected {
-        background: green;
+    background-color: #fff;
+    display: none;
+    position: absolute;
+    z-index: $max-z-index;
+    .select-search {
+      margin: 0.5em;
+      margin-bottom: 0;
+      input {
+        margin: 0;
+        padding: 0;
+      }
+    }
+    ul.select-options {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        border-top: 1px solid #CCCCC6;
+        padding: 1em;
+        &.option-selected {
+          background: green;
+        }
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
   .select-create {
-    //display: none;
+    display: none;
   }
 }
  

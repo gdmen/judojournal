@@ -1,14 +1,14 @@
 {{! models/entry/singleSelect }}
 
 <div id="{{ field }}-select" class="single-select">
+  <div class="click-away-overlay"></div>
   <input class="select-input" name="{{ cid }}:{{ field }}" type="text"/>
   <div class="select-display">
     {{#if selectedKey}}
-      <span class="selected-key">{{ selectedKey }}</span>
+      <span class="selected-key"><i class="fa fa-pencil"></i>{{ selectedKey }}</span>
     {{else}}
-      <span class="placeholder">{{ placeholder }}</span>
+      <span class="placeholder"><i class="fa fa-pencil"></i>{{ placeholder }}</span>
     {{/if}}
-    <i class="fa fa-pencil"></i>
   </div>
   <div class="select-drop">
     <div class="select-search">
@@ -18,12 +18,12 @@
       {{#each options}}
         <li id="{{ id }}"
             data-value="{{ resource_uri }}"
-            class="select-option {{#if selected}}option-selected{{/if}}"
+            class="{{#if selected}}option-selected{{/if}}"
         >
           {{ name }}
         </li>
       {{/each}}
     </ul>
-    <div class="select-save"></div>
+    <div class="select-create"></div>
   </div>
 </div>

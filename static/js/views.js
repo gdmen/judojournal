@@ -90,28 +90,39 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   collectionConstructor: null,
   uniqueKey: "",
   placeholder: "",
+  // TODO: move this to initialize()? Would be easier to maintain consistent
+  // naming.
   events: {
-    "click .select-input": "showDrop",
+    "click .select-display span": "showDrop",
+    "click .click-away-overlay": "hideDrop",
     "keyup .select-search > input": "filterOptions",
     "click .select-option": "selectOption",
-    "click .select-create": "addModel",
+    "click .select-create": "createModel",
   },
   
   showDrop: function(e) {
-    
+    console.log("SHOW");
+    $(this.selectors.drop).show();
+    $(this.selectors.clickAway).show();
+  },
+  
+  hideDrop: function(e) {
+    console.log("HIDE");
+    $(this.selectors.drop).hide();
+    $(this.selectors.clickAway).hide();
   },
   
   filterOptions: function(e) {
-    console.log("----- FILTER -----");
+    //console.log("----- FILTER -----");
     var filter = $(e.currentTarget).val().toLowerCase();
     var that = this;
     this.collection.each(function(m) {
       var mSelector = "#" + that.getOptionId(m);
       if (m.get(that.uniqueKey).toLowerCase().indexOf(filter) > -1) {
-        console.log("showing: " + m.get(that.uniqueKey));
+        //console.log("showing: " + m.get(that.uniqueKey));
         $(mSelector).show();
       } else {
-        console.log("hiding: " + m.get(that.uniqueKey));
+        //console.log("hiding: " + m.get(that.uniqueKey));
         $(mSelector).hide();
       }
     });
@@ -128,7 +139,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     this.render();
   },
   
-  addModel: function(e) {
+  createModel: function(e) {
     
   },
   
@@ -180,6 +191,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     
     var vs = {};
     vs.div = "#" + this.field + "-select";
+    vs.clickAway = vs.div + " .click-away-overlay";
     vs.input = vs.div + " .select-input";
     vs.display = vs.div + " .select-display";
     vs.drop = vs.div + " .select-drop";
@@ -548,19 +560,13 @@ JJ.Views.AbstractManageModelWidget = Backbone.View.extend({
   
   toggle: function() {
     var drop = $("#" + this.name + "-manage-drop");
-    var show = "show";
-    var hide = "hide";
     if (drop.is(":hidden")) {
-      $("#" + this.name + "-manage-i-down").toggleClass(show, false);
-      $("#" + this.name + "-manage-i-down").toggleClass(hide, true);
-      $("#" + this.name + "-manage-i-up").toggleClass(show, true);
-      $("#" + this.name + "-manage-i-up").toggleClass(hide, false);
+      $("#" + this.name + "-manage-i-down").hide();
+      $("#" + this.name + "-manage-i-up").show();
       drop.slideDown("fast");
     } else {
-      $("#" + this.name + "-manage-i-up").toggleClass(show, false);
-      $("#" + this.name + "-manage-i-up").toggleClass(hide, true);
-      $("#" + this.name + "-manage-i-down").toggleClass(show, true);
-      $("#" + this.name + "-manage-i-down").toggleClass(hide, false);
+      $("#" + this.name + "-manage-i-up").hide();
+      $("#" + this.name + "-manage-i-down").show();
       drop.slideUp("fast");
     }
   },

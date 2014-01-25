@@ -150,7 +150,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n      <span class=\"selected-key\">";
+  buffer += "\r\n      <span class=\"selected-key\"><i class=\"fa fa-pencil\"></i>";
   if (helper = helpers.selectedKey) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.selectedKey); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -161,7 +161,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n      <span class=\"placeholder\">";
+  buffer += "\r\n      <span class=\"placeholder\"><i class=\"fa fa-pencil\"></i>";
   if (helper = helpers.placeholder) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.placeholder); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -200,7 +200,7 @@ function program6(depth0,data) {
   if (helper = helpers.field) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.field); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-select\" class=\"single-select\">\r\n  <input class=\"select-input\" name=\"";
+    + "-select\" class=\"single-select\">\r\n  <div class=\"click-away-overlay\"></div>\r\n  <input class=\"select-input\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -211,10 +211,10 @@ function program6(depth0,data) {
     + "\" type=\"text\"/>\r\n  <div class=\"select-display\">\r\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.selectedKey), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    <i class=\"fa fa-pencil\"></i>\r\n  </div>\r\n  <div class=\"select-drop\">\r\n    <div class=\"select-search\">\r\n      <input type=\"text\" autocomplete=\"off\" />\r\n    </div>\r\n    <ul class=\"select-options\">\r\n      ";
+  buffer += "\r\n  </div>\r\n  <div class=\"select-drop\">\r\n    <div class=\"select-search\">\r\n      <input type=\"text\" autocomplete=\"off\" />\r\n    </div>\r\n    <ul class=\"select-options\">\r\n      ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.options), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </ul>\r\n    <div class=\"select-save\"></div>\r\n  </div>\r\n</div>";
+  buffer += "\r\n    </ul>\r\n    <div class=\"select-create\"></div>\r\n  </div>\r\n</div>";
   return buffer;
   });
 templates['models/location/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
