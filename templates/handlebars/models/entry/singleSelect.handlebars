@@ -5,25 +5,25 @@
   <input class="select-input" name="{{ cid }}:{{ field }}" type="text"/>
   <div class="select-display">
     {{#if selectedKey}}
-      <span class="selected-key"><i class="fa fa-pencil"></i>{{ selectedKey }}</span>
+      <h3 class="link selected-key"><i class="fa fa-pencil"></i > {{ selectedKey }}</h3>
     {{else}}
-      <span class="placeholder"><i class="fa fa-pencil"></i>{{ placeholder }}</span>
+      <h3 class="link placeholder"><i class="fa fa-pencil"></i > {{ placeholder }}</h3>
     {{/if}}
-  </div>
-  <div class="select-drop">
-    <div class="select-search">
-      <input type="text" autocomplete="off" />
+    <div class="select-drop">
+      <div class="select-search">
+        <input type="text" autocomplete="off" />
+      </div>
+      <ul class="select-options">
+        {{#each options}}
+          <li id="{{ id }}"
+              data-value="{{ resource_uri }}"
+              class="select-option {{#if selected}}option-selected{{/if}}"
+          >
+            {{ name }}
+          </li>
+        {{/each}}
+      </ul>
+      <div class="select-create"></div>
     </div>
-    <ul class="select-options">
-      {{#each options}}
-        <li id="{{ id }}"
-            data-value="{{ resource_uri }}"
-            class="{{#if selected}}option-selected{{/if}}"
-        >
-          {{ name }}
-        </li>
-      {{/each}}
-    </ul>
-    <div class="select-create"></div>
   </div>
 </div>

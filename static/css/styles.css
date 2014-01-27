@@ -8128,6 +8128,52 @@ th.hide-for-touch {
   display: table-cell !important;
 }
 
+/* line 30, ../scss/styles.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  /* Android = 2.3, iOS = 4 */
+  -moz-box-sizing: border-box;
+  /* Firefox 1+ */
+  box-sizing: border-box;
+  /* Chrome, IE 8+, Opera, Safari 5.1 */
+}
+
+/*
+ * Custom Foundation overrides
+ */
+/* line 39, ../scss/styles.scss */
+.column, .columns {
+  position: static;
+}
+
+/* line 42, ../scss/styles.scss */
+.row {
+  position: relative;
+}
+
+/* line 45, ../scss/styles.scss */
+h1, h2, h3, h4, h5, h6 {
+  display: inline-block;
+}
+
+/* line 48, ../scss/styles.scss */
+button, .button {
+  margin-bottom: 1rem;
+}
+/* line 49, ../scss/styles.scss */
+button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .button h2, .button h3, .button h4, .button h5, .button h6 {
+  color: white;
+}
+
+/* line 55, ../scss/styles.scss */
+.top-bar-section i {
+  padding-right: 0.25em;
+}
+/* line 59, ../scss/styles.scss */
+.top-bar-section .left li {
+  background-color: #0068c2;
+}
+
 /*
  * Component CSS / SCSS
  */
@@ -10701,33 +10747,36 @@ th.hide-for-touch {
 }
 
 /*
+ * Custom Mixins
+ */
+/*
  * Custom settings
  */
 /*
  * Sticky footer
  */
-/* line 47, ../scss/styles.scss */
+/* line 96, ../scss/styles.scss */
 html, body {
   height: 100%;
 }
 
-/* line 50, ../scss/styles.scss */
+/* line 99, ../scss/styles.scss */
 #non-footer {
   min-height: 100%;
   position: relative;
 }
 
-/* line 54, ../scss/styles.scss */
+/* line 103, ../scss/styles.scss */
 * html #non-footer {
   height: 100%;
 }
 
-/* line 57, ../scss/styles.scss */
+/* line 106, ../scss/styles.scss */
 #page-container {
   padding-bottom: 3rem;
 }
 
-/* line 60, ../scss/styles.scss */
+/* line 109, ../scss/styles.scss */
 footer {
   background-color: #0068c2;
   height: 2rem;
@@ -10735,7 +10784,7 @@ footer {
   position: relative;
   text-align: center;
 }
-/* line 67, ../scss/styles.scss */
+/* line 116, ../scss/styles.scss */
 footer div p:last-child {
   margin-bottom: 0;
 }
@@ -10743,49 +10792,34 @@ footer div p:last-child {
 /*
  * Custom styles
  */
-/* line 89, ../scss/styles.scss */
+/* line 126, ../scss/styles.scss */
 .hide {
   display: none;
 }
 
-/* line 92, ../scss/styles.scss */
-h1, h2, h3, h4, h5, h6 {
+/*
+ * Entry form
+ */
+/* line 134, ../scss/styles.scss */
+.entry-form-meta div {
   display: inline-block;
 }
-
-/* line 95, ../scss/styles.scss */
-button, .button {
-  margin-bottom: 1rem;
+/* line 136, ../scss/styles.scss */
+.entry-form-meta div h3 {
+  margin-bottom: 0;
 }
-/* line 96, ../scss/styles.scss */
-button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .button h2, .button h3, .button h4, .button h5, .button h6 {
-  color: white;
-}
-
-/* line 102, ../scss/styles.scss */
-.top-bar-section i {
-  padding-right: 0.25em;
-}
-/* line 106, ../scss/styles.scss */
-.top-bar-section .left li {
-  background-color: #0068c2;
+/* line 140, ../scss/styles.scss */
+.entry-form-meta div:not(:last-child),
+.entry-form-meta div div:not(:last-child) {
+  margin-right: 1rem;
 }
 
 /*
  * Select widget (Entry form)
  */
-/* line 115, ../scss/styles.scss */
-.single-select {
-  position: relative;
-}
-/* line 117, ../scss/styles.scss */
+/* line 150, ../scss/styles.scss */
 .single-select .click-away-overlay {
-  filter: alpha(opactiy=12.5);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=12.5)";
-  -moz-opacity: 0.125;
-  -khtml-opacity: 0.125;
-  opacity: 0.125;
-  background: gray;
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
   height: 100%;
   left: 0;
@@ -10794,65 +10828,67 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   width: 100%;
   z-index: 9999997;
 }
-/* line 128, ../scss/styles.scss */
+/* line 160, ../scss/styles.scss */
 .single-select .select-input {
   display: none;
 }
-/* line 132, ../scss/styles.scss */
-.single-select .select-display span {
+/* line 164, ../scss/styles.scss */
+.single-select .select-display .link {
   border-bottom: 1px dashed #0068c2;
   color: #0068c2;
 }
-/* line 135, ../scss/styles.scss */
-.single-select .select-display span:hover {
+/* line 167, ../scss/styles.scss */
+.single-select .select-display .link:hover {
   cursor: pointer;
 }
-/* line 138, ../scss/styles.scss */
-.single-select .select-display span.placeholder {
-  color: gray;
+/* line 172, ../scss/styles.scss */
+.single-select .select-display .link.placeholder {
+  color: #E81010;
+  font-style: italic;
 }
-/* line 141, ../scss/styles.scss */
-.single-select .select-display span i {
+/* line 176, ../scss/styles.scss */
+.single-select .select-display .link i {
   color: #222222;
 }
-/* line 146, ../scss/styles.scss */
+/* line 181, ../scss/styles.scss */
 .single-select .select-drop {
   background-color: #fff;
   display: none;
+  left: 0.5rem;
   position: absolute;
+  right: 0.5rem;
   z-index: 9999998;
 }
-/* line 151, ../scss/styles.scss */
+/* line 188, ../scss/styles.scss */
 .single-select .select-drop .select-search {
   margin: 0.5em;
-  margin-bottom: 0;
 }
-/* line 154, ../scss/styles.scss */
+/* line 190, ../scss/styles.scss */
 .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0;
 }
-/* line 159, ../scss/styles.scss */
+/* line 195, ../scss/styles.scss */
 .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 163, ../scss/styles.scss */
+/* line 199, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 166, ../scss/styles.scss */
+/* line 202, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 169, ../scss/styles.scss */
+/* line 205, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 175, ../scss/styles.scss */
-.single-select .select-create {
+/* line 210, ../scss/styles.scss */
+.single-select .select-drop .select-create {
   display: none;
 }
 
@@ -10906,7 +10942,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 /*
  * Manage widget
  */
-/* line 233, ../scss/styles.scss */
+/* line 269, ../scss/styles.scss */
 .manage-widget .manage-header {
   *zoom: 1;
   -moz-border-radius-bottomleft: 3px;
@@ -10928,11 +10964,11 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 .manage-widget .manage-header:after {
   clear: both;
 }
-/* line 239, ../scss/styles.scss */
+/* line 275, ../scss/styles.scss */
 .manage-widget .manage-header a, .manage-widget .manage-header .link {
   padding: 1em;
 }
-/* line 241, ../scss/styles.scss */
+/* line 277, ../scss/styles.scss */
 .manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
   color: white;
   height: 1em;
@@ -10940,26 +10976,26 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   margin: 0;
   padding: 0;
 }
-/* line 249, ../scss/styles.scss */
+/* line 285, ../scss/styles.scss */
 .manage-widget .manage-header a.left {
   width: 100%;
 }
-/* line 252, ../scss/styles.scss */
+/* line 288, ../scss/styles.scss */
 .manage-widget .manage-header div.right {
   border-left: 1px solid #004b8c;
   position: absolute;
   right: 0;
 }
-/* line 256, ../scss/styles.scss */
+/* line 292, ../scss/styles.scss */
 .manage-widget .manage-header div.right:hover {
   cursor: pointer;
 }
-/* line 261, ../scss/styles.scss */
+/* line 297, ../scss/styles.scss */
 .manage-widget .manage-drop {
   display: none;
   margin-left: 1.5px;
 }
-/* line 264, ../scss/styles.scss */
+/* line 300, ../scss/styles.scss */
 .manage-widget .manage-drop ul {
   background-color: #0068c2;
   margin: 0;
@@ -10969,18 +11005,18 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 /*
  * Forms
  */
-/* line 275, ../scss/styles.scss */
+/* line 311, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 278, ../scss/styles.scss */
+/* line 314, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 282, ../scss/styles.scss */
+/* line 318, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
@@ -10990,20 +11026,20 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 /*
  * Widgets
  */
-/* line 293, ../scss/styles.scss */
+/* line 329, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 295, ../scss/styles.scss */
+/* line 331, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-/* line 298, ../scss/styles.scss */
+/* line 334, ../scss/styles.scss */
 .rating label input[type=radio] + img {
   border: 2px solid transparent;
   cursor: pointer;
 }
-/* line 302, ../scss/styles.scss */
+/* line 338, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
   border: 2px solid #f00;
 }

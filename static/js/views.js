@@ -90,10 +90,11 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   collectionConstructor: null,
   uniqueKey: "",
   placeholder: "",
+  hint: "",
   // TODO: move this to initialize()? Would be easier to maintain consistent
   // naming.
   events: {
-    "click .select-display span": "showDrop",
+    "click .select-display": "showDrop",
     "click .click-away-overlay": "hideDrop",
     "keyup .select-search > input": "filterOptions",
     "click .select-option": "selectOption",
@@ -248,6 +249,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
       field: this.field,
       options: options,
       placeholder: this.placeholder,
+      hint: this.hint,
       selectedKey: this.selectedKey,
     };
     
@@ -265,7 +267,8 @@ JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
   field: "art",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.ArtCollection,
-  placeholder: "Art (e.g. Judo)",
+  placeholder: "Art",
+  hint: "(e.g. Judo)",
 });
 
 JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
@@ -273,7 +276,8 @@ JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
   field: "type",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.TypeCollection,
-  placeholder: "Type (e.g. Practice)",
+  placeholder: "Type",
+  hint: "(e.g. Practice)",
 });
 
 JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
@@ -281,7 +285,8 @@ JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
   field: "location",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.LocationCollection,
-  placeholder: "Club Name",
+  placeholder: "Location",
+  hint: "(e.g. Kodokan)",
 });
 
 
