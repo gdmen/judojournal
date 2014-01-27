@@ -439,14 +439,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     var pdSeparator = " ";
     var pdDateTime = pdDate + pdSeparator + pdTime;
     $("#date").datepicker();
-    $('#start').timepicker({
-      step: 15,
-      useSelect: true,
-    });
-    $('#end').timepicker({
-      step: 15,
-      useSelect: true,
-    });
+    $("#start").mobiscroll().time();
   },
   
   render: function() {
