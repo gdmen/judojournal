@@ -434,97 +434,13 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
    * Links DOM to third party JS libraries.
    */
   linkDOM: function() {
-    $(function(){
-      var dtpDate = "D, d M Y";
-      var dtpTime = "H:i";
-      var dtpSeparator = " ";
-      var dtpDateTime = dtpDate + dtpSeparator + dtpTime;
-      var dFDate = "ddd, dd mmm yyyy";
-      var dFTime = "HH:MM";
-      var dtpStartSetBounds = function(ct) {
-        var end = $("#dtp_end").val();
-        var maxDate = false;
-        var maxTime = false;
-        if (end) {
-          split = end.split(dtpSeparator);
-          maxTime = split.pop();
-          maxDate = split.join(dtpSeparator);
-          if (dateFormat(ct, dFDate) !== maxDate) {
-            maxTime = false;
-          }
-        }
-        this.setOptions({
-          maxDate: maxDate,
-          maxTime: maxTime,
-        });
-      }
-      $("#dtp_start").datetimepicker({
-        formatDate: dtpDate,
-        formatTime: dtpTime,
-        format: dtpDateTime,
-        onShow: dtpStartSetBounds,
-        onSelectDate: dtpStartSetBounds,
-        onChangeDateTime: function(ct,$input) {
-          // Validate.
-          var end = $("#dtp_end").val();
-          console.log(ct);
-          if (end) {
-            split = end.split(dtpSeparator);
-            var cDate = dateFormat(ct, dFDate);
-            var cTime = dateFormat(ct, dFTime)
-            var endTime = split.pop();
-            var endDate = split.join(dtpSeparator);
-            if (cDate > endDate || (cDate === endDate && cTime > endTime)) {
-              this.setOptions({
-                value: end,
-              });
-            }
-          }
-          $input.change();
-        },
-      });
-      var dtpEndSetBounds = function(ct) {
-        var start = $("#dtp_start").val();
-        var minDate = false;
-        var minTime = false;
-        if (start) {
-          split = start.split(dtpSeparator);
-          minTime = split.pop();
-          minDate = split.join(dtpSeparator);
-          if (dateFormat(ct, dFDate) !== minDate) {
-            minTime = false;
-          }
-        }
-        this.setOptions({
-          minDate: minDate,
-          minTime: minTime,
-        });
-      }
-      $("#dtp_end").datetimepicker({
-        formatDate: dtpDate,
-        formatTime: dtpTime,
-        format: dtpDateTime,
-        onShow: dtpEndSetBounds,
-        onSelectDate: dtpEndSetBounds,
-        onChangeDateTime: function(ct,$input) {
-          // Validate.
-          var start = $("#dtp_start").val();
-          if (start) {
-            split = start.split(dtpSeparator);
-            var cDate = dateFormat(ct, dFDate);
-            var cTime = dateFormat(ct, dFTime)
-            var startTime = split.pop();
-            var startDate = split.join(dtpSeparator);
-            if (cDate < startDate || (cDate === startDate && cTime < startTime)) {
-              this.setOptions({
-                value: start,
-              });
-            }
-          }
-          $input.change();
-        },
-      });
-    });
+    var pdDate = "D, d M Y";
+    var pdTime = "H:i";
+    var pdSeparator = " ";
+    var pdDateTime = pdDate + pdSeparator + pdTime;
+    $("#date").pickadate();
+    $("#start").pickatime();
+    $("#end").pickatime();
   },
   
   render: function() {

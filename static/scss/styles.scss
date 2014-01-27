@@ -65,7 +65,9 @@ button, .button {
 /*
  * Component CSS / SCSS
  */
-@import "CSS:../bower/datetimepicker/jquery.datetimepicker";
+@import "CSS:../bower/pickadate/lib/compressed/themes/classic";
+@import "CSS:../bower/pickadate/lib/compressed/themes/classic.date";
+@import "CSS:../bower/pickadate/lib/compressed/themes/classic.time";
 @import "../bower/font-awesome/scss/font-awesome";
 
 /*
