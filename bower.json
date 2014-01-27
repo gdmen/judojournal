@@ -9,6 +9,6 @@
     "underscore": "latest",
     "date.format": "latest",
     "font-awesome": "latest",
-    "pickadate": "latest"
+    "jt.timepicker": "latest"
   }
 }

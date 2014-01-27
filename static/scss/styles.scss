@@ -27,11 +27,12 @@ $row-width: rem-calc(1400);
   "../bower/foundation/scss/normalize",
   "../bower/foundation/scss/foundation";
 
-*, *:before, *:after {
-  -webkit-box-sizing: border-box; /* Android = 2.3, iOS = 4 */
-  -moz-box-sizing: border-box; /* Firefox 1+ */
-  box-sizing: border-box; /* Chrome, IE 8+, Opera, Safari 5.1 */
-}
+  
+/*
+ * Component CSS / SCSS
+ */
+@import "CSS:../bower/jt.timepicker/jquery.timepicker";
+@import "../bower/font-awesome/scss/font-awesome";
 
 /*
  * Custom Foundation overrides
@@ -61,14 +62,6 @@ button, .button {
     }
   }
 }
-  
-/*
- * Component CSS / SCSS
- */
-@import "CSS:../bower/pickadate/lib/compressed/themes/default";
-@import "CSS:../bower/pickadate/lib/compressed/themes/default.date";
-@import "CSS:../bower/pickadate/lib/compressed/themes/default.time";
-@import "../bower/font-awesome/scss/font-awesome";
 
 /*
  * Custom Mixins
@@ -92,6 +85,20 @@ button, .button {
 $footerHeight: 2rem;
 $footer-bg: $topbar-bg;
 $max-z-index: 9999998;
+
+/*
+ * Custom styles
+ */
+
+.hide {
+  display: none;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: border-box; /* Android = 2.3, iOS = 4 */
+  -moz-box-sizing: border-box; /* Firefox 1+ */
+  box-sizing: border-box; /* Chrome, IE 8+, Opera, Safari 5.1 */
+}
+
 /*
  * Sticky footer
  */
@@ -119,14 +126,6 @@ footer {
       margin-bottom: 0;
     }
   }
-}
-
-/*
- * Custom styles
- */
-
-.hide {
-  display: none;
 }
 
 /*

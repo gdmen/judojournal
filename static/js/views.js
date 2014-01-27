@@ -438,9 +438,9 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     var pdTime = "H:i";
     var pdSeparator = " ";
     var pdDateTime = pdDate + pdSeparator + pdTime;
-    $("#date").pickadate();
-    $("#start").pickatime();
-    $("#end").pickatime();
+    $("#date").datepicker();
+    $('#start').timepicker();
+    $('#end').timepicker();
   },
   
   render: function() {
