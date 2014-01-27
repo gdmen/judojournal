@@ -8177,7 +8177,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 /*
  * Component CSS / SCSS
  */
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.css */
 .picker {
   font-size: 16px;
   text-align: left;
@@ -8191,17 +8191,17 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   user-select: none;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.css */
 .picker__input {
   cursor: default;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.css */
 .picker__input.picker__input--active {
   border-color: #0089ec;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.css */
 .picker__holder {
   width: 100%;
   overflow-y: auto;
@@ -8209,85 +8209,149 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 }
 
                                                                                                                                                                                                                                                                                                                                                           /*!
-* Classic picker styling for pickadate.js
+* Default mobile-first, responsive styling for pickadate.js
 * Demo: http://amsul.github.io/pickadate.js
 */
-/* line 4, ../bower/pickadate/lib/compressed/themes/classic.css */
-.picker {
-  width: 100%;
+/* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+.picker__holder, .picker__frame {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
 }
 
-/* line 4, ../bower/pickadate/lib/compressed/themes/classic.css */
+/* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
 .picker__holder {
+  position: fixed;
+  -webkit-transition: background .15s ease-out,top 0s .15s;
+  -moz-transition: background .15s ease-out,top 0s .15s;
+  transition: background .15s ease-out,top 0s .15s;
+}
+
+/* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+.picker__frame {
   position: absolute;
-  background: #fff;
-  border: 1px solid #aaa;
-  border-top-width: 0;
-  border-bottom-width: 0;
-  -webkit-border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  min-width: 176px;
-  max-width: 466px;
-  max-height: 0;
+  margin: 0 auto;
+  min-width: 256px;
+  max-width: 666px;
+  width: 100%;
   -ms-filter: "alpha(Opacity=0)";
   filter: alpha(opacity=0);
   -moz-opacity: 0;
   opacity: 0;
-  -webkit-transform: translateY(-1em) perspective(600px) rotateX(10deg);
-  -moz-transform: translateY(-1em) perspective(600px) rotateX(10deg);
-  transform: translateY(-1em) perspective(600px) rotateX(10deg);
-  -webkit-transition: all .15s ease-out,max-height 0 .15s,border-width 0 .15s;
-  -moz-transition: all .15s ease-out,max-height 0 .15s,border-width 0 .15s;
-  transition: all .15s ease-out,max-height 0 .15s,border-width 0 .15s;
+  -webkit-transition: all .15s ease-out;
+  -moz-transition: all .15s ease-out;
+  transition: all .15s ease-out;
 }
 
-/* line 4, ../bower/pickadate/lib/compressed/themes/classic.css */
-.picker__frame {
-  padding: 1px;
+@media (min-height: 33.875em) {
+  /* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+  .picker__frame {
+    overflow: visible;
+    top: auto;
+    bottom: -100%;
+    max-height: 80%;
+  }
 }
-
-/* line 4, ../bower/pickadate/lib/compressed/themes/classic.css */
+@media (min-height: 40.125em) {
+  /* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+  .picker__frame {
+    margin-bottom: 7.5%;
+  }
+}
+/* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
 .picker__wrap {
-  margin: -1px;
+  display: table;
+  width: 100%;
+  height: 100%;
 }
 
-/* line 4, ../bower/pickadate/lib/compressed/themes/classic.css */
+@media (min-height: 33.875em) {
+  /* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+  .picker__wrap {
+    display: block;
+  }
+}
+/* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+.picker__box {
+  background: #fff;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+@media (min-height: 26.5em) {
+  /* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+  .picker__box {
+    font-size: 1.25em;
+  }
+}
+@media (min-height: 33.875em) {
+  /* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+  .picker__box {
+    display: block;
+    font-size: 1.33em;
+    border: 1px solid #777;
+    border-top-color: #898989;
+    border-bottom-width: 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    -webkit-box-shadow: 0 12px 36px 16px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0 12px 36px 16px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 12px 36px 16px rgba(0, 0, 0, 0.24);
+  }
+}
+@media (min-height: 40.125em) {
+  /* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+  .picker__box {
+    font-size: 1.5em;
+    border-bottom-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+}
+/* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
 .picker--opened .picker__holder {
-  max-height: 25em;
+  top: 0;
+  background: transparent;
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#1E000000,endColorstr=#1E000000)";
+  zoom: 1;
+  background: rgba(0, 0, 0, 0.32);
+  -webkit-transition: background .15s ease-out;
+  -moz-transition: background .15s ease-out;
+  transition: background .15s ease-out;
+}
+
+/* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+.picker--opened .picker__frame {
+  top: 0;
   -ms-filter: "alpha(Opacity=100)";
   filter: alpha(opacity=100);
   -moz-opacity: 1;
   opacity: 1;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  -webkit-transform: translateY(0) perspective(600px) rotateX(0);
-  -moz-transform: translateY(0) perspective(600px) rotateX(0);
-  transform: translateY(0) perspective(600px) rotateX(0);
-  -webkit-transition: all .15s ease-out,max-height 0,border-width 0;
-  -moz-transition: all .15s ease-out,max-height 0,border-width 0;
-  transition: all .15s ease-out,max-height 0,border-width 0;
-  -webkit-box-shadow: 0 6px 18px 1px rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0 6px 18px 1px rgba(0, 0, 0, 0.12);
-  box-shadow: 0 6px 18px 1px rgba(0, 0, 0, 0.12);
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+@media (min-height: 33.875em) {
+  /* line 4, ../bower/pickadate/lib/compressed/themes/default.css */
+  .picker--opened .picker__frame {
+    top: auto;
+    bottom: 0;
+  }
+}
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__box {
   padding: 0 1em;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__header {
   text-align: center;
   position: relative;
   margin-top: .75em;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__month, .picker__year {
   font-weight: 500;
   display: inline-block;
@@ -8295,14 +8359,14 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   margin-right: .25em;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__year {
   color: #999;
   font-size: .8em;
   font-style: italic;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__select--month, .picker__select--year {
   border: 1px solid #b7b7b7;
   height: 2.5em;
@@ -8313,28 +8377,28 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 }
 
 @media (min-width: 24.5em) {
-  /* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+  /* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
   .picker__select--month, .picker__select--year {
     font-size: .8em;
     margin-top: -.5em;
   }
 }
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__select--month {
   width: 35%;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__select--year {
   width: 22.5%;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__select--month:focus, .picker__select--year:focus {
   border-color: #0089ec;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__nav--prev, .picker__nav--next {
   position: absolute;
   padding: .5em 1.25em;
@@ -8344,36 +8408,36 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 }
 
 @media (min-width: 24.5em) {
-  /* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+  /* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
   .picker__nav--prev, .picker__nav--next {
     top: -.33em;
   }
 }
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__nav--prev {
   left: -1em;
   padding-right: 1.25em;
 }
 
 @media (min-width: 24.5em) {
-  /* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+  /* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
   .picker__nav--prev {
     padding-right: 1.5em;
   }
 }
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__nav--next {
   right: -1em;
   padding-left: 1.25em;
 }
 
 @media (min-width: 24.5em) {
-  /* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+  /* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
   .picker__nav--next {
     padding-left: 1.5em;
   }
 }
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__nav--prev:before, .picker__nav--next:before {
   content: " ";
   border-top: .5em solid transparent;
@@ -8385,20 +8449,20 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   margin: 0 auto;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__nav--next:before {
   border-right: 0;
   border-left: .75em solid #000;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__nav--prev:hover, .picker__nav--next:hover {
   cursor: pointer;
   color: #000;
   background: #b1dcfb;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__nav--disabled, .picker__nav--disabled:hover, .picker__nav--disabled:before, .picker__nav--disabled:before:hover {
   cursor: default;
   background: 0 0;
@@ -8406,7 +8470,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   border-left-color: #f5f5f5;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__table {
   text-align: center;
   border-collapse: collapse;
@@ -8419,18 +8483,18 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 }
 
 @media (min-height: 33.875em) {
-  /* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+  /* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
   .picker__table {
     margin-bottom: .75em;
   }
 }
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__table td {
   margin: 0;
   padding: 0;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__weekday {
   width: 14.285714286%;
   font-size: .75em;
@@ -8440,25 +8504,25 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 }
 
 @media (min-height: 33.875em) {
-  /* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+  /* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
   .picker__weekday {
     padding-bottom: .5em;
   }
 }
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day {
   padding: .3125em 0;
   font-weight: 200;
   border: 1px solid transparent;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--today {
   color: #0089ec;
   position: relative;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--today:before {
   content: " ";
   position: absolute;
@@ -8470,40 +8534,40 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   border-left: .5em solid transparent;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--selected, .picker__day--selected:hover {
   border-color: #0089ec;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--highlighted {
   background: #b1dcfb;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--disabled:before {
   border-top-color: #aaa;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--outfocus {
   color: #ddd;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--infocus:hover, .picker__day--outfocus:hover {
   cursor: pointer;
   color: #000;
   background: #b1dcfb;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--highlighted:hover, .picker--focused .picker__day--highlighted {
   background: #0089ec;
   color: #fff;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--disabled, .picker__day--disabled:hover {
   background: #f5f5f5;
   border-color: #f5f5f5;
@@ -8511,17 +8575,17 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   cursor: default;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__day--highlighted.picker__day--disabled, .picker__day--highlighted.picker__day--disabled:hover {
   background: #bbb;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__footer {
   text-align: center;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__button--today, .picker__button--clear {
   border: 1px solid #fff;
   background: #fff;
@@ -8533,7 +8597,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   vertical-align: bottom;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__button--today:hover, .picker__button--clear:hover {
   cursor: pointer;
   color: #000;
@@ -8541,21 +8605,21 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   border-bottom-color: #b1dcfb;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__button--today:focus, .picker__button--clear:focus {
   background: #b1dcfb;
   border-color: #0089ec;
   outline: 0;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__button--today:before, .picker__button--clear:before {
   position: relative;
   display: inline-block;
   height: 0;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__button--today:before {
   content: " ";
   margin-right: .45em;
@@ -8565,7 +8629,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   border-left: .66em solid transparent;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.date.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.date.css */
 .picker__button--clear:before {
   content: "\D7";
   margin-right: .35em;
@@ -8575,14 +8639,14 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   font-size: 1.1em;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker__list {
   list-style: none;
   padding: .75em 0 4.2em;
   margin: 0;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker__list-item {
   border-bottom: 1px solid #ddd;
   border-top: 1px solid #ddd;
@@ -8593,12 +8657,12 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 }
 
 @media (min-height: 46.75em) {
-  /* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+  /* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
   .picker__list-item {
     padding: .5em 1em;
   }
 }
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker__list-item:hover {
   cursor: pointer;
   color: #000;
@@ -8607,24 +8671,24 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   z-index: 10;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker__list-item--selected, .picker__list-item--selected:hover {
   border-color: #0089ec;
   z-index: 10;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker__list-item--highlighted {
   background: #b1dcfb;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker__list-item--highlighted:hover, .picker--focused .picker__list-item--highlighted {
   background: #0089ec;
   color: #fff;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker__list-item--disabled, .picker__list-item--disabled:hover, .picker--focused .picker__list-item--disabled {
   background: #f5f5f5;
   border-color: #f5f5f5;
@@ -8634,7 +8698,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   z-index: auto;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker--time .picker__button--clear {
   display: block;
   width: 80%;
@@ -8649,7 +8713,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   color: #666;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker--time .picker__button--clear:hover, .picker--time .picker__button--clear:focus {
   color: #000;
   background: #b1dcfb;
@@ -8660,7 +8724,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   outline: 0;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker--time .picker__button--clear:before {
   top: -.25em;
   color: #666;
@@ -8668,34 +8732,30 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   font-weight: 700;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
 .picker--time .picker__button--clear:hover:before, .picker--time .picker__button--clear:focus:before {
   color: #fff;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
-.picker--time {
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
+.picker--time .picker__frame {
   min-width: 256px;
   max-width: 320px;
 }
 
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
-.picker--time .picker__holder {
+/* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
+.picker--time .picker__box {
+  font-size: 1em;
   background: #f2f2f2;
+  padding: 0;
 }
 
 @media (min-height: 40.125em) {
-  /* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
-  .picker--time .picker__holder {
-    font-size: .875em;
+  /* line 1, ../bower/pickadate/lib/compressed/themes/default.time.css */
+  .picker--time .picker__box {
+    margin-bottom: 5em;
   }
 }
-/* line 1, ../bower/pickadate/lib/compressed/themes/classic.time.css */
-.picker--time .picker__box {
-  padding: 0;
-  position: relative;
-}
-
 /*!
  *  Font Awesome 4.0.3 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
