@@ -189,10 +189,12 @@ footer {
     right: 0.5rem;
     z-index: $max-z-index;
     .select-search {
+      display: block;
       margin: 0.5em;
       input {
         margin: 0;
         padding: 0;
+        width: 100%;
       }
     }
     ul.select-options {
@@ -212,6 +214,7 @@ footer {
     }
     .select-create {
       display: none;
+      margin: 0.5em;
     }
   }
 }

@@ -91,10 +91,10 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   uniqueKey: "",
   placeholder: "",
   hint: "",
-  // TODO: move this to initialize()? Would be easier to maintain consistent
-  // naming.
+  // TODO: move this to initialize()? Would be easier to maintain naming
+  // consistent with template.
   events: {
-    "click .select-display": "showDrop",
+    "click .select-display .link": "showDrop",
     "click .click-away-overlay": "hideDrop",
     "keyup .select-search > input": "filterOptions",
     "click .select-option": "selectOption",
@@ -102,13 +102,12 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   },
   
   showDrop: function(e) {
-    console.log("SHOW");
     $(this.selectors.drop).show();
+    $(this.selectors.search).focus();
     $(this.selectors.clickAway).show();
   },
   
   hideDrop: function(e) {
-    console.log("HIDE");
     $(this.selectors.drop).hide();
     $(this.selectors.clickAway).hide();
   },
@@ -117,16 +116,24 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     //console.log("----- FILTER -----");
     var filter = $(e.currentTarget).val().toLowerCase();
     var that = this;
+    var create = true;
     this.collection.each(function(m) {
       var mSelector = "#" + that.getOptionId(m);
       if (m.get(that.uniqueKey).toLowerCase().indexOf(filter) > -1) {
         //console.log("showing: " + m.get(that.uniqueKey));
         $(mSelector).show();
+        create = false;
       } else {
         //console.log("hiding: " + m.get(that.uniqueKey));
         $(mSelector).hide();
       }
     });
+    if (create) {
+      $(this.selectors.create).text('Add "' + $(this.selectors.search).val() + '"');
+      $(this.selectors.create).show();
+    } else {
+      $(this.selectors.create).hide();
+    }
   },
   
   getOptionId: function(model) {
@@ -141,7 +148,8 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   },
   
   createModel: function(e) {
-    
+    console.log("CREATE MODEL");
+    this.hideDrop();
   },
   
   /*
@@ -197,7 +205,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     vs.display = vs.div + " .select-display";
     vs.drop = vs.div + " .select-drop";
     vs.search = vs.drop + " .select-search > input";
-    vs.save = vs.drop + " .select-save";
+    vs.create = vs.drop + " .select-create";
     
     this.selectors = vs;
     console.log(this.selectors);

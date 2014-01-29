@@ -222,7 +222,7 @@ function program6(depth0,data) {
   buffer += "\r\n    <div class=\"select-drop\">\r\n      <div class=\"select-search\">\r\n        <input type=\"text\" autocomplete=\"off\" />\r\n      </div>\r\n      <ul class=\"select-options\">\r\n        ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.options), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n      </ul>\r\n      <div class=\"select-create\"></div>\r\n    </div>\r\n  </div>\r\n</div>";
+  buffer += "\r\n      </ul>\r\n      <h3 class=\"link select-create\">\r\n      </h3>\r\n    </div>\r\n  </div>\r\n</div>";
   return buffer;
   });
 templates['models/location/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
