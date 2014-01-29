@@ -33,7 +33,6 @@ $row-width: rem-calc(1400);
 /*
  * Component CSS / SCSS
  */
-@import "CSS:../libs/mobiscroll-2.6.2/css/mobiscroll.custom-2.6.2.min";
 @import "../bower/font-awesome/scss/font-awesome";
 
 /*
@@ -147,6 +146,16 @@ footer {
 }
 
 /*
+ * Time select (Entry form)
+ */
+.time-select {
+  select {
+    background-color: #fff;
+    width: auto;
+  }
+}
+
+/*
  * Select widget (Entry form)
  */
 .single-select {
@@ -226,55 +235,7 @@ footer {
     }
   }
 }
- 
-// chosen jquery plugin
-/*
-.select-container {
-  margin: 0;
-  margin-bottom: 1.14286rem;
-}
-.select-title {
-  margin: 0;
-  padding-left: 1rem;
-}
-.chosen-container,
-.chosen-container-single,
-.chosen-container-active,
-.chosen-with-drop,
-.chosen-container-active.chosen-with-drop {
-  .chosen-single {
-    @include box-shadow(0, 1px, 2px, rgba(0,0,0,0.1), inset);
-    @include radius($radius:0);
-    background: #fff;
-    border: 1pm solid #CCCCC6;
-    height: auto;
-    padding: 0.25rem 0.5rem;
-    div b {
-      background: none;
-      position: relative;
-    }
-    div b:before {
-      content: "\f078";
-      font-family: FontAwesome;
-      position: absolute;
-      top: 0.25em;
-    }
-  }
-  .chosen-drop {
-    .chosen-search input {
-      @include box-shadow(0, 1px, 2px, rgba(0,0,0,0.1), inset);
-    }
-    .chosen-results {
-      .no-results {
-        .custom-input {
-          text-transform: capitalize;
-        }
-        font-size: $h4-font-size;
-      }
-    }
-  }
-}
-*/
+
 /*
  * Manage widget
  */
@@ -320,7 +281,7 @@ $widget-bg: $topbar-bg;
 }
 
 /*
- * Forms
+ * Forms (e.g. login)
  */
 .single-page-form {
   margin-top: 1rem;

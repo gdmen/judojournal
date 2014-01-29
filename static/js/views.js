@@ -1,4 +1,10 @@
 JJ.Views.Util = {
+  dateFormat: {
+    date: "dd mmm yyyy",
+    hour: "HH",
+    min: "MM",
+    period: "TT",
+  },
   links: {
     editEntry: function(id) {
       return "/#/entry/" + id + "/edit";
@@ -448,7 +454,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     var pdTime = "H:i";
     var pdSeparator = " ";
     var pdDateTime = pdDate + pdSeparator + pdTime;
-    //$("#date").datepicker();
+    $("#date").datepicker();
     $("#start").mobiscroll({
       display: "bottom",
       preset: "time",
@@ -461,9 +467,13 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     var json = this.model.toJSON();
     
     // Entry formatting
-    var formatString = "ddd, dd mmm yyyy HH:MM";
-    json["start"] = dateFormat(this.model.get("start"), formatString);
-    json["end"] = dateFormat(this.model.get("end"), formatString);
+    var that = this;
+    ["start", "end"].forEach(function (name) {
+      json[name + "Date"] = dateFormat(that.model.get(name), JJ.Views.Util.dateFormat.date);
+      json[name + "Hour"] = dateFormat(that.model.get(name), JJ.Views.Util.dateFormat.hour);
+      json[name + "Min"] = dateFormat(that.model.get(name), JJ.Views.Util.dateFormat.min);
+      json[name + "Period"] = dateFormat(that.model.get(name), JJ.Views.Util.dateFormat.period);
+    });
     this.$el.html(this.template(json));
     
     // AbstractSelectModelList's
