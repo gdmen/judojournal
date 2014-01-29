@@ -31,7 +31,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n    <div>\r\n      <div id=\"art\"></div>\r\n      <div id=\"type\"></div>\r\n    </div>\r\n    <div>\r\n      <div id=\"at\"><h2>@</h2></div>\r\n      <div id=\"location\"></div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"small-2 columns\">\r\n    <h3>on</h3>\r\n  </div>\r\n  <div class=\"small-10 columns\">\r\n    <input id=\"date\" type=\"text\" name=\"";
+  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n    <div>\r\n      <div id=\"art\"></div>\r\n      <div id=\"type\"></div>\r\n    </div>\r\n    <div>\r\n      <div id=\"at\"><h2>@</h2></div>\r\n      <div id=\"location\"></div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <input id=\"date\" type=\"date\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -219,7 +219,7 @@ function program6(depth0,data) {
     + "\" type=\"text\"/>\r\n  <div class=\"select-display\">\r\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.selectedKey), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    <div class=\"select-drop\">\r\n      <div class=\"select-search\">\r\n        <input type=\"text\" autocomplete=\"off\" />\r\n      </div>\r\n      <ul class=\"select-options\">\r\n        ";
+  buffer += "\r\n    <div class=\"select-drop\">\r\n      <div class=\"select-search\">\r\n        <input type=\"text\" autocomplete=\"off\" />\r\n        <i class=\"fa fa-search fa-2x\"></i>\r\n      </div>\r\n      <ul class=\"select-options\">\r\n        ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.options), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n      </ul>\r\n      <h3 class=\"link select-create\">\r\n      </h3>\r\n    </div>\r\n  </div>\r\n</div>";

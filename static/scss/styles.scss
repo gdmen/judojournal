@@ -86,8 +86,8 @@ button, .button {
  */
 $footerHeight: 2rem;
 $footer-bg: $topbar-bg;
+$input-padding: 0.57143rem;
 $max-z-index: 9999998;
-
 /*
  * Custom styles
  */
@@ -191,10 +191,18 @@ footer {
     .select-search {
       display: block;
       margin: 0.5em;
+      position: relative;
       input {
         margin: 0;
-        padding: 0;
+        padding: $input-padding;
         width: 100%;
+      }
+      i {
+        color: gray;
+        padding: ($input-padding / 2);
+        position: absolute;
+        right: 0;
+        top: 0;
       }
     }
     ul.select-options {

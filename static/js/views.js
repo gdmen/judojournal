@@ -128,11 +128,13 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
         $(mSelector).hide();
       }
     });
-    if (create) {
-      $(this.selectors.create).text('Add "' + $(this.selectors.search).val() + '"');
-      $(this.selectors.create).show();
+    var createElement = $(this.selectors.create);
+    var createVal = $(this.selectors.search).val();
+    if (create && createVal !== "") {
+      createElement.text('Add "' + createVal + '"');
+      createElement.show();
     } else {
-      $(this.selectors.create).hide();
+      createElement.hide();
     }
   },
   
@@ -446,7 +448,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     var pdTime = "H:i";
     var pdSeparator = " ";
     var pdDateTime = pdDate + pdSeparator + pdTime;
-    $("#date").datepicker();
+    //$("#date").datepicker();
     $("#start").mobiscroll({
       display: "bottom",
       preset: "time",
