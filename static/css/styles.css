@@ -2552,8 +2552,8 @@ select {
   position: relative;
   padding: 1rem 1.71429rem 1rem 1rem;
   font-size: 0.92857rem;
-  background-color: #0068c2;
-  border-color: #005aa9;
+  background-color: #2c8ec9;
+  border-color: #277fb4;
   color: white;
 }
 /* line 105, ../bower/foundation/scss/foundation/components/_alert-boxes.scss */
@@ -2584,8 +2584,8 @@ select {
 }
 /* line 110, ../bower/foundation/scss/foundation/components/_alert-boxes.scss */
 .alert-box.success {
-  background-color: #43ac6a;
-  border-color: #3c9a5f;
+  background-color: #22bf64;
+  border-color: #1ea959;
   color: white;
 }
 /* line 111, ../bower/foundation/scss/foundation/components/_alert-boxes.scss */
@@ -3173,7 +3173,7 @@ select {
 .breadcrumbs > * a,
 .breadcrumbs > * span {
   text-transform: uppercase;
-  color: #0068c2;
+  color: #2c8ec9;
 }
 /* line 71, ../bower/foundation/scss/foundation/components/_breadcrumbs.scss */
 .breadcrumbs > *.current {
@@ -3235,8 +3235,8 @@ button, .button {
   padding-left: 2.28571rem;
   font-size: 1.14286rem;
   /*     @else                            { font-size: $padding - rem-calc(2); } */
-  background-color: #0068c2;
-  border-color: #005aa9;
+  background-color: #2c8ec9;
+  border-color: #277fb4;
   color: white;
   -webkit-transition: background-color 300ms ease-out;
   -moz-transition: background-color 300ms ease-out;
@@ -3249,7 +3249,7 @@ button, .button {
 }
 /* line 142, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button:hover, button:focus, .button:hover, .button:focus {
-  background-color: #005aa9;
+  background-color: #277fb4;
 }
 /* line 153, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button:hover, button:focus, .button:hover, .button:focus {
@@ -3271,13 +3271,13 @@ button.secondary:hover, button.secondary:focus, .button.secondary:hover, .button
 }
 /* line 206, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.success, .button.success {
-  background-color: #43ac6a;
-  border-color: #3c9a5f;
+  background-color: #22bf64;
+  border-color: #1ea959;
   color: white;
 }
 /* line 142, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
-  background-color: #3c9a5f;
+  background-color: #1ea959;
 }
 /* line 153, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
@@ -3352,8 +3352,8 @@ button.round, .button.round {
 }
 /* line 220, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled, button[disabled], .button.disabled, .button[disabled] {
-  background-color: #0068c2;
-  border-color: #005aa9;
+  background-color: #2c8ec9;
+  border-color: #277fb4;
   color: white;
   cursor: default;
   opacity: 0.7;
@@ -3362,7 +3362,7 @@ button.disabled, button[disabled], .button.disabled, .button[disabled] {
 }
 /* line 142, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
-  background-color: #005aa9;
+  background-color: #277fb4;
 }
 /* line 153, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
@@ -3370,7 +3370,7 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 }
 /* line 166, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
-  background-color: #0068c2;
+  background-color: #2c8ec9;
 }
 /* line 221, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.secondary, button[disabled].secondary, .button.disabled.secondary, .button[disabled].secondary {
@@ -3396,8 +3396,8 @@ button.disabled.secondary:hover, button.disabled.secondary:focus, button[disable
 }
 /* line 222, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.success, button[disabled].success, .button.disabled.success, .button[disabled].success {
-  background-color: #43ac6a;
-  border-color: #3c9a5f;
+  background-color: #22bf64;
+  border-color: #1ea959;
   color: white;
   cursor: default;
   opacity: 0.7;
@@ -3406,7 +3406,7 @@ button.disabled.success, button[disabled].success, .button.disabled.success, .bu
 }
 /* line 142, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.success:hover, button.disabled.success:focus, button[disabled].success:hover, button[disabled].success:focus, .button.disabled.success:hover, .button.disabled.success:focus, .button[disabled].success:hover, .button[disabled].success:focus {
-  background-color: #3c9a5f;
+  background-color: #1ea959;
 }
 /* line 153, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.success:hover, button.disabled.success:focus, button[disabled].success:hover, button[disabled].success:focus, .button.disabled.success:hover, .button.disabled.success:focus, .button[disabled].success:hover, .button[disabled].success:focus {
@@ -3414,7 +3414,7 @@ button.disabled.success:hover, button.disabled.success:focus, button[disabled].s
 }
 /* line 166, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.success:hover, button.disabled.success:focus, button[disabled].success:hover, button[disabled].success:focus, .button.disabled.success:hover, .button.disabled.success:focus, .button[disabled].success:hover, .button[disabled].success:focus {
-  background-color: #43ac6a;
+  background-color: #22bf64;
 }
 /* line 223, ../bower/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.alert, button[disabled].alert, .button.disabled.alert, .button[disabled].alert {
@@ -4825,7 +4825,7 @@ kbd {
   margin-bottom: inherit;
   padding: 0.28571rem 0.57143rem 0.42857rem;
   font-size: 0.78571rem;
-  background-color: #0068c2;
+  background-color: #2c8ec9;
   color: white;
 }
 /* line 92, ../bower/foundation/scss/foundation/components/_labels.scss */
@@ -4845,7 +4845,7 @@ kbd {
 }
 /* line 96, ../bower/foundation/scss/foundation/components/_labels.scss */
 .label.success {
-  background-color: #43ac6a;
+  background-color: #22bf64;
   color: white;
 }
 /* line 97, ../bower/foundation/scss/foundation/components/_labels.scss */
@@ -5261,14 +5261,14 @@ ul.pagination li.unavailable:hover a, ul.pagination li.unavailable a:focus {
 }
 /* line 60, ../bower/foundation/scss/foundation/components/_pagination.scss */
 ul.pagination li.current a {
-  background: #0068c2;
+  background: #2c8ec9;
   color: white;
   font-weight: bold;
   cursor: default;
 }
 /* line 67, ../bower/foundation/scss/foundation/components/_pagination.scss */
 ul.pagination li.current a:hover, ul.pagination li.current a:focus {
-  background: #0068c2;
+  background: #2c8ec9;
 }
 /* line 119, ../bower/foundation/scss/foundation/components/_pagination.scss */
 ul.pagination li {
@@ -5322,10 +5322,10 @@ ul.pagination li {
 .panel.callout {
   border-style: solid;
   border-width: 1px;
-  border-color: #c2e3ff;
+  border-color: #d5eaf6;
   margin-bottom: 1.42857rem;
   padding: 1.42857rem;
-  background: #f5faff;
+  background: white;
 }
 /* line 48, ../bower/foundation/scss/foundation/components/_panels.scss */
 .panel.callout > :first-child {
@@ -5350,7 +5350,7 @@ ul.pagination li {
 }
 /* line 74, ../bower/foundation/scss/foundation/components/_panels.scss */
 .panel.callout a {
-  color: #0068c2;
+  color: #2c8ec9;
 }
 /* line 79, ../bower/foundation/scss/foundation/components/_panels.scss */
 .panel.radius {
@@ -5429,7 +5429,7 @@ ul.pagination li {
 }
 /* line 57, ../bower/foundation/scss/foundation/components/_progress-bars.scss */
 .progress .meter {
-  background: #0068c2;
+  background: #2c8ec9;
   height: 100%;
   display: block;
 }
@@ -5441,7 +5441,7 @@ ul.pagination li {
 }
 /* line 61, ../bower/foundation/scss/foundation/components/_progress-bars.scss */
 .progress.success .meter {
-  background: #43ac6a;
+  background: #22bf64;
   height: 100%;
   display: block;
 }
@@ -5582,7 +5582,7 @@ ul.pagination li {
 /* line 58, ../bower/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li a {
   display: block;
-  color: #0068c2;
+  color: #2c8ec9;
 }
 /* line 63, ../bower/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li.active > a:first-child {
@@ -5773,7 +5773,7 @@ ul.pagination li {
 .sub-nav dt a:hover,
 .sub-nav dd a:hover,
 .sub-nav li a:hover {
-  color: #005aa9;
+  color: #277fb4;
 }
 /* line 87, ../bower/foundation/scss/foundation/components/_sub-nav.scss */
 .sub-nav dt.active a,
@@ -5782,7 +5782,7 @@ ul.pagination li {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   font-weight: normal;
-  background: #0068c2;
+  background: #2c8ec9;
   padding: 0.21429rem 1.14286rem;
   cursor: default;
   color: white;
@@ -5791,7 +5791,7 @@ ul.pagination li {
 .sub-nav dt.active a:hover,
 .sub-nav dd.active a:hover,
 .sub-nav li.active a:hover {
-  background: #005aa9;
+  background: #277fb4;
 }
 
 /* line 287, ../bower/foundation/scss/foundation/components/_switch.scss */
@@ -5918,8 +5918,8 @@ div.switch span:last-child {
   background: -moz-linear-gradient(top, white 0%, #f2f2f2 100%);
   background: -webkit-linear-gradient(top, white 0%, #f2f2f2 100%);
   background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
-  -webkit-box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 1000px #f3fbf6, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px whitesmoke;
-  box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 980px #f3fbf6, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px whitesmoke;
+  -webkit-box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 1000px #e6faee, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px whitesmoke;
+  box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 980px #e6faee, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px whitesmoke;
 }
 /* line 232, ../bower/foundation/scss/foundation/components/_switch.scss */
 div.switch:hover span:last-child, div.switch:focus span:last-child {
@@ -6205,8 +6205,8 @@ table tfoot tr td {
 }
 /* line 49, ../bower/foundation/scss/foundation/components/_thumbs.scss */
 .th:hover, .th:focus {
-  -webkit-box-shadow: 0 0 6px 1px rgba(0, 104, 194, 0.5);
-  box-shadow: 0 0 6px 1px rgba(0, 104, 194, 0.5);
+  -webkit-box-shadow: 0 0 6px 1px rgba(44, 142, 201, 0.5);
+  box-shadow: 0 0 6px 1px rgba(44, 142, 201, 0.5);
 }
 /* line 66, ../bower/foundation/scss/foundation/components/_thumbs.scss */
 .th.radius {
@@ -6230,8 +6230,8 @@ a.th {
 }
 /* line 39, ../bower/foundation/scss/foundation/components/_tooltips.scss */
 .has-tip:hover, .has-tip:focus {
-  border-bottom: dotted 1px #00315c;
-  color: #0068c2;
+  border-bottom: dotted 1px #1a5375;
+  color: #2c8ec9;
 }
 /* line 45, ../bower/foundation/scss/foundation/components/_tooltips.scss */
 .has-tip.tip-left, .has-tip.tip-right {
@@ -6268,8 +6268,8 @@ a.th {
 }
 /* line 74, ../bower/foundation/scss/foundation/components/_tooltips.scss */
 .tooltip.opened {
-  color: #0068c2 !important;
-  border-bottom: dotted 1px #00315c !important;
+  color: #2c8ec9 !important;
+  border-bottom: dotted 1px #1a5375 !important;
 }
 
 /* line 80, ../bower/foundation/scss/foundation/components/_tooltips.scss */
@@ -6357,13 +6357,13 @@ td {
 /* Default Link Styles */
 /* line 152, ../bower/foundation/scss/foundation/components/_type.scss */
 a {
-  color: #0068c2;
+  color: #2c8ec9;
   text-decoration: none;
   line-height: inherit;
 }
 /* line 158, ../bower/foundation/scss/foundation/components/_type.scss */
 a:hover, a:focus {
-  color: #005aa9;
+  color: #277fb4;
 }
 /* line 160, ../bower/foundation/scss/foundation/components/_type.scss */
 a img {
@@ -6777,7 +6777,7 @@ meta.foundation-mq-topbar {
 /* line 86, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .contain-to-grid {
   width: 100%;
-  background: #0068c2;
+  background: #2c8ec9;
 }
 /* line 90, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .contain-to-grid .top-bar {
@@ -6817,7 +6817,7 @@ meta.foundation-mq-topbar {
   height: 45px;
   line-height: 45px;
   position: relative;
-  background: #0068c2;
+  background: #2c8ec9;
   margin-bottom: 1rem;
 }
 /* line 129, ../bower/foundation/scss/foundation/components/_top-bar.scss */
@@ -6924,7 +6924,7 @@ meta.foundation-mq-topbar {
 }
 /* line 234, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar.expanded .title-area {
-  background: #0068c2;
+  background: #2c8ec9;
 }
 /* line 237, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar.expanded .toggle-topbar a {
@@ -6950,7 +6950,7 @@ meta.foundation-mq-topbar {
   width: 100%;
   height: auto;
   display: block;
-  background: #004b8c;
+  background: #206691;
   font-size: 14px;
   margin: 0;
 }
@@ -6972,18 +6972,18 @@ meta.foundation-mq-topbar {
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-size: 0.92857rem;
   font-weight: normal;
-  background: #004b8c;
+  background: #206691;
 }
 /* line 293, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button {
-  background: #0068c2;
+  background: #2c8ec9;
   font-size: 0.92857rem;
   padding-right: 15px;
   padding-left: 15px;
 }
 /* line 298, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button:hover {
-  background: #004d8f;
+  background: #23709f;
 }
 /* line 302, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button.secondary {
@@ -6995,11 +6995,11 @@ meta.foundation-mq-topbar {
 }
 /* line 308, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button.success {
-  background: #43ac6a;
+  background: #22bf64;
 }
 /* line 310, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button.success:hover {
-  background: #358753;
+  background: #1a944d;
 }
 /* line 314, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button.alert {
@@ -7011,17 +7011,17 @@ meta.foundation-mq-topbar {
 }
 /* line 324, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li:hover > a {
-  background: #0059a7;
+  background: #267aad;
   color: white;
 }
 /* line 331, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li.active > a {
-  background: #0068c2;
+  background: #2c8ec9;
   color: white;
 }
 /* line 334, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li.active > a:hover {
-  background: #0059a7;
+  background: #267aad;
 }
 /* line 341, ../bower/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section .has-form {
@@ -7104,7 +7104,7 @@ meta.foundation-mq-topbar {
 @media only screen and (min-width: 40.063em) {
   /* line 412, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar {
-    background: #0068c2;
+    background: #2c8ec9;
     *zoom: 1;
     overflow: visible;
   }
@@ -7138,7 +7138,7 @@ meta.foundation-mq-topbar {
   }
   /* line 429, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar.expanded {
-    background: #0068c2;
+    background: #2c8ec9;
   }
 
   /* line 432, ../bower/foundation/scss/foundation/components/_top-bar.scss */
@@ -7171,18 +7171,18 @@ meta.foundation-mq-topbar {
   }
   /* line 455, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section li.hover > a:not(.button) {
-    background: #0059a7;
+    background: #267aad;
     color: white;
   }
   /* line 460, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section li a:not(.button) {
     padding: 0 15px;
     line-height: 45px;
-    background: #0068c2;
+    background: #2c8ec9;
   }
   /* line 464, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section li a:not(.button):hover {
-    background: #0059a7;
+    background: #267aad;
   }
   /* line 472, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section .has-dropdown > a {
@@ -7256,7 +7256,7 @@ meta.foundation-mq-topbar {
   }
   /* line 545, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section .has-form {
-    background: #0068c2;
+    background: #2c8ec9;
     padding: 0 15px;
     height: 45px;
   }
@@ -7272,12 +7272,12 @@ meta.foundation-mq-topbar {
 
   /* line 567, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .no-js .top-bar-section ul li:hover > a {
-    background: #0059a7;
+    background: #267aad;
     color: white;
   }
   /* line 573, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .no-js .top-bar-section ul li:active > a {
-    background: #0068c2;
+    background: #2c8ec9;
     color: white;
   }
   /* line 581, ../bower/foundation/scss/foundation/components/_top-bar.scss */
@@ -13079,37 +13079,37 @@ th.hide-for-touch {
 /*
  * Custom Foundation overrides
  */
-/* line 40, ../scss/styles.scss */
+/* line 42, ../scss/styles.scss */
 .column, .columns {
   position: static;
 }
 
-/* line 43, ../scss/styles.scss */
+/* line 45, ../scss/styles.scss */
 .row {
   position: relative;
 }
 
-/* line 46, ../scss/styles.scss */
+/* line 48, ../scss/styles.scss */
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
-/* line 49, ../scss/styles.scss */
+/* line 51, ../scss/styles.scss */
 button, .button {
   margin-bottom: 1rem;
 }
-/* line 50, ../scss/styles.scss */
+/* line 52, ../scss/styles.scss */
 button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .button h2, .button h3, .button h4, .button h5, .button h6 {
   color: white;
 }
 
-/* line 56, ../scss/styles.scss */
+/* line 58, ../scss/styles.scss */
 .top-bar-section i {
   padding-right: 0.25em;
 }
-/* line 60, ../scss/styles.scss */
+/* line 62, ../scss/styles.scss */
 .top-bar-section .left li {
-  background-color: #0068c2;
+  background-color: #2c8ec9;
 }
 
 /*
@@ -13121,12 +13121,12 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 /*
  * Custom styles
  */
-/* line 93, ../scss/styles.scss */
+/* line 95, ../scss/styles.scss */
 .hide {
   display: none;
 }
 
-/* line 96, ../scss/styles.scss */
+/* line 98, ../scss/styles.scss */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   /* Android = 2.3, iOS = 4 */
@@ -13139,36 +13139,36 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 /*
  * Sticky footer
  */
-/* line 105, ../scss/styles.scss */
+/* line 107, ../scss/styles.scss */
 html, body {
   height: 100%;
 }
 
-/* line 108, ../scss/styles.scss */
+/* line 110, ../scss/styles.scss */
 #non-footer {
   min-height: 100%;
   position: relative;
 }
 
-/* line 112, ../scss/styles.scss */
+/* line 114, ../scss/styles.scss */
 * html #non-footer {
   height: 100%;
 }
 
-/* line 115, ../scss/styles.scss */
+/* line 117, ../scss/styles.scss */
 #page-container {
   padding-bottom: 3rem;
 }
 
-/* line 118, ../scss/styles.scss */
+/* line 120, ../scss/styles.scss */
 footer {
-  background-color: #0068c2;
+  background-color: #2c8ec9;
   height: 2rem;
   margin-top: -2rem;
   position: relative;
   text-align: center;
 }
-/* line 125, ../scss/styles.scss */
+/* line 127, ../scss/styles.scss */
 footer div p:last-child {
   margin-bottom: 0;
 }
@@ -13176,15 +13176,15 @@ footer div p:last-child {
 /*
  * Entry form
  */
-/* line 135, ../scss/styles.scss */
+/* line 137, ../scss/styles.scss */
 .entry-form-meta div {
   display: inline-block;
 }
-/* line 137, ../scss/styles.scss */
+/* line 139, ../scss/styles.scss */
 .entry-form-meta div h3 {
   margin-bottom: 0;
 }
-/* line 141, ../scss/styles.scss */
+/* line 143, ../scss/styles.scss */
 .entry-form-meta div:not(:last-child),
 .entry-form-meta div div:not(:last-child) {
   margin-right: 1rem;
@@ -13193,7 +13193,7 @@ footer div p:last-child {
 /*
  * Select widget (Entry form)
  */
-/* line 151, ../scss/styles.scss */
+/* line 153, ../scss/styles.scss */
 .single-select .click-away-overlay {
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
@@ -13204,29 +13204,29 @@ footer div p:last-child {
   width: 100%;
   z-index: 9999997;
 }
-/* line 161, ../scss/styles.scss */
+/* line 163, ../scss/styles.scss */
 .single-select .select-input {
   display: none;
 }
-/* line 165, ../scss/styles.scss */
+/* line 167, ../scss/styles.scss */
 .single-select .select-display .link {
-  border-bottom: 1px dashed #0068c2;
-  color: #0068c2;
+  border-bottom: 1px dashed #2c8ec9;
+  color: #2c8ec9;
 }
-/* line 168, ../scss/styles.scss */
+/* line 170, ../scss/styles.scss */
 .single-select .select-display .link:hover {
   cursor: pointer;
 }
-/* line 173, ../scss/styles.scss */
+/* line 175, ../scss/styles.scss */
 .single-select .select-display .link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 177, ../scss/styles.scss */
+/* line 179, ../scss/styles.scss */
 .single-select .select-display .link i {
   color: #222222;
 }
-/* line 182, ../scss/styles.scss */
+/* line 184, ../scss/styles.scss */
 .single-select .select-drop {
   background-color: #fff;
   display: none;
@@ -13235,35 +13235,35 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 189, ../scss/styles.scss */
+/* line 191, ../scss/styles.scss */
 .single-select .select-drop .select-search {
   margin: 0.5em;
 }
-/* line 191, ../scss/styles.scss */
+/* line 193, ../scss/styles.scss */
 .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0;
 }
-/* line 196, ../scss/styles.scss */
+/* line 198, ../scss/styles.scss */
 .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 200, ../scss/styles.scss */
+/* line 202, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 203, ../scss/styles.scss */
+/* line 205, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 206, ../scss/styles.scss */
+/* line 208, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 211, ../scss/styles.scss */
+/* line 213, ../scss/styles.scss */
 .single-select .select-drop .select-create {
   display: none;
 }
@@ -13318,7 +13318,7 @@ footer div p:last-child {
 /*
  * Manage widget
  */
-/* line 270, ../scss/styles.scss */
+/* line 272, ../scss/styles.scss */
 .manage-widget .manage-header {
   *zoom: 1;
   -moz-border-radius-bottomleft: 3px;
@@ -13327,7 +13327,7 @@ footer div p:last-child {
   -webkit-border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
-  background-color: #0068c2;
+  background-color: #2c8ec9;
   margin-top: 1rem;
   position: relative;
 }
@@ -13340,11 +13340,11 @@ footer div p:last-child {
 .manage-widget .manage-header:after {
   clear: both;
 }
-/* line 276, ../scss/styles.scss */
+/* line 278, ../scss/styles.scss */
 .manage-widget .manage-header a, .manage-widget .manage-header .link {
   padding: 1em;
 }
-/* line 278, ../scss/styles.scss */
+/* line 280, ../scss/styles.scss */
 .manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
   color: white;
   height: 1em;
@@ -13352,28 +13352,28 @@ footer div p:last-child {
   margin: 0;
   padding: 0;
 }
-/* line 286, ../scss/styles.scss */
+/* line 288, ../scss/styles.scss */
 .manage-widget .manage-header a.left {
   width: 100%;
 }
-/* line 289, ../scss/styles.scss */
+/* line 291, ../scss/styles.scss */
 .manage-widget .manage-header div.right {
-  border-left: 1px solid #004b8c;
+  border-left: 1px solid #206691;
   position: absolute;
   right: 0;
 }
-/* line 293, ../scss/styles.scss */
+/* line 295, ../scss/styles.scss */
 .manage-widget .manage-header div.right:hover {
   cursor: pointer;
 }
-/* line 298, ../scss/styles.scss */
+/* line 300, ../scss/styles.scss */
 .manage-widget .manage-drop {
   display: none;
   margin-left: 1.5px;
 }
-/* line 301, ../scss/styles.scss */
+/* line 303, ../scss/styles.scss */
 .manage-widget .manage-drop ul {
-  background-color: #0068c2;
+  background-color: #2c8ec9;
   margin: 0;
   padding: 0;
 }
@@ -13381,18 +13381,18 @@ footer div p:last-child {
 /*
  * Forms
  */
-/* line 312, ../scss/styles.scss */
+/* line 314, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 315, ../scss/styles.scss */
+/* line 317, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 319, ../scss/styles.scss */
+/* line 321, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
@@ -13402,20 +13402,20 @@ footer div p:last-child {
 /*
  * Widgets
  */
-/* line 330, ../scss/styles.scss */
+/* line 332, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 332, ../scss/styles.scss */
+/* line 334, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-/* line 335, ../scss/styles.scss */
+/* line 337, ../scss/styles.scss */
 .rating label input[type=radio] + img {
   border: 2px solid transparent;
   cursor: pointer;
 }
-/* line 339, ../scss/styles.scss */
+/* line 341, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
   border: 2px solid #f00;
 }
