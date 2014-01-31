@@ -31,7 +31,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n    <div>\r\n      <div id=\"art\"></div>\r\n      <div id=\"type\"></div>\r\n    </div>\r\n    <div>\r\n      <div id=\"at\"><h2>@</h2></div>\r\n      <div id=\"location\"></div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>from:</h4><div id=\"start\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>until:</h4><div id=\"end\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-2 columns\">\r\n    <h4>on</h4>\r\n  </div>\r\n  <div class=\"small-10 columns\">\r\n    <div id=\"date\" name=\"";
+  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n    <div>\r\n      <div id=\"art\"></div>\r\n      <div id=\"type\"></div>\r\n    </div>\r\n    <div>\r\n      <div id=\"at\"><h2>@</h2></div>\r\n      <div id=\"location\"></div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>from:</h4><div id=\"start\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>until:</h4><div id=\"end\"></div>\r\n  </div>\r\n	\r\n  <div class=\"columns text-center\">\r\n    <div id=\"date\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
