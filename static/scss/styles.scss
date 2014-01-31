@@ -148,6 +148,13 @@ footer {
 /*
  * Time select (Entry form)
  */
+#date {
+	display: inline-block;
+}
+#start, #end {
+	display: inline-block;
+	margin: 0 auto;
+}
 .time-select {
   select {
     background-color: #fff;
