@@ -1,7 +1,7 @@
 JJ.Views.Util = {
   dateFormat: {
-    date: "dd mmm yyyy",
-    hour: "HH",
+    date: "dd mmm, yyyy",
+    hour: "hh",
     min: "MM",
     period: "TT",
   },
@@ -40,9 +40,13 @@ JJ.Views.AbstractEditModel = Backbone.View.extend({
    */
   changed: function(e) {
     var splitName = e.currentTarget.name.split(":");
-    console.log("Changed: " + splitName[0]);
+    console.log("Changed: " + e.currentTarget.name);
     if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
+			if (_.isUndefined(this.model.field)) {
+				console.log("UNDEFINED " + field + " in " + this.model.cid);
+				return;
+			}
       var value = $(e.currentTarget).val();
       this.model.set(field, value);
       console.log("Set " + field + " to " + value + " in " + this.model.cid);
@@ -216,7 +220,6 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     vs.create = vs.drop + " .select-create";
     
     this.selectors = vs;
-    console.log(this.selectors);
     
     this.collection = new this.collectionConstructor();
     
@@ -398,6 +401,59 @@ JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
   insertModelConstructor: JJ.Models.DrillEntryModule,
 });
 
+/************************************************************
+ *
+ * JJ.Views.TimeSelect
+ *  - Attaches a multi-input time select to a single datetime field.
+ *  - Updates the model on input changes.
+ *  - Does *not* update the view on model changes.
+ *
+ ************************************************************/
+JJ.Views.TimeSelect = Backbone.View.extend({
+  template: Handlebars.templates["widgets/time"],
+  events: {
+    "change select": "update",
+  },
+  
+  /*
+   * Updates the model on input changes.
+   */
+	update: function() {
+		var hour = $("#" + this.field + "-hour").val();
+		var minute = $("#" + this.field + "-minute").val();
+		var period = $("#" + this.field + "-period").val();
+		var date = this.dateEl.val();
+		var datetime = new Date(date + " " + hour + ":" + minute + " " + period);
+		if (!isNaN(datetime.getTime())) {
+			this.model.set(this.field, datetime);
+			console.log("Set " + this.field + " time:");
+			console.log(this.model.get(this.field));
+		} else {
+			console.log("DID NOT set " + this.field + " time.");
+		}
+	},
+  
+  initialize: function(options) {
+		this.field = options.field;
+		this.dateEl = options.dateEl;
+		this.hours = options.hours;
+		this.minutes = options.minutes;
+		this.periods = options.periods;
+    this.render();
+  },
+  
+  render: function() {
+		var json = {
+			identifier: this.field,
+			hours: this.hours,
+			minutes: this.minutes,
+			periods: this.periods,
+		}
+    this.$el.html(this.template(json));
+    return this;
+  },
+});
+
 
 /************************************************************
  *
@@ -408,6 +464,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["models/entry/judo/edit/single"],
   extendEvents: {
     "click #save": "save",
+		"change #date": "dateChanged",
   },
   
   /*
@@ -444,42 +501,89 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   },
   endSaveUI: function() {
     this.$("#save").html("Save Entry");
-  },  
+  },
+	
+	dateChanged: function(e) {
+		$.each(this.timeSelects, function(index, view) {
+			view.update();
+		});
+	},
   
   /*
    * Links DOM to third party JS libraries.
    */
   linkDOM: function() {
-    var pdDate = "D, d M Y";
-    var pdTime = "H:i";
-    var pdSeparator = " ";
-    var pdDateTime = pdDate + pdSeparator + pdTime;
-    $("#date").datepicker();
-    $("#start").mobiscroll({
-      display: "bottom",
-      preset: "time",
-      theme: "android-ics light",
-    });
+		console.log(this.model.get("start"));
+    this.dateEl.datepicker({
+			dateFormat: "d M, yy",
+		});
+		this.dateEl.datepicker("setDate", this.model.get("start"));
   },
   
   render: function() {
     this.model.stayHydrated();
     var json = this.model.toJSON();
-    
-    // Entry formatting
-    var that = this;
-    ["start", "end"].forEach(function (name) {
-      json[name + "Date"] = dateFormat(that.model.get(name), JJ.Views.Util.dateFormat.date);
-      json[name + "Hour"] = dateFormat(that.model.get(name), JJ.Views.Util.dateFormat.hour);
-      json[name + "Min"] = dateFormat(that.model.get(name), JJ.Views.Util.dateFormat.min);
-      json[name + "Period"] = dateFormat(that.model.get(name), JJ.Views.Util.dateFormat.period);
-    });
     this.$el.html(this.template(json));
     
     // AbstractSelectModelList's
     new JJ.Views.SelectArt({model: this.model, el: this.$("#art")});
     new JJ.Views.SelectType({model: this.model, el: this.$("#type")});
     new JJ.Views.SelectLocation({model: this.model, el: this.$("#location")});
+		
+		// TimeSelect's
+		this.dateEl = this.$("#date");
+		var hours = [];
+		var minutes = [];
+    // Set selected time formatting
+		this.timeSelects = [];
+    var that = this;
+    ["start", "end"].forEach(function (name) {
+			var datetime = that.model.get(name);
+      //var selectedDate = dateFormat(datetime, JJ.Views.Util.dateFormat.date);
+      var selectedHour = dateFormat(datetime, JJ.Views.Util.dateFormat.hour);
+      var selectedMinute = dateFormat(datetime, JJ.Views.Util.dateFormat.min);
+      var selectedPeriod = dateFormat(datetime, JJ.Views.Util.dateFormat.period);
+			var i;
+			for (i = 1; i <= 12; i++) {
+				var display = i > 9 ? "" + i: "0" + i;
+				hours.push({
+					value: i,
+					display: display,
+					selected: (i.toString() === selectedHour),
+				});
+			}
+			for (i = 0; i < 60; i++) {
+				var display = i > 9 ? "" + i: "0" + i;
+				minutes.push({
+					value: i,
+					display: display,
+					selected: (i.toString() === selectedMinute),
+				});
+			}
+			var periods = [
+				{
+					value: "AM",
+					display: "AM",
+					selected: ("AM" === selectedPeriod),
+				},
+				{
+					value: "PM",
+					display: "PM",
+					selected: ("PM" === selectedPeriod),
+				},
+			];
+			that.timeSelects.push(
+				new JJ.Views.TimeSelect({
+					model: that.model,
+					el: that.$("#" + name),
+					field: name,
+					dateEl: that.dateEl,
+					hours: hours,
+					minutes: minutes,
+					periods: periods
+				})
+			);
+    });
     
     // AbstractEditModelList's
     new JJ.Views.EditDrillList({model: this.model, el: this.$("#drills")});
@@ -586,7 +690,7 @@ JJ.Views.StaticLanding = JJ.Views.AbstractStaticPage.extend({
 
 /************************************************************
  *
- * Main(parent) view for Home page.
+ * Main view for Home page.
  *
  ************************************************************/
 JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({

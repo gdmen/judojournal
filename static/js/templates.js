@@ -25,48 +25,17 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "\" />";
   return buffer;
   });
-templates['models/entry/endTime'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
-
-
-  buffer += "<div class=\"time-select\">\r\n  <select name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":endHour\">\r\n    <option value=\"1\">01</option>\r\n    <option value=\"2\">02</option>\r\n    <option value=\"3\">03</option>\r\n    <option value=\"4\">04</option>\r\n    <option value=\"5\">05</option>\r\n    <option value=\"6\">06</option>\r\n    <option value=\"7\">07</option>\r\n    <option value=\"8\">08</option>\r\n    <option value=\"9\">09</option>\r\n    <option value=\"10\">10</option>\r\n    <option value=\"11\">11</option>\r\n    <option value=\"12\">12</option>\r\n  </select>\r\n  <select name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":endMin\">\r\n    <option value=\"0\">00</option>\r\n    <option value=\"1\">01</option>\r\n    <option value=\"2\">02</option>\r\n    <option value=\"3\">03</option>\r\n    <option value=\"4\">04</option>\r\n    <option value=\"5\">05</option>\r\n    <option value=\"6\">06</option>\r\n    <option value=\"7\">07</option>\r\n    <option value=\"8\">08</option>\r\n    <option value=\"9\">09</option>\r\n    <option value=\"10\">10</option>\r\n    <option value=\"11\">11</option>\r\n    <option value=\"12\">12</option>\r\n    <option value=\"13\">13</option>\r\n    <option value=\"14\">14</option>\r\n    <option value=\"15\">15</option>\r\n    <option value=\"16\">16</option>\r\n    <option value=\"17\">17</option>\r\n    <option value=\"18\">18</option>\r\n    <option value=\"19\">19</option>\r\n    <option value=\"20\">20</option>\r\n    <option value=\"21\">21</option>\r\n    <option value=\"22\">22</option>\r\n    <option value=\"23\">23</option>\r\n    <option value=\"24\">24</option>\r\n    <option value=\"25\">25</option>\r\n    <option value=\"26\">26</option>\r\n    <option value=\"27\">27</option>\r\n    <option value=\"28\">28</option>\r\n    <option value=\"29\">29</option>\r\n    <option value=\"30\">30</option>\r\n    <option value=\"31\">31</option>\r\n    <option value=\"32\">32</option>\r\n    <option value=\"33\">33</option>\r\n    <option value=\"34\">34</option>\r\n    <option value=\"35\">35</option>\r\n    <option value=\"36\">36</option>\r\n    <option value=\"37\">37</option>\r\n    <option value=\"38\">38</option>\r\n    <option value=\"39\">39</option>\r\n    <option value=\"40\">40</option>\r\n    <option value=\"41\">41</option>\r\n    <option value=\"42\">42</option>\r\n    <option value=\"43\">43</option>\r\n    <option value=\"44\">44</option>\r\n    <option value=\"45\">45</option>\r\n    <option value=\"46\">46</option>\r\n    <option value=\"47\">47</option>\r\n    <option value=\"48\">48</option>\r\n    <option value=\"49\">49</option>\r\n    <option value=\"50\">50</option>\r\n    <option value=\"51\">51</option>\r\n    <option value=\"52\">52</option>\r\n    <option value=\"53\">53</option>\r\n    <option value=\"54\">54</option>\r\n    <option value=\"55\">55</option>\r\n    <option value=\"56\">56</option>\r\n    <option value=\"57\">57</option>\r\n    <option value=\"58\">58</option>\r\n    <option value=\"59\">59</option>\r\n  </select>\r\n  <select name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":endPeriod\">\r\n    <option value=\"am\">AM</option>\r\n    <option value=\"pm\">PM</option>\r\n  </select>\r\n</div>";
-  return buffer;
-  });
 templates['models/entry/judo/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n    <div>\r\n      <div id=\"art\"></div>\r\n      <div id=\"type\"></div>\r\n    </div>\r\n    <div>\r\n      <div id=\"at\"><h2>@</h2></div>\r\n      <div id=\"location\"></div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"small-2 columns\">\r\n    <h3>on</h3>\r\n  </div>\r\n  <div class=\"small-10 columns\">\r\n    <input id=\"date\" type=\"text\" name=\"";
+  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n    <div>\r\n      <div id=\"art\"></div>\r\n      <div id=\"type\"></div>\r\n    </div>\r\n    <div>\r\n      <div id=\"at\"><h2>@</h2></div>\r\n      <div id=\"location\"></div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>from:</h4><div id=\"start\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>until:</h4><div id=\"end\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-2 columns\">\r\n    <h4>on</h4>\r\n  </div>\r\n  <div class=\"small-10 columns\">\r\n    <div id=\"date\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":start\" value=\"";
-  if (helper = helpers.start) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.start); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" />\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>from</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    ";
-  stack1 = self.invokePartial(partials['models/entry/startTime'], 'models/entry/startTime', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </div>\r\n  \r\n  <div class=\"small-2 columns\">\r\n    <h3>until</h3>\r\n  </div>\r\n  <div class=\"small-10 columns\">\r\n    ";
-  stack1 = self.invokePartial(partials['models/entry/endTime'], 'models/entry/endTime', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>pre-event notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    <textarea name=\"";
+    + ":date\"></div>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>pre-training notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    <textarea name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -74,7 +43,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.pre_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.pre_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>post-event notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    <textarea name=\"";
+    + "</textarea>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>post-training notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    <textarea name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -234,27 +203,6 @@ function program6(depth0,data) {
   stack1 = helpers.each.call(depth0, (depth0 && depth0.options), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n      </ul>\r\n      <h3 class=\"link select-create\">\r\n      </h3>\r\n    </div>\r\n  </div>\r\n</div>";
-  return buffer;
-  });
-templates['models/entry/startTime'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
-
-
-  buffer += "<div class=\"time-select\">\r\n  <select name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":startHour\">\r\n    <option value=\"1\">01</option>\r\n    <option value=\"2\">02</option>\r\n    <option value=\"3\">03</option>\r\n    <option value=\"4\">04</option>\r\n    <option value=\"5\">05</option>\r\n    <option value=\"6\">06</option>\r\n    <option value=\"7\">07</option>\r\n    <option value=\"8\">08</option>\r\n    <option value=\"9\">09</option>\r\n    <option value=\"10\">10</option>\r\n    <option value=\"11\">11</option>\r\n    <option value=\"12\">12</option>\r\n  </select>\r\n  <select name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":startMin\">\r\n    <option value=\"0\">00</option>\r\n    <option value=\"1\">01</option>\r\n    <option value=\"2\">02</option>\r\n    <option value=\"3\">03</option>\r\n    <option value=\"4\">04</option>\r\n    <option value=\"5\">05</option>\r\n    <option value=\"6\">06</option>\r\n    <option value=\"7\">07</option>\r\n    <option value=\"8\">08</option>\r\n    <option value=\"9\">09</option>\r\n    <option value=\"10\">10</option>\r\n    <option value=\"11\">11</option>\r\n    <option value=\"12\">12</option>\r\n    <option value=\"13\">13</option>\r\n    <option value=\"14\">14</option>\r\n    <option value=\"15\">15</option>\r\n    <option value=\"16\">16</option>\r\n    <option value=\"17\">17</option>\r\n    <option value=\"18\">18</option>\r\n    <option value=\"19\">19</option>\r\n    <option value=\"20\">20</option>\r\n    <option value=\"21\">21</option>\r\n    <option value=\"22\">22</option>\r\n    <option value=\"23\">23</option>\r\n    <option value=\"24\">24</option>\r\n    <option value=\"25\">25</option>\r\n    <option value=\"26\">26</option>\r\n    <option value=\"27\">27</option>\r\n    <option value=\"28\">28</option>\r\n    <option value=\"29\">29</option>\r\n    <option value=\"30\">30</option>\r\n    <option value=\"31\">31</option>\r\n    <option value=\"32\">32</option>\r\n    <option value=\"33\">33</option>\r\n    <option value=\"34\">34</option>\r\n    <option value=\"35\">35</option>\r\n    <option value=\"36\">36</option>\r\n    <option value=\"37\">37</option>\r\n    <option value=\"38\">38</option>\r\n    <option value=\"39\">39</option>\r\n    <option value=\"40\">40</option>\r\n    <option value=\"41\">41</option>\r\n    <option value=\"42\">42</option>\r\n    <option value=\"43\">43</option>\r\n    <option value=\"44\">44</option>\r\n    <option value=\"45\">45</option>\r\n    <option value=\"46\">46</option>\r\n    <option value=\"47\">47</option>\r\n    <option value=\"48\">48</option>\r\n    <option value=\"49\">49</option>\r\n    <option value=\"50\">50</option>\r\n    <option value=\"51\">51</option>\r\n    <option value=\"52\">52</option>\r\n    <option value=\"53\">53</option>\r\n    <option value=\"54\">54</option>\r\n    <option value=\"55\">55</option>\r\n    <option value=\"56\">56</option>\r\n    <option value=\"57\">57</option>\r\n    <option value=\"58\">58</option>\r\n    <option value=\"59\">59</option>\r\n  </select>\r\n  <select name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":startPeriod\">\r\n    <option value=\"am\">AM</option>\r\n    <option value=\"pm\">PM</option>\r\n  </select>\r\n</div>";
   return buffer;
   });
 templates['models/location/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -516,6 +464,99 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + ":rating\" value=\"5\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n</div>";
+  return buffer;
+  });
+templates['widgets/time'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n		<select id=\"";
+  if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "-hour\" name=\"";
+  if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":hour\">\r\n			";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.hours), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n		</select>\r\n	";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n				<option value=\"";
+  if (helper = helpers.value) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.value); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.selected), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ">";
+  if (helper = helpers.display) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.display); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</option>\r\n			";
+  return buffer;
+  }
+function program3(depth0,data) {
+  
+  
+  return "selected";
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n		<select id=\"";
+  if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "-minute\" name=\"";
+  if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":minute\">\r\n			";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.minutes), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n		</select>\r\n	";
+  return buffer;
+  }
+
+function program7(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n		<select id=\"";
+  if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "-period\" name=\"";
+  if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":period\">\r\n			";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.periods), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n		</select>\r\n	";
+  return buffer;
+  }
+
+  buffer += "<div class=\"time-select\">\r\n	";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.hours), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n	";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.minutes), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n	";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.periods), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</div>";
   return buffer;
   });
 })();

@@ -13,36 +13,30 @@
     </div>
   </div>
   
-  <div class="small-2 columns">
-    <h3>on</h3>
-  </div>
-  <div class="small-10 columns">
-    <input id="date" type="text" name="{{ cid }}:start" value="{{ start }}" />
+  <div class="small-6 columns">
+    <h4>from:</h4><div id="start"></div>
   </div>
   
-  <div class="columns">
-    <h3>from</h3>
-  </div>
-  <div class="columns">
-    {{> models/entry/startTime }}
+  <div class="small-6 columns">
+    <h4>until:</h4><div id="end"></div>
   </div>
   
   <div class="small-2 columns">
-    <h3>until</h3>
+    <h4>on</h4>
   </div>
   <div class="small-10 columns">
-    {{> models/entry/endTime }}
+    <div id="date" name="{{ cid }}:date"></div>
   </div>
   
   <div class="columns">
-    <h3>pre-event notes:</h3>
+    <h3>pre-training notes:</h3>
   </div>
   <div class="columns">
     <textarea name="{{ cid }}:pre_status" placeholder="How did you feel before?">{{ pre_status }}</textarea>
   </div>
   
   <div class="columns">
-    <h3>post-event notes:</h3>
+    <h3>post-training notes:</h3>
   </div>
   <div class="columns">
     <textarea name="{{ cid }}:post_status" placeholder="How did you feel after?">{{ post_status }}</textarea>
