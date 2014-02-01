@@ -474,7 +474,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n			<select id=\"";
+  buffer += "\r\n		<select id=\"";
   if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -482,16 +482,16 @@ function program1(depth0,data) {
   if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":hour\">\r\n				";
+    + ":hour\">\r\n			";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.hours), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n			</select>\r\n		";
+  buffer += "\r\n		</select>\r\n	";
   return buffer;
   }
 function program2(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n					<option value=\"";
+  buffer += "\r\n				<option value=\"";
   if (helper = helpers.value) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.value); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -502,7 +502,7 @@ function program2(depth0,data) {
   if (helper = helpers.display) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.display); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</option>\r\n				";
+    + "</option>\r\n			";
   return buffer;
   }
 function program3(depth0,data) {
@@ -514,7 +514,7 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n			<select id=\"";
+  buffer += "\r\n		<select id=\"";
   if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -522,17 +522,17 @@ function program5(depth0,data) {
   if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":minute\">\r\n				";
+    + ":minute\">\r\n			";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.minutes), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n			</select>\r\n		";
+  buffer += "\r\n		</select>\r\n	";
   return buffer;
   }
 
 function program7(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n			<select id=\"";
+  buffer += "\r\n		<select id=\"";
   if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -540,23 +540,23 @@ function program7(depth0,data) {
   if (helper = helpers.identifier) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.identifier); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":period\">\r\n				";
+    + ":period\">\r\n			";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.periods), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n			</select>\r\n		";
+  buffer += "\r\n		</select>\r\n	";
   return buffer;
   }
 
-  buffer += "<div class=\"time-select\">\r\n	<form>\r\n		";
+  buffer += "<div class=\"time-select\">\r\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.hours), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n		";
+  buffer += "\r\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.minutes), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n		";
+  buffer += "\r\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.periods), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n	</form>\r\n</div>";
+  buffer += "\r\n</div>";
   return buffer;
   });
 })();

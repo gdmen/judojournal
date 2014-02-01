@@ -549,7 +549,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 				hours.push({
 					value: i,
 					display: display,
-					selected: (i.toString() === selectedHour),
+					selected: (display === selectedHour),
 				});
 			}
 			for (i = 0; i < 60; i++) {
@@ -557,7 +557,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 				minutes.push({
 					value: i,
 					display: display,
-					selected: (i.toString() === selectedMinute),
+					selected: (display === selectedMinute),
 				});
 			}
 			var periods = [

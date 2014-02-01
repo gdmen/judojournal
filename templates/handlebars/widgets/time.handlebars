@@ -1,25 +1,23 @@
 <div class="time-select">
-	<form>
-		{{#if hours }}
-			<select id="{{ identifier }}-hour" name="{{ identifier }}:hour">
-				{{#each hours}}
-					<option value="{{ value }}" {{#if selected}}selected{{/if}}>{{ display }}</option>
-				{{/each}}
-			</select>
-		{{/if}}
-		{{#if minutes }}
-			<select id="{{ identifier }}-minute" name="{{ identifier }}:minute">
-				{{#each minutes}}
-					<option value="{{ value }}" {{#if selected}}selected{{/if}}>{{ display }}</option>
-				{{/each}}
-			</select>
-		{{/if}}
-		{{#if periods }}
-			<select id="{{ identifier }}-period" name="{{ identifier }}:period">
-				{{#each periods}}
-					<option value="{{ value }}" {{#if selected}}selected{{/if}}>{{ display }}</option>
-				{{/each}}
-			</select>
-		{{/if}}
-	</form>
+	{{#if hours }}
+		<select id="{{ identifier }}-hour" name="{{ identifier }}:hour">
+			{{#each hours}}
+				<option value="{{ value }}" {{#if selected}}selected{{/if}}>{{ display }}</option>
+			{{/each}}
+		</select>
+	{{/if}}
+	{{#if minutes }}
+		<select id="{{ identifier }}-minute" name="{{ identifier }}:minute">
+			{{#each minutes}}
+				<option value="{{ value }}" {{#if selected}}selected{{/if}}>{{ display }}</option>
+			{{/each}}
+		</select>
+	{{/if}}
+	{{#if periods }}
+		<select id="{{ identifier }}-period" name="{{ identifier }}:period">
+			{{#each periods}}
+				<option value="{{ value }}" {{#if selected}}selected{{/if}}>{{ display }}</option>
+			{{/each}}
+		</select>
+	{{/if}}
 </div>
