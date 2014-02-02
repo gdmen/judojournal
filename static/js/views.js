@@ -513,9 +513,9 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
    * Links DOM to third party JS libraries.
    */
   linkDOM: function() {
-		console.log(this.model.get("start"));
     this.dateEl.datepicker({
 			dateFormat: "d M, yy",
+			defaultDate: null,
 		});
 		this.dateEl.datepicker("setDate", this.model.get("start"));
   },
