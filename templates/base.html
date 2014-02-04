@@ -14,39 +14,36 @@
 <body>
   <div id="non-footer">
     <div id="page-container">
-      {% block header %}
-        <div class="contain-to-grid">
-          <nav class="top-bar" data-topbar>
-            <ul class="title-area">
-              <li class="name">
-                <h1><a href="{% url 'index' %}">JudoJournal</a></h1>
-              </li>
-              <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-            </ul>
+			<div class="contain-to-grid">
+				<nav class="top-bar">
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="{% url 'index' %}">JudoJournal</a></h1>
+						</li>
+						<li class="toggle-topbar"><a><i class="fa fa-bars fa-2x"></i></a></li>
+					</ul>
 
-            <section class="top-bar-section">
-              <!-- Right Nav Section -->
-              <ul class="right">
-                {% block main_menu_right %}
-                  {% if user.is_authenticated %}
-                    <li><a href="/#/profile"><i class="fa fa-user"></i> {{ user.username }}</a></li>
-                    <li><a href="/#/settings"><i class="fa fa-cog"></i> Settings</a></li>
-                    <li><a href="{% url 'django.contrib.auth.views.logout' %}?next=/"><i class="fa fa-sign-out"></i> Sign out</a></li>
-                  {% else %}
-                    <li><a href="{% url 'django.contrib.auth.views.login' %}"><i class="fa fa-sign-in"></i> Sign in</a></li>
-                  {% endif %}
-                {% endblock %}
-              </ul>
-              
-              <!-- Left Nav Section -->
-              <ul class="left">
-                {% block main_menu_left %}
-                {% endblock %}
-              </ul>
-            </section>
-          </nav>
-        </div>
-      {% endblock %}
+					<section class="top-bar-section">
+						<!-- Right Nav Section -->
+						<ul class="right">
+							{% block main_menu_right %}
+								{% if user.is_authenticated %}
+									<li><a href="/#/profile"><i class="fa fa-user"></i> {{ user.username }}</a></li>
+									<li><a href="/#/settings"><i class="fa fa-cog"></i> Settings</a></li>
+									<li><a href="{% url 'django.contrib.auth.views.logout' %}?next=/"><i class="fa fa-sign-out"></i> Sign out</a></li>
+								{% else %}
+									<li><a href="{% url 'django.contrib.auth.views.login' %}"><i class="fa fa-sign-in"></i> Sign in</a></li>
+								{% endif %}
+							{% endblock %}
+						</ul>
+						<!-- Left Nav Section -->
+						<ul class="left">
+							{% block main_menu_left %}
+							{% endblock %}
+						</ul>
+					</section>
+				</nav>
+			</div>
 
       <div id="content">
       {% block content %}{% endblock %}
@@ -68,6 +65,10 @@
   <script type="text/javascript" src="{% static 'bower/fastclick/lib/fastclick.js' %}"></script>
   <script type="text/javascript">
     $(function() {
+			// Foundation menu
+			$(".toggle-topbar").click(function() {
+				$(".top-bar").toggleClass("expanded");
+			});
       FastClick.attach(document.body);
     });
   </script>

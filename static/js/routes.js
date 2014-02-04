@@ -16,11 +16,21 @@ JJ.router.on('route:unknownRoute', JJ.Util.handleUnknownRoute);
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
 
+/*
+ * Hacky resets since backbone seems to not do a full page refresh between pages.
+ */
+function pageReset() {
+	// Foundation menu
+	$(".top-bar").removeClass("expanded");
+}
+
 function home() {
+	pageReset();
   new JJ.Views.HomePage({el: $('#content')});
 }
 
 function editEntry(id) {
+	pageReset();
   // # signifies a new Entry is being created.
   if (id === "#") {
     var entry = new JJ.Models.JudoEntry();

@@ -9,11 +9,13 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/redmond/jquery-ui.css">
 {% endblock %}
 
+{% comment %}
 {% block main_menu_left %}
   {% if user.is_authenticated %}
     <li class="hide-for-small"><a class="button radius success" href="#">Add Question</a></li>
   {% endif %}
 {% endblock %}
+{% endcomment %}
 
 {% block content %}
 {% endblock %}
