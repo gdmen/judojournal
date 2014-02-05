@@ -10404,21 +10404,43 @@ footer div p:last-child {
   margin-right: 1rem;
 }
 
+/* line 159, ../scss/styles.scss */
+.content-editable {
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background: #fff;
+  border: 1px solid #CCCCC6;
+  cursor: text;
+  height: auto;
+  min-height: 3em;
+  padding: 0.5em;
+}
+/* line 168, ../scss/styles.scss */
+.content-editable[data-placeholder]:not(:focus):empty:before {
+  content: attr(data-placeholder);
+  float: left;
+  margin-left: 2px;
+  color: #b3b3b3;
+}
+
 /*
  * Time select (Entry form)
  */
-/* line 162, ../scss/styles.scss */
+/* line 179, ../scss/styles.scss */
 #date {
   display: inline-block;
 }
 
-/* line 165, ../scss/styles.scss */
+/* line 182, ../scss/styles.scss */
 #start, #end {
   display: inline-block;
   margin: 0 auto;
 }
 
-/* line 170, ../scss/styles.scss */
+/* line 187, ../scss/styles.scss */
 .time-select select {
   background-color: #fff;
   width: auto;
@@ -10427,29 +10449,29 @@ footer div p:last-child {
 /*
  * Select widget (Entry form)
  */
-/* line 180, ../scss/styles.scss */
+/* line 197, ../scss/styles.scss */
 .single-select .select-input {
   display: none;
 }
-/* line 184, ../scss/styles.scss */
+/* line 201, ../scss/styles.scss */
 .single-select .select-display .link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
 }
-/* line 187, ../scss/styles.scss */
+/* line 204, ../scss/styles.scss */
 .single-select .select-display .link:hover {
   cursor: pointer;
 }
-/* line 192, ../scss/styles.scss */
+/* line 209, ../scss/styles.scss */
 .single-select .select-display .link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 196, ../scss/styles.scss */
+/* line 213, ../scss/styles.scss */
 .single-select .select-display .link i {
   color: #222222;
 }
-/* line 201, ../scss/styles.scss */
+/* line 218, ../scss/styles.scss */
 .single-select .select-drop {
   background-color: #fff;
   display: none;
@@ -10458,19 +10480,19 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 208, ../scss/styles.scss */
+/* line 225, ../scss/styles.scss */
 .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 212, ../scss/styles.scss */
+/* line 229, ../scss/styles.scss */
 .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 217, ../scss/styles.scss */
+/* line 234, ../scss/styles.scss */
 .single-select .select-drop .select-search i {
   color: gray;
   padding: 0.28572rem;
@@ -10478,26 +10500,26 @@ footer div p:last-child {
   right: 0;
   top: 0;
 }
-/* line 225, ../scss/styles.scss */
+/* line 242, ../scss/styles.scss */
 .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 229, ../scss/styles.scss */
+/* line 246, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 232, ../scss/styles.scss */
+/* line 249, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 235, ../scss/styles.scss */
+/* line 252, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 240, ../scss/styles.scss */
+/* line 257, ../scss/styles.scss */
 .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
@@ -10506,11 +10528,11 @@ footer div p:last-child {
 /*
  * Creation form modal
  */
-/* line 250, ../scss/styles.scss */
+/* line 267, ../scss/styles.scss */
 .model-list {
   position: relative;
 }
-/* line 252, ../scss/styles.scss */
+/* line 269, ../scss/styles.scss */
 .model-list .modal {
   background-color: #fff;
   display: none;
@@ -10524,7 +10546,7 @@ footer div p:last-child {
 /*
  * Manage widget
  */
-/* line 268, ../scss/styles.scss */
+/* line 285, ../scss/styles.scss */
 .manage-widget .manage-header {
   *zoom: 1;
   -moz-border-radius-bottomleft: 3px;
@@ -10546,11 +10568,11 @@ footer div p:last-child {
 .manage-widget .manage-header:after {
   clear: both;
 }
-/* line 274, ../scss/styles.scss */
+/* line 291, ../scss/styles.scss */
 .manage-widget .manage-header a, .manage-widget .manage-header .link {
   padding: 1em;
 }
-/* line 276, ../scss/styles.scss */
+/* line 293, ../scss/styles.scss */
 .manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
   color: white;
   height: 1em;
@@ -10558,26 +10580,26 @@ footer div p:last-child {
   margin: 0;
   padding: 0;
 }
-/* line 284, ../scss/styles.scss */
+/* line 301, ../scss/styles.scss */
 .manage-widget .manage-header a.left {
   width: 100%;
 }
-/* line 287, ../scss/styles.scss */
+/* line 304, ../scss/styles.scss */
 .manage-widget .manage-header div.right {
   border-left: 1px solid #206691;
   position: absolute;
   right: 0;
 }
-/* line 291, ../scss/styles.scss */
+/* line 308, ../scss/styles.scss */
 .manage-widget .manage-header div.right:hover {
   cursor: pointer;
 }
-/* line 296, ../scss/styles.scss */
+/* line 313, ../scss/styles.scss */
 .manage-widget .manage-drop {
   display: none;
   margin-left: 1.5px;
 }
-/* line 299, ../scss/styles.scss */
+/* line 316, ../scss/styles.scss */
 .manage-widget .manage-drop ul {
   background-color: #2c8ec9;
   margin: 0;
@@ -10587,18 +10609,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 310, ../scss/styles.scss */
+/* line 327, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 313, ../scss/styles.scss */
+/* line 330, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 317, ../scss/styles.scss */
+/* line 334, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
@@ -10608,20 +10630,20 @@ footer div p:last-child {
 /*
  * Widgets
  */
-/* line 328, ../scss/styles.scss */
+/* line 345, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 330, ../scss/styles.scss */
+/* line 347, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-/* line 333, ../scss/styles.scss */
+/* line 350, ../scss/styles.scss */
 .rating label input[type=radio] + img {
   border: 2px solid transparent;
   cursor: pointer;
 }
-/* line 337, ../scss/styles.scss */
+/* line 354, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
   border: 2px solid #f00;
 }

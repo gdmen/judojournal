@@ -35,23 +35,23 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":date\"></div>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>pre-training notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    <textarea name=\"";
+    + ":date\"></div>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>pre-training notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n		<div title=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":pre_status\" placeholder=\"How did you feel before?\">";
+    + ":pre_status\" class=\"content-editable\" contentEditable=\"true\" data-placeholder=\"How did you feel before?\">";
   if (helper = helpers.pre_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.pre_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>post-training notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n    <textarea name=\"";
+    + "</div>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>post-training notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n		<div title=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":post_status\" placeholder=\"How did you feel after?\">";
+    + ":post_status\" class=\"content-editable\" contentEditable=\"true\" data-placeholder=\"How did you feel after?\">";
   if (helper = helpers.post_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.post_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n	<div class=\"columns\">\r\n		<div contentEditable=\"true\" style=\"display:inline-block;border:solid 1px #000;min-height:200px;width:300px;\"></div>\r\n	</div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
+    + "</div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\" class=\"model-list\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\" class=\"model-list\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"expand success radius\" id=\"save\">Save Entry</button>\r\n  </div>\r\n\r\n</div>";

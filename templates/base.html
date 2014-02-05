@@ -69,6 +69,20 @@
 			$(".toggle-topbar").click(function() {
 				$(".top-bar").toggleClass("expanded");
 			});
+			// Contenteditable change events
+			$("body").on("focus", "[contenteditable]", function() {
+				var that = $(this);
+				that.data("before", that.html());
+				return that;
+			}).on("blur keyup paste input", "[contenteditable]", function() {
+				var that = $(this);
+				if (that.data("before") !== that.html()) {
+					that.data("before", that.html());
+					that.trigger("change");
+				}
+				return that;
+			});
+			// fastclick
       FastClick.attach(document.body);
     });
   </script>

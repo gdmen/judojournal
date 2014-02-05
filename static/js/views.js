@@ -12,6 +12,22 @@ JJ.Views.Util = {
   }
 }
 
+JJ.Views.AbstractView = Backbone.View.extend({
+	destroy: function () {
+		console.log('Kill: ', this);
+
+		this.unbind(); // Unbind all local event bindings
+		if (!_.isUndefined(this.model)) {
+			this.model.unbind(); // Unbind reference to the model
+		}
+		
+		this.remove(); // Remove view from DOM
+
+		delete this.$el; // Delete the jQuery wrapped object variable
+		delete this.el; // Delete the variable reference to this node
+	}
+});
+
 /************************************************************
  *
  * JJ.Views.AbstractEditModel
@@ -20,12 +36,13 @@ JJ.Views.Util = {
  *  - Does *not* update the view on model changes.
  *
  ************************************************************/
-JJ.Views.AbstractEditModel = Backbone.View.extend({
+JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   template: null,
   baseEvents: {
     "change input": "changed",
     "change textarea": "changed",
     "change select": "changed",
+    "change div[contenteditable='true']": "changed",
   },
   
   // For subclasses to add events.
@@ -39,16 +56,23 @@ JJ.Views.AbstractEditModel = Backbone.View.extend({
    * Updates the model on input changes.
    */
   changed: function(e) {
-    var splitName = e.currentTarget.name.split(":");
-    console.log("Changed: " + e.currentTarget.name);
+		console.log(e.currentTarget);
+		var name = "";
+		if ($(e.currentTarget).is("input,textarea,select")) {
+			name = e.currentTarget.name;
+		} else {
+			name = e.currentTarget.title;
+		}
+    console.log("Changed: " + name);
+    var splitName = name.split(":");
     if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
-			/*
-			if (_.isUndefined(this.model[field])) {
-				console.log("UNDEFINED field '" + field + "' in " + this.model.cid);
-				return;
-			}*/
-      var value = $(e.currentTarget).val();
+			var value = "";
+			if ($(e.currentTarget).is("input,textarea,select")) {
+				value = $(e.currentTarget).val();
+			} else {
+				value = $(e.currentTarget).html();
+			}
       this.model.set(field, value);
       console.log("Set " + field + " to " + value + " in " + this.model.cid);
     }
@@ -94,7 +118,7 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
  *  - Does *not* update the view on model changes.
  *
  ************************************************************/
-JJ.Views.AbstractSelectModel = Backbone.View.extend({
+JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
   template: null,
   // The parent model's field that is to be selected.
   field: "",
@@ -296,7 +320,7 @@ JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
  *  - Does *not* update the view on model changes.
  *
  ************************************************************/
-JJ.Views.AbstractEditModelList = Backbone.View.extend({
+JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   template: null,
   model: null,
   // Subclasses set to the parent model's array field that is to be managed.
@@ -420,7 +444,7 @@ JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
  *  - Does *not* update the view on model changes.
  *
  ************************************************************/
-JJ.Views.TimeSelect = Backbone.View.extend({
+JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
   template: Handlebars.templates["widgets/time"],
   events: {
     "change select": "update",
@@ -611,7 +635,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
  *  - Model management widget.
  *
  ************************************************************/
-JJ.Views.AbstractManageModelWidget = Backbone.View.extend({
+JJ.Views.AbstractManageModelWidget = JJ.Views.AbstractView.extend({
   name: "",
   events: {},
   
@@ -675,7 +699,7 @@ JJ.Views.ManageArtsWidget = JJ.Views.AbstractManageModelWidget.extend({
  *  - Static template inputs only.
  *
  ************************************************************/
-JJ.Views.AbstractStaticPage = Backbone.View.extend({
+JJ.Views.AbstractStaticPage = JJ.Views.AbstractView.extend({
   initialize: function(options) {
     this.options = options;
     this.options.links = {};

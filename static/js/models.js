@@ -130,7 +130,7 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
    * Expands JSON elements for easier manipulation.
    */
   stayHydrated: function() {
-		console.log("HYDRATING ENTRY");
+		console.log("HYDRATING ENTRY " + this.cid);
     var start = this.get("start");
     if (!(start instanceof Date)) {
       this.set("start", new Date(Date.parse(start)));
