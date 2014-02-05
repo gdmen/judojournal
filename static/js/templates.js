@@ -54,7 +54,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
     + "</textarea>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>RANDORI</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"expand success radius\" id=\"save\">Save Entry</button>\r\n  </div>\r\n\r\n</div>";
+  buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\" class=\"model-list\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\" class=\"model-list\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"expand success radius\" id=\"save\">Save Entry</button>\r\n  </div>\r\n\r\n</div>";
   return buffer;
   });
 templates['models/entry/judo/view/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -99,7 +99,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "";
 
 
-  buffer += "\r\n<button class=\"add-model\">add</button>\r\n\r\n";
+  buffer += "\r\n<div class='click-away-overlay'></div>\r\n<button class=\"add-model\">add</button>\r\n\r\n";
   return buffer;
   });
 templates['models/entry/module/drill/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -199,7 +199,11 @@ function program6(depth0,data) {
     + "\" type=\"text\"/>\r\n  <div class=\"select-display\">\r\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.selectedKey), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    <div class=\"select-drop\">\r\n      <div class=\"select-search\">\r\n        <input type=\"text\" autocomplete=\"off\" />\r\n        <i class=\"fa fa-search fa-2x\"></i>\r\n      </div>\r\n      <ul class=\"select-options\">\r\n        ";
+  buffer += "\r\n    <div class=\"select-drop\">\r\n      <div class=\"select-search\">\r\n        <input type=\"text\" autocomplete=\"off\" placeholder=\"";
+  if (helper = helpers.hint) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.hint); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"/>\r\n        <i class=\"fa fa-search fa-2x\"></i>\r\n      </div>\r\n      <ul class=\"select-options\">\r\n        ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.options), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n      </ul>\r\n      <h3 class=\"link select-create\">\r\n      </h3>\r\n    </div>\r\n  </div>\r\n</div>";

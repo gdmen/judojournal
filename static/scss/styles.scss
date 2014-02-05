@@ -33,7 +33,6 @@ $row-width: rem-calc(1400);
 /*
  * Component CSS / SCSS
  */
-@import "CSS:../bower/responsive-nav/responsive-nav";
 @import "../bower/font-awesome/scss/font-awesome";
 
 /*
@@ -99,6 +98,17 @@ $max-z-index: 9999998;
   -webkit-box-sizing: border-box; /* Android = 2.3, iOS = 4 */
   -moz-box-sizing: border-box; /* Firefox 1+ */
   box-sizing: border-box; /* Chrome, IE 8+, Opera, Safari 5.1 */
+}
+// Necessary specificity
+#content .click-away-overlay {
+	background-color: rgba(0,0,0,0.5);
+	display: none;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: ($max-z-index - 1);
 }
 
 /*
@@ -167,16 +177,6 @@ footer {
  * Select widget (Entry form)
  */
 .single-select {
-  .click-away-overlay {
-    background-color: rgba(0,0,0,0.5);
-    display: none;
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: ($max-z-index - 1);
-   }
   .select-input {
     display: none;
   }
@@ -242,6 +242,22 @@ footer {
       margin: 0.5em;
     }
   }
+}
+
+/*
+ * Creation form modal
+ */
+.model-list {
+	position: relative;
+	.modal {
+		background-color: #fff;
+		height: 95%;
+		top: 0.5rem;
+		left: 25%;
+		position: fixed;
+		right: 25%;
+		z-index: $max-z-index;
+	}
 }
 
 /*

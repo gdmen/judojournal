@@ -167,7 +167,7 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
     }
 		// Start create display
     var createElement = $(this.selectors.create);
-		createElement.html("Saving '" + createVal + "' <i class='fa fa-spinner fa-spin'></i>");
+		createElement.html("Creating '" + createVal + "' <i class='fa fa-spinner fa-spin'></i>");
     
 		// Save new model
     var params = {};
@@ -267,7 +267,7 @@ JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
   uniqueKey: "name",
   collectionConstructor: JJ.Models.ArtCollection,
   placeholder: "Art",
-  hint: "(e.g. Judo)",
+  hint: "e.g. Judo",
 });
 
 JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
@@ -275,8 +275,8 @@ JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
   field: "type",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.TypeCollection,
-  placeholder: "Type",
-  hint: "(e.g. Practice)",
+  placeholder: "Class",
+  hint: "e.g. Practice",
 });
 
 JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
@@ -285,7 +285,7 @@ JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
   uniqueKey: "name",
   collectionConstructor: JJ.Models.LocationCollection,
   placeholder: "Location",
-  hint: "(e.g. Kodokan)",
+  hint: "e.g. Kodokan",
 });
 
 
@@ -304,9 +304,35 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
   insertViewConstructor: null,
   insertModelConstructor: null,
   events: {
-    "click .add-model": "addModel",
+    "click .add-model": "showModal",
+    "click .click-away-overlay": "hideModal",
+    //"click .add-model": "addModel",
+  },
+	
+  showModal: function(e) {
+    var model = new this.insertModelConstructor();
+    var cid = model.cid;
+    var modal = $( "<div class='modal'><div/>" );
+    modal.attr("id", cid);
+    this.$el.append(modal);
+    new this.insertViewConstructor({model: model, parentView: this, el: modal});
+		
+    modal.show();
+    $(this.selectors.first).focus();
+    $(this.selectors.clickAway).show();
   },
   
+  hideModal: function(e) {
+    $(this.selectors.modal).hide();
+    $(this.selectors.clickAway).hide();
+  },
+	
+  /*
+   * Spawns creation modal.
+   */
+	createModelModal: function(e) {
+	},
+	
   /*
    * Adds a new model to the parent model's list.
    */
@@ -359,6 +385,15 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
   
   initialize: function(options) {
     this.modelArray = options.model.get(this.field);
+		
+    var vs = {};
+    vs.div = "#" + this.$el.attr("id");
+    vs.clickAway = vs.div + " .click-away-overlay";
+    vs.display = vs.div + " .select-display";
+    vs.modal = vs.div + " .modal";
+    vs.save = vs.drop + " .modal-save";
+    
+    this.selectors = vs;
     this.render();
   },
   
@@ -540,13 +575,11 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 					selected: (display === selectedMinute),
 				});
 			}
-			var periods = [
-				{
+			var periods = [{
 					value: "AM",
 					display: "AM",
 					selected: ("AM" === selectedPeriod),
-				},
-				{
+				},{
 					value: "PM",
 					display: "PM",
 					selected: ("PM" === selectedPeriod),
