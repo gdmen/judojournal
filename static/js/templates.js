@@ -51,7 +51,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.post_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.post_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
+    + "</textarea>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n	<div class=\"columns\">\r\n		<div contentEditable=\"true\" style=\"display:inline-block;border:solid 1px #000;min-height:200px;width:300px;\"></div>\r\n	</div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\" class=\"model-list\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\" class=\"model-list\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"expand success radius\" id=\"save\">Save Entry</button>\r\n  </div>\r\n\r\n</div>";
@@ -99,7 +99,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "";
 
 
-  buffer += "\r\n<div class='click-away-overlay'></div>\r\n<button class=\"add-model\">add</button>\r\n\r\n";
+  buffer += "\r\n<div class='modal'></div>\r\n<div class='click-away-overlay'></div>\r\n<button class=\"add-model\">add</button>\r\n\r\n";
   return buffer;
   });
 templates['models/entry/module/drill/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {

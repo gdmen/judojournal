@@ -304,20 +304,16 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
   insertViewConstructor: null,
   insertModelConstructor: null,
   events: {
-    "click .add-model": "showModal",
+    "click .add-model": "createModel",
     "click .click-away-overlay": "hideModal",
     //"click .add-model": "addModel",
   },
 	
-  showModal: function(e) {
-    var model = new this.insertModelConstructor();
-    var cid = model.cid;
-    var modal = $( "<div class='modal'><div/>" );
-    modal.attr("id", cid);
-    this.$el.append(modal);
-    new this.insertViewConstructor({model: model, parentView: this, el: modal});
+  showModal: function(model) {
+		console.log($(this.selectors.modal));
+    new this.insertViewConstructor({model: model, parentView: this, el: $(this.selectors.modal)});
 		
-    modal.show();
+    $(this.selectors.modal).show();
     $(this.selectors.first).focus();
     $(this.selectors.clickAway).show();
   },
@@ -330,7 +326,9 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
   /*
    * Spawns creation modal.
    */
-	createModelModal: function(e) {
+	createModel: function(e) {
+    var model = new this.insertModelConstructor();
+		this.showModal(model);
 	},
 	
   /*
@@ -389,9 +387,7 @@ JJ.Views.AbstractEditModelList = Backbone.View.extend({
     var vs = {};
     vs.div = "#" + this.$el.attr("id");
     vs.clickAway = vs.div + " .click-away-overlay";
-    vs.display = vs.div + " .select-display";
     vs.modal = vs.div + " .modal";
-    vs.save = vs.drop + " .modal-save";
     
     this.selectors = vs;
     this.render();

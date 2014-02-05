@@ -10513,7 +10513,7 @@ footer div p:last-child {
 /* line 252, ../scss/styles.scss */
 .model-list .modal {
   background-color: #fff;
-  height: 50%;
+  display: none;
   top: 0.5rem;
   left: 25%;
   position: fixed;
