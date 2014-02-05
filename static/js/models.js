@@ -49,7 +49,7 @@ JJ.Models.Goal = JJ.Models.Tastypie.extend({
 JJ.Models.GoalInstance = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/goal/instance/",
   defaults: {
-    "rating": "3",
+    rating: "3",
   }
 });
 
@@ -95,7 +95,7 @@ JJ.Models.LocationCollection = JJ.Models.TastypieCollection.extend({
 JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/module/drill/",
   defaults: {
-    "rating": "3",
+    rating: "3",
   }
 });
 
@@ -105,7 +105,7 @@ JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
 JJ.Models.SparringEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/module/sparring/",
   defaults: {
-    "rating": "3",
+    rating: "3",
   }
 });
 
@@ -114,13 +114,17 @@ JJ.Models.SparringEntryModule = JJ.Models.Tastypie.extend({
  */
 JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/judo/",
-  defaults: {
-    "rating": "3",
-    "start": new Date(),
-    "end": new Date(),
-    "drills": [],
-    "sparring": [],
-  },
+
+	defaults: function() {
+		var now = new Date;
+		return {
+			rating: "3",
+			start: now,
+			end: now,
+			drills: [],
+			sparring: [],
+		};
+	},
   
   /*
    * Expands JSON elements for easier manipulation.

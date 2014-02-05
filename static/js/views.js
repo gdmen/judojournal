@@ -43,10 +43,11 @@ JJ.Views.AbstractEditModel = Backbone.View.extend({
     console.log("Changed: " + e.currentTarget.name);
     if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
-			if (_.isUndefined(this.model.field)) {
-				console.log("UNDEFINED " + field + " in " + this.model.cid);
+			/*
+			if (_.isUndefined(this.model[field])) {
+				console.log("UNDEFINED field '" + field + "' in " + this.model.cid);
 				return;
-			}
+			}*/
       var value = $(e.currentTarget).val();
       this.model.set(field, value);
       console.log("Set " + field + " to " + value + " in " + this.model.cid);
@@ -123,25 +124,24 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   },
   
   filterOptions: function(e) {
-    //console.log("----- FILTER -----");
     var filter = $(e.currentTarget).val().toLowerCase();
     var that = this;
-    var create = true;
+    var noExactMatch = true;
     this.collection.each(function(m) {
       var mSelector = "#" + that.getOptionId(m);
       if (m.get(that.uniqueKey).toLowerCase().indexOf(filter) > -1) {
-        //console.log("showing: " + m.get(that.uniqueKey));
         $(mSelector).show();
-        create = false;
+				if (m.get(that.uniqueKey).toLowerCase() === filter) {
+					noExactMatch = false;
+				}
       } else {
-        //console.log("hiding: " + m.get(that.uniqueKey));
         $(mSelector).hide();
       }
     });
     var createElement = $(this.selectors.create);
     var createVal = $(this.selectors.search).val();
-    if (create && createVal !== "") {
-      createElement.text('Add "' + createVal + '"');
+    if (noExactMatch && createVal !== "") {
+      createElement.html("Add '" + createVal + "'");
       createElement.show();
     } else {
       createElement.hide();
@@ -161,51 +161,31 @@ JJ.Views.AbstractSelectModel = Backbone.View.extend({
   
   createModel: function(e) {
     console.log("CREATE MODEL");
-    this.hideDrop();
-  },
-  
-  /*
-   * Updates the parent model on input changes.
-   */
-  selectInput: function(e) {
-    console.log("selectInput");
-    var value = $(e.currentTarget).val();
-    if (value === "") {
+    var createVal = $(this.selectors.search).val();
+    if (createVal === "") {
       return;
     }
-  },
-  
-  /*
-   * Updates the parent model on input changes.
-   */
-  customInput: function(e) {
-    console.log("customInput");
-    // Hacky grabbing the currently typed input in the chosen (jquery plugin) search input.
-    var value = $(this.selector).next().find(".chosen-search input").val();
-    if (value === "") {
-      return;
-    }
-    // Swap to saving display
-    this.startSaveUI();
+		// Start create display
+    var createElement = $(this.selectors.create);
+		createElement.html("Saving '" + createVal + "' <i class='fa fa-spinner fa-spin'></i>");
     
+		// Save new model
     var params = {};
-    params[this.uniqueKey] = value;
-    var model = new this.modelConstructor(params);
+    params[this.uniqueKey] = createVal;
+    var model = new this.collection.model(params);
     var that = this;
     model.save(null, {
       success: function(m) {
         console.log("SAVED new SelectModel...");
         console.log(m);
-        //that.model.set(that.field, m.get("resource_uri"));
-        that.options.push({"name": m.get(that.uniqueKey), "resource_uri": m.get("resource_uri")});
-        // TODO: minor improvement by using chosen's update instead of re-rendering
+        that.model.set(that.field, m.get("resource_uri"));
+        that.collection.add(m);
+				// TODO: avoid the full re-render
         that.render();
       },
       error: console.log.backboneError,
     });
   },
-  
-  //$(this.buttonSelector).html("Saving <i class='fa fa-spinner fa-spin'></i>");
   
   initialize: function(options) {
     this.model = options.model;
