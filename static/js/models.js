@@ -133,11 +133,11 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 		console.log("HYDRATING ENTRY " + this.cid);
     var start = this.get("start");
     if (!(start instanceof Date)) {
-      this.set("start", new Date(Date.parse(start)));
+      this.set({"start": new Date(Date.parse(start))},{silent:true});
     }
     var end = this.get("end");
     if (!(end instanceof Date)) {
-      this.set("end", new Date(Date.parse(end)));
+      this.set({"end": new Date(Date.parse(end))},{silent:true});
     }
     var drills = this.get("drills");
     for (var i=drills.length; i--;) {

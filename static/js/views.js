@@ -50,7 +50,6 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
     "change textarea": "change",
     "change select": "change",
     "change div[contenteditable='true']": "change",
-    "click .save.enabled": "save",
   },
   
   // For subclasses to add events.
@@ -64,7 +63,6 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
    * Updates the model on input changes.
    */
   change: function(e) {
-		console.log(e.currentTarget);
 		var name = "";
 		if ($(e.currentTarget).is("input,textarea,select")) {
 			name = e.currentTarget.name;
@@ -104,25 +102,27 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
    */
   startSave: function() {
 		console.log("**********START SAVING**********");
-		this.$el.find(".save.enabled").hide();
-		this.$el.find(".save.disabled").hide();
-		this.$el.find(".save.saving").css("display","inline-block");
+		this.$el.find(this.selectors.save).removeClass("enabled disabled");
+		this.$el.find(this.selectors.save).addClass("saving");
   },
 	enableSave: function() {
-		console.log("**********CHANGED**********");
-		this.$el.find(".save.disabled").hide();
-		this.$el.find(".save.saving").hide();
-		this.$el.find(".save.enabled").show();
+		console.log("**********ENABLED**********");
+		console.log(this.model.cid);
+		this.$el.find(this.selectors.save).removeClass("disabled saving");
+		this.$el.find(this.selectors.save).addClass("enabled");
 	},
   disableSave: function() {
 		console.log("**********DONE SAVING**********");
-		this.$el.find(".save.saving").hide();
-		this.$el.find(".save.enabled").hide();
-		this.$el.find(".save.disabled").show();
+		this.$el.find(this.selectors.save).removeClass("enabled saving");
+		this.$el.find(this.selectors.save).addClass("disabled");
   },
   
   initialize: function(options) {
-    this.render();
+		this.selectors = {};
+		this.selectors["save"] = "#" + this.model.cid + "-save";
+		this.baseEvents["click " + this.selectors.save + ".enabled"] = "save";
+		console.log(this.baseEvents);
+		this.model.on("change", this.enableSave, this);
   },
   
   render: function() {
@@ -268,9 +268,10 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
     
     if (!_.isUndefined(selectedModel) && !_.isString(selectedModel)) {
       this.selectedKey = selectedModel[this.uniqueKey];
-      this.model.set(this.field, selectedModel["resource_uri"]);
+			params = {};
+			params[this.field] = selectedModel["resource_uri"];
+      this.model.set(params, {silent:true});
     }
-    
     this.render();
     // Load collection.
     var that = this;
@@ -532,9 +533,6 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["models/entry/judo/edit/single"],
   extendEvents: {
 		"change #date": "dateChanged",
-  },
-  
-  initialize: function(options) {
   },
 	
   /*

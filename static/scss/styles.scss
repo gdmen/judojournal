@@ -80,6 +80,47 @@ button, .button {
   -khtml-opacity: $trans;
   opacity: $trans;
 }
+@mixin save($diameter) {
+	@include radius($radius:($diameter / 2));
+	height: $diameter;
+	text-align: center;
+	width: $diameter;
+	&.disabled {
+		background-color: gray;
+		i.enabled, i.saving {
+			display: none;
+		}
+		i.disabled {
+			display: inline-block;
+		}
+	}
+	&.enabled {
+		background-color: $success-color;
+		&:hover {
+			cursor: pointer;
+		}
+		i.disabled, i.saving {
+			display: none;
+		}
+		i.enabled {
+			display: inline-block;
+		}
+	}
+	&.saving {
+		background-color: orange;
+		i.enabled, i.disabled {
+			display: none;
+		}
+		i.saving {
+			display: inline-block;
+		}
+	}
+	i {
+		color: #fff;
+		font-size: ($diameter * 2/3);
+		padding: ($diameter * 1/6) 0;
+	}
+}
 
 /*
  * Custom settings
@@ -155,20 +196,11 @@ footer {
 			margin-right: 1rem;
 		}
 	}
-	#entry-save {
+	.entry-save {
+		@include save($diameter: 5rem);
 		position: absolute;
 		top: 0;
 		right: $topbar-margin-bottom;
-	}
-}
-
-.save {
-	color: $success-color;
-	&.enabled, &.saving {
-		display: none;
-	}
-	&.enabled:hover {
-		cursor: pointer;
 	}
 }
 
