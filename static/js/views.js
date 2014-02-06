@@ -12,20 +12,27 @@ JJ.Views.Util = {
   }
 }
 
-JJ.Views.AbstractView = Backbone.View.extend({
-	destroy: function () {
-		console.log('Kill: ', this);
-
-		this.unbind(); // Unbind all local event bindings
-		if (!_.isUndefined(this.model)) {
-			this.model.unbind(); // Unbind reference to the model
-		}
-		
-		this.remove(); // Remove view from DOM
-
-		delete this.$el; // Delete the jQuery wrapped object variable
-		delete this.el; // Delete the variable reference to this node
+/*
+ * http://lostechies.com/derickbailey/
+ */
+Backbone.View.prototype.close = function(){
+	this.remove(); // Remove view from DOM
+	this.unbind(); // Unbind all local event bindings
+	
+	if (!_.isUndefined(this.model)) {
+		this.model.unbind(); // Unbind reference to the model
 	}
+
+	delete this.$el; // Delete the jQuery wrapped object variable
+	delete this.el; // Delete the variable reference to this node
+  if (this.onClose){
+    this.onClose();
+  }
+}
+
+JJ.Views.AbstractView = Backbone.View.extend({
+	//onClose: function () {
+	//},
 });
 
 /************************************************************
@@ -39,10 +46,11 @@ JJ.Views.AbstractView = Backbone.View.extend({
 JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   template: null,
   baseEvents: {
-    "change input": "changed",
-    "change textarea": "changed",
-    "change select": "changed",
-    "change div[contenteditable='true']": "changed",
+    "change input": "change",
+    "change textarea": "change",
+    "change select": "change",
+    "change div[contenteditable='true']": "change",
+    "click .save.enabled": "save",
   },
   
   // For subclasses to add events.
@@ -55,7 +63,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   /*
    * Updates the model on input changes.
    */
-  changed: function(e) {
+  change: function(e) {
 		console.log(e.currentTarget);
 		var name = "";
 		if ($(e.currentTarget).is("input,textarea,select")) {
@@ -78,6 +86,41 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
     }
   },
   
+  /*
+   * Saves this view's model.
+   */
+  save: function() {
+    this.startSave();
+    var that = this;
+    this.model.save(null, {
+      success: function(m) {
+        that.disableSave();
+      },
+      error: JJ.Util.backboneError,
+    });
+  },
+  /*
+   * UI handling for starting and ending saving.
+   */
+  startSave: function() {
+		console.log("**********START SAVING**********");
+		this.$el.find(".save.enabled").hide();
+		this.$el.find(".save.disabled").hide();
+		this.$el.find(".save.saving").css("display","inline-block");
+  },
+	enableSave: function() {
+		console.log("**********CHANGED**********");
+		this.$el.find(".save.disabled").hide();
+		this.$el.find(".save.saving").hide();
+		this.$el.find(".save.enabled").show();
+	},
+  disableSave: function() {
+		console.log("**********DONE SAVING**********");
+		this.$el.find(".save.saving").hide();
+		this.$el.find(".save.enabled").hide();
+		this.$el.find(".save.disabled").show();
+  },
+  
   initialize: function(options) {
     this.render();
   },
@@ -95,18 +138,9 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["models/entry/module/drill/edit/single"],
   extendEvents: {
-    "click .remove-this": "remove",
-  },
-  /*
-   * Delete this view's model.
-   */
-  remove: function() {
-    this.parentView.removeModel(this.model);
-    this.$el.remove();
   },
   
   initialize: function(options) {
-    this.parentView = options.parentView;
     this.render();
   },
 });
@@ -137,14 +171,14 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
   },
   
   showDrop: function(e) {
-    $(this.selectors.drop).show();
-    $(this.selectors.search).focus();
-    $(this.selectors.clickAway).show();
+    this.$el.find(this.selectors.drop).show();
+    this.$el.find(this.selectors.search).focus();
+    this.$el.find(this.selectors.clickAway).show();
   },
   
   hideDrop: function(e) {
-    $(this.selectors.drop).hide();
-    $(this.selectors.clickAway).hide();
+    this.$el.find(this.selectors.drop).hide();
+    this.$el.find(this.selectors.clickAway).hide();
   },
   
   filterOptions: function(e) {
@@ -154,16 +188,16 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
     this.collection.each(function(m) {
       var mSelector = "#" + that.getOptionId(m);
       if (m.get(that.uniqueKey).toLowerCase().indexOf(filter) > -1) {
-        $(mSelector).show();
+        that.$el.find(mSelector).show();
 				if (m.get(that.uniqueKey).toLowerCase() === filter) {
 					noExactMatch = false;
 				}
       } else {
-        $(mSelector).hide();
+        that.$el.find(mSelector).hide();
       }
     });
-    var createElement = $(this.selectors.create);
-    var createVal = $(this.selectors.search).val();
+    var createElement = this.$el.find(this.selectors.create);
+    var createVal = this.$el.find(this.selectors.search).val();
     if (noExactMatch && createVal !== "") {
       createElement.html("Add '" + createVal + "'");
       createElement.show();
@@ -179,18 +213,18 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
   selectOption: function(e) {
     var target = $(e.currentTarget);
     target.addClass("option-selected").siblings().removeClass("option-selected");
-    $(this.selectors.input).val(target.data('value')).change();
+    this.$el.find(this.selectors.input).val(target.data('value')).change();
     this.render();
   },
   
   createModel: function(e) {
     console.log("CREATE MODEL");
-    var createVal = $(this.selectors.search).val();
+    var createVal = this.$el.find(this.selectors.search).val();
     if (createVal === "") {
       return;
     }
 		// Start create display
-    var createElement = $(this.selectors.create);
+    var createElement = this.$el.find(this.selectors.create);
 		createElement.html("Creating '" + createVal + "' <i class='fa fa-spinner fa-spin'></i>");
     
 		// Save new model
@@ -232,7 +266,7 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
     // than just the resource_uri
     var selectedModel = this.model.get(this.field);
     
-    if (!_.isUndefined(selectedModel)) {
+    if (!_.isUndefined(selectedModel) && !_.isString(selectedModel)) {
       this.selectedKey = selectedModel[this.uniqueKey];
       this.model.set(this.field, selectedModel["resource_uri"]);
     }
@@ -252,7 +286,6 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
     var options = [];
     // Sets the currently selected element before rendering view.
     var selectedURI = this.model.get(this.field);
-    
     var that = this;
     this.collection.each(function(m) {
       var isSelected = (m.get("resource_uri") === selectedURI);
@@ -334,17 +367,16 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   },
 	
   showModal: function(model) {
-		console.log($(this.selectors.modal));
-    new this.insertViewConstructor({model: model, parentView: this, el: $(this.selectors.modal)});
+    new this.insertViewConstructor({model: model, el: this.$el.find(this.selectors.modal)});
 		
-    $(this.selectors.modal).show();
-    $(this.selectors.first).focus();
-    $(this.selectors.clickAway).show();
+    this.$el.find(this.selectors.modal).show();
+    this.$el.find(this.selectors.focus).focus();
+    this.$el.find(this.selectors.clickAway).show();
   },
   
   hideModal: function(e) {
-    $(this.selectors.modal).hide();
-    $(this.selectors.clickAway).hide();
+    this.$el.find(this.selectors.modal).hide();
+    this.$el.find(this.selectors.clickAway).hide();
   },
 	
   /*
@@ -399,19 +431,20 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   addView: function(m) {
     console.log("addView");
     var id = m.get("resource_uri");
-    var div = $( "<div/>" );
+    var div = $("<div/>");
     div.attr("id", id);
     this.$el.append(div);
-    new this.insertViewConstructor({model: m, parentView: this, el: this.$(document.getElementById(id))});
+    new this.insertViewConstructor({model: m, el: this.$el.find(document.getElementById(id))});
   },
   
   initialize: function(options) {
     this.modelArray = options.model.get(this.field);
 		
     var vs = {};
-    vs.div = "#" + this.$el.attr("id");
+    vs.div = ".model-list";
     vs.clickAway = vs.div + " .click-away-overlay";
     vs.modal = vs.div + " .modal";
+		vs.focus = vs.div + " .focus";
     
     this.selectors = vs;
     this.render();
@@ -447,16 +480,16 @@ JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
 JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
   template: Handlebars.templates["widgets/time"],
   events: {
-    "change select": "update",
+    "change select": "change",
   },
   
   /*
    * Updates the model on input changes.
    */
-	update: function() {
-		var hour = $("#" + this.field + "-hour").val();
-		var minute = $("#" + this.field + "-minute").val();
-		var period = $("#" + this.field + "-period").val();
+	change: function() {
+		var hour = this.$el.find("#" + this.field + "-hour").val();
+		var minute = this.$el.find("#" + this.field + "-minute").val();
+		var period = this.$el.find("#" + this.field + "-period").val();
 		var date = this.dateEl.val();
 		var datetime = new Date(date + " " + hour + ":" + minute + " " + period);
 		if (!isNaN(datetime.getTime())) {
@@ -498,49 +531,35 @@ JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
 JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["models/entry/judo/edit/single"],
   extendEvents: {
-    "click #save": "save",
 		"change #date": "dateChanged",
   },
   
+  initialize: function(options) {
+  },
+	
   /*
    * Saves this view's model.
    * If this is the first save, redirect to the saved-model edit page.
    */
   save: function() {
-    console.log("**********SAVING**********");
-    this.startSaveUI();
-    console.log(this.model.toJSON());
-    this.model.stayHydrated();
-    console.log(this.model.toJSON());
-    var id = this.model.get("id");
+    this.startSave();
+    var isNew = this.model.isNew();
     var that = this;
     this.model.save(null, {
       success: function(m) {
-        console.log(m.toJSON());
-        that.endSaveUI();
-        if (_.isUndefined(id)) {
+        that.disableSave();
+        if (isNew) {
           console.log("REDIRECT");
           window.location.replace(JJ.Views.Util.links.editEntry(m.get("id")));
         }
-        console.log("**********DONE SAVING**********");
       },
       error: JJ.Util.backboneError,
     });
   },
-  
-  /*
-   * UI handling for starting and ending saving.
-   */
-  startSaveUI: function() {
-    this.$("#save").html("Saving <i class='fa fa-spinner fa-spin'></i>");
-  },
-  endSaveUI: function() {
-    this.$("#save").html("Save Entry");
-  },
 	
 	dateChanged: function(e) {
 		$.each(this.timeSelects, function(index, view) {
-			view.update();
+			view.change();
 		});
 	},
   
@@ -561,12 +580,12 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     this.$el.html(this.template(json));
     
     // AbstractSelectModelList's
-    new JJ.Views.SelectArt({model: this.model, el: this.$("#art")});
-    new JJ.Views.SelectType({model: this.model, el: this.$("#type")});
-    new JJ.Views.SelectLocation({model: this.model, el: this.$("#location")});
+    new JJ.Views.SelectArt({model: this.model, el: this.$el.find("#art")});
+    new JJ.Views.SelectType({model: this.model, el: this.$el.find("#type")});
+    new JJ.Views.SelectLocation({model: this.model, el: this.$el.find("#location")});
 		
 		// TimeSelect's
-		this.dateEl = this.$("#date");
+		this.dateEl = this.$el.find("#date");
 		var hours = [];
 		var minutes = [];
     // Set selected time formatting
@@ -608,7 +627,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 			that.timeSelects.push(
 				new JJ.Views.TimeSelect({
 					model: that.model,
-					el: that.$("#" + name),
+					el: that.$el.find("#" + name),
 					field: name,
 					dateEl: that.dateEl,
 					hours: hours,
@@ -619,7 +638,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     });
     
     // AbstractEditModelList's
-    new JJ.Views.EditDrillList({model: this.model, el: this.$("#drills")});
+    new JJ.Views.EditDrillList({model: this.model, el: this.$el.find("#drills")});
     
     // DOM JS linking
     this.linkDOM();
@@ -640,14 +659,14 @@ JJ.Views.AbstractManageModelWidget = JJ.Views.AbstractView.extend({
   events: {},
   
   toggle: function() {
-    var drop = $("#" + this.name + "-manage-drop");
+    var drop = this.$el.find("#" + this.name + "-manage-drop");
     if (drop.is(":hidden")) {
-      $("#" + this.name + "-manage-i-down").hide();
-      $("#" + this.name + "-manage-i-up").show();
+      this.$el.find("#" + this.name + "-manage-i-down").hide();
+      this.$el.find("#" + this.name + "-manage-i-up").show();
       drop.slideDown("fast");
     } else {
-      $("#" + this.name + "-manage-i-up").hide();
-      $("#" + this.name + "-manage-i-down").show();
+      this.$el.find("#" + this.name + "-manage-i-up").hide();
+      this.$el.find("#" + this.name + "-manage-i-down").show();
       drop.slideUp("fast");
     }
   },
@@ -703,7 +722,6 @@ JJ.Views.AbstractStaticPage = JJ.Views.AbstractView.extend({
   initialize: function(options) {
     this.options = options;
     this.options.links = {};
-    this.render();
   },
   
   render: function() {
@@ -741,9 +759,9 @@ JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({
    * @params: The div id to append.
    */
   addWidgetDiv: function(id) {
-    var div = $( "<div/>" );
+    var div = $("<div/>");
     div.attr("id", id);
-    $("#widgets").append(div);
+    this.$el.find("#widgets").append(div);
     return div;
   },
   

@@ -6,7 +6,6 @@
 {% endcomment %}
 
 {% block head %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/redmond/jquery-ui.css">
 {% endblock %}
 
 {% comment %}
@@ -25,7 +24,7 @@
   <script type="text/javascript" src="{% static 'bower/backbone/backbone-min.js' %}"></script>
   <script type="text/javascript" src="{% static 'libs/handlebars.runtime.js' %}"></script>
   
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script type="text/javascript" src="{% static 'bower/jquery-ui/ui/minified/jquery-ui.min.js' %}"></script>
 	
   <script type="text/javascript" src="{% static 'bower/date.format/date.format.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/templates.js' %}"></script>

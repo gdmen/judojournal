@@ -31,7 +31,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n    <div>\r\n      <div id=\"art\"></div>\r\n      <div id=\"type\"></div>\r\n    </div>\r\n    <div>\r\n      <div id=\"at\"><h2>@</h2></div>\r\n      <div id=\"location\"></div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>from:</h4>\r\n		<div id=\"start\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>until:</h4>\r\n		<div id=\"end\"></div>\r\n  </div>\r\n	\r\n  <div class=\"columns text-center\">\r\n    <div id=\"date\" name=\"";
+  buffer += "\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n		<div class=\"left\">\r\n			<div>\r\n				<div id=\"art\"></div>\r\n				<div id=\"type\"></div>\r\n			</div>\r\n			<div>\r\n				<div id=\"at\"><h2>@</h2></div>\r\n				<div id=\"location\"></div>\r\n			</div>\r\n		</div>\r\n		<div id=\"entry-save\">\r\n			<i class=\"saving save fa fa-3x fa-spinner fa-spin\"></i>\r\n			<i class=\"enabled save fa fa-3x fa-floppy-o\"></i>\r\n			<i class=\"disabled save fa fa-3x fa-check-circle-o\"></i>\r\n		</div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>from:</h4>\r\n		<div id=\"start\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>until:</h4>\r\n		<div id=\"end\"></div>\r\n  </div>\r\n	\r\n  <div class=\"columns text-center\">\r\n    <div id=\"date\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -54,7 +54,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
     + "</div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\" class=\"model-list\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\" class=\"model-list\"></div>\r\n  </div>\r\n  \r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <button class=\"expand success radius\" id=\"save\">Save Entry</button>\r\n  </div>\r\n\r\n</div>";
+  buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>";
   return buffer;
   });
 templates['models/entry/judo/view/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -99,7 +99,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "";
 
 
-  buffer += "\r\n<div class='modal'></div>\r\n<div class='click-away-overlay'></div>\r\n<button class=\"add-model\">add</button>\r\n\r\n";
+  buffer += "\r\n<div class=\"model-list\">\r\n	<div class=\"modal\"></div>\r\n	<div class=\"click-away-overlay\"></div>\r\n	<button class=\"add-model\">add</button>\r\n</div>";
   return buffer;
   });
 templates['models/entry/module/drill/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -112,11 +112,11 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":name\" value=\"";
+    + ":name\" class=\"focus\" value=\"";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" /></h4>\r\n<br />\r\n<button class=\"remove-this\">remove</button>\r\n<br />\r\n";
+    + "\" /></h4>\r\n<br />\r\n";
   stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n<br />\r\n<textarea name=\"";

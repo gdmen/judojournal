@@ -1,3 +1,27 @@
+/*
+ * http://lostechies.com/derickbailey/
+ */
+function AppView(){/*
+	 * Hacky resets since backbone seems to not do a full page refresh between pages.
+	 */
+	this.pageReset = function() {
+		// Foundation menu
+		$(".top-bar").removeClass("expanded");
+	}
+ 
+	this.showView = function(view) {
+		if (this.currentView){
+			this.currentView.close();
+		}
+
+		this.currentView = view;
+		$("#content").html(this.currentView.el);
+		this.currentView.render();
+  }
+ 
+}
+JJ.AppView = new AppView();
+
 JJ.Router = Backbone.Router.extend({
   routes: {
     "(/)": "home",
@@ -16,31 +40,21 @@ JJ.router.on('route:unknownRoute', JJ.Util.handleUnknownRoute);
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
 
-/*
- * Hacky resets since backbone seems to not do a full page refresh between pages.
- */
-function pageReset() {
-	// Foundation menu
-	$(".top-bar").removeClass("expanded");
-}
-
 function home() {
-	pageReset();
-  new JJ.Views.HomePage({el: $('#content')});
+  JJ.AppView.showView(new JJ.Views.HomePage({}));
 }
 
 function editEntry(id) {
-	pageReset();
   // # signifies a new Entry is being created.
   if (id === "#") {
     var entry = new JJ.Models.JudoEntry();
-    new JJ.Views.EditJudoEntry({model: entry, el: $('#content')});
+    JJ.AppView.showView(new JJ.Views.EditJudoEntry({model: entry}));
   } else {
   // Else load an existing Entry.
     var entry = new JJ.Models.JudoEntry({id: id});
     entry.fetch({
       success: function(m) {
-        new JJ.Views.EditJudoEntry({model: m, el: $('#content')});
+        JJ.AppView.showView(new JJ.Views.EditJudoEntry({model: m}));
       },
       error: JJ.Util.handleUnknownRoute
     });
