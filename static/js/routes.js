@@ -13,7 +13,8 @@ function AppView(){/*
 		if (this.currentView){
 			this.currentView.close();
 		}
-
+		this.pageReset();
+		
 		this.currentView = view;
 		$("#content").html(this.currentView.el);
 		this.currentView.render();

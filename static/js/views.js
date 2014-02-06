@@ -584,16 +584,17 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 		
 		// TimeSelect's
 		this.dateEl = this.$el.find("#date");
-		var hours = [];
-		var minutes = [];
     // Set selected time formatting
 		this.timeSelects = [];
     var that = this;
     ["start", "end"].forEach(function (name) {
+			var hours = [];
+			var minutes = [];
 			var datetime = that.model.get(name);
       //var selectedDate = dateFormat(datetime, JJ.Views.Util.dateFormat.date);
       var selectedHour = dateFormat(datetime, JJ.Views.Util.dateFormat.hour);
       var selectedMinute = dateFormat(datetime, JJ.Views.Util.dateFormat.min);
+			selectedMinute = String(parseInt(selectedMinute) - parseInt(selectedMinute)%5);
       var selectedPeriod = dateFormat(datetime, JJ.Views.Util.dateFormat.period);
 			var i;
 			for (i = 1; i <= 12; i++) {
@@ -604,7 +605,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 					selected: (display === selectedHour),
 				});
 			}
-			for (i = 0; i < 60; i++) {
+			for (i = 0; i < 60; i+=5) {
 				var display = i > 9 ? "" + i: "0" + i;
 				minutes.push({
 					value: i,

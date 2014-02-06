@@ -196,21 +196,34 @@ footer {
  * Entry form
  */
 .entry-form-meta {
+	overflow: hidden;
+	white-space: nowrap;
 	div {
 		display: inline-block;
+		max-width: 100%;
 		h3 {
 			margin-bottom: 0;
+			max-width: 100%;
 		}
-		&:not(:last-child),
-		div:not(:last-child) {
+	}
+	.entry-info {
+		display: block;
+    overflow: hidden;
+		white-space: normal;
+		#location {
+			display: block;
+			overflow: hidden;
+		}
+		#at {
+			float: left;
 			margin-right: 1rem;
 		}
 	}
 	.entry-save {
 		@include save($diameter: 5rem);
-		position: absolute;
-		top: 0;
-		right: $topbar-margin-bottom;
+    float: right;
+		margin: 0;
+		margin-left: 1rem;
 	}
 }
 
@@ -259,6 +272,10 @@ footer {
     .link {
       border-bottom: 1px dashed $topbar-bg;
       color: $anchor-font-color;
+			margin-right: 1rem;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
       &:hover {
 				@include opacity(0.75);
         cursor: pointer;
