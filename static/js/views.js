@@ -86,17 +86,30 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   
   /*
    * Saves this view's model.
+	 * Calls this.firstSave if the model was new.
    */
   save: function() {
     this.startSave();
+    var isNew = this.model.isNew();
     var that = this;
     this.model.save(null, {
       success: function(m) {
         that.disableSave();
+        if (isNew) {
+					that.firstSave(m);
+        }
       },
       error: JJ.Util.backboneError,
     });
   },
+	
+  /*
+	 * Called on the first time this model is saved.
+   */
+	firstSave: function(model) {
+		console.log("ABSTRACT FIRST SAVE");
+	},
+	 
   /*
    * UI handling for starting and ending saving.
    */
@@ -535,25 +548,11 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 		"change #date": "dateChanged",
   },
 	
-  /*
-   * Saves this view's model.
-   * If this is the first save, redirect to the saved-model edit page.
-   */
-  save: function() {
-    this.startSave();
-    var isNew = this.model.isNew();
-    var that = this;
-    this.model.save(null, {
-      success: function(m) {
-        that.disableSave();
-        if (isNew) {
-          console.log("REDIRECT");
-          window.location.replace(JJ.Views.Util.links.editEntry(m.get("id")));
-        }
-      },
-      error: JJ.Util.backboneError,
-    });
-  },
+  // If this is the first save, redirect to the saved-model edit page.
+	firstSave: function(model) {
+		console.log("REDIRECT");
+		window.location.replace(JJ.Views.Util.links.editEntry(model.get("id")));
+	},
 	
 	dateChanged: function(e) {
 		$.each(this.timeSelects, function(index, view) {

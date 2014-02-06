@@ -7,18 +7,22 @@ function AppView(){/*
 	this.pageReset = function() {
 		// Foundation menu
 		$(".top-bar").removeClass("expanded");
-	}
+	};
  
-	this.showView = function(view) {
+	this.clearView = function() {
+		console.log("clearView");
 		if (this.currentView){
 			this.currentView.close();
 		}
 		this.pageReset();
-		
+	};
+	
+	this.showView = function(view) {
+		console.log("showView");
 		this.currentView = view;
 		$("#content").html(this.currentView.el);
 		this.currentView.render();
-  }
+  };
  
 }
 JJ.AppView = new AppView();
@@ -46,6 +50,8 @@ function home() {
 }
 
 function editEntry(id) {
+	console.log("ROUTED");
+	JJ.AppView.clearView();
   // # signifies a new Entry is being created.
   if (id === "#") {
     var entry = new JJ.Models.JudoEntry();

@@ -1,4 +1,9 @@
 {{! entry/module/drill/edit/single }}
+<div id="{{ cid }}-save" class="modal-save disabled">
+	<i class="saving fa fa-spinner fa-spin"></i>
+	<i class="enabled fa fa-floppy-o"></i>
+	<i class="disabled fa fa-check"></i>
+</div>
 <h4><input type="text" name="{{ cid }}:name" class="focus" value="{{ name }}" /></h4>
 <br />
 {{> widgets/rating }}
