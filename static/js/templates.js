@@ -116,7 +116,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-save\" class=\"modal-save disabled\">\r\n	<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n	<i class=\"enabled fa fa-floppy-o\"></i>\r\n	<i class=\"disabled fa fa-check\"></i>\r\n</div>\r\n<input required type=\"text\" name=\"";
+    + "-save\" class=\"modal-save disabled\">\r\n	<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n	<i class=\"enabled fa fa-floppy-o\"></i>\r\n	<i class=\"disabled fa fa-check\"></i>\r\n</div>\r\n<div class=\"modal-header\">\r\n	<input required type=\"text\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -124,7 +124,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n<br />\r\n<textarea name=\"";
+    + "\" />\r\n</div>\r\n<br />\r\n<textarea name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)

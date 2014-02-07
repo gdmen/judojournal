@@ -88,12 +88,12 @@ button, .button {
 	-o-transition: background-color $duration linear;
 	-ms-transition: background-color $duration linear;
 }
-@mixin absolute-right() {
+@mixin float-right() {
 	float: right;
 	margin: 0;
 	margin-left: 1rem;
 }
-@mixin absolute-left() {
+@mixin float-left() {
 	display: block;
 	overflow: hidden;
 }
@@ -226,7 +226,7 @@ footer {
 		}
 	}
 	.entry-info {
-		@include absolute-left();
+		@include float-left();
 		#location {
 			display: block;
 			overflow: hidden;
@@ -238,7 +238,7 @@ footer {
 	}
 	.entry-save {
 		@include save($diameter: 5rem);
-		@include absolute-right();
+		@include float-right();
 	}
 }
 
@@ -360,11 +360,12 @@ footer {
 			& > div {
 				padding: 1rem;
 			}
+			.modal-header {
+				@include float-left();
+			}
 			.modal-save {
 				@include save($diameter: 5rem);
-				float: right;
-				margin: 0;
-				margin-left: 1rem;
+				@include float-right();
 			}
 		}
 	}
@@ -389,7 +390,7 @@ footer {
 			display: inline-block;
 		}
 		.buttons {
-			@include absolute-right();
+			@include float-right();
 			button {
 				margin: 0 0.25rem 0 0;
 				padding: 0.5rem;
@@ -397,7 +398,7 @@ footer {
 			}
 		}
 		.not-buttons {
-			@include absolute-left();
+			@include float-left();
 			@include text-ellipsis();
 			padding: 0.25rem;
 		}
