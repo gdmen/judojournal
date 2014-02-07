@@ -9,6 +9,7 @@
     "underscore": "latest",
     "date.format": "latest",
     "font-awesome": "latest",
-		"jquery-ui": "latest"
+		"jquery-ui": "latest",
+		"jquery-autosize": "latest"
   }
 }

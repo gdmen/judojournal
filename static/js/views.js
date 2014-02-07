@@ -148,6 +148,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   render: function() {
     this.model.hydrate();
     this.$el.html(this.template(this.model.toJSON()));
+		$("textarea").autosize();
     return this;
   },
 });

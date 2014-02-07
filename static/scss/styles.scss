@@ -90,8 +90,7 @@ button, .button {
 }
 @mixin float-right() {
 	float: right;
-	margin: 0;
-	margin-left: 1rem;
+	margin: 0 0 1rem 1rem;
 }
 @mixin float-left() {
 	display: block;
