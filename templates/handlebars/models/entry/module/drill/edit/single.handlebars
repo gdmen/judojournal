@@ -4,6 +4,6 @@
 	<i class="enabled fa fa-floppy-o"></i>
 	<i class="disabled fa fa-check"></i>
 </div>
-<input type="text" name="{{ cid }}:name" class="focus" placeholder="Name" value="{{ name }}" />
+<input required type="text" name="{{ cid }}:name" class="focus" placeholder="Name" value="{{ name }}" />
 <br />
-<div title="{{ cid }}:details" class="content-editable" contentEditable="true" data-placeholder="Details">{{ details }}</div>
+<textarea name="{{ cid }}:details" placeholder="Details">{{ details }}</textarea>
