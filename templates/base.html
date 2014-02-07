@@ -85,7 +85,7 @@
 				var that = $(this);
 				if (that.data("before") !== that.html()) {
 					that.data("before", that.html());
-					that.trigger("focusout");
+					that.trigger("focusoutWithChange");
 				}
 				return that;
 			});

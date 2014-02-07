@@ -50,7 +50,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
     "change textarea": "change",
     "change select": "change",
     "change div[contenteditable='true']": "throttledChange",
-    "focusout div[contenteditable='true']": "change",
+    "focusoutWithChange div[contenteditable='true']": "change",
   },
   
   // For subclasses to add events.
@@ -93,6 +93,8 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 		if ((time - this.previousCall) >= 1000) {
 			this.previousCall = time;
 			this.change(e);
+		} else {
+			$(e.currentTarget).data("before", "");
 		}
 	},
 	//JJ.Util.throttle(this.change, 1000),
