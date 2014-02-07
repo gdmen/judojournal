@@ -183,7 +183,7 @@ body.active-modal {
 }
 body.touch {
 	.content-editable:focus {
-		font-size: 1rem;
+		font-size: 1rem !important;
 	}
 }
 .content-editable {

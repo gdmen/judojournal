@@ -12439,7 +12439,7 @@ body.active-modal {
 
 /* line 185, ../scss/styles.scss */
 body.touch .content-editable:focus {
-  font-size: 1rem;
+  font-size: 1rem !important;
 }
 
 /* line 189, ../scss/styles.scss */
