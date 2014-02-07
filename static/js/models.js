@@ -4,6 +4,20 @@
  * Tastypie Models avoid redirects for ending '/'s and have recursive toJSON()
  */
 JJ.Models.Tastypie = Backbone.Model.extend({
+  
+  /*
+   * [gdm] Expands elements for easier manipulation.
+   */
+  hydrate: function() {
+		console.log("HYDRATING ENTRY " + this.cid);
+  },
+  /*
+   * [gdm] Dehydrates elements for saving.
+   */
+  dehydrate: function() {
+		console.log("DEHYDRATING ENTRY " + this.cid);
+  },
+
   base_url: function() {
     var temp_url = Backbone.Model.prototype.url.call(this);
     return (temp_url.charAt(temp_url.length - 1) === "/" ? temp_url : temp_url+"/");
@@ -20,7 +34,7 @@ JJ.Models.Tastypie = Backbone.Model.extend({
     this._isSerializing = true;
     var json = _.clone(this.attributes);
     _.each(json, function(value, name) {
-      _.isFunction(value.toJSON) && (value[name] = value.toJSON());
+      _.isFunction(value.toJSON) && (json[name] = value.toJSON());
     });
     this._isSerializing = false;
     // Also return cid
@@ -127,9 +141,9 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 	},
   
   /*
-   * Expands JSON elements for easier manipulation.
+   * Expands elements for easier manipulation.
    */
-  stayHydrated: function() {
+  hydrate: function() {
 		console.log("HYDRATING ENTRY " + this.cid);
     var start = this.get("start");
     if (!(start instanceof Date)) {
@@ -144,6 +158,19 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
       var drill = drills[i];
       if (!(drill instanceof JJ.Models.DrillEntryModule)) {
         drills[i] = new JJ.Models.DrillEntryModule(drill);
+      }
+    }
+  },
+  
+  /*
+   * Dehydrates elements for saving.
+   */
+  dehydrate: function() {
+		console.log("DEHYDRATING ENTRY " + this.cid);
+    var drills = this.get("drills");
+    for (var i=drills.length; i--;) {
+      if (!_.isString(drills[i])) {
+        drills[i] = drills[i].get("resource_uri");
       }
     }
   },

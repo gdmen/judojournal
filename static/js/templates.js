@@ -56,7 +56,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   else { helper = (depth0 && depth0.post_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
-  stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
+  stack1 = self.invokePartial(partials['widgets/rating/edit'], 'widgets/rating/edit', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>";
   return buffer;
@@ -99,11 +99,27 @@ function program1(depth0,data) {
   });
 templates['models/entry/module/drill/edit/list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "";
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n		<div>\r\n			";
+  stack1 = self.invokePartial(partials['models/entry/module/drill/view/brief'], 'models/entry/module/drill/view/brief', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n			<button id=\"";
+  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "-delete\"class=\"delete-model\">delete</button>\r\n		</div>\r\n	";
+  return buffer;
+  }
 
-  buffer += "\r\n<div class=\"model-list\">\r\n	<div class=\"modal\"></div>\r\n	<div class=\"click-away-overlay\"></div>\r\n	<button class=\"add-model\">add</button>\r\n</div>";
+  buffer += "\r\n<div class=\"list-controls\">\r\n	<div class=\"modal\"></div>\r\n	<div class=\"click-away-overlay\"></div>\r\n	<button class=\"add-model\">add</button>\r\n</div>\r\n<div class=\"model-list\">\r\n	";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</div>";
   return buffer;
   });
 templates['models/entry/module/drill/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -116,26 +132,41 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-save\" class=\"modal-save disabled\">\r\n	<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n	<i class=\"enabled fa fa-floppy-o\"></i>\r\n	<i class=\"disabled fa fa-check\"></i>\r\n</div>\r\n<h4><input type=\"text\" name=\"";
+    + "-save\" class=\"modal-save disabled\">\r\n	<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n	<i class=\"enabled fa fa-floppy-o\"></i>\r\n	<i class=\"disabled fa fa-check\"></i>\r\n</div>\r\n<div title=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":name\" class=\"focus\" value=\"";
+    + ":name\" class=\"content-editable single-line focus\" contentEditable=\"true\" data-placeholder=\"Name\">";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" /></h4>\r\n<br />\r\n";
-  stack1 = self.invokePartial(partials['widgets/rating'], 'widgets/rating', depth0, helpers, partials, data);
+    + "</div>\r\n<br />\r\n";
+  stack1 = self.invokePartial(partials['widgets/rating/edit'], 'widgets/rating/edit', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n<br />\r\n<textarea name=\"";
+  buffer += "\r\n<br />\r\n<div title=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":details\"> ";
+    + ":details\" class=\"content-editable\" contentEditable=\"true\" data-placeholder=\"Details\">";
   if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>";
+    + "</div>";
+  return buffer;
+  });
+templates['models/entry/module/drill/view/brief'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+
+  buffer += "\r\n<h4>";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h4>\r\n";
+  stack1 = self.invokePartial(partials['widgets/rating/view'], 'widgets/rating/view', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;
   });
 templates['models/entry/singleSelect'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -409,7 +440,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "-manage-drop\" class=\"manage-drop hide\">\r\n    <ul>\r\n      <li><a href=\"#\">This is a link</a></li>\r\n      <li><a href=\"#\">This is another</a></li>\r\n      <li><a href=\"#\">Yet another</a></li>\r\n    </ul>\r\n  </div>\r\n</div>";
   return buffer;
   });
-templates['widgets/rating'] = template(function (Handlebars,depth0,helpers,partials,data) {
+templates['widgets/rating/edit'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -477,6 +508,14 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   buffer += escapeExpression(stack1)
     + ":rating\" value=\"5\" />\r\n    <img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n  </label>\r\n</div>";
   return buffer;
+  });
+templates['widgets/rating/view'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"rating\">\r\n	<img src=\"http://digitod.com/wp-content/uploads/2013/04/smiley-face.png\">\r\n</div>";
   });
 templates['widgets/time'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -559,7 +598,7 @@ function program7(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"time-select\">\r\n	";
+  buffer += "\r\n<div class=\"time-select\">\r\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.hours), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n	";

@@ -45,8 +45,8 @@ class Location(HasUserModel):
 class AbstractEntry(HasUserModel, HasRatingModel):
   start = models.DateTimeField()
   end = models.DateTimeField()
-  pre_status = models.TextField(blank=True)
-  post_status = models.TextField(blank=True)
+  #pre_status = models.TextField(blank=True)
+  #post_status = models.TextField(blank=True)
   art = models.ForeignKey(Art)
   type = models.ForeignKey(Type)
   location = models.ForeignKey(Location)
@@ -54,27 +54,32 @@ class AbstractEntry(HasUserModel, HasRatingModel):
   class Meta:
     abstract = True
     
-class AbstractEntryModule(HasUserModel, HasRatingModel):
+class AbstractModule(HasUserModel):
   details = models.TextField(blank=True)
   class Meta:
     abstract = True
+
+# Notes
+class NoteModule(AbstractModule):
+  title = models.TextField()
 
 """
   Judo, BJJ entry
 """
 # Drills
-class DrillEntryModule(AbstractEntryModule):
+class DrillModule(AbstractModule):
   name = models.TextField()
 
 # Sparring
-class SparringEntryModule(AbstractEntryModule):
+class SparringModule(AbstractModule):
   partner = models.CharField(max_length=140, blank=True)
   # duration
   minutes = models.DecimalField(max_digits=5, decimal_places=2, null=True)
 
 class JudoEntry(AbstractEntry):
-  drills = models.ManyToManyField(DrillEntryModule, blank=True, null=True)
-  sparring = models.ManyToManyField(SparringEntryModule, blank=True, null=True)
+  drills = models.ManyToManyField(DrillModule, blank=True, null=True)
+  sparring = models.ManyToManyField(SparringModule, blank=True, null=True)
+  notes = models.ManyToManyField(NoteModule, blank=True, null=True)
 
 """
   Stand-Alone Models

@@ -91,6 +91,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   save: function() {
     this.startSave();
     var isNew = this.model.isNew();
+		this.model.dehydrate();
     var that = this;
     this.model.save(null, {
       success: function(m) {
@@ -115,6 +116,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
    */
   startSave: function() {
 		console.log("**********START SAVING**********");
+		console.log(this.model.cid);
 		this.$el.find(this.selectors.save).removeClass("enabled disabled");
 		this.$el.find(this.selectors.save).addClass("saving");
   },
@@ -126,6 +128,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 	},
   disableSave: function() {
 		console.log("**********DONE SAVING**********");
+		console.log(this.model.cid);
 		this.$el.find(this.selectors.save).removeClass("enabled saving");
 		this.$el.find(this.selectors.save).addClass("disabled");
   },
@@ -152,10 +155,18 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["models/entry/module/drill/edit/single"],
   extendEvents: {
   },
-  
-  initialize: function(options) {
-    this.render();
-  },
+	
+  // If this is the first save, add to parentList.
+	firstSave: function(model) {
+		console.log("EditDrill firstSave");
+		this.parentList.addModel(model);
+	},
+	
+	initialize: function(options) {
+		this.parentList = options.parentList;
+		console.log(this.parentList);
+		return JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
+	},
 });
 
 /************************************************************
@@ -375,13 +386,19 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   insertViewConstructor: null,
   insertModelConstructor: null,
   events: {
-    "click .add-model": "createModel",
+    "click .add-model": "newModel",
     "click .click-away-overlay": "hideModal",
+		"click .delete-model": "deleteModel",
     //"click .add-model": "addModel",
   },
 	
   showModal: function(model) {
-    new this.insertViewConstructor({model: model, el: this.$el.find(this.selectors.modal)});
+		if (this.currentModalView) {
+			this.currentModalView.close();
+		}
+    this.currentModalView = new this.insertViewConstructor({model: model, parentList: this});
+		this.$el.find(this.selectors.modal).html(this.currentModalView.el);
+		this.currentModalView.render();
 		
     this.$el.find(this.selectors.modal).show();
     this.$el.find(this.selectors.focus).focus();
@@ -396,79 +413,82 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   /*
    * Spawns creation modal.
    */
-	createModel: function(e) {
+	newModel: function(e) {
     var model = new this.insertModelConstructor();
 		this.showModal(model);
 	},
 	
   /*
-   * Adds a new model to the parent model's list.
+   * Adds a saved model to the parent model's list.
    */
-  addModel: function(e) {
+  addModel: function(model) {
     console.log("addModel");
-    var model = new this.insertModelConstructor();
-    var that = this;
-    model.save(null, {
-      success: function(m) {
-        console.log("SAVED new model...");
-        console.log(m);
-        that.modelArray.push(m);
-        that.addView(m);
-        console.log(that.modelArray);
-      },
-      error: console.log.backboneError,
-    });
+		if (_.isUndefined(model.get("id"))) {
+			console.log("THIS IS A BIG PROBLEM");
+		}
+		this.modelArray.push(model);
+		this.model.set(this.field, this.modelArray);
+		console.log(this.model.get(this.field));
+		this.render();
   },
   
+	/*
+	 * Removes parent div and then removes model.
+	 */
+	deleteModel: function(e) {
+		var div = $(e.currentTarget).parent();
+    var cid = e.currentTarget.id.split("-")[0];
+		
+		for (var i=0; i < this.modelArray.length; i++) {
+			if (this.modelArray[i].cid === cid) {
+				this.removeModel(this.modelArray[i]);
+			}
+		}
+		
+		div.unbind();
+		div.remove();
+	},
+	
   /*
-   * Backbone destroys a model and removes it from the parent model's list.
+   * Removes model by:
+	 * - removing from parent model's list
+	 * - //backbone-destroying
+	 *  (currently not doing this in order to preserve manual entry saving idiom)
    */
-  removeModel: function(m) {
+  removeModel: function(model) {
     console.log("removeModel");
-    var that = this;
-    m.destroy({
+		var index = this.modelArray.indexOf(model);
+		this.modelArray.splice(index, 1);
+		this.model.set(this.field, this.modelArray);
+		
+    /*var that = this;
+    model.destroy({
       success: function(m) {
         console.log("Destroyed a model...");
         console.log(m);
-        var index = that.modelArray.indexOf(m);
-        that.modelArray.splice(index, 1);
-        console.log(that.modelArray);
       },
       error: console.log.backboneError,
-    });
-  },
-  
-  /*
-   * Appends a new model view to this view's container.
-   * @params: The model to append.
-   */
-  addView: function(m) {
-    console.log("addView");
-    var id = m.get("resource_uri");
-    var div = $("<div/>");
-    div.attr("id", id);
-    this.$el.append(div);
-    new this.insertViewConstructor({model: m, el: this.$el.find(document.getElementById(id))});
+    });*/
   },
   
   initialize: function(options) {
-    this.modelArray = options.model.get(this.field);
+		this.listViews = [];
 		
     var vs = {};
-    vs.div = ".model-list";
-    vs.clickAway = vs.div + " .click-away-overlay";
-    vs.modal = vs.div + " .modal";
-		vs.focus = vs.div + " .focus";
+		vs.controls = ".list-controls";
+    vs.clickAway = vs.controls + " .click-away-overlay";
+    vs.modal = vs.controls + " .modal";
+		vs.focus = vs.controls + " .focus";
+    vs.list = ".model-list";
     
     this.selectors = vs;
     this.render();
   },
   
   render: function() {
-    this.$el.html(this.template());
-    for (var i=0; i < this.modelArray.length; i++) {
-      this.addView(this.modelArray[i]);
-    }
+    this.modelArray = this.model.get(this.field).slice(0);
+		var json = {models: JSON.parse(JSON.stringify(this.modelArray))};
+    this.$el.html(this.template(json));
     return this;
   },
 });
@@ -511,7 +531,7 @@ JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
 			console.log("Set " + this.field + " time:");
 			console.log(this.model.get(this.field));
 		} else {
-			console.log("DID NOT set " + this.field + " time.");
+			console.log("PROBLEMS: DID NOT set " + this.field + " time.");
 		}
 	},
   
@@ -572,7 +592,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   },
   
   render: function() {
-    this.model.stayHydrated();
+    this.model.hydrate();
     var json = this.model.toJSON();
     this.$el.html(this.template(json));
     

@@ -12595,22 +12595,28 @@ footer div p:last-child {
   margin-left: 2px;
   color: #b3b3b3;
 }
+/* line 245, ../scss/styles.scss */
+.content-editable.single-line {
+  min-height: 2em;
+  text-overflow: scroll;
+  white-space: nowrap;
+}
 
 /*
  * Time select (Entry form)
  */
-/* line 250, ../scss/styles.scss */
+/* line 255, ../scss/styles.scss */
 #date {
   display: inline-block;
 }
 
-/* line 253, ../scss/styles.scss */
+/* line 258, ../scss/styles.scss */
 #start, #end {
   display: inline-block;
   margin: 0 auto;
 }
 
-/* line 258, ../scss/styles.scss */
+/* line 263, ../scss/styles.scss */
 .time-select select {
   background-color: #fff;
   width: auto;
@@ -12619,11 +12625,11 @@ footer div p:last-child {
 /*
  * Select widget (Entry form)
  */
-/* line 268, ../scss/styles.scss */
+/* line 273, ../scss/styles.scss */
 .single-select .select-input {
   display: none;
 }
-/* line 272, ../scss/styles.scss */
+/* line 277, ../scss/styles.scss */
 .single-select .select-display .link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
@@ -12632,7 +12638,7 @@ footer div p:last-child {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 279, ../scss/styles.scss */
+/* line 284, ../scss/styles.scss */
 .single-select .select-display .link:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -12641,16 +12647,16 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 285, ../scss/styles.scss */
+/* line 290, ../scss/styles.scss */
 .single-select .select-display .link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 289, ../scss/styles.scss */
+/* line 294, ../scss/styles.scss */
 .single-select .select-display .link i {
   color: #222222;
 }
-/* line 294, ../scss/styles.scss */
+/* line 299, ../scss/styles.scss */
 .single-select .select-drop {
   background-color: #fff;
   display: none;
@@ -12659,19 +12665,19 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 301, ../scss/styles.scss */
+/* line 306, ../scss/styles.scss */
 .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 305, ../scss/styles.scss */
+/* line 310, ../scss/styles.scss */
 .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 310, ../scss/styles.scss */
+/* line 315, ../scss/styles.scss */
 .single-select .select-drop .select-search i {
   color: gray;
   padding: 0.28572rem;
@@ -12679,26 +12685,26 @@ footer div p:last-child {
   right: 0;
   top: 0;
 }
-/* line 318, ../scss/styles.scss */
+/* line 323, ../scss/styles.scss */
 .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 322, ../scss/styles.scss */
+/* line 327, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 325, ../scss/styles.scss */
+/* line 330, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 328, ../scss/styles.scss */
+/* line 333, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 333, ../scss/styles.scss */
+/* line 338, ../scss/styles.scss */
 .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
@@ -12707,25 +12713,95 @@ footer div p:last-child {
 /*
  * Creation form modal
  */
-/* line 343, ../scss/styles.scss */
-.model-list {
+/* line 348, ../scss/styles.scss */
+.list-controls {
   position: relative;
 }
-/* line 345, ../scss/styles.scss */
-.model-list .modal {
+/* line 350, ../scss/styles.scss */
+.list-controls .modal {
   background-color: #fff;
   display: none;
   top: 0.5rem;
-  left: 25%;
+  left: 5%;
   position: fixed;
-  right: 25%;
+  right: 5%;
   z-index: 9999998;
+}
+/* line 358, ../scss/styles.scss */
+.list-controls .modal .modal-save {
+  -webkit-border-radius: 2.5rem;
+  border-radius: 2.5rem;
+  height: 5rem;
+  text-align: center;
+  width: 5rem;
+  float: right;
+  margin: 0;
+  margin-left: 1rem;
+}
+/* line 95, ../scss/styles.scss */
+.list-controls .modal .modal-save.disabled {
+  -webkit-transition: background-color 500ms linear;
+  -moz-transition: background-color 500ms linear;
+  -o-transition: background-color 500ms linear;
+  -ms-transition: background-color 500ms linear;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+/* line 98, ../scss/styles.scss */
+.list-controls .modal .modal-save.disabled i.enabled, .list-controls .modal .modal-save.disabled i.saving {
+  display: none;
+}
+/* line 101, ../scss/styles.scss */
+.list-controls .modal .modal-save.disabled i.disabled {
+  display: inline-block;
+}
+/* line 105, ../scss/styles.scss */
+.list-controls .modal .modal-save.enabled {
+  -webkit-transition: background-color 500ms linear;
+  -moz-transition: background-color 500ms linear;
+  -o-transition: background-color 500ms linear;
+  -ms-transition: background-color 500ms linear;
+  background-color: #22bf64;
+}
+/* line 108, ../scss/styles.scss */
+.list-controls .modal .modal-save.enabled:hover {
+  filter: alpha(opactiy=75);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+  cursor: pointer;
+}
+/* line 112, ../scss/styles.scss */
+.list-controls .modal .modal-save.enabled i.disabled, .list-controls .modal .modal-save.enabled i.saving {
+  display: none;
+}
+/* line 115, ../scss/styles.scss */
+.list-controls .modal .modal-save.enabled i.enabled {
+  display: inline-block;
+}
+/* line 119, ../scss/styles.scss */
+.list-controls .modal .modal-save.saving {
+  background-color: #f76565;
+}
+/* line 121, ../scss/styles.scss */
+.list-controls .modal .modal-save.saving i.enabled, .list-controls .modal .modal-save.saving i.disabled {
+  display: none;
+}
+/* line 124, ../scss/styles.scss */
+.list-controls .modal .modal-save.saving i.saving {
+  display: inline-block;
+}
+/* line 128, ../scss/styles.scss */
+.list-controls .modal .modal-save i {
+  color: #fff;
+  font-size: 3.33333rem;
+  padding: 0.83333rem 0;
 }
 
 /*
  * Manage widget
  */
-/* line 361, ../scss/styles.scss */
+/* line 374, ../scss/styles.scss */
 .manage-widget .manage-header {
   *zoom: 1;
   -moz-border-radius-bottomleft: 3px;
@@ -12747,11 +12823,11 @@ footer div p:last-child {
 .manage-widget .manage-header:after {
   clear: both;
 }
-/* line 367, ../scss/styles.scss */
+/* line 380, ../scss/styles.scss */
 .manage-widget .manage-header a, .manage-widget .manage-header .link {
   padding: 1em;
 }
-/* line 369, ../scss/styles.scss */
+/* line 382, ../scss/styles.scss */
 .manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
   color: white;
   height: 1em;
@@ -12759,26 +12835,26 @@ footer div p:last-child {
   margin: 0;
   padding: 0;
 }
-/* line 377, ../scss/styles.scss */
+/* line 390, ../scss/styles.scss */
 .manage-widget .manage-header a.left {
   width: 100%;
 }
-/* line 380, ../scss/styles.scss */
+/* line 393, ../scss/styles.scss */
 .manage-widget .manage-header div.right {
   border-left: 1px solid #206691;
   position: absolute;
   right: 0;
 }
-/* line 384, ../scss/styles.scss */
+/* line 397, ../scss/styles.scss */
 .manage-widget .manage-header div.right:hover {
   cursor: pointer;
 }
-/* line 389, ../scss/styles.scss */
+/* line 402, ../scss/styles.scss */
 .manage-widget .manage-drop {
   display: none;
   margin-left: 1.5px;
 }
-/* line 392, ../scss/styles.scss */
+/* line 405, ../scss/styles.scss */
 .manage-widget .manage-drop ul {
   background-color: #2c8ec9;
   margin: 0;
@@ -12788,18 +12864,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 403, ../scss/styles.scss */
+/* line 416, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 406, ../scss/styles.scss */
+/* line 419, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 410, ../scss/styles.scss */
+/* line 423, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
@@ -12809,20 +12885,20 @@ footer div p:last-child {
 /*
  * Widgets
  */
-/* line 421, ../scss/styles.scss */
+/* line 434, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 423, ../scss/styles.scss */
+/* line 436, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-/* line 426, ../scss/styles.scss */
+/* line 439, ../scss/styles.scss */
 .rating label input[type=radio] + img {
   border: 2px solid transparent;
   cursor: pointer;
 }
-/* line 430, ../scss/styles.scss */
+/* line 443, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
   border: 2px solid #f00;
 }

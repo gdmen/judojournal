@@ -1,6 +1,14 @@
-{{! entry/module/drill/edit/list }}
-<div class="model-list">
+{{! models/entry/module/drill/edit/list }}
+<div class="list-controls">
 	<div class="modal"></div>
 	<div class="click-away-overlay"></div>
 	<button class="add-model">add</button>
+</div>
+<div class="model-list">
+	{{#each models}}
+		<div>
+			{{> models/entry/module/drill/view/brief }}
+			<button id="{{ cid }}-delete"class="delete-model">delete</button>
+		</div>
+	{{/each}}
 </div>

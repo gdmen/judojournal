@@ -242,6 +242,11 @@ footer {
     margin-left: 2px;
     color: #b3b3b3;
 	}
+	&.single-line {
+		min-height: 2em;
+		text-overflow: scroll;
+		white-space: nowrap;
+	}
 }
 
 /*
@@ -340,17 +345,23 @@ footer {
 /*
  * Creation form modal
  */
-.model-list {
+.list-controls {
 	position: relative;
 	.modal {
 		background-color: #fff;
 		display: none;
 		top: 0.5rem;
-		left: 25%;
 		position: fixed;
-		right: 25%;
 		z-index: $max-z-index;
+		.modal-save {
+			@include save($diameter: 5rem);
+			float: right;
+			margin: 0;
+			margin-left: 1rem;
+		}
 	}
+}
+.model-list {
 }
 
 /*

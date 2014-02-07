@@ -51,27 +51,35 @@ class LocationResource(HasUserResource):
   def obj_create(self, bundle, **kwargs):
     return super(LocationResource, self).obj_create(bundle, user=bundle.request.user)
 
-class DrillEntryModuleResource(HasUserResource):
+class NoteModuleResource(HasUserResource):
   class Meta(HasUserResource.Meta):
-    queryset = DrillEntryModule.objects.all()
-    resource_name = 'entry/module/drill'
+    queryset = NoteModule.objects.all()
+    resource_name = 'module/note'
   def obj_create(self, bundle, **kwargs):
-    return super(DrillEntryModuleResource, self).obj_create(bundle, user=bundle.request.user)
+    return super(NoteModuleResource, self).obj_create(bundle, user=bundle.request.user)
 
-class SparringEntryModuleResource(HasUserResource):
+class DrillModuleResource(HasUserResource):
   class Meta(HasUserResource.Meta):
-    queryset = SparringEntryModule.objects.all()
-    resource_name = 'entry/module/sparring'
+    queryset = DrillModule.objects.all()
+    resource_name = 'module/drill'
   def obj_create(self, bundle, **kwargs):
-    return super(SparringEntryModuleResource, self).obj_create(bundle, user=bundle.request.user)
+    return super(DrillModuleResource, self).obj_create(bundle, user=bundle.request.user)
+
+class SparringModuleResource(HasUserResource):
+  class Meta(HasUserResource.Meta):
+    queryset = SparringModule.objects.all()
+    resource_name = 'module/sparring'
+  def obj_create(self, bundle, **kwargs):
+    return super(SparringModuleResource, self).obj_create(bundle, user=bundle.request.user)
 
 class JudoEntryResource(HasUserResource):
   art = fields.ToOneField(ArtResource, 'art', full=True)
   type = fields.ToOneField(TypeResource, 'type', full=True)
   location = fields.ToOneField(LocationResource, 'location', full=True)
   goals = fields.ToManyField(GoalInstanceResource, 'goals', blank=True, null=True, full=True)
-  drills = fields.ToManyField(DrillEntryModuleResource, 'drills', blank=True, null=True, full=True)
-  sparring = fields.ToManyField(SparringEntryModuleResource, 'sparring', blank=True, null=True, full=True)
+  drills = fields.ToManyField(DrillModuleResource, 'drills', blank=True, null=True, full=True)
+  sparring = fields.ToManyField(SparringModuleResource, 'sparring', blank=True, null=True, full=True)
+  notes = fields.ToManyField(NoteModuleResource, 'notes', blank=True, null=True, full=True)
   class Meta(HasUserResource.Meta):
     queryset = JudoEntry.objects.all()
     resource_name = 'entry/judo'
