@@ -92,6 +92,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 	 * Calls this.firstSave if the model was new.
    */
   save: function() {
+		console.log(this);
     this.startSave();
 		var model = this.model;
     var isNew = model.isNew();
@@ -120,8 +121,8 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
    * UI handling for starting and ending saving.
    */
   startSave: function() {
-		//console.log("**********START SAVING**********");
-		//console.log(this.model.cid);
+		console.log("**********START SAVING**********");
+		console.log(this.model.cid);
 		this.$el.find(this.selectors.save).removeClass("enabled disabled");
 		this.$el.find(this.selectors.save).addClass("saving");
   },
@@ -143,11 +144,15 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 		this.selectors["save"] = "#" + this.model.cid + "-save";
 		this.baseEvents["click " + this.selectors.save + ".enabled"] = "save";
 		this.model.on("change", this.enableSave, this);
+		// TODO - fix where this is used. It's weird.
+		this.model.parentView = this;
   },
   
   render: function() {
     this.model.hydrate();
     this.$el.html(this.template(this.model.toJSON()));
+		// TODO: Not sure that this is a good  place for this. Should either be
+		// less specific or more specific.
 		$("textarea").autosize();
     return this;
   },
@@ -162,15 +167,15 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
   extendEvents: {
   },
 	
-  // If this is the first save, add to parentList.
+  // If this is the first save, add to parentView.
 	firstSave: function(model) {
 		console.log("EditDrill firstSave");
-		this.parentList.addModel(model);
+		this.parentView.addModel(model);
 	},
 	
 	initialize: function(options) {
-		this.parentList = options.parentList;
-		console.log(this.parentList);
+		this.parentView = options.parentView;
+		console.log(this.parentView);
 		return JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
 	},
 });
@@ -396,14 +401,13 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     "click .click-away-overlay": "hideModal",
 		"click .edit-model": "editModel",
 		"click .delete-model": "deleteModel",
-    //"click .add-model": "addModel",
   },
 	
   showModal: function(model) {
 		if (this.currentModalView) {
 			this.currentModalView.close();
 		}
-    this.currentModalView = new this.insertViewConstructor({model: model, parentList: this});
+    this.currentModalView = new this.insertViewConstructor({model: model, parentView: this});
 		this.$el.find(this.selectors.modal).html(this.currentModalView.el);
 		this.currentModalView.render();
 		this.$el.find(this.selectors.modalWrapper).show();
@@ -428,16 +432,21 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 	
   /*
    * Adds a saved model to the parent model's list.
+	 * Triggers ui save for parent model's view.
    */
   addModel: function(model) {
     console.log("addModel");
 		if (_.isUndefined(model.get("id"))) {
 			console.log("THIS IS A BIG PROBLEM");
+			return;
 		}
 		this.modelArray.push(model);
-		this.model.set(this.field, this.modelArray);
-		console.log(this.model.get(this.field));
+		
+		params = {};
+		params[this.field] = this.modelArray;
+		this.model.set(params);
 		this.render();
+		this.model.parentView.save();
   },
   
 	/*
@@ -507,7 +516,6 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		console.log("WIDTH:" + clickAway.width());
 		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
 		modalWrapper.hide();
-		//clickAway.css("right", JJ.Util.scrollbarWidth());
     return this;
   },
 });

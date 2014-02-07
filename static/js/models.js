@@ -109,7 +109,6 @@ JJ.Models.LocationCollection = JJ.Models.TastypieCollection.extend({
 JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/module/drill/",
   defaults: {
-    rating: "3",
   }
 });
 
@@ -119,7 +118,6 @@ JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
 JJ.Models.SparringEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/module/sparring/",
   defaults: {
-    rating: "3",
   }
 });
 
@@ -173,7 +171,9 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
     for (var i=0; i < drills.length; i++) {
       if (drills[i] instanceof JJ.Models.DrillEntryModule) {
         drills[i] = drills[i].get("resource_uri");
-      }
+      } else {
+				console.log(drills[i]);
+			}
     }
 		return clone;
   },
