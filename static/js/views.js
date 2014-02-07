@@ -49,7 +49,8 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
     "change input": "change",
     "change textarea": "change",
     "change select": "change",
-    "change div[contenteditable='true']": "change",
+    "change div[contenteditable='true']": "throttledChange",
+    "focusout div[contenteditable='true']": "change",
   },
   
   // For subclasses to add events.
@@ -69,7 +70,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 		} else {
 			name = e.currentTarget.title;
 		}
-    console.log("Changed: " + name);
+    //console.log("Changed: " + name);
     var splitName = name.split(":");
     if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
@@ -80,9 +81,21 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 				value = $(e.currentTarget).html();
 			}
       this.model.set(field, value);
-      console.log("Set " + field + " to " + value + " in " + this.model.cid);
+			console.log(value.length);
+      //console.log("Set " + field + " to " + value + " in " + this.model.cid);
     }
   },
+	
+	previousCall: new Date().getTime(),
+	throttledChange: function(e) {
+		var time = new Date().getTime();
+		console.log("t");
+		if ((time - this.previousCall) >= 1000) {
+			this.previousCall = time;
+			this.change(e);
+		}
+	},
+	//JJ.Util.throttle(this.change, 1000),
   
   /*
    * Saves this view's model.
@@ -90,14 +103,16 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
    */
   save: function() {
     this.startSave();
-    var isNew = this.model.isNew();
-		this.model.dehydrate();
+		var model = this.model;
+    var isNew = model.isNew();
+		var clone = model.dehydrated();
     var that = this;
-    this.model.save(null, {
+    clone.save(null, {
       success: function(m) {
         that.disableSave();
         if (isNew) {
-					that.firstSave(m);
+					model.set({id: m.get("id"), resource_uri: m.get("resource_uri")}, {silent: true});
+					that.firstSave(model);
         }
       },
       error: JJ.Util.backboneError,
@@ -115,20 +130,20 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
    * UI handling for starting and ending saving.
    */
   startSave: function() {
-		console.log("**********START SAVING**********");
-		console.log(this.model.cid);
+		//console.log("**********START SAVING**********");
+		//console.log(this.model.cid);
 		this.$el.find(this.selectors.save).removeClass("enabled disabled");
 		this.$el.find(this.selectors.save).addClass("saving");
   },
 	enableSave: function() {
-		console.log("**********ENABLED**********");
-		console.log(this.model.cid);
+		//console.log("**********ENABLED**********");
+		//console.log(this.model.cid);
 		this.$el.find(this.selectors.save).removeClass("disabled saving");
 		this.$el.find(this.selectors.save).addClass("enabled");
 	},
   disableSave: function() {
-		console.log("**********DONE SAVING**********");
-		console.log(this.model.cid);
+		//console.log("**********DONE SAVING**********");
+		//console.log(this.model.cid);
 		this.$el.find(this.selectors.save).removeClass("enabled saving");
 		this.$el.find(this.selectors.save).addClass("disabled");
   },
@@ -137,11 +152,11 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 		this.selectors = {};
 		this.selectors["save"] = "#" + this.model.cid + "-save";
 		this.baseEvents["click " + this.selectors.save + ".enabled"] = "save";
-		console.log(this.baseEvents);
 		this.model.on("change", this.enableSave, this);
   },
   
   render: function() {
+    this.model.hydrate();
     this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
@@ -439,11 +454,14 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 	 */
 	deleteModel: function(e) {
 		var buttonDiv = $(e.currentTarget).parent();
-    var cid = buttonDiv.attr("id").split("-")[0];
+    var uri = buttonDiv.data("uri").split("-")[0];
+		console.log(buttonDiv.data("uri"));
+		console.log(uri);
 		
 		for (var i=0; i < this.modelArray.length; i++) {
-			if (this.modelArray[i].cid === cid) {
-				this.removeModel(this.modelArray[i]);
+			if ((!_.isUndefined(this.modelArray[i].get) && this.modelArray[i].get("resource_uri") === uri)
+				 || (this.modelArray[i] === uri)) {
+				this.removeModel(i);
 			}
 		}
 		
@@ -458,9 +476,8 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 	 * - //backbone-destroying
 	 *  (currently not doing this in order to preserve manual entry saving idiom)
    */
-  removeModel: function(model) {
+  removeModel: function(index) {
     console.log("removeModel");
-		var index = this.modelArray.indexOf(model);
 		this.modelArray.splice(index, 1);
 		this.model.set(this.field, this.modelArray);
 		
@@ -603,7 +620,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   },
   
   render: function() {
-    this.model.hydrate();
+		this.model.hydrate();
     var json = this.model.toJSON();
     this.$el.html(this.template(json));
     

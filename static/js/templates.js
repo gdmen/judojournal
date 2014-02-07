@@ -89,11 +89,11 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n		<li>\r\n			<div id=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += "\r\n		<li>\r\n			<div class=\"buttons\" data-uri=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-buttons\" class=\"buttons\">\r\n				<button class=\"tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n				<button class=\"tiny alert radius delete-model\">remove</button>\r\n			</div>\r\n			<div class=\"not-buttons\">\r\n				";
+    + "\">\r\n				<button class=\"tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n				<button class=\"tiny alert radius delete-model\">remove</button>\r\n			</div>\r\n			<div class=\"not-buttons\">\r\n				";
   stack1 = self.invokePartial(partials['models/entry/module/drill/view/brief'], 'models/entry/module/drill/view/brief', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n			</div>\r\n		</li>\r\n	";

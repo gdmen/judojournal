@@ -81,6 +81,13 @@
 					that.trigger("change");
 				}
 				return that;
+			}).on("focusout", "[contenteditable]", function() {
+				var that = $(this);
+				if (that.data("before") !== that.html()) {
+					that.data("before", that.html());
+					that.trigger("focusout");
+				}
+				return that;
 			});
 			// fastclick
       FastClick.attach(document.body);

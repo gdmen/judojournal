@@ -256,9 +256,9 @@ footer {
     color: #B3B3B3;
 	}
 	&.single-line {
+		max-height: 2em;
 		min-height: 2em;
 		text-overflow: scroll;
-		white-space: nowrap;
 	}
 }
 
@@ -361,7 +361,7 @@ footer {
 	.modal-wrapper{
 		display: none;
 		overflow-y: scroll;
-		margin: 1rem 0;
+		margin: 0;
 		padding: 0;
 		position: fixed;
 		bottom: 0;
@@ -373,6 +373,8 @@ footer {
 			background-color: #FFF;
 			bottom: auto;
 			display: block;
+			margin-bottom: 1rem;
+			margin-top: 1rem;
 			padding: 0;
 			z-index: $max-z-index;
 			& > div {

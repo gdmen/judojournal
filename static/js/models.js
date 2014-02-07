@@ -14,8 +14,8 @@ JJ.Models.Tastypie = Backbone.Model.extend({
   /*
    * [gdm] Dehydrates elements for saving.
    */
-  dehydrate: function() {
-		console.log("DEHYDRATING ENTRY " + this.cid);
+  dehydrated: function() {
+		return _.clone(this);
   },
 
   base_url: function() {
@@ -165,13 +165,16 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
   /*
    * Dehydrates elements for saving.
    */
-  dehydrate: function() {
+  dehydrated: function() {
 		console.log("DEHYDRATING ENTRY " + this.cid);
-    var drills = this.get("drills");
+		var clone = _.clone(this);
+		clone.set("drills", _.clone(clone.get("drills")));
+    var drills = clone.get("drills");
     for (var i=0; i < drills.length; i++) {
       if (drills[i] instanceof JJ.Models.DrillEntryModule) {
         drills[i] = drills[i].get("resource_uri");
       }
     }
+		return clone;
   },
 });

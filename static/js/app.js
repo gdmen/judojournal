@@ -66,3 +66,18 @@ JJ.Util.scrollbarWidth = function() {
 	$outer.remove();
 	return 100 - widthWithScroll;
 };
+
+/*
+ * http://blogorama.nerdworks.in/entry-JavaScriptfunctionthrottlingan.aspx
+ */
+JJ.Util.throttle = function(callback, delay) {
+	console.log(callback);
+	var previousCall = new Date().getTime();
+	return function() {
+		var time = new Date().getTime();
+		if ((time - previousCall) >= delay) {
+			previousCall = time;
+			callback.apply(null, arguments);
+		}
+	};
+}
