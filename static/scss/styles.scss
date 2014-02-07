@@ -22,7 +22,7 @@ $topbar-link-bg-active: $topbar-link-bg;
 $topbar-link-bg-active-hover: scale-color($topbar-link-bg, $lightness: -14%);
 $topbar-dropdown-bg: scale-color($topbar-bg, $lightness: -28%);
 
-$body-bg: #fff url(/static/img/linedpaper.png) repeat !default;
+$body-bg: #FFF url(/static/img/linedpaper.png) repeat !default;
 $row-width: rem-calc(1400);
 
 @import
@@ -86,12 +86,33 @@ button, .button {
 	-o-transition: background-color $duration linear;
 	-ms-transition: background-color $duration linear;
 }
-
-@mixin save($diameter) {
+@mixin absolute-right() {
+	float: right;
+	margin: 0;
+	margin-left: 1rem;
+}
+@mixin absolute-left() {
+	display: block;
+	overflow: hidden;
+}
+@mixin text-ellipsis() {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+@mixin round-button($diameter) {
 	@include radius(($diameter / 2));
 	height: $diameter;
 	text-align: center;
 	width: $diameter;
+	i {
+		color: #FFF;
+		font-size: ($diameter * 2/3);
+		padding: ($diameter * 1/6) 0;
+	}
+}
+@mixin save($diameter) {
+	@include round-button($diameter);
 	&.disabled {
 		@include background-transition();
 		background-color: rgba(0, 0, 0, 0.25);
@@ -125,11 +146,6 @@ button, .button {
 			display: inline-block;
 		}
 	}
-	i {
-		color: #fff;
-		font-size: ($diameter * 2/3);
-		padding: ($diameter * 1/6) 0;
-	}
 }
 
 /*
@@ -152,15 +168,18 @@ $max-z-index: 9999998;
   box-sizing: border-box; /* Chrome, IE 8+, Opera, Safari 5.1 */
 }
 // Necessary specificity
-#content .click-away-overlay {
+#content .click-away-overlay{
 	background-color: rgba(0,0,0,0.5);
 	display: none;
 	height: 100%;
-	left: 0;
 	position: fixed;
+	right: 0;
 	top: 0;
 	width: 100%;
 	z-index: ($max-z-index - 1);
+}
+body.active-modal {
+	overflow: hidden;
 }
 
 /*
@@ -196,8 +215,6 @@ footer {
  * Entry form
  */
 .entry-form-meta {
-	overflow: hidden;
-	white-space: nowrap;
 	div {
 		display: inline-block;
 		max-width: 100%;
@@ -207,9 +224,7 @@ footer {
 		}
 	}
 	.entry-info {
-		display: block;
-    overflow: hidden;
-		white-space: normal;
+		@include absolute-left();
 		#location {
 			display: block;
 			overflow: hidden;
@@ -221,16 +236,14 @@ footer {
 	}
 	.entry-save {
 		@include save($diameter: 5rem);
-    float: right;
-		margin: 0;
-		margin-left: 1rem;
+		@include absolute-right();
 	}
 }
 
 .content-editable {
 	@include box-shadow(0, 1px, 2px, rgba(0,0,0,0.1), inset);
 	@include radius(0);
-	background: #fff;
+	background: #FFF;
 	border: 1px solid #CCCCC6;
 	cursor: text;
 	height: auto;
@@ -240,7 +253,7 @@ footer {
     content: attr(data-placeholder);
     float: left;
     margin-left: 2px;
-    color: #b3b3b3;
+    color: #B3B3B3;
 	}
 	&.single-line {
 		min-height: 2em;
@@ -261,7 +274,7 @@ footer {
 }
 .time-select {
   select {
-    background-color: #fff;
+    background-color: #FFF;
     width: auto;
   }
 }
@@ -278,14 +291,13 @@ footer {
       border-bottom: 1px dashed $topbar-bg;
       color: $anchor-font-color;
 			margin-right: 1rem;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
       &:hover {
 				@include opacity(0.75);
         cursor: pointer;
       }
-      &.selected-key {
+      &.selected-key,
+			&.placeholder {
+				@include text-ellipsis();
       }
       &.placeholder {
         color: #E81010;
@@ -297,7 +309,7 @@ footer {
     }
   }
   .select-drop {
-    background-color: #fff;
+    background-color: #FFF;
     display: none;
     left: 0.5rem;
     position: absolute;
@@ -346,22 +358,68 @@ footer {
  * Creation form modal
  */
 .list-controls {
-	position: relative;
-	.modal {
-		background-color: #fff;
+	.modal-wrapper{
 		display: none;
-		top: 0.5rem;
+		overflow-y: scroll;
+		margin: 1rem 0;
+		padding: 0;
 		position: fixed;
-		z-index: $max-z-index;
-		.modal-save {
-			@include save($diameter: 5rem);
-			float: right;
-			margin: 0;
-			margin-left: 1rem;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 0;
+		z-index: ($max-z-index - 2);
+		.modal {
+			background-color: #FFF;
+			bottom: auto;
+			display: block;
+			padding: 0;
+			z-index: $max-z-index;
+			& > div {
+				padding: 1rem;
+			}
+			.modal-save {
+				@include save($diameter: 5rem);
+				float: right;
+				margin: 0;
+				margin-left: 1rem;
+			}
 		}
 	}
 }
 .model-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  li {
+		@include radius(0.25rem);
+		border: 1px solid scale-color($primary-color, $lightness: 75%);
+		margin-bottom: 0.25rem;
+    padding: 0.25rem;
+		position: relative;
+		&:nth-child(odd) {
+			background-color: #FFF;
+		}
+		&:nth-child(even) {
+			background-color: #F9F9F9;
+		}
+		div {
+			display: inline-block;
+		}
+		.buttons {
+			@include absolute-right();
+			button {
+				margin: 0 0.25rem 0 0;
+				padding: 0.5rem;
+				text-transform: uppercase;
+			}
+		}
+		.not-buttons {
+			@include absolute-left();
+			@include text-ellipsis();
+			padding: 0.25rem;
+		}
+  }
 }
 
 /*
@@ -439,6 +497,6 @@ $widget-bg: $topbar-bg;
     cursor: pointer;
   }
   input[type=radio]:checked + img{
-    border: 2px solid #f00;
+    border: 2px solid #F00;
   }
 }

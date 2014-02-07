@@ -56,3 +56,13 @@ JJ.Util.handleUnknownRoute = function(url) {
   console.log("UNKNOWN ROUTE");
   console.log(url);
 }
+
+/*
+ * http://stackoverflow.com/questions/986937/how-can-i-get-the-browsers-scrollbar-sizes
+ */
+JJ.Util.scrollbarWidth = function() {
+	var $outer = $('<div>').css({visibility: 'hidden', width: 100, overflow: 'scroll'}).appendTo('body'),
+			widthWithScroll = $('<div>').css({width: '100%'}).appendTo($outer).outerWidth();
+	$outer.remove();
+	return 100 - widthWithScroll;
+};

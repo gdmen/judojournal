@@ -1,14 +1,21 @@
 {{! models/entry/module/drill/edit/list }}
 <div class="list-controls">
-	<div class="modal"></div>
-	<div class="click-away-overlay"></div>
+	<div class="row modal-wrapper">
+		<div class="click-away-overlay"></div>
+		<div class="small-centered small-10 medium-8 large-6 columns modal"></div>
+	</div>
 	<button class="add-model">add</button>
 </div>
-<div class="model-list">
+<ul class="model-list">
 	{{#each models}}
-		<div>
-			{{> models/entry/module/drill/view/brief }}
-			<button id="{{ cid }}-delete"class="delete-model">delete</button>
-		</div>
+		<li>
+			<div id="{{ cid }}-buttons" class="buttons">
+				<button class="tiny success radius edit-model">edit <i class="fa fa-pencil"></i ></button>
+				<button class="tiny alert radius delete-model">remove</button>
+			</div>
+			<div class="not-buttons">
+				{{> models/entry/module/drill/view/brief }}
+			</div>
+		</li>
 	{{/each}}
-</div>
+</ul>

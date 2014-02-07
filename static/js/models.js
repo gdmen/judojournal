@@ -107,7 +107,7 @@ JJ.Models.LocationCollection = JJ.Models.TastypieCollection.extend({
  * DrillEntryModule
  */
 JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
-  urlRoot: "/api/v1/entry/module/drill/",
+  urlRoot: "/api/v1/module/drill/",
   defaults: {
     rating: "3",
   }
@@ -117,7 +117,7 @@ JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
  * SparringEntryModule
  */
 JJ.Models.SparringEntryModule = JJ.Models.Tastypie.extend({
-  urlRoot: "/api/v1/entry/module/sparring/",
+  urlRoot: "/api/v1/module/sparring/",
   defaults: {
     rating: "3",
   }
@@ -168,8 +168,8 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
   dehydrate: function() {
 		console.log("DEHYDRATING ENTRY " + this.cid);
     var drills = this.get("drills");
-    for (var i=drills.length; i--;) {
-      if (!_.isString(drills[i])) {
+    for (var i=0; i < drills.length; i++) {
+      if (drills[i] instanceof JJ.Models.DrillEntryModule) {
         drills[i] = drills[i].get("resource_uri");
       }
     }

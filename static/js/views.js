@@ -388,6 +388,7 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   events: {
     "click .add-model": "newModel",
     "click .click-away-overlay": "hideModal",
+		"click .edit-model": "editModel",
 		"click .delete-model": "deleteModel",
     //"click .add-model": "addModel",
   },
@@ -399,15 +400,16 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     this.currentModalView = new this.insertViewConstructor({model: model, parentList: this});
 		this.$el.find(this.selectors.modal).html(this.currentModalView.el);
 		this.currentModalView.render();
-		
-    this.$el.find(this.selectors.modal).show();
+		this.$el.find(this.selectors.modalWrapper).show();
     this.$el.find(this.selectors.focus).focus();
     this.$el.find(this.selectors.clickAway).show();
+		$("body").addClass("active-modal");
   },
   
   hideModal: function(e) {
-    this.$el.find(this.selectors.modal).hide();
+    this.$el.find(this.selectors.modalWrapper).hide();
     this.$el.find(this.selectors.clickAway).hide();
+		$("body").removeClass("active-modal");
   },
 	
   /*
@@ -436,8 +438,8 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 	 * Removes parent div and then removes model.
 	 */
 	deleteModel: function(e) {
-		var div = $(e.currentTarget).parent();
-    var cid = e.currentTarget.id.split("-")[0];
+		var buttonDiv = $(e.currentTarget).parent();
+    var cid = buttonDiv.attr("id").split("-")[0];
 		
 		for (var i=0; i < this.modelArray.length; i++) {
 			if (this.modelArray[i].cid === cid) {
@@ -445,8 +447,9 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 			}
 		}
 		
-		div.unbind();
-		div.remove();
+		var root = buttonDiv.parent();
+		root.unbind();
+		root.remove();
 	},
 	
   /*
@@ -476,8 +479,9 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		
     var vs = {};
 		vs.controls = ".list-controls";
-    vs.clickAway = vs.controls + " .click-away-overlay";
-    vs.modal = vs.controls + " .modal";
+    vs.modalWrapper = vs.controls + " .modal-wrapper";
+    vs.clickAway = vs.modalWrapper + " .click-away-overlay";
+    vs.modal = vs.modalWrapper + " .modal";
 		vs.focus = vs.controls + " .focus";
     vs.list = ".model-list";
     
@@ -489,6 +493,13 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     this.modelArray = this.model.get(this.field).slice(0);
 		var json = {models: JSON.parse(JSON.stringify(this.modelArray))};
     this.$el.html(this.template(json));
+		var modalWrapper = this.$el.find(this.selectors.modalWrapper);
+		var clickAway = this.$el.find(this.selectors.clickAway);
+		modalWrapper.show();
+		console.log("WIDTH:" + clickAway.width());
+		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
+		modalWrapper.hide();
+		//clickAway.css("right", JJ.Util.scrollbarWidth());
     return this;
   },
 });

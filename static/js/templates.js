@@ -39,23 +39,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":date\"></div>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>pre-training notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n		<div title=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":pre_status\" class=\"content-editable\" contentEditable=\"true\" data-placeholder=\"How did you feel before?\">";
-  if (helper = helpers.pre_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.pre_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\r\n  </div>\r\n  \r\n  <div class=\"columns\">\r\n    <h3>post-training notes:</h3>\r\n  </div>\r\n  <div class=\"columns\">\r\n		<div title=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":post_status\" class=\"content-editable\" contentEditable=\"true\" data-placeholder=\"How did you feel after?\">";
-  if (helper = helpers.post_status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.post_status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
+    + ":date\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating/edit'], 'widgets/rating/edit', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>";
@@ -100,32 +84,32 @@ function program1(depth0,data) {
 templates['models/entry/module/drill/edit/list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n		<div>\r\n			";
-  stack1 = self.invokePartial(partials['models/entry/module/drill/view/brief'], 'models/entry/module/drill/view/brief', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n			<button id=\"";
+  buffer += "\r\n		<li>\r\n			<div id=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-delete\"class=\"delete-model\">delete</button>\r\n		</div>\r\n	";
+    + "-buttons\" class=\"buttons\">\r\n				<button class=\"tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n				<button class=\"tiny alert radius delete-model\">remove</button>\r\n			</div>\r\n			<div class=\"not-buttons\">\r\n				";
+  stack1 = self.invokePartial(partials['models/entry/module/drill/view/brief'], 'models/entry/module/drill/view/brief', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n			</div>\r\n		</li>\r\n	";
   return buffer;
   }
 
-  buffer += "\r\n<div class=\"list-controls\">\r\n	<div class=\"modal\"></div>\r\n	<div class=\"click-away-overlay\"></div>\r\n	<button class=\"add-model\">add</button>\r\n</div>\r\n<div class=\"model-list\">\r\n	";
+  buffer += "\r\n<div class=\"list-controls\">\r\n	<div class=\"row modal-wrapper\">\r\n		<div class=\"click-away-overlay\"></div>\r\n		<div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n	</div>\r\n	<button class=\"add-model\">add</button>\r\n</div>\r\n<ul class=\"model-list\">\r\n	";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</div>";
+  buffer += "\r\n</ul>";
   return buffer;
   });
 templates['models/entry/module/drill/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
   buffer += "\r\n<div id=\"";
@@ -140,10 +124,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\r\n<br />\r\n";
-  stack1 = self.invokePartial(partials['widgets/rating/edit'], 'widgets/rating/edit', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n<br />\r\n<div title=\"";
+    + "</div>\r\n<br />\r\n<div title=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -156,17 +137,14 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   });
 templates['models/entry/module/drill/view/brief'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "\r\n<h4>";
+  buffer += "\r\n";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</h4>\r\n";
-  stack1 = self.invokePartial(partials['widgets/rating/view'], 'widgets/rating/view', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += escapeExpression(stack1);
   return buffer;
   });
 templates['models/entry/singleSelect'] = template(function (Handlebars,depth0,helpers,partials,data) {
