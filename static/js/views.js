@@ -46,11 +46,11 @@ JJ.Views.AbstractView = Backbone.View.extend({
 JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   template: null,
   baseEvents: {
+    "keyup input": "throttledChange",
     "change input": "change",
-    "change textarea": "change",
     "change select": "change",
-    "change div[contenteditable='true']": "throttledChange",
-    "focusoutWithChange div[contenteditable='true']": "change",
+    "keyup textarea": "throttledChange",
+    "change textarea": "change",
   },
   
   // For subclasses to add events.
@@ -64,37 +64,25 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
    * Updates the model on input changes.
    */
   change: function(e) {
-		var name = "";
-		if ($(e.currentTarget).is("input,textarea,select")) {
-			name = e.currentTarget.name;
-		} else {
-			name = e.currentTarget.title;
-		}
+		var name = e.currentTarget.name;
     //console.log("Changed: " + name);
     var splitName = name.split(":");
     if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
-			var value = "";
-			if ($(e.currentTarget).is("input,textarea,select")) {
-				value = $(e.currentTarget).val();
-			} else {
-				value = $(e.currentTarget).html();
-			}
+			var value = $(e.currentTarget).val();
       this.model.set(field, value);
-			console.log(value.length);
-      //console.log("Set " + field + " to " + value + " in " + this.model.cid);
+			//console.log(value.length);
+      console.log("Set " + field + " to " + value.length + " in " + this.model.cid);
     }
   },
 	
 	previousCall: new Date().getTime(),
 	throttledChange: function(e) {
 		var time = new Date().getTime();
-		console.log("t");
+		//console.log("t");
 		if ((time - this.previousCall) >= 1000) {
 			this.previousCall = time;
 			this.change(e);
-		} else {
-			$(e.currentTarget).data("before", "");
 		}
 	},
 	//JJ.Util.throttle(this.change, 1000),
@@ -420,13 +408,13 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		this.$el.find(this.selectors.modalWrapper).show();
     this.$el.find(this.selectors.focus).focus();
     this.$el.find(this.selectors.clickAway).show();
-		$("body").addClass("active-modal");
+		$("body").addClass("active-modal").css("margin-right", JJ.Util.scrollbarWidth() + "px");
   },
   
   hideModal: function(e) {
     this.$el.find(this.selectors.modalWrapper).hide();
     this.$el.find(this.selectors.clickAway).hide();
-		$("body").removeClass("active-modal");
+		$("body").removeClass("active-modal").css("margin-right", "");
   },
 	
   /*
