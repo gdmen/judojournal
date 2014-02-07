@@ -91,6 +91,9 @@
 			});
 			// fastclick
       FastClick.attach(document.body);
+			if(Modernizr.touch) {
+				$("body").addClass("touch");
+			}
     });
   </script>
   {% block js %}
