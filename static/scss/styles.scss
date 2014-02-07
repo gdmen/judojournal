@@ -183,30 +183,6 @@ $max-z-index: 9999998;
 body.active-modal {
 	overflow: hidden;
 }
-.content-editable {
-	@include box-shadow(0, 1px, 2px, rgba(0,0,0,0.1), inset);
-	@include radius(0);
-	background: #FFF;
-	border: 1px solid #CCCCC6;
-	cursor: text;
-	height: auto;
-	min-height: 3em;
-	padding: 0.5em;
-	&:focus {
-		font-size: 1rem !important;
-	}
-	&[data-placeholder]:not(:focus):empty:before {
-    content: attr(data-placeholder);
-    float: left;
-    margin-left: 2px;
-    color: #B3B3B3;
-	}
-	&.single-line {
-		max-height: 2em;
-		min-height: 2em;
-		text-overflow: scroll;
-	}
-}
 
 /*
  * Sticky footer
