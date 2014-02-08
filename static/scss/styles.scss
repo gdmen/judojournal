@@ -254,20 +254,28 @@ footer {
 		@include float-right();
 	}
 }
+.edit-link {
+	border-bottom: 1px dashed $topbar-bg;
+	color: $anchor-font-color;
+	display: inline-block;
+	&:hover {
+		@include opacity(0.75);
+		cursor: pointer;
+	}
+	i {
+		color: $body-font-color;
+	}
+}
 
 /*
  * Time select (Entry form)
  */
-#date {
-	display: inline-block;
-}
-#start, #end {
-	display: inline-block;
-	margin: 0 auto;
-}
 .time-select {
   select {
+		@include radius();
     background-color: #FFF;
+		font-size: 3rem;
+		margin: 0;
     width: auto;
   }
 }
@@ -280,26 +288,17 @@ footer {
     display: none;
   }
   .select-display {
-    .link {
-      border-bottom: 1px dashed $topbar-bg;
-      color: $anchor-font-color;
-			margin-right: 1rem;
-      &:hover {
-				@include opacity(0.75);
-        cursor: pointer;
-      }
-      &.selected-key,
+		.edit-link {
+			&.selected-key,
 			&.placeholder {
 				@include text-ellipsis();
-      }
-      &.placeholder {
-        color: #E81010;
-        font-style: italic
-      }
-      i {
-        color: $body-font-color;
-      }
-    }
+				margin-right: 1rem;
+			}
+			&.placeholder {
+				color: #E81010;
+				font-style: italic
+			}
+		}
   }
   .select-drop {
     background-color: #FFF;
@@ -372,6 +371,16 @@ footer {
 	right: 0;
 	top: 0;
 	z-index: ($max-z-index - 2);
+	&.modal-centered {
+		text-align: center;
+		.modal {
+			background: none;
+			display: inline-block;
+			& > div {
+				padding: 0;
+			}
+		}
+	}
 	.modal {
 		background-color: #FFF;
 		bottom: auto;
@@ -379,6 +388,7 @@ footer {
 		margin-bottom: 1rem;
 		margin-top: 1rem;
 		padding: 0;
+		position: relative;
 		z-index: $max-z-index;
 		& > div {
 			padding: 1rem;

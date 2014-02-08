@@ -23,17 +23,45 @@
 <div class="row">
 
 	<div class="columns">
-		<div>
-			<h4>start:</h4>
-			<div id="start"></div>
+	
+		<h3>
+			On
+				<div class="edit-link modal-trigger date-modal">
+					<i class="fa fa-calendar"></i>
+					Thursday, 15 Jan 2014
+				</div>
+			from
+				<div class="edit-link modal-trigger start-time-modal">
+					<i class="fa fa-clock-o"></i>
+					2:45PM
+				</div>
+			 to
+				<div class="edit-link modal-trigger end-time-modal">
+					<i class="fa fa-clock-o"></i>
+					4:45PM
+				</div>
+		</h3>
+		
+		<div class="row modal-wrapper modal-centered date-modal">
+			<div class="click-away-overlay"></div>
+			<div class="modal">
+				<div id="date" name="{{ cid }}:date"></div>
+			</div>
+		</div>
+			
+		<div class="row modal-wrapper modal-centered start-time-modal">
+			<div class="click-away-overlay"></div>
+			<div class="modal">
+				<div id="start"></div>
+			</div>
 		</div>
 		
-		<div>
-			<h4>end:</h4>
-			<div id="end"></div>
+		<div class="row modal-wrapper modal-centered end-time-modal">
+			<div class="click-away-overlay"></div>
+			<div class="modal">
+				<div id="end"></div>
+			</div>
 		</div>
-		
-		<div id="date" name="{{ cid }}:date"></div>
 	</div>
   
 </div>

@@ -200,7 +200,7 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
   // TODO: move this to initialize()? Would be easier to maintain naming
   // consistent with template.
   events: {
-    "click .select-display .link": "showDrop",
+    "click .select-display .edit-link": "showDrop",
     "click .click-away-overlay": "hideDrop",
     "keyup .select-search > input": "filterOptions",
     "click .select-option": "selectOption",
@@ -512,12 +512,6 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     this.modelArray = this.model.get(this.field).slice(0);
 		var json = {models: JSON.parse(JSON.stringify(this.modelArray))};
     this.$el.html(this.template(json));
-		var modalWrapper = this.$el.find(this.selectors.modalWrapper);
-		var clickAway = this.$el.find(this.selectors.clickAway);
-		modalWrapper.show();
-		console.log("WIDTH:" + clickAway.width());
-		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
-		modalWrapper.hide();
     return this;
   },
 });
@@ -595,8 +589,31 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["models/entry/judo/edit/single"],
   extendEvents: {
 		"change #date": "dateChanged",
+    "click .click-away-overlay": "hideModals",
+    "click .modal-trigger": "showModal",
   },
 	autosave: true,
+	
+  showModal: function(e) {
+		var classes = e.currentTarget.className.split(" ");
+		var filteredClasses = [];
+		for (var i in classes) {
+			if (classes[i] !== "modal-trigger" && classes[i].indexOf("modal") !== -1) {
+				filteredClasses.push(classes[i]);
+			}
+		}
+		var modalWrapper = this.$el.find("." + filteredClasses.join("."));
+		modalWrapper.show();
+    modalWrapper.find(".focus").focus();
+    modalWrapper.find(".click-away-overlay").show();
+		$("body").addClass("active-modal").css("margin-right", JJ.Util.scrollbarWidth() + "px");
+  },
+  
+  hideModals: function(e) {
+    this.$el.find(".modal-wrapper").hide();
+    this.$el.find(".click-away-overlay").hide();
+		$("body").removeClass("active-modal").css("margin-right", "");
+  },
 	
   // If this is the first save, redirect to the saved-model edit page.
 	firstSave: function(model) {
@@ -687,6 +704,13 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     
     // AbstractEditModelList's
     new JJ.Views.EditDrillList({model: this.model, el: this.$el.find("#drills")});
+		
+		// Handles all modals for the page.
+		var modalWrapper = this.$el.find(".modal-wrapper");
+		var clickAway = this.$el.find(".click-away-overlay");
+		modalWrapper.show();
+		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
+		modalWrapper.hide();
     
     // DOM JS linking
     this.linkDOM();
