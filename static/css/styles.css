@@ -12501,7 +12501,7 @@ footer div p:last-child {
   text-align: center;
   width: 5rem;
   float: right;
-  margin: 0 0 1rem 1rem;
+  margin-left: 1rem;
 }
 /* line 111, ../scss/styles.scss */
 .entry-form-meta .entry-save:hover {
@@ -12776,7 +12776,8 @@ footer div p:last-child {
   text-align: center;
   width: 5rem;
   float: right;
-  margin: 0 0 1rem 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 /* line 111, ../scss/styles.scss */
 .modal-wrapper .modal .modal-save:hover {
@@ -12852,18 +12853,18 @@ footer div p:last-child {
 .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 396, ../scss/styles.scss */
+/* line 397, ../scss/styles.scss */
 .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
 
-/* line 401, ../scss/styles.scss */
+/* line 402, ../scss/styles.scss */
 .model-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 405, ../scss/styles.scss */
+/* line 406, ../scss/styles.scss */
 .model-list li {
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
@@ -12872,30 +12873,30 @@ footer div p:last-child {
   padding: 0.25rem;
   position: relative;
 }
-/* line 411, ../scss/styles.scss */
+/* line 412, ../scss/styles.scss */
 .model-list li:nth-child(odd) {
   background-color: #FFF;
 }
-/* line 414, ../scss/styles.scss */
+/* line 415, ../scss/styles.scss */
 .model-list li:nth-child(even) {
   background-color: #F9F9F9;
 }
-/* line 417, ../scss/styles.scss */
+/* line 418, ../scss/styles.scss */
 .model-list li div {
   display: inline-block;
 }
-/* line 420, ../scss/styles.scss */
+/* line 421, ../scss/styles.scss */
 .model-list li .buttons {
   float: right;
-  margin: 0 0 1rem 1rem;
+  margin-left: 1rem;
 }
-/* line 422, ../scss/styles.scss */
+/* line 423, ../scss/styles.scss */
 .model-list li .buttons button {
   margin: 0 0.25rem 0 0;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 428, ../scss/styles.scss */
+/* line 429, ../scss/styles.scss */
 .model-list li .not-buttons {
   display: block;
   overflow: hidden;
@@ -12908,7 +12909,7 @@ footer div p:last-child {
 /*
  * Manage widget
  */
-/* line 441, ../scss/styles.scss */
+/* line 442, ../scss/styles.scss */
 .manage-widget .manage-header {
   *zoom: 1;
   -moz-border-radius-bottomleft: 3px;
@@ -12930,11 +12931,11 @@ footer div p:last-child {
 .manage-widget .manage-header:after {
   clear: both;
 }
-/* line 447, ../scss/styles.scss */
+/* line 448, ../scss/styles.scss */
 .manage-widget .manage-header a, .manage-widget .manage-header .link {
   padding: 1em;
 }
-/* line 449, ../scss/styles.scss */
+/* line 450, ../scss/styles.scss */
 .manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
   color: white;
   height: 1em;
@@ -12942,26 +12943,26 @@ footer div p:last-child {
   margin: 0;
   padding: 0;
 }
-/* line 457, ../scss/styles.scss */
+/* line 458, ../scss/styles.scss */
 .manage-widget .manage-header a.left {
   width: 100%;
 }
-/* line 460, ../scss/styles.scss */
+/* line 461, ../scss/styles.scss */
 .manage-widget .manage-header div.right {
   border-left: 1px solid #206691;
   position: absolute;
   right: 0;
 }
-/* line 464, ../scss/styles.scss */
+/* line 465, ../scss/styles.scss */
 .manage-widget .manage-header div.right:hover {
   cursor: pointer;
 }
-/* line 469, ../scss/styles.scss */
+/* line 470, ../scss/styles.scss */
 .manage-widget .manage-drop {
   display: none;
   margin-left: 1.5px;
 }
-/* line 472, ../scss/styles.scss */
+/* line 473, ../scss/styles.scss */
 .manage-widget .manage-drop ul {
   background-color: #2c8ec9;
   margin: 0;
@@ -12971,18 +12972,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 483, ../scss/styles.scss */
+/* line 484, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 486, ../scss/styles.scss */
+/* line 487, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 490, ../scss/styles.scss */
+/* line 491, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
@@ -12992,20 +12993,20 @@ footer div p:last-child {
 /*
  * Widgets
  */
-/* line 501, ../scss/styles.scss */
+/* line 502, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 503, ../scss/styles.scss */
+/* line 504, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-/* line 506, ../scss/styles.scss */
+/* line 507, ../scss/styles.scss */
 .rating label input[type=radio] + img {
   border: 2px solid transparent;
   cursor: pointer;
 }
-/* line 510, ../scss/styles.scss */
+/* line 511, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
   border: 2px solid #F00;
 }

@@ -91,7 +91,7 @@ button, .button {
 }
 @mixin float-right() {
 	float: right;
-	margin: 0 0 1rem 1rem;
+	margin-left: 1rem;
 }
 @mixin float-left() {
 	display: block;
@@ -392,6 +392,7 @@ footer {
 		.modal-save {
 			@include save($diameter: 5rem);
 			@include float-right();
+			margin-bottom: 1rem;
 		}
 		.close-modal {
 			text-transform: uppercase;
