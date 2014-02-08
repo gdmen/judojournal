@@ -18,40 +18,48 @@
 		</div>
   </div>
   
-  <div class="small-6 columns">
-    <h4>from:</h4>
-		<div id="start"></div>
-  </div>
+</div>
   
-  <div class="small-6 columns">
-    <h4>until:</h4>
-		<div id="end"></div>
-  </div>
-	
-  <div class="columns text-center">
-    <div id="date" name="{{ cid }}:date"></div>
-  </div>
+<div class="row">
+
+	<div class="columns">
+		<div>
+			<h4>start:</h4>
+			<div id="start"></div>
+		</div>
+		
+		<div>
+			<h4>end:</h4>
+			<div id="end"></div>
+		</div>
+		
+		<div id="date" name="{{ cid }}:date"></div>
+	</div>
   
 </div>
 
 <div class="row">
+
   <div class="columns">
     {{> widgets/rating/edit }}
   </div>
+	
 </div>
 
 <div class="row">
-  <div class="columns">
-    <h2>DRILLS</h2>
+
+  <div class="medium-6 columns">
     <div id="drills"></div>
   </div>
-  
-</div>
 
-<div class="row">
-  <div class="columns">
+  <div class="medium-6 columns">
     <h2>SPARRING</h2>
     <div id="sparring"></div>
+  </div>
+
+  <div class="medium-6 large-4 columns">
+    <h2>NOTES</h2>
+    <div id="notes"></div>
   </div>
   
 </div>

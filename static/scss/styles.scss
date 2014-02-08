@@ -42,6 +42,7 @@ $row-width: rem-calc(1400);
  * Custom Foundation overrides
  */
 .column, .columns {
+	@include clearfix;
   position: static;
 }
 .row {
@@ -103,17 +104,34 @@ button, .button {
 }
 @mixin round-button($diameter) {
 	@include radius(($diameter / 2));
+	display: inline-block;
 	height: $diameter;
 	text-align: center;
 	width: $diameter;
+	&:hover {
+		@include opacity(0.75);
+		cursor: pointer;
+	}
 	i {
 		color: #FFF;
+		display: inline-block;
 		font-size: ($diameter * 2/3);
 		padding: ($diameter * 1/6) 0;
+		// Special cases for misaligned icons
+		&.fa-plus {
+			padding-top: ($diameter * 3/14);
+			padding-bottom: ($diameter * 1/14);
+		}
 	}
 }
 @mixin save($diameter) {
 	@include round-button($diameter);
+	&.disabled, &.saving {
+		&:hover {
+			@include opacity(1);
+			cursor: default;
+		}
+	}
 	&.disabled {
 		@include background-transition();
 		background-color: rgba(0, 0, 0, 0.25);
@@ -127,10 +145,6 @@ button, .button {
 	&.enabled {
 		@include background-transition();
 		background-color: $success-color;
-		&:hover {
-			@include opacity(0.75);
-			cursor: pointer;
-		}
 		i.disabled, i.saving {
 			display: none;
 		}
@@ -337,35 +351,50 @@ footer {
  * Creation form modal
  */
 .list-controls {
-	.modal-wrapper{
-		display: none;
-		overflow-y: scroll;
-		margin: 0;
+	$list-controls-height: 3rem;
+	.title {
+		font-size: ($list-controls-height * 5/6);
+		padding-left: 1rem;
+	}
+	.add-model {
+		@include round-button($diameter: $list-controls-height);
+		background-color: $success-color;
+	}
+}
+.modal-wrapper {
+	display: none;
+	overflow-y: scroll;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: ($max-z-index - 2);
+	.modal {
+		background-color: #FFF;
+		bottom: auto;
+		display: block;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
 		padding: 0;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		top: 0;
-		z-index: ($max-z-index - 2);
-		.modal {
-			background-color: #FFF;
-			bottom: auto;
-			display: block;
-			margin-bottom: 1rem;
-			margin-top: 1rem;
-			padding: 0;
-			z-index: $max-z-index;
-			& > div {
-				padding: 1rem;
+		z-index: $max-z-index;
+		& > div {
+			padding: 1rem;
+		}
+		.modal-header {
+			@include float-left();
+			h3 {
+				@include text-ellipsis();
 			}
-			.modal-header {
-				@include float-left();
-			}
-			.modal-save {
-				@include save($diameter: 5rem);
-				@include float-right();
-			}
+		}
+		.modal-save {
+			@include save($diameter: 5rem);
+			@include float-right();
+		}
+		.close-modal {
+			text-transform: uppercase;
 		}
 	}
 }

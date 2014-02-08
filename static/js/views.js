@@ -63,6 +63,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   /*
    * Updates the model on input changes.
    */
+	autosave: false,
   change: function(e) {
 		var name = e.currentTarget.name;
     //console.log("Changed: " + name);
@@ -73,6 +74,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
       this.model.set(field, value);
 			//console.log(value.length);
       console.log("Set " + field + " to " + value.length + " in " + this.model.cid);
+			this.autosave && this.save();
     }
   },
 	
@@ -399,6 +401,7 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   events: {
     "click .add-model": "newModel",
     "click .click-away-overlay": "hideModal",
+		"click .close-modal": "hideModal",
 		"click .edit-model": "editModel",
 		"click .delete-model": "deleteModel",
   },
@@ -442,9 +445,8 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		}
 		this.modelArray.push(model);
 		
-		params = {};
-		params[this.field] = this.modelArray;
-		this.model.set(params);
+		this.model.set(this.field, this.modelArray);
+		this.hideModal();
 		this.render();
 		this.model.parentView.save();
   },
@@ -496,10 +498,10 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		
     var vs = {};
 		vs.controls = ".list-controls";
-    vs.modalWrapper = vs.controls + " .modal-wrapper";
+    vs.modalWrapper = ".modal-wrapper";
     vs.clickAway = vs.modalWrapper + " .click-away-overlay";
     vs.modal = vs.modalWrapper + " .modal";
-		vs.focus = vs.controls + " .focus";
+		vs.focus = vs.modal + " .focus";
     vs.list = ".model-list";
     
     this.selectors = vs;
@@ -547,7 +549,7 @@ JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
   /*
    * Updates the model on input changes.
    */
-	change: function() {
+	change: function(e) {
 		var hour = this.$el.find("#" + this.field + "-hour").val();
 		var minute = this.$el.find("#" + this.field + "-minute").val();
 		var period = this.$el.find("#" + this.field + "-period").val();
@@ -594,6 +596,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   extendEvents: {
 		"change #date": "dateChanged",
   },
+	autosave: true,
 	
   // If this is the first save, redirect to the saved-model edit page.
 	firstSave: function(model) {

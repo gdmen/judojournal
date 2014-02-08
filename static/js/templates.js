@@ -35,14 +35,14 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-save\" class=\"entry-save disabled\">\r\n			<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n			<i class=\"enabled fa fa-floppy-o\"></i>\r\n			<i class=\"disabled fa fa-check\"></i>\r\n		</div>\r\n		<div class=\"entry-info\">\r\n			<div id=\"art\"></div>\r\n			<div id=\"type\"></div>\r\n			<div>\r\n				<div id=\"at\"><h3>@</h3></div>\r\n				<div id=\"location\"></div>\r\n			</div>\r\n		</div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>from:</h4>\r\n		<div id=\"start\"></div>\r\n  </div>\r\n  \r\n  <div class=\"small-6 columns\">\r\n    <h4>until:</h4>\r\n		<div id=\"end\"></div>\r\n  </div>\r\n	\r\n  <div class=\"columns text-center\">\r\n    <div id=\"date\" name=\"";
+    + "-save\" class=\"entry-save disabled\">\r\n			<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n			<i class=\"enabled fa fa-floppy-o\"></i>\r\n			<i class=\"disabled fa fa-check\"></i>\r\n		</div>\r\n		<div class=\"entry-info\">\r\n			<div id=\"art\"></div>\r\n			<div id=\"type\"></div>\r\n			<div>\r\n				<div id=\"at\"><h3>@</h3></div>\r\n				<div id=\"location\"></div>\r\n			</div>\r\n		</div>\r\n  </div>\r\n  \r\n</div>\r\n  \r\n<div class=\"row\">\r\n\r\n	<div class=\"columns\">\r\n		<div>\r\n			<h4>start:</h4>\r\n			<div id=\"start\"></div>\r\n		</div>\r\n		\r\n		<div>\r\n			<h4>end:</h4>\r\n			<div id=\"end\"></div>\r\n		</div>\r\n		\r\n		<div id=\"date\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":date\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    ";
+    + ":date\"></div>\r\n	</div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating/edit'], 'widgets/rating/edit', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>DRILLS</h2>\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>";
+  buffer += "\r\n  </div>\r\n	\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 large-4 columns\">\r\n    <h2>NOTES</h2>\r\n    <div id=\"notes\"></div>\r\n  </div>\r\n  \r\n</div>";
   return buffer;
   });
 templates['models/entry/judo/view/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -100,7 +100,7 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  buffer += "\r\n<div class=\"list-controls\">\r\n	<div class=\"row modal-wrapper\">\r\n		<div class=\"click-away-overlay\"></div>\r\n		<div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n	</div>\r\n	<button class=\"add-model\">add</button>\r\n</div>\r\n<ul class=\"model-list\">\r\n	";
+  buffer += "\r\n<div class=\"list-controls\">\r\n	<div class=\"add-model\">\r\n		<i class=\"fa fa-plus\"></i>\r\n	</div>\r\n	<h2 class=\"title\">DRILLS</h2>\r\n</div>\r\n<div class=\"row modal-wrapper\">\r\n	<div class=\"click-away-overlay\"></div>\r\n	<div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n</div>\r\n<ul class=\"model-list\">\r\n	";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n</ul>";
@@ -132,7 +132,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>";
+    + "</textarea>\r\n<button class=\"tiny secondary radius left close-modal\">cancel</button>";
   return buffer;
   });
 templates['models/entry/module/drill/view/brief'] = template(function (Handlebars,depth0,helpers,partials,data) {
