@@ -232,10 +232,10 @@ footer {
 .entry-form-header {
 	#entry-rating {
 		@include float-left();
-		margin-top: 0.5rem;
+		margin-top: 1rem;
 	}
 	.entry-save {
-		@include save($diameter: 4rem);
+		@include save($diameter: 5rem);
 		@include float-right();
 	}
 }

@@ -12471,16 +12471,16 @@ footer div p:last-child {
 .entry-form-header #entry-rating {
   display: block;
   overflow: hidden;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 /* line 237, ../scss/styles.scss */
 .entry-form-header .entry-save {
-  -webkit-border-radius: 2rem;
-  border-radius: 2rem;
+  -webkit-border-radius: 2.5rem;
+  border-radius: 2.5rem;
   display: inline-block;
-  height: 4rem;
+  height: 5rem;
   text-align: center;
-  width: 4rem;
+  width: 5rem;
   float: right;
   margin-left: 1rem;
 }
@@ -12497,13 +12497,13 @@ footer div p:last-child {
 .entry-form-header .entry-save i {
   color: #FFF;
   display: inline-block;
-  font-size: 2.66667rem;
-  padding: 0.66667rem 0;
+  font-size: 3.33333rem;
+  padding: 0.83333rem 0;
 }
 /* line 121, ../scss/styles.scss */
 .entry-form-header .entry-save i.fa-plus {
-  padding-top: 0.85714rem;
-  padding-bottom: 0.28571rem;
+  padding-top: 1.07143rem;
+  padding-bottom: 0.35714rem;
 }
 /* line 130, ../scss/styles.scss */
 .entry-form-header .entry-save.disabled:hover, .entry-form-header .entry-save.saving:hover {
