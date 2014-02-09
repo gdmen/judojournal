@@ -12889,7 +12889,7 @@ footer div p:last-child {
 }
 /* line 427, ../scss/styles.scss */
 .model-list li:nth-child(even) {
-  background-color: #F9F9F9;
+  background-color: #FDFDFD;
 }
 /* line 430, ../scss/styles.scss */
 .model-list li div {
@@ -13013,10 +13013,27 @@ footer div p:last-child {
 }
 /* line 519, ../scss/styles.scss */
 .rating label input[type=radio] + img {
-  border: 2px solid transparent;
+  filter: alpha(opactiy=25);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+  -moz-opacity: 0.25;
+  -khtml-opacity: 0.25;
+  opacity: 0.25;
+  width: 2rem;
+}
+/* line 522, ../scss/styles.scss */
+.rating label input[type=radio] + img:hover {
+  filter: alpha(opactiy=50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
   cursor: pointer;
 }
-/* line 523, ../scss/styles.scss */
+/* line 527, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
-  border: 2px solid #F00;
+  filter: alpha(opactiy=75);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
 }

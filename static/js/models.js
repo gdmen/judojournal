@@ -15,7 +15,7 @@ JJ.Models.Tastypie = Backbone.Model.extend({
    * [gdm] Dehydrates elements for saving.
    */
   dehydrated: function() {
-		return _.clone(this);
+		return this.clone();
   },
 
   base_url: function() {
@@ -169,19 +169,19 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
    */
   dehydrated: function() {
 		console.log("DEHYDRATING ENTRY " + this.cid);
-		var clone = _.clone(this);
+		var clone = this.clone();
 		this._dehydrateArray(clone, "drills", JJ.Models.DrillEntryModule);
 		this._dehydrateArray(clone, "sparring", JJ.Models.SparringEntryModule);
 		return clone;
   },
-	_dehydrateArray: function(model, field, type) {
-		model.set(field, _.clone(model.get(field)));
-    var arr = model.get(field);
+	_dehydrateArray: function(clone, field, type) {
+		clone.set(field, _.clone(clone.get(field)));
+    var arr = clone.get(field);
     for (var i=0; i < arr.length; i++) {
       if (arr[i] instanceof type) {
         arr[i] = arr[i].get("resource_uri");
-      } else {
-				console.log(arr[i]);
+      } else if (!_.isUndefined(arr[i].resource_uri)) {
+        arr[i] = arr[i].resource_uri;
 			}
     }
 	},

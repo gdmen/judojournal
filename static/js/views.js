@@ -78,12 +78,12 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
     }
   },
 	
-	previousCall: new Date().getTime(),
+	_previousCall: new Date().getTime(),
 	throttledChange: function(e) {
 		var time = new Date().getTime();
 		//console.log("t");
-		if ((time - this.previousCall) >= 1000) {
-			this.previousCall = time;
+		if ((time - this._previousCall) >= 1000) {
+			this._previousCall = time;
 			this.change(e);
 		}
 	},
@@ -94,7 +94,6 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 	 * Calls this.firstSave if the model was new.
    */
   save: function() {
-		console.log(this);
     this.startSave();
 		var model = this.model;
     var isNew = model.isNew();
@@ -107,7 +106,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 					model.set({id: m.get("id"), resource_uri: m.get("resource_uri")}, {silent: true});
 					that.firstSave(model);
         }
-				that.endSave();
+				that.endSave(model);
       },
       error: JJ.Util.backboneError,
     });
@@ -443,6 +442,7 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     this.$el.find(this.selectors.modalWrapper).hide();
     this.$el.find(this.selectors.clickAway).hide();
 		$("body").removeClass("active-modal").css("margin-right", "");
+		this.render();
   },
 	
   /*
@@ -475,7 +475,6 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 			return;
 		}
 		this.modelArray.push(model);
-		
 		this.model.set(this.field, this.modelArray);
 		this.render();
 		this.model.parentView.save();
@@ -488,7 +487,7 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		var buttonDiv = $(e.currentTarget).parent();
     var uri = buttonDiv.data("uri").split("-")[0];
 		
-		removeModel(this._getIndexByURI(uri));
+		this.removeModel(this._getIndexByURI(uri));
 		
 		var root = buttonDiv.parent();
 		root.unbind();
@@ -542,6 +541,8 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   },
   
   render: function() {
+		console.log("PARENT STUFF:");
+		console.log(this.model.get("drills")[0]);
     this.modelArray = this.model.get(this.field).slice(0);
 		var json = {models: JSON.parse(JSON.stringify(this.modelArray))};
     this.$el.html(this.template(json));

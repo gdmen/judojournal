@@ -425,7 +425,7 @@ footer {
 			background-color: #FFF;
 		}
 		&:nth-child(even) {
-			background-color: #F9F9F9;
+			background-color: #FDFDFD;
 		}
 		div {
 			display: inline-block;
@@ -517,10 +517,14 @@ $widget-bg: $topbar-bg;
     display: none;
   }
   input[type=radio] + img{
-    border: 2px solid transparent;
-    cursor: pointer;
+		@include opacity(0.25);
+		width: 2rem;
+		&:hover {
+			@include opacity(0.5);
+			cursor: pointer;
+		}
   }
   input[type=radio]:checked + img{
-    border: 2px solid #F00;
+		@include opacity(0.75);
   }
 }
