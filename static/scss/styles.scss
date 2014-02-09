@@ -235,37 +235,39 @@ footer {
 		max-width: 100%;
 		h3 {
 			@include text-ellipsis();
+			margin-bottom: 0;
 			max-width: 100%;
 		}
 	}
 	.entry-info {
 		@include float-left();
-		.plaintext {
-			border-bottom: 1px dashed transparent;
-			margin-right: 0.5em;
-			margin-bottom: 1px;
-		}
-		h3 {
-			margin-bottom: 0;
+		& > div:last-child {
+			margin-right: ;
+			white-space: nowrap;
 		}
 	}
 	.entry-save {
 		@include save($diameter: 5rem);
 		@include float-right();
 	}
-}
-.edit-link {
-	border-bottom: 1px dashed $topbar-bg;
-	color: $anchor-font-color;
-	display: inline-block;
-	margin-bottom: 1px;
-	margin-right: 0.5em;
-	&:hover {
-		@include opacity(0.75);
-		cursor: pointer;
+	.plaintext {
+		border-bottom: 1px dashed transparent;
+		margin-right: 0.5em;
+		margin-bottom: 1px;
 	}
-	i {
-		color: $body-font-color;
+	.edit-link {
+		border-bottom: 1px dashed $topbar-bg;
+		color: $anchor-font-color;
+		display: inline-block;
+		margin-bottom: 1px;
+		margin-right: 0.5em;
+		&:hover {
+			@include opacity(0.75);
+			cursor: pointer;
+		}
+		i {
+			color: $body-font-color;
+		}
 	}
 }
 
