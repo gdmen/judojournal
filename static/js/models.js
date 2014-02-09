@@ -151,14 +151,18 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
     if (!(end instanceof Date)) {
       this.set({"end": new Date(Date.parse(end))},{silent:true});
     }
-    var drills = this.get("drills");
-    for (var i=drills.length; i--;) {
-      var drill = drills[i];
-      if (!(drill instanceof JJ.Models.DrillEntryModule)) {
-        drills[i] = new JJ.Models.DrillEntryModule(drill);
+		this._hydrateArray("drills", JJ.Models.DrillEntryModule);
+		this._hydrateArray("sparring", JJ.Models.SparringEntryModule);
+  },
+	_hydrateArray: function(field, type) {
+    var arr = this.get(field);
+    for (var i=arr.length; i--;) {
+      var elem = arr[i];
+      if (!(elem instanceof type)) {
+        arr[i] = new type(elem);
       }
     }
-  },
+	},
   
   /*
    * Dehydrates elements for saving.
@@ -166,15 +170,19 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
   dehydrated: function() {
 		console.log("DEHYDRATING ENTRY " + this.cid);
 		var clone = _.clone(this);
-		clone.set("drills", _.clone(clone.get("drills")));
-    var drills = clone.get("drills");
-    for (var i=0; i < drills.length; i++) {
-      if (drills[i] instanceof JJ.Models.DrillEntryModule) {
-        drills[i] = drills[i].get("resource_uri");
-      } else {
-				console.log(drills[i]);
-			}
-    }
+		this._dehydrateArray(clone, "drills", JJ.Models.DrillEntryModule);
+		this._dehydrateArray(clone, "sparring", JJ.Models.SparringEntryModule);
 		return clone;
   },
+	_dehydrateArray: function(model, field, type) {
+		model.set(field, _.clone(model.get(field)));
+    var arr = model.get(field);
+    for (var i=0; i < arr.length; i++) {
+      if (arr[i] instanceof type) {
+        arr[i] = arr[i].get("resource_uri");
+      } else {
+				console.log(arr[i]);
+			}
+    }
+	},
 });

@@ -107,6 +107,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 					model.set({id: m.get("id"), resource_uri: m.get("resource_uri")}, {silent: true});
 					that.firstSave(model);
         }
+				that.endSave();
       },
       error: JJ.Util.backboneError,
     });
@@ -117,6 +118,12 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
    */
 	firstSave: function(model) {
 		console.log("ABSTRACT FIRST SAVE");
+	},
+	/*
+	 * Called after each save.
+	 */
+	endSave: function(model) {
+		console.log("ABSTRACT END SAVE");
 	},
 	 
   /*
@@ -163,39 +170,27 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 /*
  * JJ.Views.AbstractEditModel instances
  */
-JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["models/entry/module/drill/edit/single"],
-  extendEvents: {
-  },
-	
+ 
+JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
   // If this is the first save, add to parentView.
 	firstSave: function(model) {
-		console.log("EditDrill firstSave");
 		this.parentView.addModel(model);
+	},
+	endSave: function(model) {
+		this.parentView.hideModal();
 	},
 	
 	initialize: function(options) {
 		this.parentView = options.parentView;
-		console.log(this.parentView);
 		return JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
 	},
 });
-JJ.Views.EditSparring = JJ.Views.AbstractEditModel.extend({
+
+JJ.Views.EditDrill = JJ.Views.EditListElement.extend({
+  template: Handlebars.templates["models/entry/module/drill/edit/single"],
+});
+JJ.Views.EditSparring = JJ.Views.EditListElement.extend({
   template: Handlebars.templates["models/entry/module/sparring/edit/single"],
-  extendEvents: {
-  },
-	
-  // If this is the first save, add to parentView.
-	firstSave: function(model) {
-		console.log("EditSparring firstSave");
-		this.parentView.addModel(model);
-	},
-	
-	initialize: function(options) {
-		this.parentView = options.parentView;
-		console.log(this.parentView);
-		return JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
-	},
 });
 
 /************************************************************
@@ -459,6 +454,17 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 	},
 	
   /*
+   * Spawns edit modal.
+   */
+	editModel: function(e) {
+		var buttonDiv = $(e.currentTarget).parent();
+    var uri = buttonDiv.data("uri").split("-")[0];
+		
+    var model = this.modelArray[this._getIndexByURI(uri)];
+		this.showModal(model);
+	},
+	
+  /*
    * Adds a saved model to the parent model's list.
 	 * Triggers ui save for parent model's view.
    */
@@ -471,7 +477,6 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		this.modelArray.push(model);
 		
 		this.model.set(this.field, this.modelArray);
-		this.hideModal();
 		this.render();
 		this.model.parentView.save();
   },
@@ -482,19 +487,22 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 	deleteModel: function(e) {
 		var buttonDiv = $(e.currentTarget).parent();
     var uri = buttonDiv.data("uri").split("-")[0];
-		console.log(buttonDiv.data("uri"));
-		console.log(uri);
 		
-		for (var i=0; i < this.modelArray.length; i++) {
-			if ((!_.isUndefined(this.modelArray[i].get) && this.modelArray[i].get("resource_uri") === uri)
-				 || (this.modelArray[i] === uri)) {
-				this.removeModel(i);
-			}
-		}
+		removeModel(this._getIndexByURI(uri));
 		
 		var root = buttonDiv.parent();
 		root.unbind();
 		root.remove();
+	},
+	
+	_getIndexByURI: function(uri) {
+		for (var i=0; i < this.modelArray.length; i++) {
+			if ((!_.isUndefined(this.modelArray[i].get) && this.modelArray[i].get("resource_uri") === uri)
+				 || (this.modelArray[i] === uri)) {
+				return i;
+			}
+		}
+		return -1;
 	},
 	
   /*

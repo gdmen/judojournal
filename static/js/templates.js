@@ -42,7 +42,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
     + "-save\" class=\"entry-save disabled\">\r\n			<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n			<i class=\"enabled fa fa-floppy-o\"></i>\r\n			<i class=\"disabled fa fa-check\"></i>\r\n		</div>\r\n	\r\n		<div class=\"entry-info\">\r\n			<div id=\"art\"></div>\r\n			<div id=\"type\"></div>\r\n			<div id=\"location\"></div>\r\n		</div>\r\n		\r\n		<div class=\"\">\r\n			<div>\r\n				<h3 class=\"edit-link modal-trigger date-modal\">\r\n					<i class=\"fa fa-calendar\"></i>\r\n					Thursday, 15 Jan 2014\r\n				</h3>\r\n			</div>\r\n			<div>\r\n				<h3 class=\"plaintext\">from</h3>\r\n				<h3 class=\"edit-link modal-trigger start-time-modal\">\r\n					<i class=\"fa fa-clock-o\"></i>\r\n					2:45PM\r\n				</h3>\r\n			</div>\r\n			<div>\r\n				<h3 class=\"plaintext\">until</h3>\r\n				<h3 class=\"edit-link modal-trigger end-time-modal\">\r\n					<i class=\"fa fa-clock-o\"></i>\r\n					4:45PM\r\n				</h3>\r\n			</div>\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating/edit'], 'widgets/rating/edit', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </div>\r\n	\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>";
+  buffer += "\r\n  </div>\r\n	\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"goals\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"notes\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>";
   return buffer;
   });
 templates['models/entry/judo/view/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -132,7 +132,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n<button class=\"tiny secondary radius left close-modal\">cancel</button>";
+    + "</textarea>\r\n<button class=\"tiny secondary radius left close-modal\">close</button>";
   return buffer;
   });
 templates['models/entry/module/drill/view/brief'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -194,7 +194,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":minutes\" class=\"focus\" placeholder=\"Minutes\" value=\"";
+    + ":minutes\" placeholder=\"Minutes\" value=\"";
   if (helper = helpers.minutes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.minutes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -206,7 +206,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n<button class=\"tiny secondary radius left close-modal\">cancel</button>";
+    + "</textarea>\r\n<button class=\"tiny secondary radius left close-modal\">close</button>";
   return buffer;
   });
 templates['models/entry/module/sparring/view/brief'] = template(function (Handlebars,depth0,helpers,partials,data) {
