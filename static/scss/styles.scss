@@ -229,6 +229,17 @@ footer {
 /*
  * Entry form
  */
+.entry-form-header {
+	#entry-rating {
+		@include float-left();
+		margin-top: 0.5rem;
+	}
+	.entry-save {
+		@include save($diameter: 4rem);
+		@include float-right();
+	}
+}
+
 .entry-form-meta {
 	div {
 		display: inline-block;
@@ -239,17 +250,7 @@ footer {
 			max-width: 100%;
 		}
 	}
-	.entry-info {
-		@include float-left();
-		& > div:last-child {
-			//margin-right: ;
-			white-space: nowrap;
-		}
-	}
-	.entry-save {
-		@include save($diameter: 5rem);
-		@include float-right();
-	}
+	
 	.plaintext {
 		border-bottom: 1px dashed transparent;
 		margin-right: 0.5em;
@@ -425,7 +426,7 @@ footer {
 			background-color: #FFF;
 		}
 		&:nth-child(even) {
-			background-color: #FDFDFD;
+			background-color: #FAFAFA;
 		}
 		div {
 			display: inline-block;
@@ -511,20 +512,23 @@ $widget-bg: $topbar-bg;
  * Widgets
  */
  // Rating
-.rating label {
-  display: inline-block;
-  input[type=radio]{
-    display: none;
-  }
-  input[type=radio] + img{
-		@include opacity(0.25);
-		width: 2rem;
-		&:hover {
-			@include opacity(0.5);
-			cursor: pointer;
+.rating {
+	display: inline-block;
+	label {
+		display: inline-block;
+		input[type=radio]{
+			display: none;
 		}
-  }
-  input[type=radio]:checked + img{
-		@include opacity(0.75);
-  }
+		input[type=radio] + img{
+			@include opacity(0.25);
+			width: 3rem;
+			&:hover {
+				@include opacity(0.5);
+				cursor: pointer;
+			}
+		}
+		input[type=radio]:checked + img{
+			@include opacity(0.7);
+		}
+	}
 }

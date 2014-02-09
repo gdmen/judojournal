@@ -12468,40 +12468,24 @@ footer div p:last-child {
  * Entry form
  */
 /* line 233, ../scss/styles.scss */
-.entry-form-meta div {
-  display: inline-block;
-  max-width: 100%;
-}
-/* line 236, ../scss/styles.scss */
-.entry-form-meta div h3 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-bottom: 0;
-  max-width: 100%;
-}
-/* line 242, ../scss/styles.scss */
-.entry-form-meta .entry-info {
+.entry-form-header #entry-rating {
   display: block;
   overflow: hidden;
+  margin-top: 0.5rem;
 }
-/* line 244, ../scss/styles.scss */
-.entry-form-meta .entry-info > div:last-child {
-  white-space: nowrap;
-}
-/* line 249, ../scss/styles.scss */
-.entry-form-meta .entry-save {
-  -webkit-border-radius: 2.5rem;
-  border-radius: 2.5rem;
+/* line 237, ../scss/styles.scss */
+.entry-form-header .entry-save {
+  -webkit-border-radius: 2rem;
+  border-radius: 2rem;
   display: inline-block;
-  height: 5rem;
+  height: 4rem;
   text-align: center;
-  width: 5rem;
+  width: 4rem;
   float: right;
   margin-left: 1rem;
 }
 /* line 111, ../scss/styles.scss */
-.entry-form-meta .entry-save:hover {
+.entry-form-header .entry-save:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
   -moz-opacity: 0.75;
@@ -12510,19 +12494,19 @@ footer div p:last-child {
   cursor: pointer;
 }
 /* line 115, ../scss/styles.scss */
-.entry-form-meta .entry-save i {
+.entry-form-header .entry-save i {
   color: #FFF;
   display: inline-block;
-  font-size: 3.33333rem;
-  padding: 0.83333rem 0;
+  font-size: 2.66667rem;
+  padding: 0.66667rem 0;
 }
 /* line 121, ../scss/styles.scss */
-.entry-form-meta .entry-save i.fa-plus {
-  padding-top: 1.07143rem;
-  padding-bottom: 0.35714rem;
+.entry-form-header .entry-save i.fa-plus {
+  padding-top: 0.85714rem;
+  padding-bottom: 0.28571rem;
 }
 /* line 130, ../scss/styles.scss */
-.entry-form-meta .entry-save.disabled:hover, .entry-form-meta .entry-save.saving:hover {
+.entry-form-header .entry-save.disabled:hover, .entry-form-header .entry-save.saving:hover {
   filter: alpha(opactiy=100);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   -moz-opacity: 1;
@@ -12531,7 +12515,7 @@ footer div p:last-child {
   cursor: default;
 }
 /* line 135, ../scss/styles.scss */
-.entry-form-meta .entry-save.disabled {
+.entry-form-header .entry-save.disabled {
   -webkit-transition: background-color 500ms linear;
   -moz-transition: background-color 500ms linear;
   -o-transition: background-color 500ms linear;
@@ -12539,15 +12523,15 @@ footer div p:last-child {
   background-color: rgba(0, 0, 0, 0.25);
 }
 /* line 138, ../scss/styles.scss */
-.entry-form-meta .entry-save.disabled i.enabled, .entry-form-meta .entry-save.disabled i.saving {
+.entry-form-header .entry-save.disabled i.enabled, .entry-form-header .entry-save.disabled i.saving {
   display: none;
 }
 /* line 141, ../scss/styles.scss */
-.entry-form-meta .entry-save.disabled i.disabled {
+.entry-form-header .entry-save.disabled i.disabled {
   display: inline-block;
 }
 /* line 145, ../scss/styles.scss */
-.entry-form-meta .entry-save.enabled {
+.entry-form-header .entry-save.enabled {
   -webkit-transition: background-color 500ms linear;
   -moz-transition: background-color 500ms linear;
   -o-transition: background-color 500ms linear;
@@ -12555,32 +12539,46 @@ footer div p:last-child {
   background-color: #22bf64;
 }
 /* line 148, ../scss/styles.scss */
-.entry-form-meta .entry-save.enabled i.disabled, .entry-form-meta .entry-save.enabled i.saving {
+.entry-form-header .entry-save.enabled i.disabled, .entry-form-header .entry-save.enabled i.saving {
   display: none;
 }
 /* line 151, ../scss/styles.scss */
-.entry-form-meta .entry-save.enabled i.enabled {
+.entry-form-header .entry-save.enabled i.enabled {
   display: inline-block;
 }
 /* line 155, ../scss/styles.scss */
-.entry-form-meta .entry-save.saving {
+.entry-form-header .entry-save.saving {
   background-color: #f76565;
 }
 /* line 157, ../scss/styles.scss */
-.entry-form-meta .entry-save.saving i.enabled, .entry-form-meta .entry-save.saving i.disabled {
+.entry-form-header .entry-save.saving i.enabled, .entry-form-header .entry-save.saving i.disabled {
   display: none;
 }
 /* line 160, ../scss/styles.scss */
-.entry-form-meta .entry-save.saving i.saving {
+.entry-form-header .entry-save.saving i.saving {
   display: inline-block;
 }
-/* line 253, ../scss/styles.scss */
+
+/* line 244, ../scss/styles.scss */
+.entry-form-meta div {
+  display: inline-block;
+  max-width: 100%;
+}
+/* line 247, ../scss/styles.scss */
+.entry-form-meta div h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+/* line 254, ../scss/styles.scss */
 .entry-form-meta .plaintext {
   border-bottom: 1px dashed transparent;
   margin-right: 0.5em;
   margin-bottom: 1px;
 }
-/* line 258, ../scss/styles.scss */
+/* line 259, ../scss/styles.scss */
 .entry-form-meta .edit-link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
@@ -12588,7 +12586,7 @@ footer div p:last-child {
   margin-bottom: 1px;
   margin-right: 0.5em;
 }
-/* line 264, ../scss/styles.scss */
+/* line 265, ../scss/styles.scss */
 .entry-form-meta .edit-link:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -12597,11 +12595,11 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 268, ../scss/styles.scss */
+/* line 269, ../scss/styles.scss */
 .entry-form-meta .edit-link i {
   color: #222222;
 }
-/* line 270, ../scss/styles.scss */
+/* line 271, ../scss/styles.scss */
 .entry-form-meta .edit-link i:not(.fa) {
   font-weight: bold;
 }
@@ -12609,7 +12607,7 @@ footer div p:last-child {
 /*
  * Time select (Entry form)
  */
-/* line 281, ../scss/styles.scss */
+/* line 282, ../scss/styles.scss */
 .time-select select {
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -12622,16 +12620,16 @@ footer div p:last-child {
 /*
  * Select widget (Entry form)
  */
-/* line 294, ../scss/styles.scss */
+/* line 295, ../scss/styles.scss */
 .single-select .select-input {
   display: none;
 }
-/* line 299, ../scss/styles.scss */
+/* line 300, ../scss/styles.scss */
 .single-select .select-display .edit-link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 305, ../scss/styles.scss */
+/* line 306, ../scss/styles.scss */
 .single-select .select-drop {
   background-color: #FFF;
   display: none;
@@ -12640,19 +12638,19 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 312, ../scss/styles.scss */
+/* line 313, ../scss/styles.scss */
 .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 316, ../scss/styles.scss */
+/* line 317, ../scss/styles.scss */
 .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 321, ../scss/styles.scss */
+/* line 322, ../scss/styles.scss */
 .single-select .select-drop .select-search i {
   color: gray;
   padding: 0.28572rem;
@@ -12660,26 +12658,26 @@ footer div p:last-child {
   right: 0;
   top: 0;
 }
-/* line 329, ../scss/styles.scss */
+/* line 330, ../scss/styles.scss */
 .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 333, ../scss/styles.scss */
+/* line 334, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 336, ../scss/styles.scss */
+/* line 337, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 339, ../scss/styles.scss */
+/* line 340, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 344, ../scss/styles.scss */
+/* line 345, ../scss/styles.scss */
 .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
@@ -12688,12 +12686,12 @@ footer div p:last-child {
 /*
  * Creation form modal
  */
-/* line 356, ../scss/styles.scss */
+/* line 357, ../scss/styles.scss */
 .list-controls .title {
   font-size: 2.5rem;
   padding-left: 1rem;
 }
-/* line 360, ../scss/styles.scss */
+/* line 361, ../scss/styles.scss */
 .list-controls .add-model {
   -webkit-border-radius: 1.5rem;
   border-radius: 1.5rem;
@@ -12725,7 +12723,7 @@ footer div p:last-child {
   padding-bottom: 0.21429rem;
 }
 
-/* line 365, ../scss/styles.scss */
+/* line 366, ../scss/styles.scss */
 .modal-wrapper {
   display: none;
   overflow-y: scroll;
@@ -12738,20 +12736,20 @@ footer div p:last-child {
   top: 0;
   z-index: 9999996;
 }
-/* line 376, ../scss/styles.scss */
+/* line 377, ../scss/styles.scss */
 .modal-wrapper.modal-centered {
   text-align: center;
 }
-/* line 378, ../scss/styles.scss */
+/* line 379, ../scss/styles.scss */
 .modal-wrapper.modal-centered .modal {
   background: none;
   display: inline-block;
 }
-/* line 381, ../scss/styles.scss */
+/* line 382, ../scss/styles.scss */
 .modal-wrapper.modal-centered .modal > div {
   padding: 0;
 }
-/* line 386, ../scss/styles.scss */
+/* line 387, ../scss/styles.scss */
 .modal-wrapper .modal {
   background-color: #FFF;
   bottom: auto;
@@ -12762,22 +12760,22 @@ footer div p:last-child {
   position: relative;
   z-index: 9999998;
 }
-/* line 395, ../scss/styles.scss */
+/* line 396, ../scss/styles.scss */
 .modal-wrapper .modal > div {
   padding: 1rem;
 }
-/* line 398, ../scss/styles.scss */
+/* line 399, ../scss/styles.scss */
 .modal-wrapper .modal .modal-header {
   display: block;
   overflow: hidden;
 }
-/* line 400, ../scss/styles.scss */
+/* line 401, ../scss/styles.scss */
 .modal-wrapper .modal .modal-header h3 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 404, ../scss/styles.scss */
+/* line 405, ../scss/styles.scss */
 .modal-wrapper .modal .modal-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12863,18 +12861,18 @@ footer div p:last-child {
 .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 409, ../scss/styles.scss */
+/* line 410, ../scss/styles.scss */
 .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
 
-/* line 414, ../scss/styles.scss */
+/* line 415, ../scss/styles.scss */
 .model-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 418, ../scss/styles.scss */
+/* line 419, ../scss/styles.scss */
 .model-list li {
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
@@ -12883,30 +12881,30 @@ footer div p:last-child {
   padding: 0.25rem;
   position: relative;
 }
-/* line 424, ../scss/styles.scss */
+/* line 425, ../scss/styles.scss */
 .model-list li:nth-child(odd) {
   background-color: #FFF;
 }
-/* line 427, ../scss/styles.scss */
+/* line 428, ../scss/styles.scss */
 .model-list li:nth-child(even) {
-  background-color: #FDFDFD;
+  background-color: #FAFAFA;
 }
-/* line 430, ../scss/styles.scss */
+/* line 431, ../scss/styles.scss */
 .model-list li div {
   display: inline-block;
 }
-/* line 433, ../scss/styles.scss */
+/* line 434, ../scss/styles.scss */
 .model-list li .buttons {
   float: right;
   margin-left: 1rem;
 }
-/* line 435, ../scss/styles.scss */
+/* line 436, ../scss/styles.scss */
 .model-list li .buttons button {
   margin: 0 0.25rem 0 0;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 441, ../scss/styles.scss */
+/* line 442, ../scss/styles.scss */
 .model-list li .not-buttons {
   display: block;
   overflow: hidden;
@@ -12919,7 +12917,7 @@ footer div p:last-child {
 /*
  * Manage widget
  */
-/* line 454, ../scss/styles.scss */
+/* line 455, ../scss/styles.scss */
 .manage-widget .manage-header {
   *zoom: 1;
   -moz-border-radius-bottomleft: 3px;
@@ -12941,11 +12939,11 @@ footer div p:last-child {
 .manage-widget .manage-header:after {
   clear: both;
 }
-/* line 460, ../scss/styles.scss */
+/* line 461, ../scss/styles.scss */
 .manage-widget .manage-header a, .manage-widget .manage-header .link {
   padding: 1em;
 }
-/* line 462, ../scss/styles.scss */
+/* line 463, ../scss/styles.scss */
 .manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
   color: white;
   height: 1em;
@@ -12953,26 +12951,26 @@ footer div p:last-child {
   margin: 0;
   padding: 0;
 }
-/* line 470, ../scss/styles.scss */
+/* line 471, ../scss/styles.scss */
 .manage-widget .manage-header a.left {
   width: 100%;
 }
-/* line 473, ../scss/styles.scss */
+/* line 474, ../scss/styles.scss */
 .manage-widget .manage-header div.right {
   border-left: 1px solid #206691;
   position: absolute;
   right: 0;
 }
-/* line 477, ../scss/styles.scss */
+/* line 478, ../scss/styles.scss */
 .manage-widget .manage-header div.right:hover {
   cursor: pointer;
 }
-/* line 482, ../scss/styles.scss */
+/* line 483, ../scss/styles.scss */
 .manage-widget .manage-drop {
   display: none;
   margin-left: 1.5px;
 }
-/* line 485, ../scss/styles.scss */
+/* line 486, ../scss/styles.scss */
 .manage-widget .manage-drop ul {
   background-color: #2c8ec9;
   margin: 0;
@@ -12982,18 +12980,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 496, ../scss/styles.scss */
+/* line 497, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 499, ../scss/styles.scss */
+/* line 500, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 503, ../scss/styles.scss */
+/* line 504, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
@@ -13003,24 +13001,28 @@ footer div p:last-child {
 /*
  * Widgets
  */
-/* line 514, ../scss/styles.scss */
+/* line 515, ../scss/styles.scss */
+.rating {
+  display: inline-block;
+}
+/* line 517, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 516, ../scss/styles.scss */
+/* line 519, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-/* line 519, ../scss/styles.scss */
+/* line 522, ../scss/styles.scss */
 .rating label input[type=radio] + img {
   filter: alpha(opactiy=25);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
   -moz-opacity: 0.25;
   -khtml-opacity: 0.25;
   opacity: 0.25;
-  width: 2rem;
+  width: 3rem;
 }
-/* line 522, ../scss/styles.scss */
+/* line 525, ../scss/styles.scss */
 .rating label input[type=radio] + img:hover {
   filter: alpha(opactiy=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -13029,11 +13031,11 @@ footer div p:last-child {
   opacity: 0.5;
   cursor: pointer;
 }
-/* line 527, ../scss/styles.scss */
+/* line 530, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
-  filter: alpha(opactiy=75);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
-  -moz-opacity: 0.75;
-  -khtml-opacity: 0.75;
-  opacity: 0.75;
+  filter: alpha(opactiy=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
+  opacity: 0.7;
 }

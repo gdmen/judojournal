@@ -45,8 +45,6 @@ class Location(HasUserModel):
 class AbstractEntry(HasUserModel, HasRatingModel):
   start = models.DateTimeField()
   end = models.DateTimeField()
-  #pre_status = models.TextField(blank=True)
-  #post_status = models.TextField(blank=True)
   art = models.ForeignKey(Art)
   type = models.ForeignKey(Type)
   location = models.ForeignKey(Location)
