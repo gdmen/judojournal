@@ -163,7 +163,6 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 /*
  * JJ.Views.AbstractEditModel instances
  */
-
 JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["models/entry/module/drill/edit/single"],
   extendEvents: {
@@ -172,6 +171,23 @@ JJ.Views.EditDrill = JJ.Views.AbstractEditModel.extend({
   // If this is the first save, add to parentView.
 	firstSave: function(model) {
 		console.log("EditDrill firstSave");
+		this.parentView.addModel(model);
+	},
+	
+	initialize: function(options) {
+		this.parentView = options.parentView;
+		console.log(this.parentView);
+		return JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
+	},
+});
+JJ.Views.EditSparring = JJ.Views.AbstractEditModel.extend({
+  template: Handlebars.templates["models/entry/module/sparring/edit/single"],
+  extendEvents: {
+  },
+	
+  // If this is the first save, add to parentView.
+	firstSave: function(model) {
+		console.log("EditSparring firstSave");
 		this.parentView.addModel(model);
 	},
 	
@@ -534,6 +550,12 @@ JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
   insertViewConstructor: JJ.Views.EditDrill,
   insertModelConstructor: JJ.Models.DrillEntryModule,
 });
+JJ.Views.EditSparringList = JJ.Views.AbstractEditModelList.extend({
+  template: Handlebars.templates["models/entry/module/sparring/edit/list"],
+  field: "sparring",
+  insertViewConstructor: JJ.Views.EditSparring,
+  insertModelConstructor: JJ.Models.SparringEntryModule,
+});
 
 /************************************************************
  *
@@ -713,6 +735,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     
     // AbstractEditModelList's
     new JJ.Views.EditDrillList({model: this.model, el: this.$el.find("#drills")});
+    new JJ.Views.EditSparringList({model: this.model, el: this.$el.find("#sparring")});
 		
 		// Handles all modals for the page.
 		var modalWrapper = this.$el.find(".modal-wrapper");

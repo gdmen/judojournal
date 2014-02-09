@@ -1,0 +1,13 @@
+{{! models/entry/module/sparring/edit/single }}
+<div id="{{ cid }}-save" class="modal-save disabled">
+	<i class="saving fa fa-spinner fa-spin"></i>
+	<i class="enabled fa fa-floppy-o"></i>
+	<i class="disabled fa fa-check"></i>
+</div>
+<div class="modal-header">
+	<div><h3>Edit Sparring Round</h3></div>
+	<input required type="text" name="{{ cid }}:partner" class="focus" placeholder="Partner" value="{{ partner }}" />
+	<input required type="number" name="{{ cid }}:minutes" class="focus" placeholder="Minutes" value="{{ minutes }}" />
+</div>
+<textarea name="{{ cid }}:details" placeholder="Details">{{ details }}</textarea>
+<button class="tiny secondary radius left close-modal">cancel</button>
