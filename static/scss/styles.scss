@@ -242,7 +242,7 @@ footer {
 	.entry-info {
 		@include float-left();
 		& > div:last-child {
-			margin-right: ;
+			//margin-right: ;
 			white-space: nowrap;
 		}
 	}
@@ -267,6 +267,9 @@ footer {
 		}
 		i {
 			color: $body-font-color;
+			&:not(.fa) {
+				font-weight: bold;
+			}
 		}
 	}
 }

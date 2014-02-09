@@ -197,6 +197,10 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
   uniqueKey: "",
   placeholder: "",
   hint: "",
+	icon: {
+		className: "fa fa-pencil",
+		text: "",
+	},
   // TODO: move this to initialize()? Would be easier to maintain naming
   // consistent with template.
   events: {
@@ -344,6 +348,7 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
       options: options,
       placeholder: this.placeholder,
       hint: this.hint,
+			icon: this.icon,
       selectedKey: this.selectedKey,
     };
     
@@ -381,6 +386,10 @@ JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
   collectionConstructor: JJ.Models.LocationCollection,
   placeholder: "Location",
   hint: "e.g. Kodokan",
+	icon: {
+		className: "",
+		text: "@",
+	},
 });
 
 

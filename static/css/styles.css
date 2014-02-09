@@ -12485,7 +12485,11 @@ footer div p:last-child {
   display: block;
   overflow: hidden;
 }
-/* line 245, ../scss/styles.scss */
+/* line 244, ../scss/styles.scss */
+.entry-form-meta .entry-info > div:last-child {
+  white-space: nowrap;
+}
+/* line 249, ../scss/styles.scss */
 .entry-form-meta .entry-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12570,7 +12574,13 @@ footer div p:last-child {
 .entry-form-meta .entry-save.saving i.saving {
   display: inline-block;
 }
-/* line 249, ../scss/styles.scss */
+/* line 253, ../scss/styles.scss */
+.entry-form-meta .plaintext {
+  border-bottom: 1px dashed transparent;
+  margin-right: 0.5em;
+  margin-bottom: 1px;
+}
+/* line 258, ../scss/styles.scss */
 .entry-form-meta .edit-link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
@@ -12578,7 +12588,7 @@ footer div p:last-child {
   margin-bottom: 1px;
   margin-right: 0.5em;
 }
-/* line 255, ../scss/styles.scss */
+/* line 264, ../scss/styles.scss */
 .entry-form-meta .edit-link:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -12587,21 +12597,19 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 259, ../scss/styles.scss */
+/* line 268, ../scss/styles.scss */
 .entry-form-meta .edit-link i {
   color: #222222;
 }
-/* line 263, ../scss/styles.scss */
-.entry-form-meta .plaintext {
-  border-bottom: 1px dashed transparent;
-  margin-right: 0.5em;
-  margin-bottom: 1px;
+/* line 270, ../scss/styles.scss */
+.entry-form-meta .edit-link i:not(.fa) {
+  font-weight: bold;
 }
 
 /*
  * Time select (Entry form)
  */
-/* line 274, ../scss/styles.scss */
+/* line 281, ../scss/styles.scss */
 .time-select select {
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -12614,16 +12622,16 @@ footer div p:last-child {
 /*
  * Select widget (Entry form)
  */
-/* line 287, ../scss/styles.scss */
+/* line 294, ../scss/styles.scss */
 .single-select .select-input {
   display: none;
 }
-/* line 292, ../scss/styles.scss */
+/* line 299, ../scss/styles.scss */
 .single-select .select-display .edit-link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 298, ../scss/styles.scss */
+/* line 305, ../scss/styles.scss */
 .single-select .select-drop {
   background-color: #FFF;
   display: none;
@@ -12632,19 +12640,19 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 305, ../scss/styles.scss */
+/* line 312, ../scss/styles.scss */
 .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 309, ../scss/styles.scss */
+/* line 316, ../scss/styles.scss */
 .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 314, ../scss/styles.scss */
+/* line 321, ../scss/styles.scss */
 .single-select .select-drop .select-search i {
   color: gray;
   padding: 0.28572rem;
@@ -12652,26 +12660,26 @@ footer div p:last-child {
   right: 0;
   top: 0;
 }
-/* line 322, ../scss/styles.scss */
+/* line 329, ../scss/styles.scss */
 .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 326, ../scss/styles.scss */
+/* line 333, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 329, ../scss/styles.scss */
+/* line 336, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 332, ../scss/styles.scss */
+/* line 339, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 337, ../scss/styles.scss */
+/* line 344, ../scss/styles.scss */
 .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
@@ -12680,12 +12688,12 @@ footer div p:last-child {
 /*
  * Creation form modal
  */
-/* line 349, ../scss/styles.scss */
+/* line 356, ../scss/styles.scss */
 .list-controls .title {
   font-size: 2.5rem;
   padding-left: 1rem;
 }
-/* line 353, ../scss/styles.scss */
+/* line 360, ../scss/styles.scss */
 .list-controls .add-model {
   -webkit-border-radius: 1.5rem;
   border-radius: 1.5rem;
@@ -12717,7 +12725,7 @@ footer div p:last-child {
   padding-bottom: 0.21429rem;
 }
 
-/* line 358, ../scss/styles.scss */
+/* line 365, ../scss/styles.scss */
 .modal-wrapper {
   display: none;
   overflow-y: scroll;
@@ -12730,20 +12738,20 @@ footer div p:last-child {
   top: 0;
   z-index: 9999996;
 }
-/* line 369, ../scss/styles.scss */
+/* line 376, ../scss/styles.scss */
 .modal-wrapper.modal-centered {
   text-align: center;
 }
-/* line 371, ../scss/styles.scss */
+/* line 378, ../scss/styles.scss */
 .modal-wrapper.modal-centered .modal {
   background: none;
   display: inline-block;
 }
-/* line 374, ../scss/styles.scss */
+/* line 381, ../scss/styles.scss */
 .modal-wrapper.modal-centered .modal > div {
   padding: 0;
 }
-/* line 379, ../scss/styles.scss */
+/* line 386, ../scss/styles.scss */
 .modal-wrapper .modal {
   background-color: #FFF;
   bottom: auto;
@@ -12754,22 +12762,22 @@ footer div p:last-child {
   position: relative;
   z-index: 9999998;
 }
-/* line 388, ../scss/styles.scss */
+/* line 395, ../scss/styles.scss */
 .modal-wrapper .modal > div {
   padding: 1rem;
 }
-/* line 391, ../scss/styles.scss */
+/* line 398, ../scss/styles.scss */
 .modal-wrapper .modal .modal-header {
   display: block;
   overflow: hidden;
 }
-/* line 393, ../scss/styles.scss */
+/* line 400, ../scss/styles.scss */
 .modal-wrapper .modal .modal-header h3 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 397, ../scss/styles.scss */
+/* line 404, ../scss/styles.scss */
 .modal-wrapper .modal .modal-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12855,18 +12863,18 @@ footer div p:last-child {
 .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 402, ../scss/styles.scss */
+/* line 409, ../scss/styles.scss */
 .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
 
-/* line 407, ../scss/styles.scss */
+/* line 414, ../scss/styles.scss */
 .model-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 411, ../scss/styles.scss */
+/* line 418, ../scss/styles.scss */
 .model-list li {
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
@@ -12875,30 +12883,30 @@ footer div p:last-child {
   padding: 0.25rem;
   position: relative;
 }
-/* line 417, ../scss/styles.scss */
+/* line 424, ../scss/styles.scss */
 .model-list li:nth-child(odd) {
   background-color: #FFF;
 }
-/* line 420, ../scss/styles.scss */
+/* line 427, ../scss/styles.scss */
 .model-list li:nth-child(even) {
   background-color: #F9F9F9;
 }
-/* line 423, ../scss/styles.scss */
+/* line 430, ../scss/styles.scss */
 .model-list li div {
   display: inline-block;
 }
-/* line 426, ../scss/styles.scss */
+/* line 433, ../scss/styles.scss */
 .model-list li .buttons {
   float: right;
   margin-left: 1rem;
 }
-/* line 428, ../scss/styles.scss */
+/* line 435, ../scss/styles.scss */
 .model-list li .buttons button {
   margin: 0 0.25rem 0 0;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 434, ../scss/styles.scss */
+/* line 441, ../scss/styles.scss */
 .model-list li .not-buttons {
   display: block;
   overflow: hidden;
@@ -12911,7 +12919,7 @@ footer div p:last-child {
 /*
  * Manage widget
  */
-/* line 447, ../scss/styles.scss */
+/* line 454, ../scss/styles.scss */
 .manage-widget .manage-header {
   *zoom: 1;
   -moz-border-radius-bottomleft: 3px;
@@ -12933,11 +12941,11 @@ footer div p:last-child {
 .manage-widget .manage-header:after {
   clear: both;
 }
-/* line 453, ../scss/styles.scss */
+/* line 460, ../scss/styles.scss */
 .manage-widget .manage-header a, .manage-widget .manage-header .link {
   padding: 1em;
 }
-/* line 455, ../scss/styles.scss */
+/* line 462, ../scss/styles.scss */
 .manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
   color: white;
   height: 1em;
@@ -12945,26 +12953,26 @@ footer div p:last-child {
   margin: 0;
   padding: 0;
 }
-/* line 463, ../scss/styles.scss */
+/* line 470, ../scss/styles.scss */
 .manage-widget .manage-header a.left {
   width: 100%;
 }
-/* line 466, ../scss/styles.scss */
+/* line 473, ../scss/styles.scss */
 .manage-widget .manage-header div.right {
   border-left: 1px solid #206691;
   position: absolute;
   right: 0;
 }
-/* line 470, ../scss/styles.scss */
+/* line 477, ../scss/styles.scss */
 .manage-widget .manage-header div.right:hover {
   cursor: pointer;
 }
-/* line 475, ../scss/styles.scss */
+/* line 482, ../scss/styles.scss */
 .manage-widget .manage-drop {
   display: none;
   margin-left: 1.5px;
 }
-/* line 478, ../scss/styles.scss */
+/* line 485, ../scss/styles.scss */
 .manage-widget .manage-drop ul {
   background-color: #2c8ec9;
   margin: 0;
@@ -12974,18 +12982,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 489, ../scss/styles.scss */
+/* line 496, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 492, ../scss/styles.scss */
+/* line 499, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 496, ../scss/styles.scss */
+/* line 503, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
@@ -12995,20 +13003,20 @@ footer div p:last-child {
 /*
  * Widgets
  */
-/* line 507, ../scss/styles.scss */
+/* line 514, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 509, ../scss/styles.scss */
+/* line 516, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-/* line 512, ../scss/styles.scss */
+/* line 519, ../scss/styles.scss */
 .rating label input[type=radio] + img {
   border: 2px solid transparent;
   cursor: pointer;
 }
-/* line 516, ../scss/styles.scss */
+/* line 523, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
   border: 2px solid #F00;
 }

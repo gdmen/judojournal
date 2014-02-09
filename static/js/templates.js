@@ -39,7 +39,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-save\" class=\"entry-save disabled\">\r\n			<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n			<i class=\"enabled fa fa-floppy-o\"></i>\r\n			<i class=\"disabled fa fa-check\"></i>\r\n		</div>\r\n	\r\n		<div class=\"entry-info\">\r\n			<div id=\"art\"></div>\r\n			<div id=\"type\"></div>\r\n			<div>\r\n				<h3 class=\"plaintext\">at</h3>\r\n				<div id=\"location\"></div>\r\n			</div>\r\n		</div>\r\n		\r\n		<div class=\"\">\r\n			<div>\r\n				<h3 class=\"edit-link modal-trigger date-modal\">\r\n					<i class=\"fa fa-calendar\"></i>\r\n					Thursday, 15 Jan 2014\r\n				</h3>\r\n			</div>\r\n			<div>\r\n				<h3 class=\"plaintext\">from</h3>\r\n				<h3 class=\"edit-link modal-trigger start-time-modal\">\r\n					<i class=\"fa fa-clock-o\"></i>\r\n					2:45PM\r\n				</h3>\r\n			</div>\r\n			<div>\r\n				<h3 class=\"plaintext\">until</h3>\r\n				<h3 class=\"edit-link modal-trigger end-time-modal\">\r\n					<i class=\"fa fa-clock-o\"></i>\r\n					4:45PM\r\n				</h3>\r\n			</div>\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns\">\r\n    ";
+    + "-save\" class=\"entry-save disabled\">\r\n			<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n			<i class=\"enabled fa fa-floppy-o\"></i>\r\n			<i class=\"disabled fa fa-check\"></i>\r\n		</div>\r\n	\r\n		<div class=\"entry-info\">\r\n			<div id=\"art\"></div>\r\n			<div id=\"type\"></div>\r\n			<div id=\"location\"></div>\r\n		</div>\r\n		\r\n		<div class=\"\">\r\n			<div>\r\n				<h3 class=\"edit-link modal-trigger date-modal\">\r\n					<i class=\"fa fa-calendar\"></i>\r\n					Thursday, 15 Jan 2014\r\n				</h3>\r\n			</div>\r\n			<div>\r\n				<h3 class=\"plaintext\">from</h3>\r\n				<h3 class=\"edit-link modal-trigger start-time-modal\">\r\n					<i class=\"fa fa-clock-o\"></i>\r\n					2:45PM\r\n				</h3>\r\n			</div>\r\n			<div>\r\n				<h3 class=\"plaintext\">until</h3>\r\n				<h3 class=\"edit-link modal-trigger end-time-modal\">\r\n					<i class=\"fa fa-clock-o\"></i>\r\n					4:45PM\r\n				</h3>\r\n			</div>\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns\">\r\n    ";
   stack1 = self.invokePartial(partials['widgets/rating/edit'], 'widgets/rating/edit', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  </div>\r\n	\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <h2>SPARRING</h2>\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 large-4 columns\">\r\n    <h2>NOTES</h2>\r\n    <div id=\"notes\"></div>\r\n  </div>\r\n  \r\n</div>";
@@ -155,7 +155,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n      <h3 class=\"edit-link selected-key\"><i class=\"fa fa-pencil\"></i > ";
+  buffer += "\r\n      <h3 class=\"edit-link selected-key\"><i class=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.icon)),stack1 == null || stack1 === false ? stack1 : stack1.className)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.icon)),stack1 == null || stack1 === false ? stack1 : stack1.text)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</i > ";
   if (helper = helpers.selectedKey) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.selectedKey); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -166,7 +170,11 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n      <h3 class=\"edit-link placeholder\"><i class=\"fa fa-pencil\"></i > ";
+  buffer += "\r\n      <h3 class=\"edit-link placeholder\"><i class=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.icon)),stack1 == null || stack1 === false ? stack1 : stack1.className)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.icon)),stack1 == null || stack1 === false ? stack1 : stack1.text)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</i > ";
   if (helper = helpers.placeholder) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.placeholder); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)

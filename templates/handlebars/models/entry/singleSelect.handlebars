@@ -5,9 +5,9 @@
   <input class="select-input" name="{{ cid }}:{{ field }}" type="text"/>
   <div class="select-display">
     {{#if selectedKey}}
-      <h3 class="edit-link selected-key"><i class="fa fa-pencil"></i > {{ selectedKey }}</h3>
+      <h3 class="edit-link selected-key"><i class="{{ icon.className }}">{{ icon.text }}</i > {{ selectedKey }}</h3>
     {{else}}
-      <h3 class="edit-link placeholder"><i class="fa fa-pencil"></i > {{ placeholder }}</h3>
+      <h3 class="edit-link placeholder"><i class="{{ icon.className }}">{{ icon.text }}</i > {{ placeholder }}</h3>
     {{/if}}
     <div class="select-drop">
       <div class="select-search">
