@@ -1,59 +1,65 @@
 {{! entry/judo/edit/single }}
+<div class="row modal-wrapper modal-centered date-modal">
+	<div class="click-away-overlay"></div>
+	<div class="modal">
+		<div id="date" name="{{ cid }}:date"></div>
+	</div>
+</div>
+	
+<div class="row modal-wrapper modal-centered start-time-modal">
+	<div class="click-away-overlay"></div>
+	<div class="modal">
+		<div id="start"></div>
+	</div>
+</div>
+
+<div class="row modal-wrapper modal-centered end-time-modal">
+	<div class="click-away-overlay"></div>
+	<div class="modal">
+		<div id="end"></div>
+	</div>
+</div>
 
 <div class="row">
 
   <div class="columns entry-form-meta">
-		<div id="{{ cid }}-save" class="entry-save disabled">
-			<i class="saving fa fa-spinner fa-spin"></i>
-			<i class="enabled fa fa-floppy-o"></i>
-			<i class="disabled fa fa-check"></i>
-		</div>
 		<div class="entry-info">
+		
+			<div id="{{ cid }}-save" class="entry-save disabled">
+				<i class="saving fa fa-spinner fa-spin"></i>
+				<i class="enabled fa fa-floppy-o"></i>
+				<i class="disabled fa fa-check"></i>
+			</div>
+			
 			<div id="art"></div>
 			<div id="type"></div>
 			<div>
-				<div id="at"><h3>@</h3></div>
+				<h3 class="plaintext">at</h3>
 				<div id="location"></div>
 			</div>
+			
 			<div>
-				<h3>
-					On
-						<div class="edit-link modal-trigger date-modal">
-							<i class="fa fa-calendar"></i>
-							Thursday, 15 Jan 2014
-						</div>
-					from
-						<div class="edit-link modal-trigger start-time-modal">
-							<i class="fa fa-clock-o"></i>
-							2:45PM
-						</div>
-					 to
-						<div class="edit-link modal-trigger end-time-modal">
-							<i class="fa fa-clock-o"></i>
-							4:45PM
-						</div>
+				<h3 class="plaintext">on</h3>
+				<h3 class="edit-link modal-trigger date-modal">
+					<i class="fa fa-calendar"></i>
+					Thursday, 15 Jan 2014
 				</h3>
-				
-				<div class="row modal-wrapper modal-centered date-modal">
-					<div class="click-away-overlay"></div>
-					<div class="modal">
-						<div id="date" name="{{ cid }}:date"></div>
-					</div>
-				</div>
-					
-				<div class="row modal-wrapper modal-centered start-time-modal">
-					<div class="click-away-overlay"></div>
-					<div class="modal">
-						<div id="start"></div>
-					</div>
-				</div>
-				
-				<div class="row modal-wrapper modal-centered end-time-modal">
-					<div class="click-away-overlay"></div>
-					<div class="modal">
-						<div id="end"></div>
-					</div>
-				</div>
+			</div>
+			
+			<div>
+				<h3 class="plaintext">from</h3>
+				<h3 class="edit-link modal-trigger start-time-modal">
+					<i class="fa fa-clock-o"></i>
+					2:45PM
+				</h3>
+			</div>
+			
+			<div>
+				<h3 class="plaintext">until</h3>
+				<h3 class="edit-link modal-trigger end-time-modal">
+					<i class="fa fa-clock-o"></i>
+					4:45PM
+				</h3>
 			</div>
 			
 		</div>
