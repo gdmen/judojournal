@@ -1,22 +1,9 @@
 <div class="rating">
-  <label for="{{ cid }}:rating-1">
-    <input id="{{ cid }}:rating-1" type="radio" name="{{ cid }}:rating" value="1" />
-    <img src="/static/img/rating-1.png">
-  </label>
-  <label for="{{ cid }}:rating-2">
-    <input id="{{ cid }}:rating-2" type="radio" name="{{ cid }}:rating" value="2" />
-    <img src="/static/img/rating-2.png">
-  </label>
-  <label for="{{ cid }}:rating-3">
-    <input id="{{ cid }}:rating-3" type="radio" name="{{ cid }}:rating" value="3" />
-    <img src="/static/img/rating-3.png">
-  </label>
-  <label for="{{ cid }}:rating-4">
-    <input id="{{ cid }}:rating-4" type="radio" name="{{ cid }}:rating" value="4" />
-    <img src="/static/img/rating-4.png">
-  </label>
-  <label for="{{ cid }}:rating-5">
-    <input id="{{ cid }}:rating-5" type="radio" name="{{ cid }}:rating" value="5" />
-    <img src="/static/img/rating-5.png">
-  </label>
+	{{#each ratings}}
+		<label for="{{ ../cid }}:rating-{{ rating }}">
+			<input id="{{ ../cid }}:rating-{{ rating }}" type="radio" name="{{ ../cid }}:rating" value="{{ rating }}"
+			{{#if checked}} checked{{/if}}/>
+			<img src="/static/img/rating-{{ rating }}.png">
+		</label>
+	{{/each}}
 </div>

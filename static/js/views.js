@@ -285,14 +285,14 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
     var that = this;
     model.save(null, {
       success: function(m) {
-        console.log("SAVED new SelectModel...");
-        console.log(m);
+        //console.log("SAVED new SelectModel...");
+        //console.log(m);
         that.model.set(that.field, m.get("resource_uri"));
         that.collection.add(m);
 				// TODO: avoid the full re-render
         that.render();
       },
-      error: console.log.backboneError,
+      error: JJ.Util.backboneError,
     });
   },
   
@@ -521,7 +521,7 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
         console.log("Destroyed a model...");
         console.log(m);
       },
-      error: console.log.backboneError,
+      error: JJ.Util.backboneError,
     });*/
   },
   
@@ -541,8 +541,6 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   },
   
   render: function() {
-		console.log("PARENT STUFF:");
-		console.log(this.model.get("drills")[0]);
     this.modelArray = this.model.get(this.field).slice(0);
 		var json = {models: JSON.parse(JSON.stringify(this.modelArray))};
     this.$el.html(this.template(json));
@@ -681,6 +679,14 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   render: function() {
 		this.model.hydrate();
     var json = this.model.toJSON();
+		json.ratings = [];
+		var i;
+		for (i = 1; i <= 5; i++) {
+			json.ratings.push({
+				rating: i,
+				checked: i === this.model.get("rating"),
+			});
+		}
     this.$el.html(this.template(json));
     
     // AbstractSelectModelList's

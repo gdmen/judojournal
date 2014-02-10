@@ -63,7 +63,7 @@ JJ.Models.Goal = JJ.Models.Tastypie.extend({
 JJ.Models.GoalInstance = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/goal/instance/",
   defaults: {
-    rating: "3",
+    rating: 3,
   }
 });
 
@@ -130,7 +130,7 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 	defaults: function() {
 		var now = new Date;
 		return {
-			rating: "3",
+			rating: 3,
 			start: now,
 			end: now,
 			drills: [],

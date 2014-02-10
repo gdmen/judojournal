@@ -81,3 +81,15 @@ JJ.Util.throttle = function(callback, delay) {
 		}
 	};
 }
+
+// TODO: put this with template/view code somewhere?
+
+/*
+ * http://stackoverflow.com/questions/11924452/handlebar-js-iterating-over-for-basic-loop
+ */
+Handlebars.registerHelper('times', function(n, block) {
+    var accum = '';
+    for(var i = 1; i <= n; ++i)
+        accum += block.fn(i);
+    return accum;
+});

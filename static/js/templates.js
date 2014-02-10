@@ -508,70 +508,49 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['widgets/rating/edit'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data,depth1) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n		<label for=\""
+    + escapeExpression(((stack1 = (depth1 && depth1.cid)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + ":rating-";
+  if (helper = helpers.rating) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.rating); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\r\n			<input id=\""
+    + escapeExpression(((stack1 = (depth1 && depth1.cid)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + ":rating-";
+  if (helper = helpers.rating) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.rating); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" type=\"radio\" name=\""
+    + escapeExpression(((stack1 = (depth1 && depth1.cid)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + ":rating\" value=\"";
+  if (helper = helpers.rating) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.rating); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"\r\n			";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.checked), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "/>\r\n			<img src=\"/static/img/rating-";
+  if (helper = helpers.rating) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.rating); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ".png\">\r\n		</label>\r\n	";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return " checked";
+  }
 
-  buffer += "<div class=\"rating\">\r\n  <label for=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-1\">\r\n    <input id=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-1\" type=\"radio\" name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating\" value=\"1\" />\r\n    <img src=\"/static/img/rating-1.png\">\r\n  </label>\r\n  <label for=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-2\">\r\n    <input id=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-2\" type=\"radio\" name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating\" value=\"2\" />\r\n    <img src=\"/static/img/rating-2.png\">\r\n  </label>\r\n  <label for=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-3\">\r\n    <input id=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-3\" type=\"radio\" name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating\" value=\"3\" />\r\n    <img src=\"/static/img/rating-3.png\">\r\n  </label>\r\n  <label for=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-4\">\r\n    <input id=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-4\" type=\"radio\" name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating\" value=\"4\" />\r\n    <img src=\"/static/img/rating-4.png\">\r\n  </label>\r\n  <label for=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-5\">\r\n    <input id=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating-5\" type=\"radio\" name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":rating\" value=\"5\" />\r\n    <img src=\"/static/img/rating-5.png\">\r\n  </label>\r\n</div>";
+  buffer += "<div class=\"rating\">\r\n	";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.ratings), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</div>";
   return buffer;
   });
 templates['widgets/rating/view'] = template(function (Handlebars,depth0,helpers,partials,data) {
