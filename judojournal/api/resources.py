@@ -1,16 +1,30 @@
 from tastypie.authentication import SessionAuthentication
-from tastypie.authorization import Authorization
+from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 from tastypie import fields
 from judojournal.api.models import *
 
+
+class JJAuthentication(SessionAuthentication):
+	def is_authenticated(self, request, **kwargs):
+		if request.method == 'GET':
+			return True
+		return super(JJAuthentication, self).is_authenticated(request, **kwargs)
+
+class JJAuthorization(DjangoAuthorization):
+	def is_authorized(self, request, object=None):
+		if request.method == 'GET':
+			return True
+		else:
+			return super(JJAuthorization, self).is_authorized(request, object)
+				
 class HasUserResource(ModelResource):
   class Meta:
     abstract = True
     always_return_data = True
     excludes = ['is_superuser']
-    authentication = SessionAuthentication()
-    authorization = Authorization()
+    authentication = JJAuthentication()
+    authorization = JJAuthorization()
 
   def apply_authorization_limits(self, request, object_list):
     return object_list.filter(user=request.user)

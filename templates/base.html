@@ -28,8 +28,8 @@
 						<ul class="right">
 							{% block main_menu_right %}
 								{% if user.is_authenticated %}
-									<li><a href="/#/profile"><i class="fa fa-user"></i> {{ user.username }}</a></li>
-									<li><a href="/#/settings"><i class="fa fa-cog"></i> Settings</a></li>
+									<li><a href="#"><i class="fa fa-user"></i> {{ user.username }}</a></li>
+									<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
 									<li><a href="{% url 'django.contrib.auth.views.logout' %}?next=/"><i class="fa fa-sign-out"></i> Sign out</a></li>
 								{% else %}
 									<li><a href="{% url 'django.contrib.auth.views.login' %}"><i class="fa fa-sign-in"></i> Sign in</a></li>

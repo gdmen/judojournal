@@ -19,7 +19,7 @@
 {% block content %}
 {% endblock %}
 
-{% comment %}
+{% block js %}
   <script type="text/javascript" src="{% static 'bower/underscore/underscore-min.js' %}"></script>
   <script type="text/javascript" src="{% static 'bower/backbone/backbone-min.js' %}"></script>
   <script type="text/javascript" src="{% static 'libs/handlebars.runtime.js' %}"></script>
@@ -33,6 +33,4 @@
   <script type="text/javascript" src="{% static 'js/models.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/views.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/routes.js' %}"></script>
-{% endcomment %}
-{% block js %}
 {% endblock %}

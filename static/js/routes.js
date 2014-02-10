@@ -30,8 +30,7 @@ JJ.AppView = new AppView();
 JJ.Router = Backbone.Router.extend({
   routes: {
     "(/)": "home",
-    //"entry/:id(/)": "showEntry",
-    "entry/:id/edit(/)": "editEntry",
+    "entry/:id(/)": "editEntry",
     "*unknown": "unknownRoute"
   }
 });

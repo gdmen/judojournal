@@ -9,7 +9,15 @@ JJ.Views.Util = {
     editEntry: function(id) {
       return "/#/entry/" + id + "/edit";
     }
-  }
+  },
+  configModals: function() {
+		// Handles all modals for the page.
+		var modalWrapper = $(".modal-wrapper");
+		var clickAway = $(".click-away-overlay");
+		modalWrapper.show();
+		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
+		modalWrapper.hide();
+  },
 }
 
 /*
@@ -547,6 +555,8 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     this.modelArray = this.model.get(this.field).slice(0);
 		var json = {models: JSON.parse(JSON.stringify(this.modelArray))};
     this.$el.html(this.template(json));
+    
+    JJ.Views.Util.configModals();
     return this;
   },
 });
@@ -761,13 +771,8 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     new JJ.Views.EditNoteList({model: this.model, el: this.$el.find("#notes")});
     new JJ.Views.EditDrillList({model: this.model, el: this.$el.find("#drills")});
     new JJ.Views.EditSparringList({model: this.model, el: this.$el.find("#sparring")});
-		
-		// Handles all modals for the page.
-		var modalWrapper = this.$el.find(".modal-wrapper");
-		var clickAway = this.$el.find(".click-away-overlay");
-		modalWrapper.show();
-		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
-		modalWrapper.hide();
+    
+    JJ.Views.Util.configModals();
     
     // DOM JS linking
     this.linkDOM();
