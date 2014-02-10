@@ -5,11 +5,6 @@ JJ.Views.Util = {
     min: "MM",
     period: "TT",
   },
-  links: {
-    editEntry: function(id) {
-      return "/#/entry/" + id + "/edit";
-    }
-  },
   configModals: function() {
 		// Handles all modals for the page.
 		var modalWrapper = $(".modal-wrapper");
@@ -675,7 +670,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   // If this is the first save, redirect to the saved-model edit page.
 	firstSave: function(model) {
 		console.log("REDIRECT");
-		window.location.replace(JJ.Views.Util.links.editEntry(model.get("id")));
+		window.location.replace(JJ.Util.links.edit.entry(model.get("id")));
 	},
 	
 	dateChanged: function(e) {
@@ -901,7 +896,7 @@ JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({
   
   render: function() {
     this.options.name = JJ.Meta.name;
-    this.options.links.newEntry = JJ.Views.Util.links.editEntry("#");
+    this.options.links.newEntry = JJ.Util.links.edit.entry("new");
     this.$el.html(this.template(this.options));
     var that = this;
     Object.keys(this.widgets).forEach(function (name) {

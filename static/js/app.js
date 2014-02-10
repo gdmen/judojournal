@@ -56,7 +56,13 @@ JJ.Util.handleUnknownRoute = function(url) {
   console.log("UNKNOWN ROUTE");
   console.log(url);
 }
-
+JJ.Util.links = {
+  edit: {
+    entry: function(id) {
+      return "/edit/entry/" + id;
+    },
+  },
+}
 /*
  * http://stackoverflow.com/questions/986937/how-can-i-get-the-browsers-scrollbar-sizes
  */

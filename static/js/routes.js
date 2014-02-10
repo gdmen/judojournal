@@ -41,8 +41,14 @@ JJ.router.on('route:editEntry', editEntry);
 //JJ.router.on('route:showEntry', showEntry);
 JJ.router.on('route:unknownRoute', JJ.Util.handleUnknownRoute);
 
-// Start Backbone history a necessary step for bookmarkable URL's
-Backbone.history.start();
+/*
+ * Because hash-based history in Internet Explorer relies on an <iframe>
+ * (from backbone docs)
+ */
+$(function(){
+  // Start Backbone history a necessary step for bookmarkable URL's
+  Backbone.history.start({pushState: true, root: "/edit/"});
+});
 
 function home() {
   JJ.AppView.showView(new JJ.Views.HomePage({}));
@@ -51,8 +57,8 @@ function home() {
 function editEntry(id) {
 	console.log("ROUTED");
 	JJ.AppView.clearView();
-  // # signifies a new Entry is being created.
-  if (id === "#") {
+  // 'new' signifies a new Entry is being created.
+  if (id === "new") {
     var entry = new JJ.Models.JudoEntry();
     JJ.AppView.showView(new JJ.Views.EditJudoEntry({model: entry}));
   } else {
