@@ -670,7 +670,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   // If this is the first save, redirect to the saved-model edit page.
 	firstSave: function(model) {
 		console.log("REDIRECT");
-		window.location.replace(JJ.Util.links.edit.entry(model.get("id")));
+    JJ.router.navigate(JJ.Util.links.edit.entry(model.get("id")), {trigger: true, replace: true});
 	},
 	
 	dateChanged: function(e) {
