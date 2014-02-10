@@ -241,6 +241,10 @@ footer {
 }
 
 .entry-form-meta {
+	margin-bottom: 1rem;
+	@media #{$large-up} {
+		margin-bottom: 2rem;
+	}
 	div {
 		display: inline-block;
 		max-width: 100%;
