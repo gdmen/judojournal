@@ -104,6 +104,15 @@ JJ.Models.LocationCollection = JJ.Models.TastypieCollection.extend({
 });
 
 /*
+ * NoteEntryModule
+ */
+JJ.Models.NoteEntryModule = JJ.Models.Tastypie.extend({
+  urlRoot: "/api/v1/module/note/",
+  defaults: {
+  }
+});
+
+/*
  * DrillEntryModule
  */
 JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
@@ -133,6 +142,7 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 			rating: 3,
 			start: now,
 			end: now,
+			notes: [],
 			drills: [],
 			sparring: [],
 		};
@@ -151,6 +161,7 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
     if (!(end instanceof Date)) {
       this.set({"end": new Date(Date.parse(end))},{silent:true});
     }
+		this._hydrateArray("notes", JJ.Models.NoteEntryModule);
 		this._hydrateArray("drills", JJ.Models.DrillEntryModule);
 		this._hydrateArray("sparring", JJ.Models.SparringEntryModule);
   },
@@ -170,6 +181,7 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
   dehydrated: function() {
 		console.log("DEHYDRATING ENTRY " + this.cid);
 		var clone = this.clone();
+		this._dehydrateArray(clone, "notes", JJ.Models.NoteEntryModule);
 		this._dehydrateArray(clone, "drills", JJ.Models.DrillEntryModule);
 		this._dehydrateArray(clone, "sparring", JJ.Models.SparringEntryModule);
 		return clone;

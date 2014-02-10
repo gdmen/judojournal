@@ -185,6 +185,9 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
 	},
 });
 
+JJ.Views.EditNote = JJ.Views.EditListElement.extend({
+  template: Handlebars.templates["models/entry/module/note/edit/single"],
+});
 JJ.Views.EditDrill = JJ.Views.EditListElement.extend({
   template: Handlebars.templates["models/entry/module/drill/edit/single"],
 });
@@ -551,6 +554,12 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 /*
  * JJ.Views.AbstractEditModelList instances
  */
+JJ.Views.EditNoteList = JJ.Views.AbstractEditModelList.extend({
+  template: Handlebars.templates["models/entry/module/note/edit/list"],
+  field: "notes",
+  insertViewConstructor: JJ.Views.EditNote,
+  insertModelConstructor: JJ.Models.NoteEntryModule,
+});
 JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
   template: Handlebars.templates["models/entry/module/drill/edit/list"],
   field: "drills",
@@ -749,6 +758,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     });
     
     // AbstractEditModelList's
+    new JJ.Views.EditNoteList({model: this.model, el: this.$el.find("#notes")});
     new JJ.Views.EditDrillList({model: this.model, el: this.$el.find("#drills")});
     new JJ.Views.EditSparringList({model: this.model, el: this.$el.find("#sparring")});
 		

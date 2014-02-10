@@ -38,7 +38,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
     + "-save\" class=\"entry-save disabled\">\r\n			<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n			<i class=\"enabled fa fa-floppy-o\"></i>\r\n			<i class=\"disabled fa fa-check\"></i>\r\n		</div>\r\n\r\n		<div id=\"entry-rating\">\r\n			";
   stack1 = self.invokePartial(partials['widgets/rating/edit'], 'widgets/rating/edit', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n	\r\n		<div id=\"art\"></div>\r\n		\r\n		<div id=\"type\"></div>\r\n		\r\n		<div id=\"location\"></div>\r\n		\r\n		<div>\r\n			<h3 class=\"edit-link modal-trigger date-modal\">\r\n				<i class=\"fa fa-calendar\"></i>\r\n				Thursday, 15 Jan 2014\r\n			</h3>\r\n		</div>\r\n		\r\n		<div>\r\n			<h3 class=\"plaintext\">from</h3>\r\n			<h3 class=\"edit-link modal-trigger start-time-modal\">\r\n				<i class=\"fa fa-clock-o\"></i>\r\n				2:45PM\r\n			</h3>\r\n		</div>\r\n		\r\n		<div>\r\n			<h3 class=\"plaintext\">until</h3>\r\n			<h3 class=\"edit-link modal-trigger end-time-modal\">\r\n				<i class=\"fa fa-clock-o\"></i>\r\n				4:45PM\r\n			</h3>\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"goals\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"notes\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-6 columns\">\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n	\r\n		<div class=\"modal-wrapper modal-centered date-modal\">\r\n			<div class=\"click-away-overlay\"></div>\r\n			<div class=\"modal\">\r\n				<div id=\"date\" name=\"";
+  buffer += "\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n	\r\n		<div id=\"art\"></div>\r\n		\r\n		<div id=\"type\"></div>\r\n		\r\n		<div id=\"location\"></div>\r\n		\r\n		<div>\r\n			<h3 class=\"edit-link modal-trigger date-modal\">\r\n				<i class=\"fa fa-calendar\"></i>\r\n				Thursday, 15 Jan 2014\r\n			</h3>\r\n		</div>\r\n		\r\n		<div>\r\n			<h3 class=\"plaintext\">from</h3>\r\n			<h3 class=\"edit-link modal-trigger start-time-modal\">\r\n				<i class=\"fa fa-clock-o\"></i>\r\n				2:45PM\r\n			</h3>\r\n		</div>\r\n		\r\n		<div>\r\n			<h3 class=\"plaintext\">until</h3>\r\n			<h3 class=\"edit-link modal-trigger end-time-modal\">\r\n				<i class=\"fa fa-clock-o\"></i>\r\n				4:45PM\r\n			</h3>\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n    <div id=\"notes\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n	\r\n		<div class=\"modal-wrapper modal-centered date-modal\">\r\n			<div class=\"click-away-overlay\"></div>\r\n			<div class=\"modal\">\r\n				<div id=\"date\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -144,6 +144,72 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   buffer += "\r\n";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1);
+  return buffer;
+  });
+templates['models/entry/module/note/edit/list'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n		<li>\r\n			<div class=\"buttons\" data-uri=\"";
+  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\r\n				<button class=\"tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n				<button class=\"tiny alert radius delete-model\">remove</button>\r\n			</div>\r\n			<div class=\"not-buttons\">\r\n				";
+  stack1 = self.invokePartial(partials['models/entry/module/note/view/brief'], 'models/entry/module/note/view/brief', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n			</div>\r\n		</li>\r\n	";
+  return buffer;
+  }
+
+  buffer += "\r\n<div class=\"list-controls\">\r\n	<div class=\"add-model\">\r\n		<i class=\"fa fa-plus\"></i>\r\n	</div>\r\n	<h2 class=\"title\">NOTES</h2>\r\n</div>\r\n<div class=\"row modal-wrapper\">\r\n	<div class=\"click-away-overlay\"></div>\r\n	<div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n</div>\r\n<ul class=\"model-list\">\r\n	";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</ul>";
+  return buffer;
+  });
+templates['models/entry/module/note/edit/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "\r\n<div id=\"";
+  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "-save\" class=\"modal-save disabled\">\r\n	<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n	<i class=\"enabled fa fa-floppy-o\"></i>\r\n	<i class=\"disabled fa fa-check\"></i>\r\n</div>\r\n<div class=\"modal-header\">\r\n	<div><h3>Note</h3></div>\r\n	<input required type=\"text\" name=\"";
+  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":title\" class=\"focus\" placeholder=\"Title\" value=\"";
+  if (helper = helpers.partner) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.partner); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" />\r\n</div>\r\n<textarea name=\"";
+  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":details\" placeholder=\"Details\">";
+  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</textarea>\r\n<button class=\"tiny secondary radius left close-modal\">close</button>";
+  return buffer;
+  });
+templates['models/entry/module/note/view/brief'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "\r\n";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1);
   return buffer;
   });
