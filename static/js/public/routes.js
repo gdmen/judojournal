@@ -22,20 +22,14 @@ function homeRoute() {
 
 function entryRoute(id) {
 	console.log("ENTRY");
-  // 'new' signifies a new Entry is being created.
-  if (id === "new") {
-    var entry = new JJ.Models.JudoEntry();
-    JJ.AppView.showView(new JJ.Views.EditJudoEntry({model: entry}));
-  } else {
   // Else load an existing Entry.
-    var entry = new JJ.Models.JudoEntry({id: id});
-    entry.fetch({
-      success: function(m) {
-        JJ.AppView.showView(new JJ.Views.EditJudoEntry({model: m}));
-      },
-      error: JJ.Util.unknownRoute
-    });
-  }
+  var entry = new JJ.Models.JudoEntry({id: id});
+  entry.fetch({
+    success: function(m) {
+      JJ.AppView.showView(new JJ.Views.ViewJudoEntry({model: m}));
+    },
+    error: JJ.Util.unknownRoute
+  });
 }
 /*
 function showEntry(id) {

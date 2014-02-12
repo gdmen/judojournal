@@ -11,7 +11,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "-save\" class=\"entry-save disabled\">\r\n			<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n			<i class=\"enabled fa fa-floppy-o\"></i>\r\n			<i class=\"disabled fa fa-check\"></i>\r\n		</div>\r\n\r\n		<div id=\"entry-rating\">\r\n			";
-  stack1 = self.invokePartial(partials.rating, 'rating', depth0, helpers, partials, data);
+  stack1 = self.invokePartial(partials['partials/rating'], 'partials/rating', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"columns entry-form-meta\">\r\n	\r\n		<div id=\"art\"></div>\r\n		\r\n		<div id=\"type\"></div>\r\n		\r\n		<div id=\"location\"></div>\r\n		\r\n		<div>\r\n			<h3 class=\"edit-link modal-trigger date-modal\">\r\n				<i class=\"fa fa-calendar\"></i>\r\n				Thursday, 15 Jan 2014\r\n			</h3>\r\n		</div>\r\n		\r\n		<div>\r\n			<h3 class=\"plaintext\">from</h3>\r\n			<h3 class=\"edit-link modal-trigger start-time-modal\">\r\n				<i class=\"fa fa-clock-o\"></i>\r\n				2:45PM\r\n			</h3>\r\n		</div>\r\n		\r\n		<div>\r\n			<h3 class=\"plaintext\">until</h3>\r\n			<h3 class=\"edit-link modal-trigger end-time-modal\">\r\n				<i class=\"fa fa-clock-o\"></i>\r\n				4:45PM\r\n			</h3>\r\n		</div>\r\n		\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"row\">\r\n\r\n  <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n    <div id=\"drills\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n    <div id=\"sparring\"></div>\r\n  </div>\r\n\r\n  <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n    <div id=\"notes\"></div>\r\n  </div>\r\n  \r\n</div>\r\n\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n	\r\n		<div class=\"modal-wrapper modal-centered date-modal\">\r\n			<div class=\"click-away-overlay\"></div>\r\n			<div class=\"modal\">\r\n				<div id=\"date\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -284,7 +284,7 @@ function program6(depth0,data) {
   buffer += "\r\n      </ul>\r\n      <h3 class=\"edit-link select-create\">\r\n      </h3>\r\n    </div>\r\n  </div>\r\n</div>";
   return buffer;
   });
-templates['rating'] = template(function (Handlebars,depth0,helpers,partials,data) {
+templates['partials/rating'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -332,7 +332,7 @@ function program2(depth0,data) {
   buffer += "\r\n</div>";
   return buffer;
   });
-templates['time'] = template(function (Handlebars,depth0,helpers,partials,data) {
+templates['partials/time'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;

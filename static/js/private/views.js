@@ -553,7 +553,7 @@ JJ.Views.EditSparringList = JJ.Views.AbstractEditModelList.extend({
  *
  ************************************************************/
 JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
-  template: Handlebars.templates["time"],
+  template: Handlebars.templates["partials/time"],
   events: {
     "change select": "change",
   },

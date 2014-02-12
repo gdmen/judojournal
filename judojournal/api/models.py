@@ -36,6 +36,7 @@ class Type(HasUserModel):
   name = models.CharField(max_length=140, unique=True)
 
 class Location(HasUserModel):
+  # e.g. 'Kodokan Institute'
   name = models.CharField(max_length=140, unique=True)
   url = models.URLField(blank=True)
 

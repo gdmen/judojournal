@@ -1,0 +1,45 @@
+{{! public/entry/judo/single }}
+
+<div class="row">
+  <div id="entry-rating">
+    {{> partials/rating }}
+  </div>
+	
+  <div id="art">{{ art.name }}</div>
+  
+  <div id="type">{{ type.name }}</div>
+  
+  <div id="location">{{ location.name }}</div>
+</div>
+
+<div class="row">
+
+  <div class="medium-10 medium-centered large-uncentered large-4 columns">
+    <div id="drills">
+      {{#each drills}}
+        {{ name }}
+        {{ details }}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="medium-10 medium-centered large-uncentered large-4 columns">
+    <div id="sparring">
+      {{#each sparring}}
+        {{ partner }}
+        {{ minutes }}
+        {{ details }}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="medium-10 medium-centered large-uncentered large-4 columns">
+    <div id="notes">
+      {{#each notes}}
+        {{ title }}
+        {{ details }}
+      {{/each}}
+    </div>
+  </div>
+  
+</div>
