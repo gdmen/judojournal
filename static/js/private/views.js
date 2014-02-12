@@ -1,42 +1,8 @@
-JJ.Views.Util = {
-  dateFormat: {
-    date: "dd mmm, yyyy",
-    hour: "hh",
-    min: "MM",
-    period: "TT",
-  },
-  configModals: function() {
-		// Handles all modals for the page.
-		var modalWrapper = $(".modal-wrapper");
-		var clickAway = $(".click-away-overlay");
-		modalWrapper.show();
-		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
-		modalWrapper.hide();
-  },
-}
-
 /*
- * http://lostechies.com/derickbailey/
+ * Allows use of all Handlebars templates as partials.
  */
-Backbone.View.prototype.close = function(){
-	this.remove(); // Remove view from DOM
-	this.unbind(); // Unbind all local event bindings
-	
-	if (!_.isUndefined(this.model)) {
-		this.model.unbind(); // Unbind reference to the model
-	}
-
-	delete this.$el; // Delete the jQuery wrapped object variable
-	delete this.el; // Delete the variable reference to this node
-  if (this.onClose){
-    this.onClose();
-  }
-}
-
-JJ.Views.AbstractView = Backbone.View.extend({
-	//onClose: function () {
-	//},
-});
+Handlebars.partials = Handlebars.templates;
+JJ.Util.links.edit.prefix = "";
 
 /************************************************************
  *
@@ -189,13 +155,13 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
 });
 
 JJ.Views.EditNote = JJ.Views.EditListElement.extend({
-  template: Handlebars.templates["private/entry/module/note/single"],
+  template: Handlebars.templates["entry/module/note/single"],
 });
 JJ.Views.EditDrill = JJ.Views.EditListElement.extend({
-  template: Handlebars.templates["private/entry/module/drill/single"],
+  template: Handlebars.templates["entry/module/drill/single"],
 });
 JJ.Views.EditSparring = JJ.Views.EditListElement.extend({
-  template: Handlebars.templates["private/entry/module/sparring/single"],
+  template: Handlebars.templates["entry/module/sparring/single"],
 });
 
 /************************************************************
@@ -378,7 +344,7 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
  */
 
 JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["private/entry/select"],
+  template: Handlebars.templates["entry/select"],
   field: "art",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.ArtCollection,
@@ -387,7 +353,7 @@ JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
 });
 
 JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["private/entry/select"],
+  template: Handlebars.templates["entry/select"],
   field: "type",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.TypeCollection,
@@ -396,7 +362,7 @@ JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
 });
 
 JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["private/entry/select"],
+  template: Handlebars.templates["entry/select"],
   field: "location",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.LocationCollection,
@@ -560,19 +526,19 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
  * JJ.Views.AbstractEditModelList instances
  */
 JJ.Views.EditNoteList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["private/entry/module/note/list"],
+  template: Handlebars.templates["entry/module/note/list"],
   field: "notes",
   insertViewConstructor: JJ.Views.EditNote,
   insertModelConstructor: JJ.Models.NoteEntryModule,
 });
 JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["private/entry/module/drill/list"],
+  template: Handlebars.templates["entry/module/drill/list"],
   field: "drills",
   insertViewConstructor: JJ.Views.EditDrill,
   insertModelConstructor: JJ.Models.DrillEntryModule,
 });
 JJ.Views.EditSparringList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["private/entry/module/sparring/list"],
+  template: Handlebars.templates["entry/module/sparring/list"],
   field: "sparring",
   insertViewConstructor: JJ.Views.EditSparring,
   insertModelConstructor: JJ.Models.SparringEntryModule,
@@ -587,7 +553,7 @@ JJ.Views.EditSparringList = JJ.Views.AbstractEditModelList.extend({
  *
  ************************************************************/
 JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
-  template: Handlebars.templates["private/time"],
+  template: Handlebars.templates["time"],
   events: {
     "change select": "change",
   },
@@ -638,7 +604,7 @@ JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
  *
  ************************************************************/
 JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["private/entry/judo/single"],
+  template: Handlebars.templates["entry/judo/single"],
   extendEvents: {
 		"change #date": "dateChanged",
     "click .click-away-overlay": "hideModals",

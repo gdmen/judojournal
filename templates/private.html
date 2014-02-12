@@ -1,36 +1,8 @@
-{% extends "base.html" %}
+{% extends "backbone_base.html" %}
 {% load static %}
 
-{% comment %}
-  Sample comment.
-{% endcomment %}
-
-{% block head %}
-{% endblock %}
-
-{% comment %}
-{% block main_menu_left %}
-  {% if user.is_authenticated %}
-    <li class="hide-for-small"><a class="button radius success" href="#">Add Question</a></li>
-  {% endif %}
-{% endblock %}
-{% endcomment %}
-
-{% block content %}
-{% endblock %}
-
-{% block js %}
-  <script type="text/javascript" src="{% static 'bower/underscore/underscore-min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'bower/backbone/backbone-min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'libs/handlebars.runtime.js' %}"></script>
-  
-  <script type="text/javascript" src="{% static 'bower/jquery-ui/ui/minified/jquery-ui.min.js' %}"></script>
-	
-  <script type="text/javascript" src="{% static 'bower/date.format/date.format.js' %}"></script>
-  <script type="text/javascript" src="{% static 'bower/jquery-autosize/jquery.autosize.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/templates.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/models.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/views.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/routes.js' %}"></script>
+{% block js_ %}
+  <script type="text/javascript" src="{% static 'js/private/templates.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/private/views.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/private/routes.js' %}"></script>
 {% endblock %}

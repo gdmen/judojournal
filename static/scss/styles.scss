@@ -166,7 +166,8 @@ button, .button {
 /*
  * Custom settings
  */
-$footerHeight: 2rem;
+$basic-gray: #FDFDFF;
+$footer-height: 2rem;
 $footer-bg: $topbar-bg;
 $input-padding: 0.57143rem;
 $max-z-index: 9999998;
@@ -211,12 +212,12 @@ html, body {
   height: 100%;
 }
 #page-container {
-  padding-bottom: $footerHeight + $topbar-margin-bottom;
+  padding-bottom: $footer-height + $topbar-margin-bottom;
 }
 footer {
   background-color: $footer-bg;
-  height: $footerHeight;
-  margin-top: (-$footerHeight);
+  height: $footer-height;
+  margin-top: (-$footer-height);
   position: relative;
   text-align: center;
   div {
@@ -417,7 +418,7 @@ footer {
 			background-color: #FFF;
 		}
 		&:nth-child(even) {
-			background-color: #FAFAFA;
+			background-color: $basic-gray;
 		}
 		div {
 			display: inline-block;

@@ -1,3 +1,2 @@
-handlebars templates/handlebars/ -f static/js/templates.js
-#(compass watch &) > /dev/null 2>&1
-#compass compile
+handlebars templates/handlebars/private -f static/js/private/templates.js
+handlebars templates/handlebars/public -f static/js/public/templates.js

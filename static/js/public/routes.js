@@ -1,34 +1,3 @@
-/*
- * http://lostechies.com/derickbailey/
- */
-function AppView(){
-  /*
-	 * Hacky resets since backbone seems to not do a full page refresh between pages.
-	 */
-	this.pageReset = function() {
-		// Foundation menu
-		$(".top-bar").removeClass("expanded");
-	};
- 
-	this.clearView = function() {
-		console.log("clearView");
-		if (this.currentView){
-			this.currentView.close();
-		}
-		this.pageReset();
-	};
-	
-	this.showView = function(view) {
-    this.clearView();
-		console.log("showView");
-		this.currentView = view;
-		$("#content").html(this.currentView.el);
-		this.currentView.render();
-  };
- 
-}
-JJ.AppView = new AppView();
-
 JJ.Router = Backbone.Router.extend({
   routes: {
     "(/)": "home",
@@ -44,11 +13,11 @@ JJ.router.on("route:entry", entryRoute);
 JJ.router.on("route:unknown", JJ.Util.unknownRoute);
 
 // Start Backbone history a necessary step for bookmarkable URL's
-Backbone.history.start({root: "/m/"});
+Backbone.history.start({root: "/"});
 
 function homeRoute() {
   console.log("HOME");
-  //JJ.AppView.showView(new JJ.Views.HomePage({}));
+  JJ.AppView.showView(new JJ.Views.Home({}));
 }
 
 function entryRoute(id) {

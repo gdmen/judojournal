@@ -12395,12 +12395,12 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
 /*
  * Custom styles
  */
-/* line 177, ../scss/styles.scss */
+/* line 178, ../scss/styles.scss */
 .hide {
   display: none;
 }
 
-/* line 180, ../scss/styles.scss */
+/* line 181, ../scss/styles.scss */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   /* Android = 2.3, iOS = 4 */
@@ -12410,7 +12410,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   /* Chrome, IE 8+, Opera, Safari 5.1 */
 }
 
-/* line 186, ../scss/styles.scss */
+/* line 187, ../scss/styles.scss */
 #content .click-away-overlay {
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
@@ -12422,7 +12422,7 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   z-index: 9999997;
 }
 
-/* line 196, ../scss/styles.scss */
+/* line 197, ../scss/styles.scss */
 body.active-modal {
   overflow: hidden;
 }
@@ -12430,28 +12430,28 @@ body.active-modal {
 /*
  * Sticky footer
  */
-/* line 203, ../scss/styles.scss */
+/* line 204, ../scss/styles.scss */
 html, body {
   height: 100%;
 }
 
-/* line 206, ../scss/styles.scss */
+/* line 207, ../scss/styles.scss */
 #non-footer {
   min-height: 100%;
   position: relative;
 }
 
-/* line 210, ../scss/styles.scss */
+/* line 211, ../scss/styles.scss */
 * html #non-footer {
   height: 100%;
 }
 
-/* line 213, ../scss/styles.scss */
+/* line 214, ../scss/styles.scss */
 #page-container {
   padding-bottom: 3rem;
 }
 
-/* line 216, ../scss/styles.scss */
+/* line 217, ../scss/styles.scss */
 footer {
   background-color: #2c8ec9;
   height: 2rem;
@@ -12459,7 +12459,7 @@ footer {
   position: relative;
   text-align: center;
 }
-/* line 223, ../scss/styles.scss */
+/* line 224, ../scss/styles.scss */
 footer div p:last-child {
   margin-bottom: 0;
 }
@@ -12467,13 +12467,13 @@ footer div p:last-child {
 /*
  * Entry form
  */
-/* line 233, ../scss/styles.scss */
+/* line 234, ../scss/styles.scss */
 .entry-form-header #entry-rating {
   display: block;
   overflow: hidden;
   margin-top: 1rem;
 }
-/* line 237, ../scss/styles.scss */
+/* line 238, ../scss/styles.scss */
 .entry-form-header .entry-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12559,22 +12559,22 @@ footer div p:last-child {
   display: inline-block;
 }
 
-/* line 243, ../scss/styles.scss */
+/* line 244, ../scss/styles.scss */
 .entry-form-meta {
   margin-bottom: 1rem;
 }
 @media only screen and (min-width: 64.063em) {
-  /* line 243, ../scss/styles.scss */
+  /* line 244, ../scss/styles.scss */
   .entry-form-meta {
     margin-bottom: 2rem;
   }
 }
-/* line 248, ../scss/styles.scss */
+/* line 249, ../scss/styles.scss */
 .entry-form-meta div {
   display: inline-block;
   max-width: 100%;
 }
-/* line 251, ../scss/styles.scss */
+/* line 252, ../scss/styles.scss */
 .entry-form-meta div h3 {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -12582,13 +12582,13 @@ footer div p:last-child {
   margin-bottom: 0;
   max-width: 100%;
 }
-/* line 258, ../scss/styles.scss */
+/* line 259, ../scss/styles.scss */
 .entry-form-meta .plaintext {
   border-bottom: 1px dashed transparent;
   margin-right: 0.5em;
   margin-bottom: 1px;
 }
-/* line 263, ../scss/styles.scss */
+/* line 264, ../scss/styles.scss */
 .entry-form-meta .edit-link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
@@ -12596,7 +12596,7 @@ footer div p:last-child {
   margin-bottom: 1px;
   margin-right: 0.5em;
 }
-/* line 269, ../scss/styles.scss */
+/* line 270, ../scss/styles.scss */
 .entry-form-meta .edit-link:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -12605,41 +12605,28 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 273, ../scss/styles.scss */
+/* line 274, ../scss/styles.scss */
 .entry-form-meta .edit-link i {
   color: #222222;
 }
-/* line 275, ../scss/styles.scss */
+/* line 276, ../scss/styles.scss */
 .entry-form-meta .edit-link i:not(.fa) {
   font-weight: bold;
 }
 
 /*
- * Time select (Entry form)
- */
-/* line 286, ../scss/styles.scss */
-.time-select select {
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #FFF;
-  font-size: 3rem;
-  margin: 0;
-  width: auto;
-}
-
-/*
  * Select widget (Entry form)
  */
-/* line 299, ../scss/styles.scss */
+/* line 287, ../scss/styles.scss */
 .single-select .select-input {
   display: none;
 }
-/* line 304, ../scss/styles.scss */
+/* line 292, ../scss/styles.scss */
 .single-select .select-display .edit-link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 310, ../scss/styles.scss */
+/* line 298, ../scss/styles.scss */
 .single-select .select-drop {
   background-color: #FFF;
   display: none;
@@ -12648,19 +12635,19 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 317, ../scss/styles.scss */
+/* line 305, ../scss/styles.scss */
 .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 321, ../scss/styles.scss */
+/* line 309, ../scss/styles.scss */
 .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 326, ../scss/styles.scss */
+/* line 314, ../scss/styles.scss */
 .single-select .select-drop .select-search i {
   color: gray;
   padding: 0.28572rem;
@@ -12668,26 +12655,26 @@ footer div p:last-child {
   right: 0;
   top: 0;
 }
-/* line 334, ../scss/styles.scss */
+/* line 322, ../scss/styles.scss */
 .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 338, ../scss/styles.scss */
+/* line 326, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 341, ../scss/styles.scss */
+/* line 329, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 344, ../scss/styles.scss */
+/* line 332, ../scss/styles.scss */
 .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 349, ../scss/styles.scss */
+/* line 337, ../scss/styles.scss */
 .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
@@ -12696,12 +12683,12 @@ footer div p:last-child {
 /*
  * Creation form modal
  */
-/* line 361, ../scss/styles.scss */
+/* line 349, ../scss/styles.scss */
 .list-controls .title {
   font-size: 2.5rem;
   padding-left: 1rem;
 }
-/* line 365, ../scss/styles.scss */
+/* line 353, ../scss/styles.scss */
 .list-controls .add-model {
   -webkit-border-radius: 1.5rem;
   border-radius: 1.5rem;
@@ -12733,7 +12720,7 @@ footer div p:last-child {
   padding-bottom: 0.21429rem;
 }
 
-/* line 370, ../scss/styles.scss */
+/* line 358, ../scss/styles.scss */
 .modal-wrapper {
   display: none;
   overflow-y: scroll;
@@ -12746,20 +12733,20 @@ footer div p:last-child {
   top: 0;
   z-index: 9999996;
 }
-/* line 381, ../scss/styles.scss */
+/* line 369, ../scss/styles.scss */
 .modal-wrapper.modal-centered {
   text-align: center;
 }
-/* line 383, ../scss/styles.scss */
+/* line 371, ../scss/styles.scss */
 .modal-wrapper.modal-centered .modal {
   background: none;
   display: inline-block;
 }
-/* line 386, ../scss/styles.scss */
+/* line 374, ../scss/styles.scss */
 .modal-wrapper.modal-centered .modal > div {
   padding: 0;
 }
-/* line 391, ../scss/styles.scss */
+/* line 379, ../scss/styles.scss */
 .modal-wrapper .modal {
   background-color: #FFF;
   bottom: auto;
@@ -12770,22 +12757,22 @@ footer div p:last-child {
   position: relative;
   z-index: 9999998;
 }
-/* line 400, ../scss/styles.scss */
+/* line 388, ../scss/styles.scss */
 .modal-wrapper .modal > div {
   padding: 1rem;
 }
-/* line 403, ../scss/styles.scss */
+/* line 391, ../scss/styles.scss */
 .modal-wrapper .modal .modal-header {
   display: block;
   overflow: hidden;
 }
-/* line 405, ../scss/styles.scss */
+/* line 393, ../scss/styles.scss */
 .modal-wrapper .modal .modal-header h3 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 409, ../scss/styles.scss */
+/* line 397, ../scss/styles.scss */
 .modal-wrapper .modal .modal-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12871,18 +12858,18 @@ footer div p:last-child {
 .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 414, ../scss/styles.scss */
+/* line 402, ../scss/styles.scss */
 .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
 
-/* line 419, ../scss/styles.scss */
+/* line 407, ../scss/styles.scss */
 .model-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 423, ../scss/styles.scss */
+/* line 411, ../scss/styles.scss */
 .model-list li {
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
@@ -12891,30 +12878,30 @@ footer div p:last-child {
   padding: 0.25rem;
   position: relative;
 }
-/* line 429, ../scss/styles.scss */
+/* line 417, ../scss/styles.scss */
 .model-list li:nth-child(odd) {
   background-color: #FFF;
 }
-/* line 432, ../scss/styles.scss */
+/* line 420, ../scss/styles.scss */
 .model-list li:nth-child(even) {
-  background-color: #FAFAFA;
+  background-color: #fdfdff;
 }
-/* line 435, ../scss/styles.scss */
+/* line 423, ../scss/styles.scss */
 .model-list li div {
   display: inline-block;
 }
-/* line 438, ../scss/styles.scss */
+/* line 426, ../scss/styles.scss */
 .model-list li .buttons {
   float: right;
   margin-left: 1rem;
 }
-/* line 440, ../scss/styles.scss */
+/* line 428, ../scss/styles.scss */
 .model-list li .buttons button {
   margin: 0 0.25rem 0 0;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 446, ../scss/styles.scss */
+/* line 434, ../scss/styles.scss */
 .model-list li .not-buttons {
   display: block;
   overflow: hidden;
@@ -12927,7 +12914,7 @@ footer div p:last-child {
 /*
  * Manage widget
  */
-/* line 459, ../scss/styles.scss */
+/* line 447, ../scss/styles.scss */
 .manage-widget .manage-header {
   *zoom: 1;
   -moz-border-radius-bottomleft: 3px;
@@ -12949,11 +12936,11 @@ footer div p:last-child {
 .manage-widget .manage-header:after {
   clear: both;
 }
-/* line 465, ../scss/styles.scss */
+/* line 453, ../scss/styles.scss */
 .manage-widget .manage-header a, .manage-widget .manage-header .link {
   padding: 1em;
 }
-/* line 467, ../scss/styles.scss */
+/* line 455, ../scss/styles.scss */
 .manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
   color: white;
   height: 1em;
@@ -12961,26 +12948,26 @@ footer div p:last-child {
   margin: 0;
   padding: 0;
 }
-/* line 475, ../scss/styles.scss */
+/* line 463, ../scss/styles.scss */
 .manage-widget .manage-header a.left {
   width: 100%;
 }
-/* line 478, ../scss/styles.scss */
+/* line 466, ../scss/styles.scss */
 .manage-widget .manage-header div.right {
   border-left: 1px solid #206691;
   position: absolute;
   right: 0;
 }
-/* line 482, ../scss/styles.scss */
+/* line 470, ../scss/styles.scss */
 .manage-widget .manage-header div.right:hover {
   cursor: pointer;
 }
-/* line 487, ../scss/styles.scss */
+/* line 475, ../scss/styles.scss */
 .manage-widget .manage-drop {
   display: none;
   margin-left: 1.5px;
 }
-/* line 490, ../scss/styles.scss */
+/* line 478, ../scss/styles.scss */
 .manage-widget .manage-drop ul {
   background-color: #2c8ec9;
   margin: 0;
@@ -12990,18 +12977,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 501, ../scss/styles.scss */
+/* line 489, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 504, ../scss/styles.scss */
+/* line 492, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 508, ../scss/styles.scss */
+/* line 496, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
@@ -13011,19 +12998,19 @@ footer div p:last-child {
 /*
  * Widgets
  */
-/* line 519, ../scss/styles.scss */
+/* line 507, ../scss/styles.scss */
 .rating {
   display: inline-block;
 }
-/* line 521, ../scss/styles.scss */
+/* line 509, ../scss/styles.scss */
 .rating label {
   display: inline-block;
 }
-/* line 523, ../scss/styles.scss */
+/* line 511, ../scss/styles.scss */
 .rating label input[type=radio] {
   display: none;
 }
-/* line 526, ../scss/styles.scss */
+/* line 514, ../scss/styles.scss */
 .rating label input[type=radio] + img {
   filter: alpha(opactiy=25);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
@@ -13032,7 +13019,7 @@ footer div p:last-child {
   opacity: 0.25;
   width: 3rem;
 }
-/* line 529, ../scss/styles.scss */
+/* line 517, ../scss/styles.scss */
 .rating label input[type=radio] + img:hover {
   filter: alpha(opactiy=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -13041,11 +13028,24 @@ footer div p:last-child {
   opacity: 0.5;
   cursor: pointer;
 }
-/* line 534, ../scss/styles.scss */
+/* line 522, ../scss/styles.scss */
 .rating label input[type=radio]:checked + img {
   filter: alpha(opactiy=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
   -moz-opacity: 0.7;
   -khtml-opacity: 0.7;
   opacity: 0.7;
+}
+
+/*
+ * Time select
+ */
+/* line 532, ../scss/styles.scss */
+.time-select select {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #FFF;
+  font-size: 3rem;
+  margin: 0;
+  width: auto;
 }

@@ -27,13 +27,38 @@ $.ajaxSetup({dataFilter: function(data, type) {
   return data;
 }});
 
-/*
- * Allows use of all Handlebars templates as partials.
- */
-Handlebars.partials = Handlebars.templates;
-
 // Instantiate app namespace.
 window.JJ = {};
+
+/*
+ * http://lostechies.com/derickbailey/
+ */
+function AppView(){
+  /*
+	 * Hacky resets since backbone seems to not do a full page refresh between pages.
+	 */
+	this.pageReset = function() {
+		// Foundation menu
+		$(".top-bar").removeClass("expanded");
+	};
+ 
+	this.clearView = function() {
+		console.log("clearView");
+		if (this.currentView){
+			this.currentView.close();
+		}
+		this.pageReset();
+	};
+	
+	this.showView = function(view) {
+    this.clearView();
+		console.log("showView");
+		this.currentView = view;
+		$("#content").html(this.currentView.el);
+		this.currentView.render();
+  };
+}
+JJ.AppView = new AppView();
 
 // Instantiate subspaces.
 JJ.Meta = {};
@@ -59,8 +84,9 @@ JJ.Util.unknownRoute = function(url) {
 
 JJ.Util.links = {
   edit: {
+    prefix: "/m",
     entry: function(id) {
-      return "/#/entry/" + id;
+      return this.prefix + "/#/entry/" + id;
     },
   },
 }
@@ -78,7 +104,6 @@ JJ.Util.scrollbarWidth = function() {
  * http://blogorama.nerdworks.in/entry-JavaScriptfunctionthrottlingan.aspx
  */
 JJ.Util.throttle = function(callback, delay) {
-	console.log(callback);
 	var previousCall = new Date().getTime();
 	return function() {
 		var time = new Date().getTime();
@@ -89,14 +114,42 @@ JJ.Util.throttle = function(callback, delay) {
 	};
 }
 
-// TODO: put this with template/ code somewhere?
+JJ.Views.Util = {
+  dateFormat: {
+    date: "dd mmm, yyyy",
+    hour: "hh",
+    min: "MM",
+    period: "TT",
+  },
+  configModals: function() {
+		// Handles all modals for the page.
+		var modalWrapper = $(".modal-wrapper");
+		var clickAway = $(".click-away-overlay");
+		modalWrapper.show();
+		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
+		modalWrapper.hide();
+  },
+}
 
 /*
- * http://stackoverflow.com/questions/11924452/handlebar-js-iterating-over-for-basic-loop
+ * http://lostechies.com/derickbailey/
  */
-Handlebars.registerHelper('times', function(n, block) {
-    var accum = '';
-    for(var i = 1; i <= n; ++i)
-        accum += block.fn(i);
-    return accum;
+Backbone.View.prototype.close = function(){
+	this.remove(); // Remove view from DOM
+	this.unbind(); // Unbind all local event bindings
+	
+	if (!_.isUndefined(this.model)) {
+		this.model.unbind(); // Unbind reference to the model
+	}
+
+	delete this.$el; // Delete the jQuery wrapped object variable
+	delete this.el; // Delete the variable reference to this node
+  if (this.onClose){
+    this.onClose();
+  }
+}
+
+JJ.Views.AbstractView = Backbone.View.extend({
+	//onClose: function () {
+	//},
 });
