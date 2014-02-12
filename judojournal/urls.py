@@ -30,9 +30,9 @@ urlpatterns = patterns('',
     
     #url(r'^$', TemplateView.as_view(template_name='landing.html'), name='landing'),
     
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+    url(r'^$', TemplateView.as_view(template_name='public.html'), name='public'),
     
-    url(r'^edit/', login_required(TemplateView.as_view(template_name='edit.html')), name='edit'),
+    url(r'^m/', login_required(TemplateView.as_view(template_name='private.html')), name='private'),
     
     #url(r'', include('registration.backends.default.urls')),
     

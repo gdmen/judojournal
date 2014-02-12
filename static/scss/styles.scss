@@ -280,19 +280,6 @@ footer {
 }
 
 /*
- * Time select (Entry form)
- */
-.time-select {
-  select {
-		@include radius();
-    background-color: #FFF;
-		font-size: 3rem;
-		margin: 0;
-    width: auto;
-  }
-}
-
-/*
  * Select widget (Entry form)
  */
 .single-select {
@@ -535,4 +522,17 @@ $widget-bg: $topbar-bg;
 			@include opacity(0.7);
 		}
 	}
+}
+
+/*
+ * Time select
+ */
+.time-select {
+  select {
+		@include radius();
+    background-color: #FFF;
+		font-size: 3rem;
+		margin: 0;
+    width: auto;
+  }
 }

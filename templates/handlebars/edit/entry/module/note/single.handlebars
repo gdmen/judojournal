@@ -1,12 +1,12 @@
-{{! models/entry/module/drill/edit/single }}
+{{! edit/entry/module/note/single }}
 <div id="{{ cid }}-save" class="modal-save disabled">
 	<i class="saving fa fa-spinner fa-spin"></i>
 	<i class="enabled fa fa-floppy-o"></i>
 	<i class="disabled fa fa-check"></i>
 </div>
 <div class="modal-header">
-	<div><h3>Drill</h3></div>
-	<input required type="text" name="{{ cid }}:name" class="focus" placeholder="Name" value="{{ name }}" />
+	<div><h3>Note</h3></div>
+	<input required type="text" name="{{ cid }}:title" class="focus" placeholder="Title" value="{{ title }}" />
 </div>
 <textarea name="{{ cid }}:details" placeholder="Details">{{ details }}</textarea>
 <button class="tiny secondary radius left close-modal">close</button>

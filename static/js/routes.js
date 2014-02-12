@@ -1,7 +1,8 @@
 /*
  * http://lostechies.com/derickbailey/
  */
-function AppView(){/*
+function AppView(){
+  /*
 	 * Hacky resets since backbone seems to not do a full page refresh between pages.
 	 */
 	this.pageReset = function() {
@@ -18,6 +19,7 @@ function AppView(){/*
 	};
 	
 	this.showView = function(view) {
+    this.clearView();
 		console.log("showView");
 		this.currentView = view;
 		$("#content").html(this.currentView.el);
@@ -30,33 +32,27 @@ JJ.AppView = new AppView();
 JJ.Router = Backbone.Router.extend({
   routes: {
     "(/)": "home",
-    "entry/:id(/)": "editEntry",
-    "*unknown": "unknownRoute"
+    "entry/:id(/)": "entry",
+    "*unknown": "unknown"
   }
 });
 
 JJ.router = new JJ.Router;
-JJ.router.on('route:home', home);
-JJ.router.on('route:editEntry', editEntry);
-//JJ.router.on('route:showEntry', showEntry);
-JJ.router.on('route:unknownRoute', JJ.Util.handleUnknownRoute);
+JJ.router.on("route:home", homeRoute);
+JJ.router.on("route:entry", entryRoute);
+//JJ.router.on("route:showEntry", showEntry);
+JJ.router.on("route:unknown", JJ.Util.unknownRoute);
 
-/*
- * Because hash-based history in Internet Explorer relies on an <iframe>
- * (from backbone docs)
- */
-$(function(){
-  // Start Backbone history a necessary step for bookmarkable URL's
-  Backbone.history.start({pushState: true, root: "/edit/"});
-});
+// Start Backbone history a necessary step for bookmarkable URL's
+Backbone.history.start({root: "/m/"});
 
-function home() {
-  JJ.AppView.showView(new JJ.Views.HomePage({}));
+function homeRoute() {
+  console.log("HOME");
+  //JJ.AppView.showView(new JJ.Views.HomePage({}));
 }
 
-function editEntry(id) {
-	console.log("ROUTED");
-	JJ.AppView.clearView();
+function entryRoute(id) {
+	console.log("ENTRY");
   // 'new' signifies a new Entry is being created.
   if (id === "new") {
     var entry = new JJ.Models.JudoEntry();
@@ -68,7 +64,7 @@ function editEntry(id) {
       success: function(m) {
         JJ.AppView.showView(new JJ.Views.EditJudoEntry({model: m}));
       },
-      error: JJ.Util.handleUnknownRoute
+      error: JJ.Util.unknownRoute
     });
   }
 }
@@ -85,7 +81,7 @@ function showEntry(id) {
       activity.fetch();
       new ShowEntryView({model: m, el: $('#content'), prior_status: prior_status, location: location, activity: activity});
     },
-    error: JJ.Util.handleUnknownRoute
+    error: JJ.Util.unknownRoute
   });
 }
 */

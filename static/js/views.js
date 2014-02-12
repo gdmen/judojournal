@@ -189,13 +189,13 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
 });
 
 JJ.Views.EditNote = JJ.Views.EditListElement.extend({
-  template: Handlebars.templates["models/entry/module/note/edit/single"],
+  template: Handlebars.templates["edit/entry/module/note/single"],
 });
 JJ.Views.EditDrill = JJ.Views.EditListElement.extend({
-  template: Handlebars.templates["models/entry/module/drill/edit/single"],
+  template: Handlebars.templates["edit/entry/module/drill/single"],
 });
 JJ.Views.EditSparring = JJ.Views.EditListElement.extend({
-  template: Handlebars.templates["models/entry/module/sparring/edit/single"],
+  template: Handlebars.templates["edit/entry/module/sparring/single"],
 });
 
 /************************************************************
@@ -378,7 +378,7 @@ JJ.Views.AbstractSelectModel = JJ.Views.AbstractView.extend({
  */
 
 JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["models/entry/singleSelect"],
+  template: Handlebars.templates["edit/entry/select"],
   field: "art",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.ArtCollection,
@@ -387,7 +387,7 @@ JJ.Views.SelectArt = JJ.Views.AbstractSelectModel.extend({
 });
 
 JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["models/entry/singleSelect"],
+  template: Handlebars.templates["edit/entry/select"],
   field: "type",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.TypeCollection,
@@ -396,7 +396,7 @@ JJ.Views.SelectType = JJ.Views.AbstractSelectModel.extend({
 });
 
 JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
-  template: Handlebars.templates["models/entry/singleSelect"],
+  template: Handlebars.templates["edit/entry/select"],
   field: "location",
   uniqueKey: "name",
   collectionConstructor: JJ.Models.LocationCollection,
@@ -560,19 +560,19 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
  * JJ.Views.AbstractEditModelList instances
  */
 JJ.Views.EditNoteList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["models/entry/module/note/edit/list"],
+  template: Handlebars.templates["edit/entry/module/note/list"],
   field: "notes",
   insertViewConstructor: JJ.Views.EditNote,
   insertModelConstructor: JJ.Models.NoteEntryModule,
 });
 JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["models/entry/module/drill/edit/list"],
+  template: Handlebars.templates["edit/entry/module/drill/list"],
   field: "drills",
   insertViewConstructor: JJ.Views.EditDrill,
   insertModelConstructor: JJ.Models.DrillEntryModule,
 });
 JJ.Views.EditSparringList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["models/entry/module/sparring/edit/list"],
+  template: Handlebars.templates["edit/entry/module/sparring/list"],
   field: "sparring",
   insertViewConstructor: JJ.Views.EditSparring,
   insertModelConstructor: JJ.Models.SparringEntryModule,
@@ -587,7 +587,7 @@ JJ.Views.EditSparringList = JJ.Views.AbstractEditModelList.extend({
  *
  ************************************************************/
 JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
-  template: Handlebars.templates["widgets/time"],
+  template: Handlebars.templates["edit/time"],
   events: {
     "change select": "change",
   },
@@ -638,7 +638,7 @@ JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
  *
  ************************************************************/
 JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
-  template: Handlebars.templates["models/entry/judo/edit/single"],
+  template: Handlebars.templates["edit/entry/judo/single"],
   extendEvents: {
 		"change #date": "dateChanged",
     "click .click-away-overlay": "hideModals",
@@ -772,136 +772,6 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     // DOM JS linking
     this.linkDOM();
     
-    return this;
-  },
-});
-
-
-/************************************************************
- *
- * JJ.Views.AbstractManageModelWidget
- *  - Model management widget.
- *
- ************************************************************/
-JJ.Views.AbstractManageModelWidget = JJ.Views.AbstractView.extend({
-  name: "",
-  events: {},
-  
-  toggle: function() {
-    var drop = this.$el.find("#" + this.name + "-manage-drop");
-    if (drop.is(":hidden")) {
-      this.$el.find("#" + this.name + "-manage-i-down").hide();
-      this.$el.find("#" + this.name + "-manage-i-up").show();
-      drop.slideDown("fast");
-    } else {
-      this.$el.find("#" + this.name + "-manage-i-up").hide();
-      this.$el.find("#" + this.name + "-manage-i-down").show();
-      drop.slideUp("fast");
-    }
-  },
-  
-  initialize: function(options) {
-    this.options = options;
-    this.events["click " + "#" + this.name + "-manage-click"] = "toggle";
-    this.render();
-  },
-  
-  render: function() {
-    this.$el.html(this.template(this.options));
-    return this;
-  },
-});
-
-/*
- * JJ.Views.AbstractManageModelWidget instances
- */
-
-JJ.Views.ManageQuestionsWidget = JJ.Views.AbstractManageModelWidget.extend({
-  template: Handlebars.templates["widgets/manage/question"],
-  name: 'question',
-});
-
-JJ.Views.ManageGoalsWidget = JJ.Views.AbstractManageModelWidget.extend({
-  template: Handlebars.templates["widgets/manage/goal"],
-  name: 'goal',
-});
-
-JJ.Views.ManageTechniquesWidget = JJ.Views.AbstractManageModelWidget.extend({
-  template: Handlebars.templates["widgets/manage/technique"],
-  name: 'technique',
-});
-
-JJ.Views.ManageLocationsWidget = JJ.Views.AbstractManageModelWidget.extend({
-  template: Handlebars.templates["widgets/manage/location"],
-  name: 'location',
-});
-
-JJ.Views.ManageArtsWidget = JJ.Views.AbstractManageModelWidget.extend({
-  template: Handlebars.templates["widgets/manage/art"],
-  name: 'art',
-});
-
-/************************************************************
- *
- * JJ.Views.AbstractStaticPage
- *  - Static template inputs only.
- *
- ************************************************************/
-JJ.Views.AbstractStaticPage = JJ.Views.AbstractView.extend({
-  initialize: function(options) {
-    this.options = options;
-    this.options.links = {};
-  },
-  
-  render: function() {
-    this.$el.html(this.template(this.options));
-    return this;
-  },
-});
-
-/*
- * JJ.Views.AbstractStaticPage instances
- */
-/*
-JJ.Views.StaticLanding = JJ.Views.AbstractStaticPage.extend({
-  template: Handlebars.templates["pages/landing"],
-});
-*/
-
-/************************************************************
- *
- * Main view for Home page.
- *
- ************************************************************/
-JJ.Views.HomePage = JJ.Views.AbstractStaticPage.extend({
-  template: Handlebars.templates["pages/home"],
-  widgets: {
-    question: JJ.Views.ManageQuestionsWidget,
-    goal: JJ.Views.ManageGoalsWidget,
-    technique: JJ.Views.ManageTechniquesWidget,
-    location: JJ.Views.ManageLocationsWidget,
-    art: JJ.Views.ManageArtsWidget,
-  },
-  
-  /*
-   * Appends a new div.
-   * @params: The div id to append.
-   */
-  addWidgetDiv: function(id) {
-    var div = $("<div/>");
-    div.attr("id", id);
-    this.$el.find("#widgets").append(div);
-    return div;
-  },
-  
-  render: function() {
-    this.options.name = JJ.Meta.name;
-    this.options.links.newEntry = JJ.Util.links.edit.entry("new");
-    this.$el.html(this.template(this.options));
-    var that = this;
-    Object.keys(this.widgets).forEach(function (name) {
-      new that.widgets[name]({name: name, el: that.addWidgetDiv("manage-" + name + "-div")});
-    });    
     return this;
   },
 });

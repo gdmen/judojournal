@@ -51,15 +51,16 @@ JJ.Util.backboneError = function(response) {
   console.log(response);
 }
 
-JJ.Util.handleUnknownRoute = function(url) {
+JJ.Util.unknownRoute = function(url) {
   //window.location = "/";
   console.log("UNKNOWN ROUTE");
   console.log(url);
 }
+
 JJ.Util.links = {
   edit: {
     entry: function(id) {
-      return "/edit/entry/" + id;
+      return "/#/entry/" + id;
     },
   },
 }
@@ -88,7 +89,7 @@ JJ.Util.throttle = function(callback, delay) {
 	};
 }
 
-// TODO: put this with template/view code somewhere?
+// TODO: put this with template/ code somewhere?
 
 /*
  * http://stackoverflow.com/questions/11924452/handlebar-js-iterating-over-for-basic-loop
