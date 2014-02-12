@@ -26,13 +26,6 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'apps.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-
-    
-    #url(r'^$', TemplateView.as_view(template_name='landing.html'), name='landing'),
-    
-    url(r'^$', TemplateView.as_view(template_name='public.html'), name='public'),
-    
-    url(r'^m/', login_required(TemplateView.as_view(template_name='private.html')), name='private'),
     
     #url(r'', include('registration.backends.default.urls')),
     
@@ -41,4 +34,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
     url(r'^api/', include(v1_api.urls)),
+    
+    url(r'^m/', login_required(TemplateView.as_view(template_name='private.html')), name='private'),
+    
+    url(r'^', TemplateView.as_view(template_name='public.html'), name='public'),
 )

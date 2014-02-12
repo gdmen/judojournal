@@ -13,7 +13,7 @@ JJ.router.on("route:entry", entryRoute);
 JJ.router.on("route:unknown", JJ.Util.unknownRoute);
 
 // Start Backbone history a necessary step for bookmarkable URL's
-Backbone.history.start({root: "/"});
+Backbone.history.start({pushState: true, root: "/"});
 
 function homeRoute() {
   console.log("HOME");
