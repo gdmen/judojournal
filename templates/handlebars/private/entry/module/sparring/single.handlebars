@@ -1,12 +1,13 @@
-{{! edit/entry/module/note/single }}
+{{! private/entry/module/sparring/single }}
 <div id="{{ cid }}-save" class="modal-save disabled">
 	<i class="saving fa fa-spinner fa-spin"></i>
 	<i class="enabled fa fa-floppy-o"></i>
 	<i class="disabled fa fa-check"></i>
 </div>
 <div class="modal-header">
-	<div><h3>Note</h3></div>
-	<input required type="text" name="{{ cid }}:title" class="focus" placeholder="Title" value="{{ title }}" />
+	<div><h3>Sparring Round</h3></div>
+	<input required type="text" name="{{ cid }}:partner" class="focus" placeholder="Partner" value="{{ partner }}" />
+	<input required type="number" name="{{ cid }}:minutes" placeholder="Minutes" value="{{ minutes }}" />
 </div>
 <textarea name="{{ cid }}:details" placeholder="Details">{{ details }}</textarea>
 <button class="tiny secondary radius left close-modal">close</button>
