@@ -12778,7 +12778,11 @@ footer div p:last-child {
 .entry.public .entry-header .entry-header-row h1 {
   line-height: 1;
 }
-/* line 522, ../scss/styles.scss */
+/* line 517, ../scss/styles.scss */
+.entry.public .entry-header #date {
+  white-space: nowrap;
+}
+/* line 525, ../scss/styles.scss */
 .entry.private {
   /*
    * Select widget
@@ -12790,13 +12794,13 @@ footer div p:last-child {
    * Time select
    */
 }
-/* line 523, ../scss/styles.scss */
+/* line 526, ../scss/styles.scss */
 .entry.private #entry-rating {
   display: block;
   overflow: hidden;
   margin-top: 1rem;
 }
-/* line 528, ../scss/styles.scss */
+/* line 531, ../scss/styles.scss */
 .entry.private .entry-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12881,7 +12885,7 @@ footer div p:last-child {
 .entry.private .entry-save.saving i.saving {
   display: inline-block;
 }
-/* line 537, ../scss/styles.scss */
+/* line 540, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .plaintext,
 .entry.private .entry-header .entry-header-row .headertext {
   max-width: 100%;
@@ -12890,17 +12894,17 @@ footer div p:last-child {
   white-space: nowrap;
   margin-right: 0.5em;
 }
-/* line 541, ../scss/styles.scss */
+/* line 544, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .plaintext {
   border-bottom: 1px dashed transparent;
 }
-/* line 544, ../scss/styles.scss */
+/* line 547, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .edit-link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
   margin-bottom: 1px;
 }
-/* line 548, ../scss/styles.scss */
+/* line 551, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .edit-link:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -12909,24 +12913,24 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 552, ../scss/styles.scss */
+/* line 555, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .edit-link i {
   color: #222222;
 }
-/* line 554, ../scss/styles.scss */
+/* line 557, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .edit-link i:not(.fa) {
   font-weight: bold;
 }
-/* line 566, ../scss/styles.scss */
+/* line 569, ../scss/styles.scss */
 .entry.private .single-select .select-input {
   display: none;
 }
-/* line 571, ../scss/styles.scss */
+/* line 574, ../scss/styles.scss */
 .entry.private .single-select .select-display .edit-link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 577, ../scss/styles.scss */
+/* line 580, ../scss/styles.scss */
 .entry.private .single-select .select-drop {
   background-color: #FFF;
   display: none;
@@ -12935,62 +12939,62 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 584, ../scss/styles.scss */
+/* line 587, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 588, ../scss/styles.scss */
+/* line 591, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 593, ../scss/styles.scss */
+/* line 596, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search i {
   padding: 0.28572rem;
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 600, ../scss/styles.scss */
+/* line 603, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 604, ../scss/styles.scss */
+/* line 607, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 607, ../scss/styles.scss */
+/* line 610, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 610, ../scss/styles.scss */
+/* line 613, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 615, ../scss/styles.scss */
+/* line 618, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
 }
-/* line 624, ../scss/styles.scss */
+/* line 627, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-header {
   display: block;
   overflow: hidden;
 }
-/* line 627, ../scss/styles.scss */
+/* line 630, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-header h3 {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 631, ../scss/styles.scss */
+/* line 634, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -13076,29 +13080,29 @@ footer div p:last-child {
 .entry.private .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 637, ../scss/styles.scss */
+/* line 640, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
-/* line 645, ../scss/styles.scss */
+/* line 648, ../scss/styles.scss */
 .entry.private .module-section .section-header .buttons {
   margin: 0.65rem;
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 650, ../scss/styles.scss */
+/* line 653, ../scss/styles.scss */
 .entry.private .module-section .section-header .buttons button {
   border: 1px solid #cccccc;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 659, ../scss/styles.scss */
+/* line 662, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header {
   display: block;
   width: 100%;
 }
-/* line 662, ../scss/styles.scss */
+/* line 665, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .model-title {
   max-width: 100%;
   overflow: hidden;
@@ -13106,17 +13110,17 @@ footer div p:last-child {
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 666, ../scss/styles.scss */
+/* line 669, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons {
   float: right;
 }
-/* line 668, ../scss/styles.scss */
+/* line 671, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons button {
   margin: 0 0 0 0.25rem;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 672, ../scss/styles.scss */
+/* line 675, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons button.delete-model {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -13124,19 +13128,19 @@ footer div p:last-child {
   -khtml-opacity: 0.75;
   opacity: 0.75;
 }
-/* line 686, ../scss/styles.scss */
+/* line 689, ../scss/styles.scss */
 .entry.private .rating {
   display: inline-block;
 }
-/* line 688, ../scss/styles.scss */
+/* line 691, ../scss/styles.scss */
 .entry.private .rating label {
   display: inline-block;
 }
-/* line 690, ../scss/styles.scss */
+/* line 693, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] {
   display: none;
 }
-/* line 693, ../scss/styles.scss */
+/* line 696, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] + img {
   filter: alpha(opactiy=25);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
@@ -13145,7 +13149,7 @@ footer div p:last-child {
   opacity: 0.25;
   width: 3rem;
 }
-/* line 696, ../scss/styles.scss */
+/* line 699, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] + img:hover {
   filter: alpha(opactiy=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -13154,7 +13158,7 @@ footer div p:last-child {
   opacity: 0.5;
   cursor: pointer;
 }
-/* line 701, ../scss/styles.scss */
+/* line 704, ../scss/styles.scss */
 .entry.private .rating label input[type=radio]:checked + img {
   filter: alpha(opactiy=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
@@ -13162,7 +13166,7 @@ footer div p:last-child {
   -khtml-opacity: 0.7;
   opacity: 0.7;
 }
-/* line 711, ../scss/styles.scss */
+/* line 714, ../scss/styles.scss */
 .entry.private .time-select select {
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
@@ -13175,18 +13179,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 726, ../scss/styles.scss */
+/* line 729, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 729, ../scss/styles.scss */
+/* line 732, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 733, ../scss/styles.scss */
+/* line 736, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;
