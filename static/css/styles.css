@@ -12601,20 +12601,21 @@ footer div p:last-child {
 }
 /* line 354, ../scss/styles.scss */
 .entry .module-section .section-header .list-title {
+  font-size: 2rem;
   text-transform: uppercase;
 }
-/* line 358, ../scss/styles.scss */
+/* line 359, ../scss/styles.scss */
 .entry .module-section .model-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 362, ../scss/styles.scss */
+/* line 363, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry {
   margin-top: 0.5rem;
   padding: 0;
 }
-/* line 365, ../scss/styles.scss */
+/* line 366, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry .model-header {
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
@@ -12623,21 +12624,21 @@ footer div p:last-child {
   display: inline-block;
   padding: 0.25rem;
 }
-/* line 371, ../scss/styles.scss */
+/* line 372, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry .model-header .model-title {
   padding: 0.25rem;
 }
-/* line 375, ../scss/styles.scss */
+/* line 376, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry.has-body {
   position: relative;
 }
-/* line 378, ../scss/styles.scss */
+/* line 379, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry.has-body .model-body,
 .entry .module-section .model-list .model-entry.has-body .model-body-cap {
   background-color: #FFF;
   border: 1px solid #e4e4e4;
 }
-/* line 382, ../scss/styles.scss */
+/* line 383, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry.has-body .model-body-cap {
   position: absolute;
   top: 1.5rem;
@@ -12645,11 +12646,11 @@ footer div p:last-child {
   bottom: 0;
   right: 0;
 }
-/* line 389, ../scss/styles.scss */
+/* line 390, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry.has-body .model-header {
   position: relative;
 }
-/* line 392, ../scss/styles.scss */
+/* line 393, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry.has-body .model-body {
   border-top: none;
   display: block;
@@ -12657,46 +12658,46 @@ footer div p:last-child {
   padding: 0.25rem 1rem 0.5rem 1rem;
   position: relative;
 }
-/* line 404, ../scss/styles.scss */
+/* line 405, ../scss/styles.scss */
 .entry .module-section.drill .section-header {
-  background-color: #d35ef7;
+  background-color: #dc7ef8;
   border: 1px solid #e79aff;
 }
-/* line 407, ../scss/styles.scss */
+/* line 408, ../scss/styles.scss */
 .entry .module-section.drill .section-header .list-title {
   color: #570071;
 }
-/* line 413, ../scss/styles.scss */
+/* line 414, ../scss/styles.scss */
 .entry .module-section.drill .model-list .model-entry .model-header {
   background-color: #f2c7ff;
 }
-/* line 421, ../scss/styles.scss */
+/* line 422, ../scss/styles.scss */
 .entry .module-section.sparring .section-header {
-  background-color: #a8f76c;
+  background-color: #bcf98d;
   border: 1px solid #cfffab;
 }
-/* line 424, ../scss/styles.scss */
+/* line 425, ../scss/styles.scss */
 .entry .module-section.sparring .section-header .list-title {
   color: #337600;
 }
-/* line 430, ../scss/styles.scss */
+/* line 431, ../scss/styles.scss */
 .entry .module-section.sparring .model-list .model-entry .model-header {
   background-color: #eaffda;
 }
-/* line 438, ../scss/styles.scss */
+/* line 439, ../scss/styles.scss */
 .entry .module-section.note .section-header {
-  background-color: #f7f164;
+  background-color: #f9f485;
   border: 1px solid #fffba2;
 }
-/* line 441, ../scss/styles.scss */
+/* line 442, ../scss/styles.scss */
 .entry .module-section.note .section-header .list-title {
   color: #746f00;
 }
-/* line 447, ../scss/styles.scss */
+/* line 448, ../scss/styles.scss */
 .entry .module-section.note .model-list .model-entry .model-header {
   background-color: #fffdd0;
 }
-/* line 455, ../scss/styles.scss */
+/* line 456, ../scss/styles.scss */
 .entry .rating img {
   filter: alpha(opactiy=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
@@ -12704,23 +12705,23 @@ footer div p:last-child {
   -khtml-opacity: 0.7;
   opacity: 0.7;
 }
-/* line 463, ../scss/styles.scss */
+/* line 464, ../scss/styles.scss */
 .entry.public #entry-rating {
   display: inline-block;
   float: left;
   margin-right: 1rem;
 }
-/* line 467, ../scss/styles.scss */
+/* line 468, ../scss/styles.scss */
 .entry.public #entry-rating img {
   width: 5rem;
 }
-/* line 472, ../scss/styles.scss */
+/* line 473, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-left {
   display: none;
   float: left;
   margin-right: 1rem;
 }
-/* line 476, ../scss/styles.scss */
+/* line 477, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-left .date {
   -webkit-border-radius: 0.5rem;
   border-radius: 0.5rem;
@@ -12728,16 +12729,16 @@ footer div p:last-child {
   display: block;
   text-align: center;
 }
-/* line 482, ../scss/styles.scss */
+/* line 483, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-left .date .month, .entry.public .entry-header .entry-header-left .date .day, .entry.public .entry-header .entry-header-left .date .year {
   display: block;
   margin: 0;
 }
-/* line 486, ../scss/styles.scss */
+/* line 487, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-left .date .day, .entry.public .entry-header .entry-header-left .date .year {
   font-family: Arial, Helvetica, sans-serif;
 }
-/* line 489, ../scss/styles.scss */
+/* line 490, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-left .date .month {
   -moz-border-radius-topright: 0.5rem;
   -moz-border-radius-topleft: 0.5rem;
@@ -12751,7 +12752,7 @@ footer div p:last-child {
   font-weight: bold;
   text-transform: uppercase;
 }
-/* line 497, ../scss/styles.scss */
+/* line 498, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-left .date .day {
   -moz-border-radius-bottomright: 0.5rem;
   -moz-border-radius-bottomleft: 0.5rem;
@@ -12765,19 +12766,19 @@ footer div p:last-child {
   font-weight: bold;
   padding: 0 0.75rem;
 }
-/* line 505, ../scss/styles.scss */
+/* line 506, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-left .date .year {
   display: none;
 }
-/* line 510, ../scss/styles.scss */
+/* line 511, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-row {
   display: block;
 }
-/* line 512, ../scss/styles.scss */
+/* line 513, ../scss/styles.scss */
 .entry.public .entry-header .entry-header-row h1 {
   line-height: 1;
 }
-/* line 521, ../scss/styles.scss */
+/* line 522, ../scss/styles.scss */
 .entry.private {
   /*
    * Select widget
@@ -12789,13 +12790,13 @@ footer div p:last-child {
    * Time select
    */
 }
-/* line 522, ../scss/styles.scss */
+/* line 523, ../scss/styles.scss */
 .entry.private #entry-rating {
   display: block;
   overflow: hidden;
   margin-top: 1rem;
 }
-/* line 527, ../scss/styles.scss */
+/* line 528, ../scss/styles.scss */
 .entry.private .entry-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12880,7 +12881,7 @@ footer div p:last-child {
 .entry.private .entry-save.saving i.saving {
   display: inline-block;
 }
-/* line 536, ../scss/styles.scss */
+/* line 537, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .plaintext,
 .entry.private .entry-header .entry-header-row .headertext {
   max-width: 100%;
@@ -12889,17 +12890,17 @@ footer div p:last-child {
   white-space: nowrap;
   margin-right: 0.5em;
 }
-/* line 540, ../scss/styles.scss */
+/* line 541, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .plaintext {
   border-bottom: 1px dashed transparent;
 }
-/* line 543, ../scss/styles.scss */
+/* line 544, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .edit-link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
   margin-bottom: 1px;
 }
-/* line 547, ../scss/styles.scss */
+/* line 548, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .edit-link:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -12908,24 +12909,24 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 551, ../scss/styles.scss */
+/* line 552, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .edit-link i {
   color: #222222;
 }
-/* line 553, ../scss/styles.scss */
+/* line 554, ../scss/styles.scss */
 .entry.private .entry-header .entry-header-row .edit-link i:not(.fa) {
   font-weight: bold;
 }
-/* line 565, ../scss/styles.scss */
+/* line 566, ../scss/styles.scss */
 .entry.private .single-select .select-input {
   display: none;
 }
-/* line 570, ../scss/styles.scss */
+/* line 571, ../scss/styles.scss */
 .entry.private .single-select .select-display .edit-link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 576, ../scss/styles.scss */
+/* line 577, ../scss/styles.scss */
 .entry.private .single-select .select-drop {
   background-color: #FFF;
   display: none;
@@ -12934,62 +12935,62 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 583, ../scss/styles.scss */
+/* line 584, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 587, ../scss/styles.scss */
+/* line 588, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 592, ../scss/styles.scss */
+/* line 593, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search i {
   padding: 0.28572rem;
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 599, ../scss/styles.scss */
+/* line 600, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 603, ../scss/styles.scss */
+/* line 604, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 606, ../scss/styles.scss */
+/* line 607, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 609, ../scss/styles.scss */
+/* line 610, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 614, ../scss/styles.scss */
+/* line 615, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
 }
-/* line 623, ../scss/styles.scss */
+/* line 624, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-header {
   display: block;
   overflow: hidden;
 }
-/* line 626, ../scss/styles.scss */
+/* line 627, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-header h3 {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 630, ../scss/styles.scss */
+/* line 631, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -13075,29 +13076,29 @@ footer div p:last-child {
 .entry.private .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 636, ../scss/styles.scss */
+/* line 637, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
-/* line 644, ../scss/styles.scss */
+/* line 645, ../scss/styles.scss */
 .entry.private .module-section .section-header .buttons {
   margin: 0.65rem;
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 649, ../scss/styles.scss */
+/* line 650, ../scss/styles.scss */
 .entry.private .module-section .section-header .buttons button {
   border: 1px solid #cccccc;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 658, ../scss/styles.scss */
+/* line 659, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header {
   display: block;
   width: 100%;
 }
-/* line 661, ../scss/styles.scss */
+/* line 662, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .model-title {
   max-width: 100%;
   overflow: hidden;
@@ -13105,17 +13106,17 @@ footer div p:last-child {
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 665, ../scss/styles.scss */
+/* line 666, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons {
   float: right;
 }
-/* line 667, ../scss/styles.scss */
+/* line 668, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons button {
   margin: 0 0 0 0.25rem;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 671, ../scss/styles.scss */
+/* line 672, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons button.delete-model {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -13123,19 +13124,19 @@ footer div p:last-child {
   -khtml-opacity: 0.75;
   opacity: 0.75;
 }
-/* line 685, ../scss/styles.scss */
+/* line 686, ../scss/styles.scss */
 .entry.private .rating {
   display: inline-block;
 }
-/* line 687, ../scss/styles.scss */
+/* line 688, ../scss/styles.scss */
 .entry.private .rating label {
   display: inline-block;
 }
-/* line 689, ../scss/styles.scss */
+/* line 690, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] {
   display: none;
 }
-/* line 692, ../scss/styles.scss */
+/* line 693, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] + img {
   filter: alpha(opactiy=25);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
@@ -13144,7 +13145,7 @@ footer div p:last-child {
   opacity: 0.25;
   width: 3rem;
 }
-/* line 695, ../scss/styles.scss */
+/* line 696, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] + img:hover {
   filter: alpha(opactiy=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -13153,7 +13154,7 @@ footer div p:last-child {
   opacity: 0.5;
   cursor: pointer;
 }
-/* line 700, ../scss/styles.scss */
+/* line 701, ../scss/styles.scss */
 .entry.private .rating label input[type=radio]:checked + img {
   filter: alpha(opactiy=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
@@ -13161,7 +13162,7 @@ footer div p:last-child {
   -khtml-opacity: 0.7;
   opacity: 0.7;
 }
-/* line 710, ../scss/styles.scss */
+/* line 711, ../scss/styles.scss */
 .entry.private .time-select select {
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
@@ -13174,18 +13175,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 725, ../scss/styles.scss */
+/* line 726, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 728, ../scss/styles.scss */
+/* line 729, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 732, ../scss/styles.scss */
+/* line 733, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;

@@ -352,6 +352,7 @@ footer {
       position: relative;
       text-align: center;
       .list-title {
+        font-size: 2rem;
         text-transform: uppercase;
       }
     }
@@ -402,7 +403,7 @@ footer {
     &.drill {
       $drill-border-color: scale-color($drill-color, $lightness: -10%);
       .section-header {
-        background-color: scale-color($drill-color, $lightness: -25%, $saturation: -10%);
+        background-color: scale-color($drill-color, $lightness: -17.5%, $saturation: -10%);
         border: 1px solid $drill-border-color;
         .list-title {
           color: scale-color($drill-color, $lightness: -75%, $saturation: +10%);
@@ -419,7 +420,7 @@ footer {
     &.sparring {
       $sparring-border-color: scale-color($sparring-color, $lightness: -10%);
       .section-header {
-        background-color: scale-color($sparring-color, $lightness: -25%, $saturation: -10%);
+        background-color: scale-color($sparring-color, $lightness: -17.5%, $saturation: -10%);
         border: 1px solid $sparring-border-color;
         .list-title {
           color: scale-color($sparring-color, $lightness: -75%, $saturation: +10%);
@@ -436,7 +437,7 @@ footer {
     &.note {
       $note-border-color: scale-color($note-color, $lightness: -10%);
       .section-header {
-        background-color: scale-color($note-color, $lightness: -25%, $saturation: -10%);
+        background-color: scale-color($note-color, $lightness: -17.5%, $saturation: -10%);
         border: 1px solid $note-border-color;
         .list-title {
           color: scale-color($note-color, $lightness: -75%, $saturation: +10%);
