@@ -12642,22 +12642,23 @@ footer div p:last-child {
 .entry .module-section .model-list .model-entry .model-body {
   background-color: #FFF;
   border: 1px dashed #c9e3f3;
+  display: inline-block;
   padding: 1rem;
   padding-top: 1.5rem;
 }
-/* line 385, ../scss/styles.scss */
+/* line 386, ../scss/styles.scss */
 .entry .module-section.drill .model-list .model-entry .model-header {
   background-color: #e7feff;
 }
-/* line 394, ../scss/styles.scss */
+/* line 395, ../scss/styles.scss */
 .entry .module-section.sparring .model-list .model-entry .model-header {
   background-color: #d0f0c0;
 }
-/* line 403, ../scss/styles.scss */
+/* line 404, ../scss/styles.scss */
 .entry .module-section.note .model-list .model-entry .model-header {
   background-color: #fffdd0;
 }
-/* line 411, ../scss/styles.scss */
+/* line 412, ../scss/styles.scss */
 .entry .rating img {
   filter: alpha(opactiy=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
@@ -12666,12 +12667,12 @@ footer div p:last-child {
   opacity: 0.7;
   width: 3rem;
 }
-/* line 420, ../scss/styles.scss */
+/* line 421, ../scss/styles.scss */
 .entry.public #entry-rating {
   display: inline-block;
   float: left;
 }
-/* line 428, ../scss/styles.scss */
+/* line 429, ../scss/styles.scss */
 .entry.private {
   /*
    * Select widget
@@ -12683,13 +12684,13 @@ footer div p:last-child {
    * Time select
    */
 }
-/* line 429, ../scss/styles.scss */
+/* line 430, ../scss/styles.scss */
 .entry.private #entry-rating {
   display: block;
   overflow: hidden;
   margin-top: 1rem;
 }
-/* line 434, ../scss/styles.scss */
+/* line 435, ../scss/styles.scss */
 .entry.private .entry-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12774,13 +12775,13 @@ footer div p:last-child {
 .entry.private .entry-save.saving i.saving {
   display: inline-block;
 }
-/* line 441, ../scss/styles.scss */
+/* line 442, ../scss/styles.scss */
 .entry.private .entry-header .edit-link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
   margin-bottom: 1px;
 }
-/* line 445, ../scss/styles.scss */
+/* line 446, ../scss/styles.scss */
 .entry.private .entry-header .edit-link:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -12789,24 +12790,24 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 449, ../scss/styles.scss */
+/* line 450, ../scss/styles.scss */
 .entry.private .entry-header .edit-link i {
   color: #222222;
 }
-/* line 451, ../scss/styles.scss */
+/* line 452, ../scss/styles.scss */
 .entry.private .entry-header .edit-link i:not(.fa) {
   font-weight: bold;
 }
-/* line 462, ../scss/styles.scss */
+/* line 463, ../scss/styles.scss */
 .entry.private .single-select .select-input {
   display: none;
 }
-/* line 467, ../scss/styles.scss */
+/* line 468, ../scss/styles.scss */
 .entry.private .single-select .select-display .edit-link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 473, ../scss/styles.scss */
+/* line 474, ../scss/styles.scss */
 .entry.private .single-select .select-drop {
   background-color: #FFF;
   display: none;
@@ -12815,19 +12816,19 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 480, ../scss/styles.scss */
+/* line 481, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 484, ../scss/styles.scss */
+/* line 485, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 489, ../scss/styles.scss */
+/* line 490, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search i {
   color: #c9e3f3;
   padding: 0.28572rem;
@@ -12835,43 +12836,43 @@ footer div p:last-child {
   right: 0;
   top: 0;
 }
-/* line 497, ../scss/styles.scss */
+/* line 498, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 501, ../scss/styles.scss */
+/* line 502, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 504, ../scss/styles.scss */
+/* line 505, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 507, ../scss/styles.scss */
+/* line 508, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 512, ../scss/styles.scss */
+/* line 513, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
 }
-/* line 521, ../scss/styles.scss */
+/* line 522, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-header {
   display: block;
   overflow: hidden;
 }
-/* line 524, ../scss/styles.scss */
+/* line 525, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-header h3 {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 528, ../scss/styles.scss */
+/* line 529, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12957,11 +12958,11 @@ footer div p:last-child {
 .entry.private .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 534, ../scss/styles.scss */
+/* line 535, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
-/* line 542, ../scss/styles.scss */
+/* line 543, ../scss/styles.scss */
 .entry.private .module-section .section-header .add-model {
   -webkit-border-radius: 1.5rem;
   border-radius: 1.5rem;
@@ -12992,23 +12993,23 @@ footer div p:last-child {
   padding-top: 0.64286rem;
   padding-bottom: 0.21429rem;
 }
-/* line 549, ../scss/styles.scss */
+/* line 550, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header {
   display: block;
   width: 100%;
 }
-/* line 552, ../scss/styles.scss */
+/* line 553, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons {
   float: right;
   margin-left: 1rem;
 }
-/* line 555, ../scss/styles.scss */
+/* line 556, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons button {
   margin: 0 0.25rem 0 0;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 559, ../scss/styles.scss */
+/* line 560, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons button.delete-model {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -13016,19 +13017,19 @@ footer div p:last-child {
   -khtml-opacity: 0.75;
   opacity: 0.75;
 }
-/* line 573, ../scss/styles.scss */
+/* line 574, ../scss/styles.scss */
 .entry.private .rating {
   display: inline-block;
 }
-/* line 575, ../scss/styles.scss */
+/* line 576, ../scss/styles.scss */
 .entry.private .rating label {
   display: inline-block;
 }
-/* line 577, ../scss/styles.scss */
+/* line 578, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] {
   display: none;
 }
-/* line 580, ../scss/styles.scss */
+/* line 581, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] + img {
   filter: alpha(opactiy=25);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
@@ -13036,7 +13037,7 @@ footer div p:last-child {
   -khtml-opacity: 0.25;
   opacity: 0.25;
 }
-/* line 582, ../scss/styles.scss */
+/* line 583, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] + img:hover {
   filter: alpha(opactiy=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -13045,7 +13046,7 @@ footer div p:last-child {
   opacity: 0.5;
   cursor: pointer;
 }
-/* line 587, ../scss/styles.scss */
+/* line 588, ../scss/styles.scss */
 .entry.private .rating label input[type=radio]:checked + img {
   filter: alpha(opactiy=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
@@ -13053,7 +13054,7 @@ footer div p:last-child {
   -khtml-opacity: 0.7;
   opacity: 0.7;
 }
-/* line 597, ../scss/styles.scss */
+/* line 598, ../scss/styles.scss */
 .entry.private .time-select select {
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -13066,18 +13067,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 612, ../scss/styles.scss */
+/* line 613, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 615, ../scss/styles.scss */
+/* line 616, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 619, ../scss/styles.scss */
+/* line 620, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;

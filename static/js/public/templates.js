@@ -48,11 +48,11 @@ function program6(depth0,data) {
   if (helper = helpers.partner) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.partner); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " | ";
+    + " (";
   if (helper = helpers.minutes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.minutes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " minutes\r\n                </div>\r\n              </div>\r\n              ";
+    + " minutes)\r\n                </div>\r\n              </div>\r\n              ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n            </li>\r\n          ";
@@ -85,13 +85,13 @@ function program8(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.type)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</h3>\r\n      \r\n      <h3 id=\"location\" class=\"headertext\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.location)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h3>\r\n      \r\n      <div>\r\n        <h3 class=\"headertext\">\r\n          <i class=\"fa fa-calendar\"></i>\r\n          Thursday, 15 Jan 2014\r\n        </h3>\r\n      </div>\r\n      \r\n      <div>\r\n        <h3 class=\"plaintext\">from</h3>\r\n        <h3 class=\"headertext\">\r\n          <i class=\"fa fa-clock-o\"></i>\r\n          2:45PM\r\n        </h3>\r\n      </div>\r\n      \r\n      <div>\r\n        <h3 class=\"plaintext\">until</h3>\r\n        <h3 class=\"headertext\">\r\n          <i class=\"fa fa-clock-o\"></i>\r\n          4:45PM\r\n        </h3>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div class=\"row\">\r\n\r\n    <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n      <div class=\"module-section drill\">\r\n        <div class=\"section-header\">\r\n          <span class=\"list-title\">Drills</span>\r\n        </div>\r\n        <ul class=\"model-list row\">\r\n          ";
+    + "</h3>\r\n    </div>\r\n      \r\n    <div class=\"columns entry-header\">\r\n      <div>\r\n        <h3 class=\"headertext\">\r\n          <i class=\"fa fa-calendar\"></i>\r\n          Thursday, 15 Jan 2014\r\n        </h3>\r\n      </div>\r\n      \r\n      <div>\r\n        <h3 class=\"plaintext\">from</h3>\r\n        <h3 class=\"headertext\">\r\n          <i class=\"fa fa-clock-o\"></i>\r\n          2:45PM\r\n        </h3>\r\n      </div>\r\n      \r\n      <div>\r\n        <h3 class=\"plaintext\">until</h3>\r\n        <h3 class=\"headertext\">\r\n          <i class=\"fa fa-clock-o\"></i>\r\n          4:45PM\r\n        </h3>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div class=\"row\">\r\n\r\n    <div class=\"medium-10 large-uncentered large-6 xlarge-4 columns\">\r\n      <div class=\"module-section drill\">\r\n        <div class=\"section-header\">\r\n          <span class=\"list-title\">Drills</span>\r\n        </div>\r\n        <ul class=\"model-list row\">\r\n          ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.drills), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </ul>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n      <div class=\"module-section sparring\">\r\n        <div class=\"section-header\">\r\n          <span class=\"list-title\">Sparring</span>\r\n        </div>\r\n        <ul class=\"model-list row\">\r\n          ";
+  buffer += "\r\n        </ul>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"medium-10 large-uncentered large-6 xlarge-4 columns\">\r\n      <div class=\"module-section sparring\">\r\n        <div class=\"section-header\">\r\n          <span class=\"list-title\">Sparring</span>\r\n        </div>\r\n        <ul class=\"model-list row\">\r\n          ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.sparring), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </ul>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"medium-10 medium-centered large-uncentered large-4 columns\">\r\n      <div class=\"module-section note\">\r\n        <div class=\"section-header\">\r\n          <span class=\"list-title\">Notes</span>\r\n        </div>\r\n        <ul class=\"model-list row\">\r\n          ";
+  buffer += "\r\n        </ul>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"medium-10 large-uncentered large-6 xlarge-4 columns end\">\r\n      <div class=\"module-section note\">\r\n        <div class=\"section-header\">\r\n          <span class=\"list-title\">Notes</span>\r\n        </div>\r\n        <ul class=\"model-list row\">\r\n          ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.notes), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    \r\n  </div>\r\n</div>";

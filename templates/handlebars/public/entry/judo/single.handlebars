@@ -14,7 +14,9 @@
       <h3 id="type" class="headertext">{{ type.name }}</h3>
       
       <h3 id="location" class="headertext">{{ location.name }}</h3>
+    </div>
       
+    <div class="columns entry-header">
       <div>
         <h3 class="headertext">
           <i class="fa fa-calendar"></i>
@@ -44,7 +46,7 @@
 
   <div class="row">
 
-    <div class="medium-10 medium-centered large-uncentered large-4 columns">
+    <div class="medium-10 large-uncentered large-6 xlarge-4 columns">
       <div class="module-section drill">
         <div class="section-header">
           <span class="list-title">Drills</span>
@@ -68,7 +70,7 @@
       </div>
     </div>
 
-    <div class="medium-10 medium-centered large-uncentered large-4 columns">
+    <div class="medium-10 large-uncentered large-6 xlarge-4 columns">
       <div class="module-section sparring">
         <div class="section-header">
           <span class="list-title">Sparring</span>
@@ -78,7 +80,7 @@
             <li class="{{#if details}}has-body {{/if}}model-entry columns">
               <div class="model-header">
                 <div class="model-title">
-                  {{ partner }} | {{ minutes }} minutes
+                  {{ partner }} ({{ minutes }} minutes)
                 </div>
               </div>
               {{#if details}}
@@ -92,7 +94,7 @@
       </div>
     </div>
 
-    <div class="medium-10 medium-centered large-uncentered large-4 columns">
+    <div class="medium-10 large-uncentered large-6 xlarge-4 columns end">
       <div class="module-section note">
         <div class="section-header">
           <span class="list-title">Notes</span>
