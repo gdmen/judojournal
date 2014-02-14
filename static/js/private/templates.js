@@ -62,7 +62,7 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  buffer += "\r\n<div class=\"module-section drill\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add model</button>\r\n    </div>\r\n    <h3 class=\"list-title\">Drills</h3>\r\n  </div>\r\n  <div class=\"row modal-wrapper\">\r\n    <div class=\"click-away-overlay\"></div>\r\n    <div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n    ";
+  buffer += "\r\n<div class=\"module-section drill\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add <i class=\"fa fa-plus\"></i></button>\r\n    </div>\r\n    <h3 class=\"list-title\">Drills</h3>\r\n  </div>\r\n  <div class=\"row modal-wrapper\">\r\n    <div class=\"click-away-overlay\"></div>\r\n    <div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  </ul>\r\n</div>";
@@ -139,7 +139,7 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  buffer += "\r\n<div class=\"module-section note\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add model</button>\r\n    </div>\r\n    <h3 class=\"list-title\">Notes</h3>\r\n  </div>\r\n  <div class=\"row modal-wrapper\">\r\n    <div class=\"click-away-overlay\"></div>\r\n    <div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n    ";
+  buffer += "\r\n<div class=\"module-section note\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add <i class=\"fa fa-plus\"></i></button>\r\n    </div>\r\n    <h3 class=\"list-title\">Notes</h3>\r\n  </div>\r\n  <div class=\"row modal-wrapper\">\r\n    <div class=\"click-away-overlay\"></div>\r\n    <div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  </ul>\r\n</div>";
@@ -220,7 +220,7 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  buffer += "\r\n<div class=\"module-section sparring\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add model</button>\r\n    </div>\r\n    <h3 class=\"list-title\">Sparring</h3>\r\n  </div>\r\n  <div class=\"row modal-wrapper\">\r\n    <div class=\"click-away-overlay\"></div>\r\n    <div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n    ";
+  buffer += "\r\n<div class=\"module-section sparring\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add <i class=\"fa fa-plus\"></i></button>\r\n    </div>\r\n    <h3 class=\"list-title\">Sparring</h3>\r\n  </div>\r\n  <div class=\"row modal-wrapper\">\r\n    <div class=\"click-away-overlay\"></div>\r\n    <div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n  </ul>\r\n</div>";

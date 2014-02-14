@@ -200,6 +200,7 @@ button, .button {
  * Custom settings
  */
 $light-border-color: scale-color($primary-color, $lightness: 75%);
+$medium-border-color: scale-color($primary-color, $lightness: 25%);
 $footer-height: 2rem;
 $footer-bg: $topbar-bg;
 $input-padding: 0.57143rem;
@@ -337,7 +338,7 @@ footer {
   .module-section {
     .section-header {
       @include radius(0.25rem);
-      border: 1px dashed gray;
+      border: 1px solid $medium-border-color;
       margin-top: 1rem;
       position: relative;
       text-align: center;
@@ -564,6 +565,7 @@ footer {
           right: 0;
           top: 0;
           button {
+            border: 1px solid $medium-border-color;
             padding: 0.5rem;
             text-transform: uppercase;
           }
