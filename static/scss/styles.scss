@@ -303,7 +303,7 @@ footer {
       }
       .plaintext,
       .headertext {
-        margin-right: 0.25em;
+        margin-right: 0.125em;
       }
     }
   }
@@ -405,6 +405,7 @@ footer {
         background-color: scale-color($drill-color, $lightness: -25%, $saturation: -10%);
         border: 1px solid $drill-border-color;
         .list-title {
+          color: scale-color($drill-color, $lightness: -75%, $saturation: +10%);
         }
       }
       .model-list {
@@ -421,6 +422,7 @@ footer {
         background-color: scale-color($sparring-color, $lightness: -25%, $saturation: -10%);
         border: 1px solid $sparring-border-color;
         .list-title {
+          color: scale-color($sparring-color, $lightness: -75%, $saturation: +10%);
         }
       }
       .model-list {
@@ -437,6 +439,7 @@ footer {
         background-color: scale-color($note-color, $lightness: -25%, $saturation: -10%);
         border: 1px solid $note-border-color;
         .list-title {
+          color: scale-color($note-color, $lightness: -75%, $saturation: +10%);
         }
       }
       .model-list {
@@ -494,6 +497,7 @@ footer {
           .day {
             @include side-radius("bottom", $date-badge-radius);
             background-color: #FFF;
+            color: $header-font-color;
             font-size: 4rem;
             font-weight: bold;
             padding: 0 0.75rem;
