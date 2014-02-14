@@ -5,7 +5,7 @@
  * Foundation settings
  */
 @import "../bower/foundation/scss/foundation/_functions";
-$primary-color: #2C8EC9;//#0068C2;
+$primary-color: #2C8EC9;
 $secondary-color: #E7E7E7;
 $alert-color: #F76565;
 $success-color: #22BF64;
@@ -199,8 +199,9 @@ button, .button {
 /*
  * Custom settings
  */
-$light-border-color: scale-color($primary-color, $lightness: 75%);
-$medium-border-color: scale-color($primary-color, $lightness: 25%);
+$base-border-color: #BBBBBB;
+$light-border-color: scale-color($base-border-color, $lightness: 50%);
+$medium-border-color: scale-color($base-border-color, $lightness: 25%);
 $footer-height: 2rem;
 $footer-bg: $topbar-bg;
 $input-padding: 0.57143rem;
@@ -208,9 +209,9 @@ $max-z-index: 9999998;
 /*
  * Module colors
  */
-$drill-color: #E7FEFF;//#7DBF94;
-$sparring-color: #EAFFDA;//#E7CA52;
-$note-color: #FFFDD0;//#DF815A;
+$drill-color: #E7FEFF;
+$sparring-color: #EAFFDA;
+$note-color: #FFFDD0;
 
 
 /*
@@ -368,10 +369,9 @@ footer {
           .model-body,
           .model-body-cap {
             background-color: #FFF;
-            border: 1px solid $light-border-color;
+            border: 1px solid scale-color($light-border-color, $lightness: 20%);
           }
           .model-body-cap {
-            border-bottom: none;
             position: absolute;
             top: 1.5rem;
             left: 0.5rem;
@@ -392,8 +392,10 @@ footer {
       }
     }
     &.drill {
+      $drill-border-color: scale-color($drill-color, $lightness: -10%);
       .section-header {
         background-color: scale-color($drill-color, $lightness: -25%, $saturation: -10%);
+        border: 1px solid $drill-border-color;
         .list-title {
         }
       }
@@ -406,8 +408,10 @@ footer {
       }
     }
     &.sparring {
+      $sparring-border-color: scale-color($sparring-color, $lightness: -10%);
       .section-header {
         background-color: scale-color($sparring-color, $lightness: -25%, $saturation: -10%);
+        border: 1px solid $sparring-border-color;
         .list-title {
         }
       }
@@ -420,8 +424,10 @@ footer {
       }
     }
     &.note {
+      $note-border-color: scale-color($note-color, $lightness: -10%);
       .section-header {
         background-color: scale-color($note-color, $lightness: -25%, $saturation: -10%);
+        border: 1px solid $note-border-color;
         .list-title {
         }
       }
@@ -514,7 +520,6 @@ footer {
             width: 100%;
           }
           i {
-            color: $light-border-color;
             padding: ($input-padding / 2);
             position: absolute;
             right: 0;
