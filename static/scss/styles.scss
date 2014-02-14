@@ -336,10 +336,10 @@ footer {
   }
   // Module List
   .module-section {
+    margin-top: 2rem;
     .section-header {
       @include radius(0.25rem);
       border: 1px solid $medium-border-color;
-      margin-top: 1rem;
       position: relative;
       text-align: center;
       .list-title {
@@ -365,9 +365,12 @@ footer {
         }
         &.has-body {
           position: relative;
+          .model-body,
           .model-body-cap {
             background-color: #FFF;
-            border: 1px dashed $light-border-color;
+            border: 1px solid $light-border-color;
+          }
+          .model-body-cap {
             border-bottom: none;
             position: absolute;
             top: 1.5rem;
@@ -379,12 +382,10 @@ footer {
             position: relative;
           }
           .model-body {
-            background-color: #FFF;
-            border: 1px dashed $light-border-color;
             border-top: none;
             display: block;
             margin-left: 0.5rem;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 1rem 0.5rem 1rem;
             position: relative;
           }
         }
