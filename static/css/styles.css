@@ -12660,16 +12660,16 @@ footer div p:last-child {
 }
 /* line 405, ../scss/styles.scss */
 .entry .module-section.drill .section-header {
-  background-color: #dc7ef8;
-  border: 1px solid #e79aff;
+  background-color: #97f5fa;
+  border: 1px solid #b6fcff;
 }
 /* line 408, ../scss/styles.scss */
 .entry .module-section.drill .section-header .list-title {
-  color: #570071;
+  color: #007479;
 }
 /* line 414, ../scss/styles.scss */
 .entry .module-section.drill .model-list .model-entry .model-header {
-  background-color: #f2c7ff;
+  background-color: #e7feff;
 }
 /* line 422, ../scss/styles.scss */
 .entry .module-section.sparring .section-header {
