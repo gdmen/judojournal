@@ -2,44 +2,38 @@
 <div class="entry public">
 
   <div class="row">
-
     <div class="columns entry-header">
-    
+      <div class="entry-header-left">
+        <div class="date">
+          <h6 class="month">February</h6>
+          <span class="day">14</span>
+          <span class="year">2014</span>
+        </div>
+      </div>
+      
       <div id="entry-rating">
         {{> partials/rating }}
       </div>
-    
-      <h3 id="art" class="headertext">{{ art.name }}</h3>
       
-      <h3 id="type" class="headertext">{{ type.name }}</h3>
-      
-      <h3 id="location" class="headertext">{{ location.name }}</h3>
-    </div>
-      
-    <div class="columns entry-header">
-      <div>
-        <h3 class="headertext">
-          <i class="fa fa-calendar"></i>
-          Thursday, 15 Jan 2014
-        </h3>
+      <div class="entry-header-row">
+        <h1 id="art" class="headertext">{{ art.name }}</h1>
+        <h1 id="type" class="headertext">{{ type.name }}</h1>
       </div>
       
-      <div>
-        <h3 class="plaintext">from</h3>
-        <h3 class="headertext">
-          <i class="fa fa-clock-o"></i>
-          2:45PM
-        </h3>
-      </div>
+      <div class="entry-header-section">
       
-      <div>
-        <h3 class="plaintext">until</h3>
-        <h3 class="headertext">
-          <i class="fa fa-clock-o"></i>
-          4:45PM
-        </h3>
+        <div class="entry-header-row">
+          <h5 id="location" class="headertext">gdm @ {{ location.name }}</h5>
+        </div>
+        
+        <div class="entry-header-row">
+          <h5 class="headertext">
+            2:45PM - 4:45PM (2 hours)
+          </h5>
+        </div>
+        
       </div>
-      
+
     </div>
   </div>
 

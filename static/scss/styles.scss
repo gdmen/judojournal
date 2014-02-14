@@ -26,6 +26,7 @@ $topbar-dropdown-bg: scale-color($topbar-bg, $lightness: -28%);
 
 $body-bg: #FFF url(/static/img/linedpaper.png) repeat;
 $row-width: rem-calc(1400);
+$global-radius: 0.25rem;
 
 
 // Load Open Sans
@@ -108,6 +109,33 @@ button, .button {
   }
 }
 
+
+/*
+ * Custom settings
+ */
+$base-border-color: #BBBBBB;
+$light-border-color: scale-color($base-border-color, $lightness: 50%);
+$medium-border-color: scale-color($base-border-color, $lightness: 25%);
+$footer-height: 2rem;
+$footer-bg: $topbar-bg;
+$input-padding: 0.57143rem;
+$max-z-index: 9999998;
+/*
+ * Accent colors
+ */
+$accent-red: #FF4D4F;
+$accent-orange: orange;
+$accent-yellow: #FFFDD0;
+$accent-green: #EAFFDA;
+$accent-blue: #E7FEFF;
+$accent-purple: #F2C7FF;
+/*
+ * Module colors
+ */
+$drill-color: $accent-purple;
+$sparring-color: $accent-green;
+$note-color: $accent-yellow;
+
 /*
  * Custom Mixins
  */
@@ -136,7 +164,7 @@ button, .button {
 	white-space: nowrap;
 }
 @mixin round-button($diameter) {
-	@include radius(($diameter / 2));
+	@include radius($diameter / 2);
 	display: inline-block;
 	height: $diameter;
 	text-align: center;
@@ -195,24 +223,6 @@ button, .button {
 		}
 	}
 }
-
-/*
- * Custom settings
- */
-$base-border-color: #BBBBBB;
-$light-border-color: scale-color($base-border-color, $lightness: 50%);
-$medium-border-color: scale-color($base-border-color, $lightness: 25%);
-$footer-height: 2rem;
-$footer-bg: $topbar-bg;
-$input-padding: 0.57143rem;
-$max-z-index: 9999998;
-/*
- * Module colors
- */
-$drill-color: #E7FEFF;
-$sparring-color: #EAFFDA;
-$note-color: #FFFDD0;
-
 
 /*
  * Custom styles
@@ -280,23 +290,21 @@ footer {
  ******************************************************************************/
 .entry {
   .entry-header {
-    div {
+    .entry-header-section {
       display: inline-block;
-      max-width: 100%;
     }
-		h3 {
-			margin-bottom: 0;
-		}
-    .plaintext,
-    .headertext {
-      @include text-ellipsis();
-      margin-right: 0.5em;
-    }
-    .plaintext {
-      border-bottom: 1px dashed transparent;
-    }
-    .headertext {
-      display: inline-block;
+    .entry-header-row {
+      div {
+        display: inline-block;
+        max-width: 100%;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0;
+      }
+      .plaintext,
+      .headertext {
+        margin-right: 0.25em;
+      }
     }
   }
   // Modals
@@ -339,7 +347,7 @@ footer {
   .module-section {
     margin-top: 2rem;
     .section-header {
-      @include radius(0.25rem);
+      @include radius();
       border: 1px solid $medium-border-color;
       position: relative;
       text-align: center;
@@ -355,7 +363,7 @@ footer {
         margin-top: 0.5rem;
         padding: 0;
         .model-header {
-          @include radius(0.25rem);
+          @include radius();
           background-color: #FFF;
           border: 1px solid $light-border-color;
           display: inline-block;
@@ -443,7 +451,6 @@ footer {
   .rating {
     img{
       @include opacity(0.7);
-      width: 3rem;
     }
   }
   /*
@@ -453,6 +460,55 @@ footer {
     #entry-rating {
       display: inline-block;
       float: left;
+      margin-right: 1rem;
+      img {
+        width: 5rem;
+      }
+    }
+    .entry-header {
+      .entry-header-left {
+        display: none;
+        float: left;
+        margin-right: 1rem;
+        .date {
+          $date-badge-radius: 0.5rem;
+          @include radius($date-badge-radius);
+          border: 1px solid $light-border-color;
+          display: block;
+          text-align: center;
+          .month, .day, .year {
+            display: block;
+            margin: 0;
+          }
+          .day, .year {
+            font-family: Arial, Helvetica, sans-serif;
+          }
+          .month {
+            @include side-radius("top", $date-badge-radius);
+            background-color: $accent-red;
+            border-bottom: 1px solid $light-border-color;
+            color: #FFF;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+          .day {
+            @include side-radius("bottom", $date-badge-radius);
+            background-color: #FFF;
+            font-size: 4rem;
+            font-weight: bold;
+            padding: 0 0.75rem;
+          }
+          .year {
+            display: none;
+          }
+        }
+      }
+      .entry-header-row {
+        display: block;
+        h1 {
+          line-height: 1;
+        }
+      }
     }
   }
   /*
@@ -471,18 +527,28 @@ footer {
     }
 
     .entry-header {
-      .edit-link {
-        border-bottom: 1px dashed $topbar-bg;
-        color: $anchor-font-color;
-        margin-bottom: 1px;
-        &:hover {
-          @include opacity(0.75);
-          cursor: pointer;
+      .entry-header-row {
+        .plaintext,
+        .headertext {
+          @include text-ellipsis();
+          margin-right: 0.5em;
         }
-        i {
-          color: $body-font-color;
-          &:not(.fa) {
-            font-weight: bold;
+        .plaintext {
+          border-bottom: 1px dashed transparent;
+        }
+        .edit-link {
+          border-bottom: 1px dashed $topbar-bg;
+          color: $anchor-font-color;
+          margin-bottom: 1px;
+          &:hover {
+            @include opacity(0.75);
+            cursor: pointer;
+          }
+          i {
+            color: $body-font-color;
+            &:not(.fa) {
+              font-weight: bold;
+            }
           }
         }
       }
@@ -621,6 +687,7 @@ footer {
         }
         input[type=radio] + img{
           @include opacity(0.25);
+          width: 3rem;
           &:hover {
             @include opacity(0.5);
             cursor: pointer;
