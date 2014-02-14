@@ -13,6 +13,9 @@
   <ul class="model-list row">
     {{#each models}}
       <li class="{{#if details}}has-body {{/if}}model-entry columns">
+        {{#if details}}
+          <div class="model-body-cap"></div>
+        {{/if}}
         <div class="model-header">
           <div class="buttons" data-uri="{{ resource_uri }}">
             <button class="tiny alert radius delete-model">remove</button>

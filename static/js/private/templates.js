@@ -31,7 +31,10 @@ function program1(depth0,data) {
   buffer += "\r\n      <li class=\"";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "model-entry columns\">\r\n        <div class=\"model-header\">\r\n          <div class=\"buttons\" data-uri=\"";
+  buffer += "model-entry columns\">\r\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        <div class=\"model-header\">\r\n          <div class=\"buttons\" data-uri=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -40,7 +43,7 @@ function program1(depth0,data) {
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\r\n          </div>\r\n        </div>\r\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n      </li>\r\n    ";
   return buffer;
@@ -52,6 +55,12 @@ function program2(depth0,data) {
   }
 
 function program4(depth0,data) {
+  
+  
+  return "\r\n          <div class=\"model-body-cap\"></div>\r\n        ";
+  }
+
+function program6(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\r\n          <div class=\"model-body\">\r\n            ";
@@ -108,7 +117,10 @@ function program1(depth0,data) {
   buffer += "\r\n      <li class=\"";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "model-entry columns\">\r\n        <div class=\"model-header\">\r\n          <div class=\"buttons\" data-uri=\"";
+  buffer += "model-entry columns\">\r\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        <div class=\"model-header\">\r\n          <div class=\"buttons\" data-uri=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -117,7 +129,7 @@ function program1(depth0,data) {
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\r\n          </div>\r\n        </div>\r\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n      </li>\r\n    ";
   return buffer;
@@ -129,6 +141,12 @@ function program2(depth0,data) {
   }
 
 function program4(depth0,data) {
+  
+  
+  return "\r\n          <div class=\"model-body-cap\"></div>\r\n        ";
+  }
+
+function program6(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\r\n          <div class=\"model-body\">\r\n            ";
@@ -185,7 +203,10 @@ function program1(depth0,data) {
   buffer += "\r\n      <li class=\"";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "model-entry columns\">\r\n        <div class=\"model-header\">\r\n          <div class=\"buttons\" data-uri=\"";
+  buffer += "model-entry columns\">\r\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        <div class=\"model-header\">\r\n          <div class=\"buttons\" data-uri=\"";
   if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -198,7 +219,7 @@ function program1(depth0,data) {
   else { helper = (depth0 && depth0.minutes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " minutes)\r\n          </div>\r\n        </div>\r\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n      </li>\r\n    ";
   return buffer;
@@ -210,6 +231,12 @@ function program2(depth0,data) {
   }
 
 function program4(depth0,data) {
+  
+  
+  return "\r\n          <div class=\"model-body-cap\"></div>\r\n        ";
+  }
+
+function program6(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\r\n          <div class=\"model-body\">\r\n            ";

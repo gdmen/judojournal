@@ -353,16 +353,6 @@ footer {
       .model-entry {
         margin-top: 0.5rem;
         padding: 0;
-        &.has-body {
-          padding-top: 1.5rem;
-          padding-left: 0.5rem;
-          position: relative;
-          .model-header {
-            top: 0;
-            left: 0;
-            position: absolute;
-          }
-        }
         .model-header {
           @include radius(0.25rem);
           background-color: #FFF;
@@ -373,18 +363,36 @@ footer {
             padding: 0.25rem;
           }
         }
-        .model-body {
-          background-color: #FFF;
-          border: 1px dashed $light-border-color;
-          display: inline-block;
-          padding: 1rem;
-          padding-top: 1.5rem;
+        &.has-body {
+          position: relative;
+          .model-body-cap {
+            background-color: #FFF;
+            border: 1px dashed $light-border-color;
+            border-bottom: none;
+            position: absolute;
+            top: 1.5rem;
+            left: 0.5rem;
+            bottom: 0;
+            right: 0;
+          }
+          .model-header {
+            position: relative;
+          }
+          .model-body {
+            background-color: #FFF;
+            border: 1px dashed $light-border-color;
+            border-top: none;
+            display: inline-block;
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            position: relative;
+          }
         }
       }
     }
     &.drill {
       .section-header {
-        background-color:  scale-color($drill-color, $lightness: -15%);
+        background-color:  scale-color($drill-color, $lightness: -10%);
         .list-title {
         }
       }
@@ -398,7 +406,7 @@ footer {
     }
     &.sparring {
       .section-header {
-        background-color:  scale-color($sparring-color, $lightness: -15%);
+        background-color:  scale-color($sparring-color, $lightness: -10%);
         .list-title {
         }
       }
@@ -412,7 +420,7 @@ footer {
     }
     &.note {
       .section-header {
-        background-color:  scale-color($note-color, $lightness: -15%);
+        background-color:  scale-color($note-color, $lightness: -10%);
         .list-title {
         }
       }
