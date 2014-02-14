@@ -121,12 +121,14 @@ JJ.Views.Util = {
     min: "MM",
     period: "TT",
   },
-  configModals: function() {
+  postRender: function() {
 		// Handles all modals for the page.
 		var modalWrapper = $(".modal-wrapper");
 		var clickAway = $(".click-away-overlay");
 		modalWrapper.show();
 		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
+		$("textarea").autosize();
+    $("textarea").trigger('autosize.resize');
 		modalWrapper.hide();
   },
 }

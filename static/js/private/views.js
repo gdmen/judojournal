@@ -128,9 +128,8 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   render: function() {
     this.model.hydrate();
     this.$el.html(this.template(this.model.toJSON()));
-		// TODO: Not sure that this is a good  place for this. Should either be
-		// less specific or more specific.
-		$("textarea").autosize();
+    
+    JJ.Views.Util.postRender();
     return this;
   },
 });
@@ -517,7 +516,6 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		var json = {models: JSON.parse(JSON.stringify(this.modelArray))};
     this.$el.html(this.template(json));
     
-    JJ.Views.Util.configModals();
     return this;
   },
 });
@@ -732,8 +730,6 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     new JJ.Views.EditNoteList({model: this.model, el: this.$el.find("#notes")});
     new JJ.Views.EditDrillList({model: this.model, el: this.$el.find("#drills")});
     new JJ.Views.EditSparringList({model: this.model, el: this.$el.find("#sparring")});
-    
-    JJ.Views.Util.configModals();
     
     // DOM JS linking
     this.linkDOM();
