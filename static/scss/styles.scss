@@ -334,12 +334,15 @@ footer {
     }
   }
   // Module List
-  $module-section-header-height: 3rem;
   .module-section {
     .section-header {
-      .title {
-        font-size: ($module-section-header-height * 5/6);
-        padding-left: 1rem;
+      @include radius(0.25rem);
+      border: 1px dashed gray;
+      margin-top: 1rem;
+      position: relative;
+      text-align: center;
+      .list-title {
+        text-transform: uppercase;
       }
     }
     .model-list {
@@ -381,6 +384,11 @@ footer {
       }
     }
     &.drill {
+      .section-header {
+        background-color:  scale-color($drill-color, $lightness: -15%);
+        .list-title {
+        }
+      }
       .model-list {
         .model-entry {
           .model-header {
@@ -390,6 +398,11 @@ footer {
       }
     }
     &.sparring {
+      .section-header {
+        background-color:  scale-color($sparring-color, $lightness: -15%);
+        .list-title {
+        }
+      }
       .model-list {
         .model-entry {
           .model-header {
@@ -399,6 +412,11 @@ footer {
       }
     }
     &.note {
+      .section-header {
+        background-color:  scale-color($note-color, $lightness: -15%);
+        .list-title {
+        }
+      }
       .model-list {
         .model-entry {
           .model-header {
@@ -540,9 +558,15 @@ footer {
     // Module List
     .module-section {
       .section-header {
-        .add-model {
-          @include round-button($module-section-header-height);
-          background-color: $success-color;
+        .buttons {
+          margin: 0.65rem;
+          position: absolute;
+          right: 0;
+          top: 0;
+          button {
+            padding: 0.5rem;
+            text-transform: uppercase;
+          }
         }
       }
       .model-list {
