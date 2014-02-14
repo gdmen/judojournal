@@ -410,12 +410,17 @@ footer {
   .rating {
     img{
       @include opacity(0.7);
+      width: 3rem;
     }
   }
   /*
    * View
    */
   &.public {
+    #entry-rating {
+      display: inline-block;
+      float: left;
+    }
   }
   /*
    * Edit
@@ -574,7 +579,6 @@ footer {
         }
         input[type=radio] + img{
           @include opacity(0.25);
-          width: 3rem;
           &:hover {
             @include opacity(0.5);
             cursor: pointer;

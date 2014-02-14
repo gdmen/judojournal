@@ -12664,8 +12664,14 @@ footer div p:last-child {
   -moz-opacity: 0.7;
   -khtml-opacity: 0.7;
   opacity: 0.7;
+  width: 3rem;
 }
-/* line 423, ../scss/styles.scss */
+/* line 420, ../scss/styles.scss */
+.entry.public #entry-rating {
+  display: inline-block;
+  float: left;
+}
+/* line 428, ../scss/styles.scss */
 .entry.private {
   /*
    * Select widget
@@ -12677,13 +12683,13 @@ footer div p:last-child {
    * Time select
    */
 }
-/* line 424, ../scss/styles.scss */
+/* line 429, ../scss/styles.scss */
 .entry.private #entry-rating {
   display: block;
   overflow: hidden;
   margin-top: 1rem;
 }
-/* line 429, ../scss/styles.scss */
+/* line 434, ../scss/styles.scss */
 .entry.private .entry-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12768,13 +12774,13 @@ footer div p:last-child {
 .entry.private .entry-save.saving i.saving {
   display: inline-block;
 }
-/* line 436, ../scss/styles.scss */
+/* line 441, ../scss/styles.scss */
 .entry.private .entry-header .edit-link {
   border-bottom: 1px dashed #2c8ec9;
   color: #2c8ec9;
   margin-bottom: 1px;
 }
-/* line 440, ../scss/styles.scss */
+/* line 445, ../scss/styles.scss */
 .entry.private .entry-header .edit-link:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -12783,24 +12789,24 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 444, ../scss/styles.scss */
+/* line 449, ../scss/styles.scss */
 .entry.private .entry-header .edit-link i {
   color: #222222;
 }
-/* line 446, ../scss/styles.scss */
+/* line 451, ../scss/styles.scss */
 .entry.private .entry-header .edit-link i:not(.fa) {
   font-weight: bold;
 }
-/* line 457, ../scss/styles.scss */
+/* line 462, ../scss/styles.scss */
 .entry.private .single-select .select-input {
   display: none;
 }
-/* line 462, ../scss/styles.scss */
+/* line 467, ../scss/styles.scss */
 .entry.private .single-select .select-display .edit-link.placeholder {
   color: #E81010;
   font-style: italic;
 }
-/* line 468, ../scss/styles.scss */
+/* line 473, ../scss/styles.scss */
 .entry.private .single-select .select-drop {
   background-color: #FFF;
   display: none;
@@ -12809,19 +12815,19 @@ footer div p:last-child {
   right: 0.5rem;
   z-index: 9999998;
 }
-/* line 475, ../scss/styles.scss */
+/* line 480, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search {
   display: block;
   margin: 0.5em;
   position: relative;
 }
-/* line 479, ../scss/styles.scss */
+/* line 484, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search input {
   margin: 0;
   padding: 0.57143rem;
   width: 100%;
 }
-/* line 484, ../scss/styles.scss */
+/* line 489, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-search i {
   color: #c9e3f3;
   padding: 0.28572rem;
@@ -12829,43 +12835,43 @@ footer div p:last-child {
   right: 0;
   top: 0;
 }
-/* line 492, ../scss/styles.scss */
+/* line 497, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 496, ../scss/styles.scss */
+/* line 501, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li {
   border-top: 1px solid #CCCCC6;
   padding: 1em;
 }
-/* line 499, ../scss/styles.scss */
+/* line 504, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li.option-selected {
   background: green;
 }
-/* line 502, ../scss/styles.scss */
+/* line 507, ../scss/styles.scss */
 .entry.private .single-select .select-drop ul.select-options li:hover {
   cursor: pointer;
 }
-/* line 507, ../scss/styles.scss */
+/* line 512, ../scss/styles.scss */
 .entry.private .single-select .select-drop .select-create {
   display: none;
   margin: 0.5em;
 }
-/* line 516, ../scss/styles.scss */
+/* line 521, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-header {
   display: block;
   overflow: hidden;
 }
-/* line 519, ../scss/styles.scss */
+/* line 524, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-header h3 {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 523, ../scss/styles.scss */
+/* line 528, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .modal-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
@@ -12951,11 +12957,11 @@ footer div p:last-child {
 .entry.private .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 529, ../scss/styles.scss */
+/* line 534, ../scss/styles.scss */
 .entry.private .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
-/* line 537, ../scss/styles.scss */
+/* line 542, ../scss/styles.scss */
 .entry.private .module-section .section-header .add-model {
   -webkit-border-radius: 1.5rem;
   border-radius: 1.5rem;
@@ -12986,23 +12992,23 @@ footer div p:last-child {
   padding-top: 0.64286rem;
   padding-bottom: 0.21429rem;
 }
-/* line 544, ../scss/styles.scss */
+/* line 549, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header {
   display: block;
   width: 100%;
 }
-/* line 547, ../scss/styles.scss */
+/* line 552, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons {
   float: right;
   margin-left: 1rem;
 }
-/* line 550, ../scss/styles.scss */
+/* line 555, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons button {
   margin: 0 0.25rem 0 0;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 554, ../scss/styles.scss */
+/* line 559, ../scss/styles.scss */
 .entry.private .module-section .model-list .model-entry .model-header .buttons button.delete-model {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
@@ -13010,28 +13016,27 @@ footer div p:last-child {
   -khtml-opacity: 0.75;
   opacity: 0.75;
 }
-/* line 568, ../scss/styles.scss */
+/* line 573, ../scss/styles.scss */
 .entry.private .rating {
   display: inline-block;
 }
-/* line 570, ../scss/styles.scss */
+/* line 575, ../scss/styles.scss */
 .entry.private .rating label {
   display: inline-block;
 }
-/* line 572, ../scss/styles.scss */
+/* line 577, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] {
   display: none;
 }
-/* line 575, ../scss/styles.scss */
+/* line 580, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] + img {
   filter: alpha(opactiy=25);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
   -moz-opacity: 0.25;
   -khtml-opacity: 0.25;
   opacity: 0.25;
-  width: 3rem;
 }
-/* line 578, ../scss/styles.scss */
+/* line 582, ../scss/styles.scss */
 .entry.private .rating label input[type=radio] + img:hover {
   filter: alpha(opactiy=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -13040,7 +13045,7 @@ footer div p:last-child {
   opacity: 0.5;
   cursor: pointer;
 }
-/* line 583, ../scss/styles.scss */
+/* line 587, ../scss/styles.scss */
 .entry.private .rating label input[type=radio]:checked + img {
   filter: alpha(opactiy=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
@@ -13048,7 +13053,7 @@ footer div p:last-child {
   -khtml-opacity: 0.7;
   opacity: 0.7;
 }
-/* line 593, ../scss/styles.scss */
+/* line 597, ../scss/styles.scss */
 .entry.private .time-select select {
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -13061,18 +13066,18 @@ footer div p:last-child {
 /*
  * Forms (e.g. login)
  */
-/* line 608, ../scss/styles.scss */
+/* line 612, ../scss/styles.scss */
 .single-page-form {
   margin-top: 1rem;
 }
 
-/* line 611, ../scss/styles.scss */
+/* line 615, ../scss/styles.scss */
 .errorlist {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 615, ../scss/styles.scss */
+/* line 619, ../scss/styles.scss */
 .errorlist li {
   background-color: #f76565;
   border: 1px solid #f87b7b;

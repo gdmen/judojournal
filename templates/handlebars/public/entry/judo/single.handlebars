@@ -1,14 +1,13 @@
 {{! public/entry/judo/single }}
 <div class="entry public">
-  <div class="row">
-    <div id="entry-rating">
-      {{> partials/rating }}
-    </div>
-  </div>
 
   <div class="row">
 
     <div class="columns entry-header">
+    
+      <div id="entry-rating">
+        {{> partials/rating }}
+      </div>
     
       <h3 id="art" class="headertext">{{ art.name }}</h3>
       
@@ -17,7 +16,7 @@
       <h3 id="location" class="headertext">{{ location.name }}</h3>
       
       <div>
-        <h3 class="">
+        <h3 class="headertext">
           <i class="fa fa-calendar"></i>
           Thursday, 15 Jan 2014
         </h3>
@@ -25,7 +24,7 @@
       
       <div>
         <h3 class="plaintext">from</h3>
-        <h3 class="">
+        <h3 class="headertext">
           <i class="fa fa-clock-o"></i>
           2:45PM
         </h3>
@@ -33,7 +32,7 @@
       
       <div>
         <h3 class="plaintext">until</h3>
-        <h3 class="">
+        <h3 class="headertext">
           <i class="fa fa-clock-o"></i>
           4:45PM
         </h3>
