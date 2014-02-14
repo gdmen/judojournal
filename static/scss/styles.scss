@@ -393,7 +393,7 @@ footer {
     }
     &.drill {
       .section-header {
-        background-color:  scale-color($drill-color, $lightness: -10%);
+        background-color: scale-color($drill-color, $lightness: -25%, $saturation: -25%);
         .list-title {
         }
       }
@@ -407,7 +407,7 @@ footer {
     }
     &.sparring {
       .section-header {
-        background-color:  scale-color($sparring-color, $lightness: -10%);
+        background-color: scale-color($sparring-color, $lightness: -25%, $saturation: -25%);
         .list-title {
         }
       }
@@ -421,7 +421,7 @@ footer {
     }
     &.note {
       .section-header {
-        background-color:  scale-color($note-color, $lightness: -10%);
+        background-color: scale-color($note-color, $lightness: -25%, $saturation: -25%);
         .list-title {
         }
       }
