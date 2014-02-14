@@ -1,103 +1,121 @@
 {{! public/entry/judo/single }}
-
-<div class="row">
-  <div id="entry-rating">
-    {{> partials/rating }}
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="columns entry-form-meta">
-	
-		<div id="art">{{ art.name }}</div>
-		
-		<div id="type">{{ type.name }}</div>
-		
-		<div id="location">{{ location.name }}</div>
-		
-		<div>
-			<h3 class="">
-				<i class="fa fa-calendar"></i>
-				Thursday, 15 Jan 2014
-			</h3>
-		</div>
-		
-		<div>
-			<h3 class="plaintext">from</h3>
-			<h3 class="">
-				<i class="fa fa-clock-o"></i>
-				2:45PM
-			</h3>
-		</div>
-		
-		<div>
-			<h3 class="plaintext">until</h3>
-			<h3 class="">
-				<i class="fa fa-clock-o"></i>
-				4:45PM
-			</h3>
-		</div>
-		
-  </div>
-</div>
-
-
-<div class="row">
-
-  <div class="medium-10 medium-centered large-uncentered large-4 columns">
-    <div id="drills">
-      <div class="list-controls">
-        <h2 class="title">DRILLS</h2>
-      </div>
-      <ul class="model-list">
-        {{#each drills}}
-          <li>
-            <div>
-              {{ name }}
-              {{ details }}
-            </div>
-          </li>
-        {{/each}}
-      </ul>
+<div class="entry public">
+  <div class="row">
+    <div id="entry-rating">
+      {{> partials/rating }}
     </div>
   </div>
 
-  <div class="medium-10 medium-centered large-uncentered large-4 columns">
-    <div id="sparring">
-      <div class="list-controls">
-        <h2 class="title">SPARRING</h2>
+  <div class="row">
+
+    <div class="columns entry-header">
+    
+      <h3 id="art" class="headertext">{{ art.name }}</h3>
+      
+      <h3 id="type" class="headertext">{{ type.name }}</h3>
+      
+      <h3 id="location" class="headertext">{{ location.name }}</h3>
+      
+      <div>
+        <h3 class="">
+          <i class="fa fa-calendar"></i>
+          Thursday, 15 Jan 2014
+        </h3>
       </div>
-      <ul class="model-list">
-        {{#each sparring}}
-          <li>
-            <div>
-              {{ partner }}
-              {{ minutes }}
-              {{ details }}
-            </div>
-          </li>
-        {{/each}}
-      </ul>
+      
+      <div>
+        <h3 class="plaintext">from</h3>
+        <h3 class="">
+          <i class="fa fa-clock-o"></i>
+          2:45PM
+        </h3>
+      </div>
+      
+      <div>
+        <h3 class="plaintext">until</h3>
+        <h3 class="">
+          <i class="fa fa-clock-o"></i>
+          4:45PM
+        </h3>
+      </div>
+      
     </div>
   </div>
 
-  <div class="medium-10 medium-centered large-uncentered large-4 columns">
-    <div id="notes">
-      <div class="list-controls">
-        <h2 class="title">NOTES</h2>
+
+  <div class="row">
+
+    <div class="large-6 columns">
+      <div class="module-section drill">
+        <div class="section-header">
+          <span class="list-title">Drills</span>
+        </div>
+        <ul class="model-list row">
+          {{#each drills}}
+            <li class="{{#if details}}has-body {{/if}}model-entry columns">
+              <div class="model-header">
+                <div class="model-title">
+                  {{ name }}
+                </div>
+              </div>
+              {{#if details}}
+                <div class="model-body">
+                  {{ details }}
+                </div>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
       </div>
-      <ul class="model-list">
-        {{#each notes}}
-          <li>
-            <div>
-              {{ title }}
-              {{ details }}
-            </div>
-          </li>
-        {{/each}}
-      </ul>
     </div>
+
+    <div class="large-6 columns">
+      <div class="module-section sparring">
+        <div class="section-header">
+          <span class="list-title">Sparring</span>
+        </div>
+        <ul class="model-list row">
+          {{#each sparring}}
+            <li class="{{#if details}}has-body {{/if}}model-entry columns">
+              <div class="model-header">
+                <div class="model-title">
+                  {{ partner }} | {{ minutes }} minutes
+                </div>
+              </div>
+              {{#if details}}
+                <div class="model-body">
+                  {{ details }}
+                </div>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+    <div class="large-6 columns">
+      <div class="module-section note">
+        <div class="section-header">
+          <span class="list-title">Notes</span>
+        </div>
+        <ul class="model-list row">
+          {{#each notes}}
+            <li class="{{#if details}}has-body {{/if}}model-entry columns">
+              <div class="model-header">
+                <div class="model-title">
+                  {{ title }}
+                </div>
+              </div>
+              {{#if details}}
+                <div class="model-body">
+                  {{ details }}
+                </div>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    
   </div>
-  
 </div>

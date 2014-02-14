@@ -461,7 +461,7 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
 		
 		this.removeModel(this._getIndexByURI(uri));
 		
-		var root = buttonDiv.parent();
+		var root = buttonDiv.parent().parent();
 		root.unbind();
 		root.remove();
 	},

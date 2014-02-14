@@ -1,24 +1,33 @@
 {{! private/entry/module/note/list }}
-<div class="list-controls">
-	<div class="add-model">
-		<i class="fa fa-plus"></i>
-	</div>
-	<h2 class="title">NOTES</h2>
+<div class="module-section note">
+  <div class="section-header">
+    <div class="add-model">
+      <i class="fa fa-plus"></i>
+    </div>
+    <span class="list-title">Notes</span>
+  </div>
+  <div class="row modal-wrapper">
+    <div class="click-away-overlay"></div>
+    <div class="small-centered small-10 medium-8 large-6 columns modal"></div>
+  </div>
+  <ul class="model-list row">
+    {{#each models}}
+      <li class="{{#if details}}has-body {{/if}}model-entry columns">
+        <div class="model-header">
+          <div class="buttons" data-uri="{{ resource_uri }}">
+            <button class="tiny alert radius delete-model">remove</button>
+            <button class="tiny success radius edit-model">edit <i class="fa fa-pencil"></i ></button>
+          </div>
+          <div class="model-title">
+            {{ title }}
+          </div>
+        </div>
+        {{#if details}}
+          <div class="model-body">
+            {{ details }}
+          </div>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
 </div>
-<div class="row modal-wrapper">
-	<div class="click-away-overlay"></div>
-	<div class="small-centered small-10 medium-8 large-6 columns modal"></div>
-</div>
-<ul class="model-list">
-	{{#each models}}
-		<li>
-			<div class="buttons" data-uri="{{ resource_uri }}">
-				<button class="tiny success radius edit-model">edit <i class="fa fa-pencil"></i ></button>
-				<button class="tiny alert radius delete-model">remove</button>
-			</div>
-			<div class="not-buttons">
-				{{ title }}
-			</div>
-		</li>
-	{{/each}}
-</ul>

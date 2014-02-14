@@ -1,7 +1,48 @@
-@import url("//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
 /*
  * Foundation settings
  */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url(/static/fonts/Open_Sans/OpenSans-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/static/fonts/Open_Sans/OpenSans-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/static/fonts/Open_Sans/OpenSans-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: url(/static/fonts/Open_Sans/OpenSans-LightItalic.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/static/fonts/Open_Sans/OpenSans-Italic.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url(/static/fonts/Open_Sans/OpenSans-BoldItalic.ttf) format("truetype");
+}
+
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
@@ -12343,7 +12384,7 @@ body .ui-tooltip {
 /*
  * Custom Foundation overrides
  */
-/* line 44, ../scss/styles.scss */
+/* line 84, ../scss/styles.scss */
 .column, .columns {
   *zoom: 1;
   position: static;
@@ -12358,30 +12399,30 @@ body .ui-tooltip {
   clear: both;
 }
 
-/* line 48, ../scss/styles.scss */
+/* line 88, ../scss/styles.scss */
 .row {
   position: relative;
 }
 
-/* line 51, ../scss/styles.scss */
+/* line 91, ../scss/styles.scss */
 h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
-/* line 54, ../scss/styles.scss */
+/* line 94, ../scss/styles.scss */
 button, .button {
   margin-bottom: 1rem;
 }
-/* line 55, ../scss/styles.scss */
+/* line 95, ../scss/styles.scss */
 button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .button h2, .button h3, .button h4, .button h5, .button h6 {
   color: white;
 }
 
-/* line 61, ../scss/styles.scss */
+/* line 101, ../scss/styles.scss */
 .top-bar-section i {
   padding-right: 0.25em;
 }
-/* line 65, ../scss/styles.scss */
+/* line 105, ../scss/styles.scss */
 .top-bar-section .left li {
   background-color: #2c8ec9;
 }
@@ -12393,14 +12434,12 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
  * Custom settings
  */
 /*
+ * Module colors
+ */
+/*
  * Custom styles
  */
-/* line 178, ../scss/styles.scss */
-.hide {
-  display: none;
-}
-
-/* line 181, ../scss/styles.scss */
+/* line 219, ../scss/styles.scss */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   /* Android = 2.3, iOS = 4 */
@@ -12410,7 +12449,10 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   /* Chrome, IE 8+, Opera, Safari 5.1 */
 }
 
-/* line 187, ../scss/styles.scss */
+/*
+ * Global Modal styling
+ */
+/* line 228, ../scss/styles.scss */
 #content .click-away-overlay {
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
@@ -12422,36 +12464,41 @@ button h1, button h2, button h3, button h4, button h5, button h6, .button h1, .b
   z-index: 9999997;
 }
 
-/* line 197, ../scss/styles.scss */
+/* line 238, ../scss/styles.scss */
 body.active-modal {
   overflow: hidden;
+}
+
+/* line 242, ../scss/styles.scss */
+.hide {
+  display: none;
 }
 
 /*
  * Sticky footer
  */
-/* line 204, ../scss/styles.scss */
+/* line 248, ../scss/styles.scss */
 html, body {
   height: 100%;
 }
 
-/* line 207, ../scss/styles.scss */
+/* line 251, ../scss/styles.scss */
 #non-footer {
   min-height: 100%;
   position: relative;
 }
 
-/* line 211, ../scss/styles.scss */
+/* line 255, ../scss/styles.scss */
 * html #non-footer {
   height: 100%;
 }
 
-/* line 214, ../scss/styles.scss */
+/* line 258, ../scss/styles.scss */
 #page-container {
   padding-bottom: 3rem;
 }
 
-/* line 217, ../scss/styles.scss */
+/* line 261, ../scss/styles.scss */
 footer {
   background-color: #2c8ec9;
   height: 2rem;
@@ -12459,269 +12506,53 @@ footer {
   position: relative;
   text-align: center;
 }
-/* line 224, ../scss/styles.scss */
+/* line 268, ../scss/styles.scss */
 footer div p:last-child {
   margin-bottom: 0;
 }
 
-/*
- * Entry form
- */
-/* line 234, ../scss/styles.scss */
-.entry-form-header #entry-rating {
-  display: block;
-  overflow: hidden;
-  margin-top: 1rem;
+/*******************************************************************************
+ *
+ * Entry
+ *
+ ******************************************************************************/
+/* line 279, ../scss/styles.scss */
+.entry {
+  /*
+   * View
+   */
+  /*
+   * Edit
+   */
 }
-/* line 238, ../scss/styles.scss */
-.entry-form-header .entry-save {
-  -webkit-border-radius: 2.5rem;
-  border-radius: 2.5rem;
-  display: inline-block;
-  height: 5rem;
-  text-align: center;
-  width: 5rem;
-  float: right;
-  margin-left: 1rem;
-}
-/* line 111, ../scss/styles.scss */
-.entry-form-header .entry-save:hover {
-  filter: alpha(opactiy=75);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
-  -moz-opacity: 0.75;
-  -khtml-opacity: 0.75;
-  opacity: 0.75;
-  cursor: pointer;
-}
-/* line 115, ../scss/styles.scss */
-.entry-form-header .entry-save i {
-  color: #FFF;
-  display: inline-block;
-  font-size: 3.33333rem;
-  padding: 0.83333rem 0;
-}
-/* line 121, ../scss/styles.scss */
-.entry-form-header .entry-save i.fa-plus {
-  padding-top: 1.07143rem;
-  padding-bottom: 0.35714rem;
-}
-/* line 130, ../scss/styles.scss */
-.entry-form-header .entry-save.disabled:hover, .entry-form-header .entry-save.saving:hover {
-  filter: alpha(opactiy=100);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  -moz-opacity: 1;
-  -khtml-opacity: 1;
-  opacity: 1;
-  cursor: default;
-}
-/* line 135, ../scss/styles.scss */
-.entry-form-header .entry-save.disabled {
-  -webkit-transition: background-color 500ms linear;
-  -moz-transition: background-color 500ms linear;
-  -o-transition: background-color 500ms linear;
-  -ms-transition: background-color 500ms linear;
-  background-color: rgba(0, 0, 0, 0.25);
-}
-/* line 138, ../scss/styles.scss */
-.entry-form-header .entry-save.disabled i.enabled, .entry-form-header .entry-save.disabled i.saving {
-  display: none;
-}
-/* line 141, ../scss/styles.scss */
-.entry-form-header .entry-save.disabled i.disabled {
-  display: inline-block;
-}
-/* line 145, ../scss/styles.scss */
-.entry-form-header .entry-save.enabled {
-  -webkit-transition: background-color 500ms linear;
-  -moz-transition: background-color 500ms linear;
-  -o-transition: background-color 500ms linear;
-  -ms-transition: background-color 500ms linear;
-  background-color: #22bf64;
-}
-/* line 148, ../scss/styles.scss */
-.entry-form-header .entry-save.enabled i.disabled, .entry-form-header .entry-save.enabled i.saving {
-  display: none;
-}
-/* line 151, ../scss/styles.scss */
-.entry-form-header .entry-save.enabled i.enabled {
-  display: inline-block;
-}
-/* line 155, ../scss/styles.scss */
-.entry-form-header .entry-save.saving {
-  background-color: #f76565;
-}
-/* line 157, ../scss/styles.scss */
-.entry-form-header .entry-save.saving i.enabled, .entry-form-header .entry-save.saving i.disabled {
-  display: none;
-}
-/* line 160, ../scss/styles.scss */
-.entry-form-header .entry-save.saving i.saving {
-  display: inline-block;
-}
-
-/* line 244, ../scss/styles.scss */
-.entry-form-meta {
-  margin-bottom: 1rem;
-}
-@media only screen and (min-width: 64.063em) {
-  /* line 244, ../scss/styles.scss */
-  .entry-form-meta {
-    margin-bottom: 2rem;
-  }
-}
-/* line 249, ../scss/styles.scss */
-.entry-form-meta div {
+/* line 281, ../scss/styles.scss */
+.entry .entry-header div {
   display: inline-block;
   max-width: 100%;
 }
-/* line 252, ../scss/styles.scss */
-.entry-form-meta div h3 {
+/* line 285, ../scss/styles.scss */
+.entry .entry-header h3 {
+  margin-bottom: 0;
+}
+/* line 289, ../scss/styles.scss */
+.entry .entry-header .plaintext,
+.entry .entry-header .headertext {
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 0;
-  max-width: 100%;
+  margin-right: 0.5em;
 }
-/* line 259, ../scss/styles.scss */
-.entry-form-meta .plaintext {
+/* line 293, ../scss/styles.scss */
+.entry .entry-header .plaintext {
   border-bottom: 1px dashed transparent;
-  margin-right: 0.5em;
-  margin-bottom: 1px;
 }
-/* line 264, ../scss/styles.scss */
-.entry-form-meta .edit-link {
-  border-bottom: 1px dashed #2c8ec9;
-  color: #2c8ec9;
+/* line 296, ../scss/styles.scss */
+.entry .entry-header .headertext {
   display: inline-block;
-  margin-bottom: 1px;
-  margin-right: 0.5em;
 }
-/* line 270, ../scss/styles.scss */
-.entry-form-meta .edit-link:hover {
-  filter: alpha(opactiy=75);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
-  -moz-opacity: 0.75;
-  -khtml-opacity: 0.75;
-  opacity: 0.75;
-  cursor: pointer;
-}
-/* line 274, ../scss/styles.scss */
-.entry-form-meta .edit-link i {
-  color: #222222;
-}
-/* line 276, ../scss/styles.scss */
-.entry-form-meta .edit-link i:not(.fa) {
-  font-weight: bold;
-}
-
-/*
- * Select widget (Entry form)
- */
-/* line 287, ../scss/styles.scss */
-.single-select .select-input {
-  display: none;
-}
-/* line 292, ../scss/styles.scss */
-.single-select .select-display .edit-link.placeholder {
-  color: #E81010;
-  font-style: italic;
-}
-/* line 298, ../scss/styles.scss */
-.single-select .select-drop {
-  background-color: #FFF;
-  display: none;
-  left: 0.5rem;
-  position: absolute;
-  right: 0.5rem;
-  z-index: 9999998;
-}
-/* line 305, ../scss/styles.scss */
-.single-select .select-drop .select-search {
-  display: block;
-  margin: 0.5em;
-  position: relative;
-}
-/* line 309, ../scss/styles.scss */
-.single-select .select-drop .select-search input {
-  margin: 0;
-  padding: 0.57143rem;
-  width: 100%;
-}
-/* line 314, ../scss/styles.scss */
-.single-select .select-drop .select-search i {
-  color: gray;
-  padding: 0.28572rem;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-/* line 322, ../scss/styles.scss */
-.single-select .select-drop ul.select-options {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-/* line 326, ../scss/styles.scss */
-.single-select .select-drop ul.select-options li {
-  border-top: 1px solid #CCCCC6;
-  padding: 1em;
-}
-/* line 329, ../scss/styles.scss */
-.single-select .select-drop ul.select-options li.option-selected {
-  background: green;
-}
-/* line 332, ../scss/styles.scss */
-.single-select .select-drop ul.select-options li:hover {
-  cursor: pointer;
-}
-/* line 337, ../scss/styles.scss */
-.single-select .select-drop .select-create {
-  display: none;
-  margin: 0.5em;
-}
-
-/*
- * Creation form modal
- */
-/* line 349, ../scss/styles.scss */
-.list-controls .title {
-  font-size: 2.5rem;
-  padding-left: 1rem;
-}
-/* line 353, ../scss/styles.scss */
-.list-controls .add-model {
-  -webkit-border-radius: 1.5rem;
-  border-radius: 1.5rem;
-  display: inline-block;
-  height: 3rem;
-  text-align: center;
-  width: 3rem;
-  background-color: #22bf64;
-}
-/* line 111, ../scss/styles.scss */
-.list-controls .add-model:hover {
-  filter: alpha(opactiy=75);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
-  -moz-opacity: 0.75;
-  -khtml-opacity: 0.75;
-  opacity: 0.75;
-  cursor: pointer;
-}
-/* line 115, ../scss/styles.scss */
-.list-controls .add-model i {
-  color: #FFF;
-  display: inline-block;
-  font-size: 2rem;
-  padding: 0.5rem 0;
-}
-/* line 121, ../scss/styles.scss */
-.list-controls .add-model i.fa-plus {
-  padding-top: 0.64286rem;
-  padding-bottom: 0.21429rem;
-}
-
-/* line 358, ../scss/styles.scss */
-.modal-wrapper {
+/* line 301, ../scss/styles.scss */
+.entry .modal-wrapper {
   display: none;
   overflow-y: scroll;
   margin: 0;
@@ -12733,21 +12564,21 @@ footer div p:last-child {
   top: 0;
   z-index: 9999996;
 }
-/* line 369, ../scss/styles.scss */
-.modal-wrapper.modal-centered {
+/* line 312, ../scss/styles.scss */
+.entry .modal-wrapper.modal-centered {
   text-align: center;
 }
-/* line 371, ../scss/styles.scss */
-.modal-wrapper.modal-centered .modal {
+/* line 314, ../scss/styles.scss */
+.entry .modal-wrapper.modal-centered .modal {
   background: none;
   display: inline-block;
 }
-/* line 374, ../scss/styles.scss */
-.modal-wrapper.modal-centered .modal > div {
+/* line 317, ../scss/styles.scss */
+.entry .modal-wrapper.modal-centered .modal > div {
   padding: 0;
 }
-/* line 379, ../scss/styles.scss */
-.modal-wrapper .modal {
+/* line 322, ../scss/styles.scss */
+.entry .modal-wrapper .modal {
   background-color: #FFF;
   bottom: auto;
   display: block;
@@ -12757,23 +12588,285 @@ footer div p:last-child {
   position: relative;
   z-index: 9999998;
 }
-/* line 388, ../scss/styles.scss */
-.modal-wrapper .modal > div {
+/* line 331, ../scss/styles.scss */
+.entry .modal-wrapper .modal > div {
   padding: 1rem;
 }
-/* line 391, ../scss/styles.scss */
-.modal-wrapper .modal .modal-header {
+/* line 340, ../scss/styles.scss */
+.entry .module-section .section-header .title {
+  font-size: 2.5rem;
+  padding-left: 1rem;
+}
+/* line 345, ../scss/styles.scss */
+.entry .module-section .model-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 349, ../scss/styles.scss */
+.entry .module-section .model-list .model-entry {
+  margin-top: 0.5rem;
+  padding: 0;
+}
+/* line 352, ../scss/styles.scss */
+.entry .module-section .model-list .model-entry.has-body {
+  padding-top: 1.5rem;
+  padding-left: 0.5rem;
+  position: relative;
+}
+/* line 356, ../scss/styles.scss */
+.entry .module-section .model-list .model-entry.has-body .model-header {
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+/* line 362, ../scss/styles.scss */
+.entry .module-section .model-list .model-entry .model-header {
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: #FFF;
+  border: 1px solid #c9e3f3;
+  display: inline-block;
+  padding: 0.25rem;
+}
+/* line 368, ../scss/styles.scss */
+.entry .module-section .model-list .model-entry .model-header .model-title {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0.25rem;
+}
+/* line 374, ../scss/styles.scss */
+.entry .module-section .model-list .model-entry .model-body {
+  background-color: #FFF;
+  border: 1px dashed #c9e3f3;
+  padding: 1rem;
+  padding-top: 1.5rem;
+}
+/* line 385, ../scss/styles.scss */
+.entry .module-section.drill .model-list .model-entry .model-header {
+  background-color: #e7feff;
+}
+/* line 394, ../scss/styles.scss */
+.entry .module-section.sparring .model-list .model-entry .model-header {
+  background-color: #d0f0c0;
+}
+/* line 403, ../scss/styles.scss */
+.entry .module-section.note .model-list .model-entry .model-header {
+  background-color: #fffdd0;
+}
+/* line 411, ../scss/styles.scss */
+.entry .rating img {
+  filter: alpha(opactiy=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
+  opacity: 0.7;
+}
+/* line 423, ../scss/styles.scss */
+.entry.private {
+  /*
+   * Select widget
+   */
+  /*
+   * Edit Widgets
+   */
+  /*
+   * Time select
+   */
+}
+/* line 424, ../scss/styles.scss */
+.entry.private #entry-rating {
+  display: block;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+/* line 429, ../scss/styles.scss */
+.entry.private .entry-save {
+  -webkit-border-radius: 2.5rem;
+  border-radius: 2.5rem;
+  display: inline-block;
+  height: 5rem;
+  text-align: center;
+  width: 5rem;
+  float: right;
+  margin-left: 1rem;
+}
+/* line 144, ../scss/styles.scss */
+.entry.private .entry-save:hover {
+  filter: alpha(opactiy=75);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+  cursor: pointer;
+}
+/* line 148, ../scss/styles.scss */
+.entry.private .entry-save i {
+  color: #FFF;
+  display: inline-block;
+  font-size: 3.33333rem;
+  padding: 0.83333rem 0;
+}
+/* line 154, ../scss/styles.scss */
+.entry.private .entry-save i.fa-plus {
+  padding-top: 1.07143rem;
+  padding-bottom: 0.35714rem;
+}
+/* line 163, ../scss/styles.scss */
+.entry.private .entry-save.disabled:hover, .entry.private .entry-save.saving:hover {
+  filter: alpha(opactiy=100);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+  cursor: default;
+}
+/* line 168, ../scss/styles.scss */
+.entry.private .entry-save.disabled {
+  -webkit-transition: background-color 500ms linear;
+  -moz-transition: background-color 500ms linear;
+  -o-transition: background-color 500ms linear;
+  -ms-transition: background-color 500ms linear;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+/* line 171, ../scss/styles.scss */
+.entry.private .entry-save.disabled i.enabled, .entry.private .entry-save.disabled i.saving {
+  display: none;
+}
+/* line 174, ../scss/styles.scss */
+.entry.private .entry-save.disabled i.disabled {
+  display: inline-block;
+}
+/* line 178, ../scss/styles.scss */
+.entry.private .entry-save.enabled {
+  -webkit-transition: background-color 500ms linear;
+  -moz-transition: background-color 500ms linear;
+  -o-transition: background-color 500ms linear;
+  -ms-transition: background-color 500ms linear;
+  background-color: #22bf64;
+}
+/* line 181, ../scss/styles.scss */
+.entry.private .entry-save.enabled i.disabled, .entry.private .entry-save.enabled i.saving {
+  display: none;
+}
+/* line 184, ../scss/styles.scss */
+.entry.private .entry-save.enabled i.enabled {
+  display: inline-block;
+}
+/* line 188, ../scss/styles.scss */
+.entry.private .entry-save.saving {
+  background-color: #f76565;
+}
+/* line 190, ../scss/styles.scss */
+.entry.private .entry-save.saving i.enabled, .entry.private .entry-save.saving i.disabled {
+  display: none;
+}
+/* line 193, ../scss/styles.scss */
+.entry.private .entry-save.saving i.saving {
+  display: inline-block;
+}
+/* line 436, ../scss/styles.scss */
+.entry.private .entry-header .edit-link {
+  border-bottom: 1px dashed #2c8ec9;
+  color: #2c8ec9;
+  margin-bottom: 1px;
+}
+/* line 440, ../scss/styles.scss */
+.entry.private .entry-header .edit-link:hover {
+  filter: alpha(opactiy=75);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+  cursor: pointer;
+}
+/* line 444, ../scss/styles.scss */
+.entry.private .entry-header .edit-link i {
+  color: #222222;
+}
+/* line 446, ../scss/styles.scss */
+.entry.private .entry-header .edit-link i:not(.fa) {
+  font-weight: bold;
+}
+/* line 457, ../scss/styles.scss */
+.entry.private .single-select .select-input {
+  display: none;
+}
+/* line 462, ../scss/styles.scss */
+.entry.private .single-select .select-display .edit-link.placeholder {
+  color: #E81010;
+  font-style: italic;
+}
+/* line 468, ../scss/styles.scss */
+.entry.private .single-select .select-drop {
+  background-color: #FFF;
+  display: none;
+  left: 0.5rem;
+  position: absolute;
+  right: 0.5rem;
+  z-index: 9999998;
+}
+/* line 475, ../scss/styles.scss */
+.entry.private .single-select .select-drop .select-search {
+  display: block;
+  margin: 0.5em;
+  position: relative;
+}
+/* line 479, ../scss/styles.scss */
+.entry.private .single-select .select-drop .select-search input {
+  margin: 0;
+  padding: 0.57143rem;
+  width: 100%;
+}
+/* line 484, ../scss/styles.scss */
+.entry.private .single-select .select-drop .select-search i {
+  color: #c9e3f3;
+  padding: 0.28572rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* line 492, ../scss/styles.scss */
+.entry.private .single-select .select-drop ul.select-options {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 496, ../scss/styles.scss */
+.entry.private .single-select .select-drop ul.select-options li {
+  border-top: 1px solid #CCCCC6;
+  padding: 1em;
+}
+/* line 499, ../scss/styles.scss */
+.entry.private .single-select .select-drop ul.select-options li.option-selected {
+  background: green;
+}
+/* line 502, ../scss/styles.scss */
+.entry.private .single-select .select-drop ul.select-options li:hover {
+  cursor: pointer;
+}
+/* line 507, ../scss/styles.scss */
+.entry.private .single-select .select-drop .select-create {
+  display: none;
+  margin: 0.5em;
+}
+/* line 516, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-header {
   display: block;
   overflow: hidden;
 }
-/* line 393, ../scss/styles.scss */
-.modal-wrapper .modal .modal-header h3 {
+/* line 519, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-header h3 {
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 397, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save {
+/* line 523, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save {
   -webkit-border-radius: 2.5rem;
   border-radius: 2.5rem;
   display: inline-block;
@@ -12784,8 +12877,8 @@ footer div p:last-child {
   margin-left: 1rem;
   margin-bottom: 1rem;
 }
-/* line 111, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save:hover {
+/* line 144, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save:hover {
   filter: alpha(opactiy=75);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
   -moz-opacity: 0.75;
@@ -12793,20 +12886,20 @@ footer div p:last-child {
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 115, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save i {
+/* line 148, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save i {
   color: #FFF;
   display: inline-block;
   font-size: 3.33333rem;
   padding: 0.83333rem 0;
 }
-/* line 121, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save i.fa-plus {
+/* line 154, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save i.fa-plus {
   padding-top: 1.07143rem;
   padding-bottom: 0.35714rem;
 }
-/* line 130, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.disabled:hover, .modal-wrapper .modal .modal-save.saving:hover {
+/* line 163, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.disabled:hover, .entry.private .modal-wrapper .modal .modal-save.saving:hover {
   filter: alpha(opactiy=100);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   -moz-opacity: 1;
@@ -12814,204 +12907,123 @@ footer div p:last-child {
   opacity: 1;
   cursor: default;
 }
-/* line 135, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.disabled {
+/* line 168, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.disabled {
   -webkit-transition: background-color 500ms linear;
   -moz-transition: background-color 500ms linear;
   -o-transition: background-color 500ms linear;
   -ms-transition: background-color 500ms linear;
   background-color: rgba(0, 0, 0, 0.25);
 }
-/* line 138, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.disabled i.enabled, .modal-wrapper .modal .modal-save.disabled i.saving {
+/* line 171, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.disabled i.enabled, .entry.private .modal-wrapper .modal .modal-save.disabled i.saving {
   display: none;
 }
-/* line 141, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.disabled i.disabled {
+/* line 174, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.disabled i.disabled {
   display: inline-block;
 }
-/* line 145, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.enabled {
+/* line 178, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.enabled {
   -webkit-transition: background-color 500ms linear;
   -moz-transition: background-color 500ms linear;
   -o-transition: background-color 500ms linear;
   -ms-transition: background-color 500ms linear;
   background-color: #22bf64;
 }
-/* line 148, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.enabled i.disabled, .modal-wrapper .modal .modal-save.enabled i.saving {
+/* line 181, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.enabled i.disabled, .entry.private .modal-wrapper .modal .modal-save.enabled i.saving {
   display: none;
 }
-/* line 151, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.enabled i.enabled {
+/* line 184, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.enabled i.enabled {
   display: inline-block;
 }
-/* line 155, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.saving {
+/* line 188, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.saving {
   background-color: #f76565;
 }
-/* line 157, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.saving i.enabled, .modal-wrapper .modal .modal-save.saving i.disabled {
+/* line 190, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.saving i.enabled, .entry.private .modal-wrapper .modal .modal-save.saving i.disabled {
   display: none;
 }
-/* line 160, ../scss/styles.scss */
-.modal-wrapper .modal .modal-save.saving i.saving {
+/* line 193, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .modal-save.saving i.saving {
   display: inline-block;
 }
-/* line 402, ../scss/styles.scss */
-.modal-wrapper .modal .close-modal {
+/* line 529, ../scss/styles.scss */
+.entry.private .modal-wrapper .modal .close-modal {
   text-transform: uppercase;
 }
-
-/* line 407, ../scss/styles.scss */
-.model-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-/* line 411, ../scss/styles.scss */
-.model-list li {
-  -webkit-border-radius: 0.25rem;
-  border-radius: 0.25rem;
-  border: 1px solid #c9e3f3;
-  margin-bottom: 0.25rem;
-  padding: 0.25rem;
-  position: relative;
-}
-/* line 417, ../scss/styles.scss */
-.model-list li:nth-child(odd) {
-  background-color: #FFF;
-}
-/* line 420, ../scss/styles.scss */
-.model-list li:nth-child(even) {
-  background-color: #fdfdff;
-}
-/* line 423, ../scss/styles.scss */
-.model-list li div {
+/* line 537, ../scss/styles.scss */
+.entry.private .module-section .section-header .add-model {
+  -webkit-border-radius: 1.5rem;
+  border-radius: 1.5rem;
   display: inline-block;
+  height: 3rem;
+  text-align: center;
+  width: 3rem;
+  background-color: #22bf64;
 }
-/* line 426, ../scss/styles.scss */
-.model-list li .buttons {
+/* line 144, ../scss/styles.scss */
+.entry.private .module-section .section-header .add-model:hover {
+  filter: alpha(opactiy=75);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+  cursor: pointer;
+}
+/* line 148, ../scss/styles.scss */
+.entry.private .module-section .section-header .add-model i {
+  color: #FFF;
+  display: inline-block;
+  font-size: 2rem;
+  padding: 0.5rem 0;
+}
+/* line 154, ../scss/styles.scss */
+.entry.private .module-section .section-header .add-model i.fa-plus {
+  padding-top: 0.64286rem;
+  padding-bottom: 0.21429rem;
+}
+/* line 544, ../scss/styles.scss */
+.entry.private .module-section .model-list .model-entry .model-header {
+  display: block;
+  width: 100%;
+}
+/* line 547, ../scss/styles.scss */
+.entry.private .module-section .model-list .model-entry .model-header .buttons {
   float: right;
   margin-left: 1rem;
 }
-/* line 428, ../scss/styles.scss */
-.model-list li .buttons button {
+/* line 550, ../scss/styles.scss */
+.entry.private .module-section .model-list .model-entry .model-header .buttons button {
   margin: 0 0.25rem 0 0;
   padding: 0.5rem;
   text-transform: uppercase;
 }
-/* line 434, ../scss/styles.scss */
-.model-list li .not-buttons {
-  display: block;
-  overflow: hidden;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 0.25rem;
+/* line 554, ../scss/styles.scss */
+.entry.private .module-section .model-list .model-entry .model-header .buttons button.delete-model {
+  filter: alpha(opactiy=75);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
 }
-
-/*
- * Manage widget
- */
-/* line 447, ../scss/styles.scss */
-.manage-widget .manage-header {
-  *zoom: 1;
-  -moz-border-radius-bottomleft: 3px;
-  -moz-border-radius-topleft: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -webkit-border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-  background-color: #2c8ec9;
-  margin-top: 1rem;
-  position: relative;
-}
-/* line 165, ../bower/foundation/scss/foundation/components/_global.scss */
-.manage-widget .manage-header:before, .manage-widget .manage-header:after {
-  content: " ";
-  display: table;
-}
-/* line 166, ../bower/foundation/scss/foundation/components/_global.scss */
-.manage-widget .manage-header:after {
-  clear: both;
-}
-/* line 453, ../scss/styles.scss */
-.manage-widget .manage-header a, .manage-widget .manage-header .link {
-  padding: 1em;
-}
-/* line 455, ../scss/styles.scss */
-.manage-widget .manage-header a h1, .manage-widget .manage-header a h2, .manage-widget .manage-header a h3, .manage-widget .manage-header a h4, .manage-widget .manage-header a h5, .manage-widget .manage-header a h6, .manage-widget .manage-header .link h1, .manage-widget .manage-header .link h2, .manage-widget .manage-header .link h3, .manage-widget .manage-header .link h4, .manage-widget .manage-header .link h5, .manage-widget .manage-header .link h6 {
-  color: white;
-  height: 1em;
-  line-height: 1em;
-  margin: 0;
-  padding: 0;
-}
-/* line 463, ../scss/styles.scss */
-.manage-widget .manage-header a.left {
-  width: 100%;
-}
-/* line 466, ../scss/styles.scss */
-.manage-widget .manage-header div.right {
-  border-left: 1px solid #206691;
-  position: absolute;
-  right: 0;
-}
-/* line 470, ../scss/styles.scss */
-.manage-widget .manage-header div.right:hover {
-  cursor: pointer;
-}
-/* line 475, ../scss/styles.scss */
-.manage-widget .manage-drop {
-  display: none;
-  margin-left: 1.5px;
-}
-/* line 478, ../scss/styles.scss */
-.manage-widget .manage-drop ul {
-  background-color: #2c8ec9;
-  margin: 0;
-  padding: 0;
-}
-
-/*
- * Forms (e.g. login)
- */
-/* line 489, ../scss/styles.scss */
-.single-page-form {
-  margin-top: 1rem;
-}
-
-/* line 492, ../scss/styles.scss */
-.errorlist {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-/* line 496, ../scss/styles.scss */
-.errorlist li {
-  background-color: #f76565;
-  border: 1px solid #f87b7b;
-  padding: 0.5rem 1rem;
-}
-
-/*
- * Widgets
- */
-/* line 507, ../scss/styles.scss */
-.rating {
+/* line 568, ../scss/styles.scss */
+.entry.private .rating {
   display: inline-block;
 }
-/* line 509, ../scss/styles.scss */
-.rating label {
+/* line 570, ../scss/styles.scss */
+.entry.private .rating label {
   display: inline-block;
 }
-/* line 511, ../scss/styles.scss */
-.rating label input[type=radio] {
+/* line 572, ../scss/styles.scss */
+.entry.private .rating label input[type=radio] {
   display: none;
 }
-/* line 514, ../scss/styles.scss */
-.rating label input[type=radio] + img {
+/* line 575, ../scss/styles.scss */
+.entry.private .rating label input[type=radio] + img {
   filter: alpha(opactiy=25);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
   -moz-opacity: 0.25;
@@ -13019,8 +13031,8 @@ footer div p:last-child {
   opacity: 0.25;
   width: 3rem;
 }
-/* line 517, ../scss/styles.scss */
-.rating label input[type=radio] + img:hover {
+/* line 578, ../scss/styles.scss */
+.entry.private .rating label input[type=radio] + img:hover {
   filter: alpha(opactiy=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   -moz-opacity: 0.5;
@@ -13028,24 +13040,41 @@ footer div p:last-child {
   opacity: 0.5;
   cursor: pointer;
 }
-/* line 522, ../scss/styles.scss */
-.rating label input[type=radio]:checked + img {
+/* line 583, ../scss/styles.scss */
+.entry.private .rating label input[type=radio]:checked + img {
   filter: alpha(opactiy=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
   -moz-opacity: 0.7;
   -khtml-opacity: 0.7;
   opacity: 0.7;
 }
-
-/*
- * Time select
- */
-/* line 532, ../scss/styles.scss */
-.time-select select {
+/* line 593, ../scss/styles.scss */
+.entry.private .time-select select {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background-color: #FFF;
   font-size: 3rem;
   margin: 0;
   width: auto;
+}
+
+/*
+ * Forms (e.g. login)
+ */
+/* line 608, ../scss/styles.scss */
+.single-page-form {
+  margin-top: 1rem;
+}
+
+/* line 611, ../scss/styles.scss */
+.errorlist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 615, ../scss/styles.scss */
+.errorlist li {
+  background-color: #f76565;
+  border: 1px solid #f87b7b;
+  padding: 0.5rem 1rem;
 }

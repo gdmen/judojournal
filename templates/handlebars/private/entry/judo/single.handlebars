@@ -1,108 +1,109 @@
 {{! private/entry/judo/single }}
+<div class="entry private">
+  <div class="row">
 
-<div class="row">
+    <div class="columns">
+    
+      <div id="{{ cid }}-save" class="entry-save disabled">
+        <i class="saving fa fa-spinner fa-spin"></i>
+        <i class="enabled fa fa-floppy-o"></i>
+        <i class="disabled fa fa-check"></i>
+      </div>
 
-  <div class="columns entry-form-header">
-	
-		<div id="{{ cid }}-save" class="entry-save disabled">
-			<i class="saving fa fa-spinner fa-spin"></i>
-			<i class="enabled fa fa-floppy-o"></i>
-			<i class="disabled fa fa-check"></i>
-		</div>
-
-		<div id="entry-rating">
-			{{> partials/rating }}
-		</div>
-		
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="columns entry-form-meta">
-	
-		<div id="art"></div>
-		
-		<div id="type"></div>
-		
-		<div id="location"></div>
-		
-		<div>
-			<h3 class="edit-link modal-trigger date-modal">
-				<i class="fa fa-calendar"></i>
-				Thursday, 15 Jan 2014
-			</h3>
-		</div>
-		
-		<div>
-			<h3 class="plaintext">from</h3>
-			<h3 class="edit-link modal-trigger start-time-modal">
-				<i class="fa fa-clock-o"></i>
-				2:45PM
-			</h3>
-		</div>
-		
-		<div>
-			<h3 class="plaintext">until</h3>
-			<h3 class="edit-link modal-trigger end-time-modal">
-				<i class="fa fa-clock-o"></i>
-				4:45PM
-			</h3>
-		</div>
-		
-  </div>
-</div>
-
-{{!
-	<div class="row">
-
-		<div class="medium-6 columns">
-			<div id="goals"></div>
-		</div>
-		
-	</div>
-}}
-
-<div class="row">
-
-  <div class="medium-10 medium-centered large-uncentered large-4 columns">
-    <div id="drills"></div>
+      <div id="entry-rating">
+        {{> partials/rating }}
+      </div>
+      
+    </div>
   </div>
 
-  <div class="medium-10 medium-centered large-uncentered large-4 columns">
-    <div id="sparring"></div>
+  <div class="row">
+
+    <div class="columns entry-header">
+    
+      <div id="art"></div>
+      
+      <div id="type"></div>
+      
+      <div id="location"></div>
+      
+      <div>
+        <h3 class="edit-link modal-trigger date-modal">
+          <i class="fa fa-calendar"></i>
+          Thursday, 15 Jan 2014
+        </h3>
+      </div>
+      
+      <div>
+        <h3 class="plaintext">from</h3>
+        <h3 class="edit-link modal-trigger start-time-modal">
+          <i class="fa fa-clock-o"></i>
+          2:45PM
+        </h3>
+      </div>
+      
+      <div>
+        <h3 class="plaintext">until</h3>
+        <h3 class="edit-link modal-trigger end-time-modal">
+          <i class="fa fa-clock-o"></i>
+          4:45PM
+        </h3>
+      </div>
+      
+    </div>
   </div>
 
-  <div class="medium-10 medium-centered large-uncentered large-4 columns">
-    <div id="notes"></div>
+  {{!
+    <div class="row">
+
+      <div class="medium-6 columns">
+        <div id="goals"></div>
+      </div>
+      
+    </div>
+  }}
+
+  <div class="row">
+
+    <div class="medium-10 medium-centered large-uncentered large-4 columns">
+      <div id="drills"></div>
+    </div>
+
+    <div class="medium-10 medium-centered large-uncentered large-4 columns">
+      <div id="sparring"></div>
+    </div>
+
+    <div class="medium-10 medium-centered large-uncentered large-4 columns">
+      <div id="notes"></div>
+    </div>
+    
   </div>
-  
-</div>
 
 
-<div class="row">
-  <div class="columns">
-	
-		<div class="modal-wrapper modal-centered date-modal">
-			<div class="click-away-overlay"></div>
-			<div class="modal">
-				<div id="date" name="{{ cid }}:date"></div>
-			</div>
-		</div>
-			
-		<div class="modal-wrapper modal-centered start-time-modal">
-			<div class="click-away-overlay"></div>
-			<div class="modal">
-				<div id="start"></div>
-			</div>
-		</div>
+  <div class="row">
+    <div class="columns">
+    
+      <div class="modal-wrapper modal-centered date-modal">
+        <div class="click-away-overlay"></div>
+        <div class="modal">
+          <div id="date" name="{{ cid }}:date"></div>
+        </div>
+      </div>
+        
+      <div class="modal-wrapper modal-centered start-time-modal">
+        <div class="click-away-overlay"></div>
+        <div class="modal">
+          <div id="start"></div>
+        </div>
+      </div>
 
-		<div class="modal-wrapper modal-centered end-time-modal">
-			<div class="click-away-overlay"></div>
-			<div class="modal">
-				<div id="end"></div>
-			</div>
-		</div>
-		
+      <div class="modal-wrapper modal-centered end-time-modal">
+        <div class="click-away-overlay"></div>
+        <div class="modal">
+          <div id="end"></div>
+        </div>
+      </div>
+      
+    </div>
   </div>
 </div>

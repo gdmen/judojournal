@@ -27,6 +27,46 @@ $topbar-dropdown-bg: scale-color($topbar-bg, $lightness: -28%);
 $body-bg: #FFF url(/static/img/linedpaper.png) repeat;
 $row-width: rem-calc(1400);
 
+
+// Load Open Sans
+$include-open-sans: false;
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url(/static/fonts/Open_Sans/OpenSans-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/static/fonts/Open_Sans/OpenSans-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/static/fonts/Open_Sans/OpenSans-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: url(/static/fonts/Open_Sans/OpenSans-LightItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/static/fonts/Open_Sans/OpenSans-Italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url(/static/fonts/Open_Sans/OpenSans-BoldItalic.ttf) format('truetype');
+}
+
 @import
   "../bower/foundation/scss/normalize",
   "../bower/foundation/scss/foundation";
@@ -89,15 +129,8 @@ button, .button {
 	-o-transition: background-color $duration linear;
 	-ms-transition: background-color $duration linear;
 }
-@mixin float-right() {
-	float: right;
-	margin-left: 1rem;
-}
-@mixin float-left() {
-	display: block;
-	overflow: hidden;
-}
 @mixin text-ellipsis() {
+  max-width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -166,23 +199,31 @@ button, .button {
 /*
  * Custom settings
  */
-$basic-gray: #FDFDFF;
+$light-border-color: scale-color($primary-color, $lightness: 75%);
 $footer-height: 2rem;
 $footer-bg: $topbar-bg;
 $input-padding: 0.57143rem;
 $max-z-index: 9999998;
 /*
+ * Module colors
+ */
+$drill-color: #E7FEFF;//#7DBF94;
+$sparring-color: #D0F0C0;//#E7CA52;
+$note-color: #FFFDD0;//#DF815A;
+
+
+/*
  * Custom styles
  */
 
-.hide {
-  display: none;
-}
 *, *:before, *:after {
   -webkit-box-sizing: border-box; /* Android = 2.3, iOS = 4 */
   -moz-box-sizing: border-box; /* Firefox 1+ */
   box-sizing: border-box; /* Chrome, IE 8+, Opera, Safari 5.1 */
 }
+/*
+ * Global Modal styling
+ */
 // Necessary specificity
 #content .click-away-overlay{
 	background-color: rgba(0,0,0,0.5);
@@ -198,6 +239,9 @@ body.active-modal {
 	overflow: hidden;
 }
 
+.hide {
+  display: none;
+}
 /*
  * Sticky footer
  */
@@ -227,261 +271,336 @@ footer {
   }
 }
 
-/*
- * Entry form
- */
-.entry-form-header {
-	#entry-rating {
-		@include float-left();
-		margin-top: 1rem;
-	}
-	.entry-save {
-		@include save($diameter: 5rem);
-		@include float-right();
-	}
-}
-
-.entry-form-meta {
-	margin-bottom: 1rem;
-	@media #{$large-up} {
-		margin-bottom: 2rem;
-	}
-	div {
-		display: inline-block;
-		max-width: 100%;
+/*******************************************************************************
+ *
+ * Entry
+ *
+ ******************************************************************************/
+.entry {
+  .entry-header {
+    div {
+      display: inline-block;
+      max-width: 100%;
+    }
 		h3 {
-			@include text-ellipsis();
 			margin-bottom: 0;
-			max-width: 100%;
 		}
-	}
-	
-	.plaintext {
-		border-bottom: 1px dashed transparent;
-		margin-right: 0.5em;
-		margin-bottom: 1px;
-	}
-	.edit-link {
-		border-bottom: 1px dashed $topbar-bg;
-		color: $anchor-font-color;
-		display: inline-block;
-		margin-bottom: 1px;
-		margin-right: 0.5em;
-		&:hover {
-			@include opacity(0.75);
-			cursor: pointer;
-		}
-		i {
-			color: $body-font-color;
-			&:not(.fa) {
-				font-weight: bold;
-			}
-		}
-	}
-}
-
-/*
- * Select widget (Entry form)
- */
-.single-select {
-  .select-input {
-    display: none;
+    .plaintext,
+    .headertext {
+      @include text-ellipsis();
+      margin-right: 0.5em;
+    }
+    .plaintext {
+      border-bottom: 1px dashed transparent;
+    }
+    .headertext {
+      display: inline-block;
+    }
   }
-  .select-display {
-		.edit-link {
-			&.placeholder {
-				color: #E81010;
-				font-style: italic
-			}
-		}
-  }
-  .select-drop {
-    background-color: #FFF;
+  // Modals
+  .modal-wrapper {
     display: none;
-    left: 0.5rem;
-    position: absolute;
-    right: 0.5rem;
-    z-index: $max-z-index;
-    .select-search {
-      display: block;
-      margin: 0.5em;
-      position: relative;
-      input {
-        margin: 0;
-        padding: $input-padding;
-        width: 100%;
-      }
-      i {
-        color: gray;
-        padding: ($input-padding / 2);
-        position: absolute;
-        right: 0;
-        top: 0;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: ($max-z-index - 2);
+    &.modal-centered {
+      text-align: center;
+      .modal {
+        background: none;
+        display: inline-block;
+        & > div {
+          padding: 0;
+        }
       }
     }
-    ul.select-options {
+    .modal {
+      background-color: #FFF;
+      bottom: auto;
+      display: block;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      padding: 0;
+      position: relative;
+      z-index: $max-z-index;
+      & > div {
+        padding: 1rem;
+      }
+    }
+  }
+  // Module List
+  $module-section-header-height: 3rem;
+  .module-section {
+    .section-header {
+      .title {
+        font-size: ($module-section-header-height * 5/6);
+        padding-left: 1rem;
+      }
+    }
+    .model-list {
       list-style-type: none;
       margin: 0;
       padding: 0;
-      li {
-        border-top: 1px solid #CCCCC6;
-        padding: 1em;
-        &.option-selected {
-          background: green;
+      .model-entry {
+        margin-top: 0.5rem;
+        padding: 0;
+        &.has-body {
+          padding-top: 1.5rem;
+          padding-left: 0.5rem;
+          position: relative;
+          .model-header {
+            top: 0;
+            left: 0;
+            position: absolute;
+          }
         }
+        .model-header {
+          @include radius(0.25rem);
+          background-color: #FFF;
+          border: 1px solid $light-border-color;
+          display: inline-block;
+          padding: 0.25rem;
+          .model-title {
+            @include text-ellipsis();
+            overflow: hidden;
+            padding: 0.25rem;
+          }
+        }
+        .model-body {
+          background-color: #FFF;
+          border: 1px dashed $light-border-color;
+          padding: 1rem;
+          padding-top: 1.5rem;
+        }
+      }
+    }
+    &.drill {
+      .model-list {
+        .model-entry {
+          .model-header {
+            background-color: $drill-color;
+          }
+        }
+      }
+    }
+    &.sparring {
+      .model-list {
+        .model-entry {
+          .model-header {
+            background-color: $sparring-color;
+          }
+        }
+      }
+    }
+    &.note {
+      .model-list {
+        .model-entry {
+          .model-header {
+            background-color: $note-color;
+          }
+        }
+      }
+    }
+  }
+  .rating {
+    img{
+      @include opacity(0.7);
+    }
+  }
+  /*
+   * View
+   */
+  &.public {
+  }
+  /*
+   * Edit
+   */
+  &.private {
+    #entry-rating {
+      display: block;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    .entry-save {
+      @include save(5rem);
+      float: right;
+      margin-left: 1rem;
+    }
+
+    .entry-header {
+      .edit-link {
+        border-bottom: 1px dashed $topbar-bg;
+        color: $anchor-font-color;
+        margin-bottom: 1px;
         &:hover {
+          @include opacity(0.75);
           cursor: pointer;
         }
+        i {
+          color: $body-font-color;
+          &:not(.fa) {
+            font-weight: bold;
+          }
+        }
       }
     }
-    .select-create {
-      display: none;
-      margin: 0.5em;
+
+    /*
+     * Select widget
+     */
+    .single-select {
+      .select-input {
+        display: none;
+      }
+      .select-display {
+        .edit-link {
+          &.placeholder {
+            color: #E81010;
+            font-style: italic
+          }
+        }
+      }
+      .select-drop {
+        background-color: #FFF;
+        display: none;
+        left: 0.5rem;
+        position: absolute;
+        right: 0.5rem;
+        z-index: $max-z-index;
+        .select-search {
+          display: block;
+          margin: 0.5em;
+          position: relative;
+          input {
+            margin: 0;
+            padding: $input-padding;
+            width: 100%;
+          }
+          i {
+            color: $light-border-color;
+            padding: ($input-padding / 2);
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+        }
+        ul.select-options {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          li {
+            border-top: 1px solid #CCCCC6;
+            padding: 1em;
+            &.option-selected {
+              background: green;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        .select-create {
+          display: none;
+          margin: 0.5em;
+        }
+      }
     }
-  }
-}
+    // Modals
+    .modal-wrapper {
+      .modal {
+        .modal-header {
+          display: block;
+          overflow: hidden;
+          h3 {
+            @include text-ellipsis();
+          }
+        }
+        .modal-save {
+          @include save(5rem);
+          float: right;
+          margin-left: 1rem;
+          margin-bottom: 1rem;
+        }
+        .close-modal {
+          text-transform: uppercase;
+        }
+      }
+    }
+    // Module List
+    .module-section {
+      .section-header {
+        .add-model {
+          @include round-button($module-section-header-height);
+          background-color: $success-color;
+        }
+      }
+      .model-list {
+        .model-entry {
+          .model-header {
+            display: block;
+            width: 100%;
+            .buttons {
+              float: right;
+              margin-left: 1rem;
+              button {
+                margin: 0 0.25rem 0 0;
+                padding: 0.5rem;
+                text-transform: uppercase;
+                &.delete-model {
+                  @include opacity(0.75);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    /*
+     * Edit Widgets
+     */
+     // Rating
+    .rating {
+      display: inline-block;
+      label {
+        display: inline-block;
+        input[type=radio]{
+          display: none;
+        }
+        input[type=radio] + img{
+          @include opacity(0.25);
+          width: 3rem;
+          &:hover {
+            @include opacity(0.5);
+            cursor: pointer;
+          }
+        }
+        input[type=radio]:checked + img{
+          @include opacity(0.7);
+        }
+      }
+    }
 
-/*
- * Creation form modal
- */
-.list-controls {
-	$list-controls-height: 3rem;
-	.title {
-		font-size: ($list-controls-height * 5/6);
-		padding-left: 1rem;
-	}
-	.add-model {
-		@include round-button($diameter: $list-controls-height);
-		background-color: $success-color;
-	}
-}
-.modal-wrapper {
-	display: none;
-	overflow-y: scroll;
-	margin: 0;
-	padding: 0;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	top: 0;
-	z-index: ($max-z-index - 2);
-	&.modal-centered {
-		text-align: center;
-		.modal {
-			background: none;
-			display: inline-block;
-			& > div {
-				padding: 0;
-			}
-		}
-	}
-	.modal {
-		background-color: #FFF;
-		bottom: auto;
-		display: block;
-		margin-bottom: 1rem;
-		margin-top: 1rem;
-		padding: 0;
-		position: relative;
-		z-index: $max-z-index;
-		& > div {
-			padding: 1rem;
-		}
-		.modal-header {
-			@include float-left();
-			h3 {
-				@include text-ellipsis();
-			}
-		}
-		.modal-save {
-			@include save($diameter: 5rem);
-			@include float-right();
-			margin-bottom: 1rem;
-		}
-		.close-modal {
-			text-transform: uppercase;
-		}
-	}
-}
-.model-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  li {
-		@include radius(0.25rem);
-		border: 1px solid scale-color($primary-color, $lightness: 75%);
-		margin-bottom: 0.25rem;
-    padding: 0.25rem;
-		position: relative;
-		&:nth-child(odd) {
-			background-color: #FFF;
-		}
-		&:nth-child(even) {
-			background-color: $basic-gray;
-		}
-		div {
-			display: inline-block;
-		}
-		.buttons {
-			@include float-right();
-			button {
-				margin: 0 0.25rem 0 0;
-				padding: 0.5rem;
-				text-transform: uppercase;
-			}
-		}
-		.not-buttons {
-			@include float-left();
-			@include text-ellipsis();
-			padding: 0.25rem;
-		}
-  }
-}
-
-/*
- * Manage widget
- */
-$widget-bg: $topbar-bg;
-.manage-widget {
-  .manage-header {
-    @include clearfix;
-    @include side-radius(left);
-    background-color: $widget-bg;
-    margin-top: $topbar-margin-bottom;
-    position: relative;
-    a, .link {
-      padding: 1em;
-      h1, h2, h3, h4, h5, h6 {
-        color: $topbar-link-color;
-        height: 1em;
-        line-height: 1em;
+    /*
+     * Time select
+     */
+    .time-select {
+      select {
+        @include radius();
+        background-color: #FFF;
+        font-size: 3rem;
         margin: 0;
-        padding: 0;
+        width: auto;
       }
-    }
-    a.left {
-      width: 100%;
-    }
-    div.right {
-      border-left: 1px solid scale-color($widget-bg, $lightness: -28%);
-      position: absolute;
-      right: 0;
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-  .manage-drop {
-    display: none;
-    margin-left: ($global-radius/2);
-    ul {
-      background-color: $widget-bg;
-      margin: 0;
-      padding: 0;
     }
   }
 }
+
 
 /*
  * Forms (e.g. login)
@@ -497,43 +616,5 @@ $widget-bg: $topbar-bg;
     background-color: $alert-color;
     border: 1px solid scale-color($alert-color, $lightness: 14%);
     padding: 0.5rem 1rem;
-  }
-}
- 
-/*
- * Widgets
- */
- // Rating
-.rating {
-	display: inline-block;
-	label {
-		display: inline-block;
-		input[type=radio]{
-			display: none;
-		}
-		input[type=radio] + img{
-			@include opacity(0.25);
-			width: 3rem;
-			&:hover {
-				@include opacity(0.5);
-				cursor: pointer;
-			}
-		}
-		input[type=radio]:checked + img{
-			@include opacity(0.7);
-		}
-	}
-}
-
-/*
- * Time select
- */
-.time-select {
-  select {
-		@include radius();
-    background-color: #FFF;
-		font-size: 3rem;
-		margin: 0;
-    width: auto;
   }
 }
