@@ -12661,7 +12661,6 @@ footer div p:last-child {
 /* line 405, ../scss/styles.scss */
 .entry .module-section.drill .section-header {
   background-color: #97f5fa;
-  border: 1px solid #b6fcff;
 }
 /* line 408, ../scss/styles.scss */
 .entry .module-section.drill .section-header .list-title {
@@ -12674,7 +12673,6 @@ footer div p:last-child {
 /* line 422, ../scss/styles.scss */
 .entry .module-section.sparring .section-header {
   background-color: #bcf98d;
-  border: 1px solid #cfffab;
 }
 /* line 425, ../scss/styles.scss */
 .entry .module-section.sparring .section-header .list-title {
@@ -12687,7 +12685,6 @@ footer div p:last-child {
 /* line 439, ../scss/styles.scss */
 .entry .module-section.note .section-header {
   background-color: #f9f485;
-  border: 1px solid #fffba2;
 }
 /* line 442, ../scss/styles.scss */
 .entry .module-section.note .section-header .list-title {

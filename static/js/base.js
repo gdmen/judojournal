@@ -83,6 +83,11 @@ JJ.Util.unknownRoute = function(url) {
 }
 
 JJ.Util.links = {
+  view: {
+    entry: function(id) {
+      return "/entry/" + id;
+    },
+  },
   edit: {
     prefix: "/m",
     entry: function(id) {
@@ -131,6 +136,11 @@ JJ.Views.Util = {
     $("textarea").trigger('autosize.resize');
 		modalWrapper.hide();
   },
+}
+if (djangoUser) {
+  JJ.Views.Util.user = {
+    name: djangoUser.name,
+  };
 }
 
 /*

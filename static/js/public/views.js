@@ -21,12 +21,12 @@ JJ.Views.AbstractPage = JJ.Views.AbstractView.extend({
     return _.extend({},this.baseEvents,this.extendEvents);
   },
   initialize: function(options) {
-    this.options = options;
-    this.options.links = {};
+    this.json = options;
+    this.json.links = {};
   },
   
   render: function() {
-    this.$el.html(this.template(this.options));
+    this.$el.html(this.template(this.json));
     return this;
   },
 });
@@ -40,11 +40,17 @@ JJ.Views.Home = JJ.Views.AbstractPage.extend({
   template: Handlebars.templates["pages/home"],
   
   render: function() {
-    this.options.name = JJ.Meta.name;
-    this.options.links = {
+    this.json.name = JJ.Meta.name;
+    this.json.links = {
       newEntry: JJ.Util.links.edit.entry("new"),
     };
-    this.$el.html(this.template(this.options));
+    this.json.entries = this.json.entries.toJSON();
+    var i;
+    for (i = 0; i < this.json.entries.length; i++) {
+      this.json.entries[i].link = JJ.Util.links.view.entry(this.json.entries[i].id);
+    }
+    console.log(this.json);
+    this.$el.html(this.template(this.json));
     return this;
   },
 });
@@ -61,13 +67,12 @@ JJ.Views.ViewJudoEntry = JJ.Views.AbstractPage.extend({
   },
   
   render: function() {
-    this.options = this.model.toJSON();
-    this.options.links = {
+    this.json = this.model.toJSON();
+    this.json.links = {
       newEntry: JJ.Util.links.edit.entry("new"),
     };
-    console.log(this.options);
-    this.$el.html(this.template(this.options));
-    //this.model.save();
+    console.log(this.json);
+    this.$el.html(this.template(this.json));
     return this;
   },
 });

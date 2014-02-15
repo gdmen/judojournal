@@ -98,7 +98,9 @@ function program10(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.art)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</h1>\r\n        <h1 id=\"type\" class=\"headertext\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.type)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h1>\r\n      </div>\r\n      \r\n      <div class=\"entry-header-section\">\r\n      \r\n        <div class=\"entry-header-row\">\r\n          <h5 id=\"location\" class=\"headertext\">gdm @ "
+    + "</h1>\r\n      </div>\r\n      \r\n      <div class=\"entry-header-section\">\r\n      \r\n        <div class=\"entry-header-row\">\r\n          <h5 id=\"location\" class=\"headertext\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " @ "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.location)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</h5>\r\n        </div>\r\n        \r\n        <div class=\"entry-header-row\">\r\n          <h5 id=\"date\" class=\"headertext\">\r\n            February 14, 2014 (2 hours)\r\n          </h5>\r\n        </div>\r\n        \r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div class=\"row\">\r\n\r\n    <div class=\"medium-10 large-uncentered large-6 xlarge-4 columns\">\r\n      <div class=\"module-section drill\">\r\n        <div class=\"section-header\">\r\n          <h3 class=\"list-title\">Drills</h3>\r\n        </div>\r\n        <ul class=\"model-list row\">\r\n          ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.drills), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
@@ -115,12 +117,35 @@ function program10(depth0,data) {
 templates['pages/home'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n      <li><a href=\"";
+  if (helper = helpers.link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.art)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.type)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " at "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.location)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " on ";
+  if (helper = helpers.start) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.start); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</a></li>\r\n      ";
+  return buffer;
+  }
 
-  buffer += "\r\n\r\n<div class=\"row\">\r\n  <div id=\"widgets\" class=\"columns\">\r\n    <a href=\""
+  buffer += "\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.newEntry)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"button radius success tiny\">\r\n      <i class=\"fa fa-file\"></i> New Entry\r\n    </a>\r\n  </div>\r\n</div>";
+    + "\" class=\"button radius success tiny\">\r\n      <i class=\"fa fa-file\"></i> New Entry\r\n    </a>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"columns\">\r\n    <ul>\r\n      ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.entries), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n    </ul>\r\n  </div>\r\n</div>";
   return buffer;
   });
 templates['partials/rating'] = template(function (Handlebars,depth0,helpers,partials,data) {

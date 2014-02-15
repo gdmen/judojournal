@@ -9,7 +9,6 @@ JJ.Router = Backbone.Router.extend({
 JJ.router = new JJ.Router;
 JJ.router.on("route:home", homeRoute);
 JJ.router.on("route:entry", entryRoute);
-//JJ.router.on("route:showEntry", showEntry);
 JJ.router.on("route:unknown", JJ.Util.unknownRoute);
 
 // Start Backbone history a necessary step for bookmarkable URL's
@@ -17,7 +16,13 @@ Backbone.history.start({pushState: true, root: "/"});
 
 function homeRoute() {
   console.log("HOME");
-  JJ.AppView.showView(new JJ.Views.Home({}));
+  var entries = new JJ.Models.JudoEntryCollection();
+  entries.fetch({
+    success: function(c) {
+      JJ.AppView.showView(new JJ.Views.Home({entries: c}));
+    },
+    error: JJ.Util.backboneError,
+  });
 }
 
 function entryRoute(id) {
@@ -31,20 +36,3 @@ function entryRoute(id) {
     error: JJ.Util.unknownRoute
   });
 }
-/*
-function showEntry(id) {
-  entry = new EntryAModel({id: id});
-  entry.fetch({
-    success: function(m) {
-      var prior_status = new StatusModel({id: m.get('prior_status')});
-      prior_status.fetch();
-      var location = new LocationModel({id: m.get('location')});
-      location.fetch();
-      var activity = new ActivityModel({id: m.get('activity')});
-      activity.fetch();
-      new ShowEntryView({model: m, el: $('#content'), prior_status: prior_status, location: location, activity: activity});
-    },
-    error: JJ.Util.unknownRoute
-  });
-}
-*/

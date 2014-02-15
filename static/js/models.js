@@ -198,3 +198,8 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
     }
 	},
 });
+
+JJ.Models.JudoEntryCollection = JJ.Models.TastypieCollection.extend({
+  model: JJ.Models.JudoEntry,
+  url: "/api/v1/entry/judo/",
+});

@@ -4,7 +4,6 @@ from tastypie.resources import ModelResource
 from tastypie import fields
 from judojournal.api.models import *
 
-
 class JJAuthentication(SessionAuthentication):
 	def is_authenticated(self, request, **kwargs):
 		if request.method == 'GET':
@@ -17,12 +16,19 @@ class JJAuthorization(DjangoAuthorization):
 			return True
 		else:
 			return super(JJAuthorization, self).is_authorized(request, object)
+
+class UserResource(ModelResource):
+  class Meta:
+    queryset = User.objects.all()
+    excludes = ['id', 'is_active', 'resource_uri', 'first_name', 'last_name', 'email', 'password', 'is_superuser']
+    authentication = JJAuthentication()
+    authorization = JJAuthorization()
 				
 class HasUserResource(ModelResource):
+  user = fields.ForeignKey(UserResource, 'user', full=True)
   class Meta:
     abstract = True
     always_return_data = True
-    excludes = ['is_superuser']
     authentication = JJAuthentication()
     authorization = JJAuthorization()
 

@@ -62,6 +62,14 @@
   </footer>
   
   <script type="text/javascript" src="{% static 'bower/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript">
+      var djangoUser = false;
+      {% if user.is_authenticated %}
+        djangoUser = {
+          name: "{{ user.username }}",
+        };
+      {% endif %}
+    </script>
   <script type="text/javascript" src="{% static 'bower/fastclick/lib/fastclick.js' %}"></script>
   <script type="text/javascript">
     $(function() {

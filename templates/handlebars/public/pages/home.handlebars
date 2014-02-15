@@ -1,9 +1,19 @@
 {{! public/pages/home }}
 
 <div class="row">
-  <div id="widgets" class="columns">
+  <div class="columns">
     <a href="{{ links.newEntry }}" class="button radius success tiny">
       <i class="fa fa-file"></i> New Entry
     </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns">
+    <ul>
+      {{#each entries }}
+      <li><a href="{{ link }}">{{ art.name }} {{ type.name }} at {{ location.name }} on {{ start }}</a></li>
+      {{/each}}
+    </ul>
   </div>
 </div>
