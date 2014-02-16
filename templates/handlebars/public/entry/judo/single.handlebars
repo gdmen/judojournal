@@ -40,86 +40,98 @@
 
   <div class="row">
 
-    <div class="medium-10 large-uncentered large-6 xlarge-4 columns">
-      <div class="module-section drill">
-        <div class="section-header">
-          <h3 class="list-title">Drills</h3>
+    {{#if drills}}
+      <div class="medium-10 large-uncentered large-6 xlarge-4 columns">
+        <div class="module-section drill">
+          <div class="section-header">
+            <h3 class="list-title">Drills</h3>
+          </div>
+          <ul class="model-list row">
+            {{#each drills}}
+              <li class="{{#if details}}has-body {{/if}}model-entry columns">
+                {{#if details}}
+                  <div class="model-body-cap"></div>
+                {{/if}}
+                {{#if name}}
+                  <div class="model-header">
+                    <div class="model-title">
+                      {{ name }}
+                    </div>
+                  </div>
+                {{/if}}
+                {{#if details}}
+                  <div class="model-body">
+                    {{ details }}
+                  </div>
+                {{/if}}
+              </li>
+            {{/each}}
+          </ul>
         </div>
-        <ul class="model-list row">
-          {{#each drills}}
-            <li class="{{#if details}}has-body {{/if}}model-entry columns">
-              {{#if details}}
-                <div class="model-body-cap"></div>
-              {{/if}}
-              <div class="model-header">
-                <div class="model-title">
-                  {{ name }}
-                </div>
-              </div>
-              {{#if details}}
-                <div class="model-body">
-                  {{ details }}
-                </div>
-              {{/if}}
-            </li>
-          {{/each}}
-        </ul>
       </div>
-    </div>
+    {{/if}}
 
-    <div class="medium-10 large-uncentered large-6 xlarge-4 columns">
-      <div class="module-section sparring">
-        <div class="section-header">
-          <h3 class="list-title">Sparring</h3>
+    {{#if sparring}}
+      <div class="medium-10 large-uncentered large-6 xlarge-4 columns">
+        <div class="module-section sparring">
+          <div class="section-header">
+            <h3 class="list-title">Sparring</h3>
+          </div>
+          <ul class="model-list row">
+            {{#each sparring}}
+              <li class="{{#if details}}has-body {{/if}}model-entry columns">
+                {{#if details}}
+                  <div class="model-body-cap"></div>
+                {{/if}}
+                {{#if partner}}
+                  <div class="model-header">
+                    <div class="model-title">
+                      {{ partner }} ({{ minutes }} minutes)
+                    </div>
+                  </div>
+                {{/if}}
+                {{#if details}}
+                  <div class="model-body">
+                    {{ details }}
+                  </div>
+                {{/if}}
+              </li>
+            {{/each}}
+          </ul>
         </div>
-        <ul class="model-list row">
-          {{#each sparring}}
-            <li class="{{#if details}}has-body {{/if}}model-entry columns">
-              {{#if details}}
-                <div class="model-body-cap"></div>
-              {{/if}}
-              <div class="model-header">
-                <div class="model-title">
-                  {{ partner }} ({{ minutes }} minutes)
-                </div>
-              </div>
-              {{#if details}}
-                <div class="model-body">
-                  {{ details }}
-                </div>
-              {{/if}}
-            </li>
-          {{/each}}
-        </ul>
       </div>
-    </div>
+    {{/if}}
 
-    <div class="medium-10 large-uncentered large-6 xlarge-4 columns end">
-      <div class="module-section note">
-        <div class="section-header">
-          <h3 class="list-title">Notes</h3>
+    {{#if notes}}
+      <div class="medium-10 large-uncentered large-6 xlarge-4 columns end">
+        <div class="module-section note">
+          <div class="section-header">
+            <h3 class="list-title">Notes</h3>
+          </div>
+          <ul class="model-list row">
+            {{#each notes}}
+              <li class="{{#if details}}has-body {{/if}}model-entry columns">
+                {{#if details}}
+                  <div class="model-body-cap"></div>
+                {{/if}}
+                {{#if title}}
+                  <div class="model-header">
+                    <div class="model-title">
+                      {{ title }}
+                    </div>
+                  </div>
+                {{/if}}
+                {{#if details}}
+                  <div class="model-body">
+                    {{ details }}
+                  </div>
+                {{/if}}
+              </li>
+            {{/each}}
+          </ul>
         </div>
-        <ul class="model-list row">
-          {{#each notes}}
-            <li class="{{#if details}}has-body {{/if}}model-entry columns">
-              {{#if details}}
-                <div class="model-body-cap"></div>
-              {{/if}}
-              <div class="model-header">
-                <div class="model-title">
-                  {{ title }}
-                </div>
-              </div>
-              {{#if details}}
-                <div class="model-body">
-                  {{ details }}
-                </div>
-              {{/if}}
-            </li>
-          {{/each}}
-        </ul>
       </div>
-    </div>
+    {{/if}}
     
   </div>
 </div>

@@ -43,11 +43,29 @@ JJ.Views.Home = JJ.Views.AbstractPage.extend({
     this.json.name = JJ.Meta.name;
     this.json.links = {
       newEntry: JJ.Util.links.edit.entry("new"),
+      profile: "/profile",
     };
+    console.log(this.json);
+    this.$el.html(this.template(this.json));
+    return this;
+  },
+});
+
+/************************************************************
+ *
+ * Main view for Profile page.
+ *
+ ************************************************************/
+JJ.Views.Profile = JJ.Views.AbstractPage.extend({
+  template: Handlebars.templates["pages/profile"],
+  
+  render: function() {
+    this.json.name = JJ.Meta.name;
     this.json.entries = this.json.entries.toJSON();
     var i;
     for (i = 0; i < this.json.entries.length; i++) {
       this.json.entries[i].link = JJ.Util.links.view.entry(this.json.entries[i].id);
+      this.json.entries[i].date = dateFormat(this.json.entries[i].start, JJ.Views.Util.dateFormat.date);
     }
     console.log(this.json);
     this.$el.html(this.template(this.json));

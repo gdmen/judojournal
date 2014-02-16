@@ -129,9 +129,11 @@ $accent-yellow: #FFFDD0;
 $accent-green: #EAFFDA;
 $accent-blue: #E7FEFF;
 $accent-purple: #F2C7FF;
+$accent-gray: #EEEEEE;
 /*
  * Module colors
  */
+$entry-color: $accent-gray;
 $drill-color: $accent-blue;
 $sparring-color: $accent-green;
 $note-color: $accent-yellow;
@@ -282,7 +284,127 @@ footer {
     }
   }
 }
-
+.rating {
+  img{
+    @include opacity(0.7);
+  }
+}
+/*******************************************************************************
+ *
+ * Profile
+ *
+ ******************************************************************************/
+.profile {
+  .profile-header {
+    $profile-header-height: 10rem;
+    $profile-meta-height: (8/10 * $profile-header-height);
+    $profile-menu-height: (2/10 * $profile-header-height);
+    $profile-menu-color: $accent-gray;
+    border-bottom: 3px solid $profile-menu-color;
+    margin-bottom: 0.5rem;
+    .profile-badge {
+      .image {
+        background-color: #FFF;
+        border: 1px solid $light-border-color;
+        float: left;
+        margin-right: 1rem;
+        padding: 0.5rem;
+        height: $profile-header-height;
+      }
+    }
+    .profile-meta {
+      height: $profile-meta-height;
+      .username {
+        @include text-ellipsis();
+        display: block;
+        white-space: normal;
+      }
+    }
+    .profile-menu {
+      $menu-tab-radius: 0.5rem;
+      display: inline-block;
+      height: $profile-menu-height;
+      list-style-type: none;
+      margin: 0;
+      white-space: nowrap;
+      li {
+        @include opacity(0.5);
+        @include side-radius("top", $menu-tab-radius);
+        background-color: $profile-menu-color;
+        display: inline-block;
+        padding: 0.25rem 0.75rem 0 0.75rem;
+        &:hover {
+          cursor: pointer;
+        }
+        &.inactive:hover {
+          @include opacity(0.75);
+        }
+        &.active {
+          @include opacity(1);
+        }
+        .title {
+          color: scale-color($profile-menu-color, $lightness: -75%, $saturation: +10%);
+          font-size: 1.25rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+  .profile-feed {
+    .entry-list {
+      list-style-type: none;
+      margin: 0;
+      li {
+        @include clearfix;
+        background-color: #FFF;
+        border: 1px solid $light-border-color;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        position: relative;
+        &:nth-child(even) {
+          background-color: scale-color($entry-color, $lightness: 50%);
+        }
+        h1, h2, h3, h4, h5, h6 {
+          margin: 0;
+          margin-left: 0.5rem;
+        }
+        .entry-left {
+          @include text-ellipsis();
+          color: scale-color($entry-color, $lightness: -75%, $saturation: +10%);
+          display: block;
+          &.title {
+            font-size: 2rem;
+            .rating {
+              float: left;
+              margin-right: 0.75rem;
+              img {
+                height: 2rem;
+                margin-top: -0.125rem;
+              }
+            }
+          }
+        }
+        .entry-right {
+          float: right;
+          margin-left: 0.25rem;
+          .link {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  /*
+   * View
+   */
+  &.public {
+  }
+  /*
+   * Edit
+   */
+  &.private {
+  }
+}
 /*******************************************************************************
  *
  * Entry
@@ -452,11 +574,6 @@ footer {
       }
     }
   }
-  .rating {
-    img{
-      @include opacity(0.7);
-    }
-  }
   /*
    * View
    */
@@ -466,7 +583,7 @@ footer {
       float: left;
       margin-right: 1rem;
       img {
-        width: 5rem;
+        height: 5rem;
       }
     }
     .entry-header {
@@ -664,7 +781,7 @@ footer {
             width: 100%;
             .model-title {
               @include text-ellipsis();
-              overflow: hidden;
+              min-height: 2em;
             }
             .buttons {
               float: right;
@@ -695,7 +812,7 @@ footer {
         }
         input[type=radio] + img{
           @include opacity(0.25);
-          width: 3rem;
+          height: 3rem;
           &:hover {
             @include opacity(0.5);
             cursor: pointer;

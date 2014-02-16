@@ -1,6 +1,7 @@
 JJ.Router = Backbone.Router.extend({
   routes: {
     "(/)": "home",
+    "profile(/:username)(/)": "profile",
     "entry/:id(/)": "entry",
     "*unknown": "unknown"
   }
@@ -8,6 +9,7 @@ JJ.Router = Backbone.Router.extend({
 
 JJ.router = new JJ.Router;
 JJ.router.on("route:home", homeRoute);
+JJ.router.on("route:profile", profileRoute);
 JJ.router.on("route:entry", entryRoute);
 JJ.router.on("route:unknown", JJ.Util.unknownRoute);
 
@@ -16,10 +18,16 @@ Backbone.history.start({pushState: true, root: "/"});
 
 function homeRoute() {
   console.log("HOME");
+  JJ.AppView.showView(new JJ.Views.Home({}));
+}
+
+function profileRoute(username) {
+  console.log("PROFILE");
+  console.log(username);
   var entries = new JJ.Models.JudoEntryCollection();
   entries.fetch({
     success: function(c) {
-      JJ.AppView.showView(new JJ.Views.Home({entries: c}));
+      JJ.AppView.showView(new JJ.Views.Profile({entries: c}));
     },
     error: JJ.Util.backboneError,
   });
