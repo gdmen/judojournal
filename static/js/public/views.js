@@ -67,6 +67,7 @@ JJ.Views.Profile = JJ.Views.AbstractPage.extend({
       this.json.entries[i].link = JJ.Util.links.view.entry(this.json.entries[i].id);
       this.json.entries[i].date = dateFormat(this.json.entries[i].start, JJ.Views.Util.dateFormat.date);
     }
+    this.json.entries = this.json.entries.concat(this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries, this.json.entries);
     console.log(this.json);
     this.$el.html(this.template(this.json));
     return this;
