@@ -1,12 +1,28 @@
 {{! private/entry/module/drill/single }}
-<div id="{{ cid }}-save" class="modal-save disabled">
-	<i class="saving fa fa-spinner fa-spin"></i>
-	<i class="enabled fa fa-floppy-o"></i>
-	<i class="disabled fa fa-check"></i>
-</div>
-<div class="modal-header">
-	<div><h3>Drill</h3></div>
-	<input required type="text" name="{{ cid }}:name" class="focus" placeholder="Name" value="{{ name }}" />
-</div>
-<textarea name="{{ cid }}:details" placeholder="Details">{{ details }}</textarea>
-<button class="tiny secondary radius left close-modal">close</button>
+<li class="{{#if details}}has-body {{/if}}model-entry columns">
+  {{#if details}}
+    <div class="model-body-cap"></div>
+  {{/if}}
+  <div class="model-header">
+    <div class="buttons">
+      <button class="view tiny alert radius delete-model">remove</button>
+      <button class="view tiny success radius edit-model">edit <i class="fa fa-pencil"></i ></button>
+      <button class="edit tiny secondary radius view-model">done</button>
+      <div id="{{ cid }}-save" class="edit save-model disabled">
+        <i class="saving fa fa-spinner fa-spin"></i>
+        <i class="enabled fa fa-floppy-o"></i>
+        <i class="disabled fa fa-check"></i>
+      </div>
+    </div>
+    <div class="model-title">
+      <span class="view">{{ name }}</span>
+      <input class="edit" type="text" name="{{ cid }}:name" class="focus" placeholder="Name" value="{{ name }}" />
+    </div>
+  </div>
+  {{#if details}}
+    <div class="model-body">
+      <span class="view">{{ details }}</span>
+      <textarea class="edit" name="{{ cid }}:details" placeholder="Details">{{ details }}</textarea>
+    </div>
+  {{/if}}
+</li>

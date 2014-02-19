@@ -98,6 +98,10 @@ button, .button {
   }
   margin-bottom: 1rem;
 }
+textarea {
+  line-height: 1.6;
+  overflow-y: hidden;
+}
 .top-bar-section {
   i {
     padding-right: 0.25em;
@@ -187,45 +191,43 @@ $note-color: $accent-yellow;
 		}
 	}
 }
-@mixin save($diameter) {
-	@include round-button($diameter);
-	&.disabled, &.saving {
-		&:hover {
-			@include opacity(1);
-			cursor: default;
-		}
-	}
-	&.disabled {
-		@include background-transition();
-		background-color: rgba(0, 0, 0, 0.25);
-		i.enabled, i.saving {
-			display: none;
-		}
-		i.disabled {
-			display: inline-block;
-		}
-	}
-	&.enabled {
-		@include background-transition();
-		background-color: $success-color;
-		i.disabled, i.saving {
-			display: none;
-		}
-		i.enabled {
-			display: inline-block;
-		}
-	}
-	&.saving {
-		background-color: $alert-color;
-		i.enabled, i.disabled {
-			display: none;
-		}
-		i.saving {
-			display: inline-block;
-		}
-	}
+@mixin save() {
+  &.disabled, &.saving {
+    &:hover {
+      @include opacity(1);
+      cursor: default;
+    }
+  }
+  &.disabled {
+    @include background-transition();
+    background-color: rgba(0, 0, 0, 0.25);
+    i.enabled, i.saving {
+      display: none;
+    }
+    i.disabled {
+      display: inline-block;
+    }
+  }
+  &.enabled {
+    @include background-transition();
+    background-color: $success-color;
+    i.disabled, i.saving {
+      display: none;
+    }
+    i.enabled {
+      display: inline-block;
+    }
+  }
+  &.saving {
+    background-color: $alert-color;
+    i.enabled, i.disabled {
+      display: none;
+    }
+    i.saving {
+      display: inline-block;
+    }
+  }
 }
-
 /*
  * Custom styles
  */
@@ -486,6 +488,10 @@ footer {
   // Module List
   .module-section {
     margin-top: 2rem;
+    .edit {
+      display: none;
+      margin: 0;
+    }
     .section-header {
       @include radius();
       border: 1px solid $medium-border-color;
@@ -664,7 +670,8 @@ footer {
       margin-top: 1rem;
     }
     .entry-save {
-      @include save(5rem);
+      @include round-button(5rem);
+      @include save();
       float: right;
       margin-left: 1rem;
     }
@@ -756,27 +763,6 @@ footer {
         }
       }
     }
-    // Modals
-    .modal-wrapper {
-      .modal {
-        .modal-header {
-          display: block;
-          overflow: hidden;
-          h3 {
-            @include text-ellipsis();
-          }
-        }
-        .modal-save {
-          @include save(5rem);
-          float: right;
-          margin-left: 1rem;
-          margin-bottom: 1rem;
-        }
-        .close-modal {
-          text-transform: uppercase;
-        }
-      }
-    }
     // Module List
     .module-section {
       .section-header {
@@ -800,18 +786,40 @@ footer {
             .model-title {
               @include text-ellipsis();
               min-height: 2em;
+              input.edit {
+                padding-top: 0.125rem;
+                padding-bottom: 0.125rem;
+                height: 2rem;
+              }
             }
             .buttons {
               float: right;
               button {
+                float: left;
                 margin: 0 0 0 0.25rem;
                 padding: 0.5rem;
                 text-transform: uppercase;
-                &.delete-model {
-                  @include opacity(0.75);
+                &.edit {
+                  color: gray;
+                  margin: 0.25rem 0 0 0.25rem;
+                }
+                &.view {
                 }
               }
+              .delete-model {
+                @include opacity(0.75);
+              }
+              .edit.save-model {
+                @include round-button(2.5rem);
+                @include save();
+                float: left;
+                margin: 0 0 0 0.25rem;
+              }
             }
+          }
+          textarea.edit {
+            margin-bottom: 0.5rem;
+            margin-top: 0.75rem;
           }
         }
       }

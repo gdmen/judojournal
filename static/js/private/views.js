@@ -15,18 +15,18 @@ JJ.Util.links.edit.prefix = "";
 JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
   template: null,
   baseEvents: {
-    "keyup input": "throttledChange",
+    "keydown input": "throttledChange",
     "change input": "change",
     "change select": "change",
-    "keyup textarea": "throttledChange",
+    "keydown textarea": "throttledChange",
     "change textarea": "change",
   },
   
   // For subclasses to add events.
-  extendEvents: {},
+  extendedEvents: {},
   
   events: function() {
-    return _.extend({},this.baseEvents,this.extendEvents);
+    return _.extend({},this.baseEvents,this.extendedEvents);
   },
   
   /*
@@ -35,7 +35,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 	autosave: false,
   change: function(e) {
 		var name = e.currentTarget.name;
-    //console.log("Changed: " + name);
+    console.log("Changed: " + name);
     var splitName = name.split(":");
     if (splitName[0] === this.model.cid) {
       var field = splitName.pop();
@@ -43,6 +43,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
       this.model.set(field, value);
 			//console.log(value.length);
       console.log("Set " + field + " to " + value.length + " in " + this.model.cid);
+      this.enableSave();
 			this.autosave && this.save();
     }
   },
@@ -129,7 +130,39 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
     this.model.hydrate();
     this.$el.html(this.template(this.model.toJSON()));
     
-    JJ.Views.Util.postRender();
+    this.$el.find("textarea").trigger("autosize.destroy").autosize({append: "\n"});
+    /*
+    var textareas = this.$el.find("textarea");
+    console.log("start");
+    var revert;
+    textareas.each(function() {
+      console.log(this);
+      revert = false;
+      if (this.style.display === "none") {
+        this.style.display = "inline-block";
+        revert = true;
+        console.log("HERE");
+      }
+      console.log(this.height);
+      console.log(this.scrollHeight);
+      if (revert) {
+        this.style.display = "none";
+      }
+      //this.autosize();
+    });*/
+  /*
+		// Handles all modals for the page.
+		var modalWrapper = $(".modal-wrapper");
+		var clickAway = $(".click-away-overlay");
+		modalWrapper.show();
+		clickAway.show().css("right", JJ.Util.scrollbarWidth() + "px").hide();
+    var hiddenTextareas = $("textarea:hidden");
+    hiddenTextareas.show();
+		$("textarea").autosize();
+    $("textarea").trigger('autosize.resize');
+    hiddenTextareas.hide();
+		modalWrapper.hide();
+  */
     return this;
   },
 });
@@ -139,28 +172,175 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
  */
  
 JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
+  template: null,
+  insertModelConstructor: null,
+
+  extendedEvents: {
+		"click .edit-model": "editModel",
+		"click .view-model": "viewModel",
+		"click .delete-model": "deleteModel",
+  },
+  
+  editModel: function(e) {
+    this.$el.find(".view").hide();
+    this.$el.find(".edit").css("display", "inline-block");
+    this.$el.find("textarea").trigger("autosize.resize");
+  },
+  
+  viewModel: function(e) {
+    this.$el.find(".edit").hide();
+    this.$el.find(".view").show();
+  },
+  
+  deleteModel: function(e) {
+  },
+  
   // If this is the first save, add to parentView.
 	firstSave: function(model) {
 		this.parentView.addModel(model);
 	},
 	endSave: function(model) {
-		this.parentView.hideModal();
+    this.viewModel();
 	},
 	
 	initialize: function(options) {
 		this.parentView = options.parentView;
-		return JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
+    if (_.isUndefined(options.model)) {
+      options.model = new this.insertModelConstructor();
+    }
+    this.model = options.model;
+		var ret = JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
+    this.render();
+    this.viewModel();
+    return ret;
 	},
 });
 
 JJ.Views.EditNote = JJ.Views.EditListElement.extend({
   template: Handlebars.templates["entry/module/note/single"],
+  insertModelConstructor: JJ.Models.NoteEntryModule,
 });
 JJ.Views.EditDrill = JJ.Views.EditListElement.extend({
   template: Handlebars.templates["entry/module/drill/single"],
+  insertModelConstructor: JJ.Models.DrillEntryModule,
 });
 JJ.Views.EditSparring = JJ.Views.EditListElement.extend({
   template: Handlebars.templates["entry/module/sparring/single"],
+  insertModelConstructor: JJ.Models.SparringEntryModule,
+});
+
+/************************************************************
+ *
+ * JJ.Views.AbstractEditModelList
+ *  - Manages a list of AbstractEditModel's for a parent.
+ *  - Does *not* update the view on model changes.
+ *
+ ************************************************************/
+JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
+  template: null,
+  model: null,
+  // Subclasses set to the parent model's array field that is to be managed.
+  field: "",
+  insertViewConstructor: null,
+  events: {
+    "click .add-model": "newModel",
+  },
+	
+	
+  /*
+   * Spawns list element view.
+   */
+	newModel: function(e) {
+    console.log("NEW");
+	},
+	
+  /*
+   * Adds a saved model to the parent model's list.
+	 * Triggers ui save for parent model's view.
+   */
+  addModel: function(model) {
+    console.log("addModel");
+		if (_.isUndefined(model.get("id"))) {
+			console.log("THIS IS A BIG PROBLEM");
+			return;
+		}
+		this.modelArray.push(model);
+		this.model.set(this.field, this.modelArray);
+		this.model.parentView.save();
+  },
+  
+	_getIndexByURI: function(uri) {
+		for (var i=0; i < this.modelArray.length; i++) {
+			if ((!_.isUndefined(this.modelArray[i].get) && this.modelArray[i].get("resource_uri") === uri)
+				 || (this.modelArray[i] === uri)) {
+				return i;
+			}
+		}
+		return -1;
+	},
+	
+  /*
+   * Removes model by:
+	 * - removing from parent model's list
+	 * - //backbone-destroying
+	 *  (currently not doing)
+   */
+  removeModel: function(model) {
+    console.log("removeModel");
+		this.modelArray.splice(index, 1);
+		this.model.set(this.field, this.modelArray);
+		
+    /*var that = this;
+    model.destroy({
+      success: function(m) {
+        console.log("Destroyed a model...");
+        console.log(m);
+      },
+      error: JJ.Util.backboneError,
+    });*/
+  },
+  
+  initialize: function(options) {
+		this.elementViews = [];
+		
+    var vs = {};
+    vs.list = ".model-list";
+    
+    this.selectors = vs;
+    this.render();
+  },
+  
+  render: function() {
+    this.modelArray = this.model.get(this.field).slice(0);
+    this.$el.html(this.template());
+    var that = this;
+    $.each(this.modelArray, function(index, model) {
+      var div = $('<div></div>');
+      new that.insertViewConstructor({model: model, parentView: this, el: div});
+      that.$el.find(that.selectors.list).append(div);
+    });
+    
+    return this;
+  },
+});
+
+/*
+ * JJ.Views.AbstractEditModelList instances
+ */
+JJ.Views.EditNoteList = JJ.Views.AbstractEditModelList.extend({
+  template: Handlebars.templates["entry/module/note/list"],
+  field: "notes",
+  insertViewConstructor: JJ.Views.EditNote,
+});
+JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
+  template: Handlebars.templates["entry/module/drill/list"],
+  field: "drills",
+  insertViewConstructor: JJ.Views.EditDrill,
+});
+JJ.Views.EditSparringList = JJ.Views.AbstractEditModelList.extend({
+  template: Handlebars.templates["entry/module/sparring/list"],
+  field: "sparring",
+  insertViewConstructor: JJ.Views.EditSparring,
 });
 
 /************************************************************
@@ -373,175 +553,6 @@ JJ.Views.SelectLocation = JJ.Views.AbstractSelectModel.extend({
 	},
 });
 
-
-/************************************************************
- *
- * JJ.Views.AbstractEditModelList
- *  - Manages a list of AbstractEditModel's for a parent.
- *  - Does *not* update the view on model changes.
- *
- ************************************************************/
-JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
-  template: null,
-  model: null,
-  // Subclasses set to the parent model's array field that is to be managed.
-  field: "",
-  insertViewConstructor: null,
-  insertModelConstructor: null,
-  events: {
-    "click .add-model": "newModel",
-    "click .click-away-overlay": "hideModal",
-		"click .close-modal": "hideModal",
-		"click .edit-model": "editModel",
-		"click .delete-model": "deleteModel",
-  },
-	
-  showModal: function(model) {
-		if (this.currentModalView) {
-			this.currentModalView.close();
-		}
-    this.currentModalView = new this.insertViewConstructor({model: model, parentView: this});
-		this.$el.find(this.selectors.modal).html(this.currentModalView.el);
-		this.currentModalView.render();
-		this.$el.find(this.selectors.modalWrapper).show();
-    this.$el.find(this.selectors.focus).focus();
-    this.$el.find(this.selectors.clickAway).show();
-		$("body").addClass("active-modal").css("margin-right", JJ.Util.scrollbarWidth() + "px");
-  },
-  
-  hideModal: function(e) {
-    this.$el.find(this.selectors.modalWrapper).hide();
-    this.$el.find(this.selectors.clickAway).hide();
-		$("body").removeClass("active-modal").css("margin-right", "");
-		this.render();
-  },
-	
-  /*
-   * Spawns creation modal.
-   */
-	newModel: function(e) {
-    var model = new this.insertModelConstructor();
-		this.showModal(model);
-	},
-	
-  /*
-   * Spawns edit modal.
-   */
-	editModel: function(e) {
-		var buttonDiv = $(e.currentTarget).parent();
-    var uri = buttonDiv.data("uri").split("-")[0];
-		
-    var model = this.modelArray[this._getIndexByURI(uri)];
-		this.showModal(model);
-	},
-	
-  /*
-   * Adds a saved model to the parent model's list.
-	 * Triggers ui save for parent model's view.
-   */
-  addModel: function(model) {
-    console.log("addModel");
-		if (_.isUndefined(model.get("id"))) {
-			console.log("THIS IS A BIG PROBLEM");
-			return;
-		}
-		this.modelArray.push(model);
-		this.model.set(this.field, this.modelArray);
-		this.render();
-		this.model.parentView.save();
-  },
-  
-	/*
-	 * Removes parent div and then removes model.
-	 */
-	deleteModel: function(e) {
-		var buttonDiv = $(e.currentTarget).parent();
-    var uri = buttonDiv.data("uri").split("-")[0];
-		
-		this.removeModel(this._getIndexByURI(uri));
-		
-		var root = buttonDiv.parent().closest(".model-entry");
-		root.unbind();
-		root.remove();
-	},
-	
-	_getIndexByURI: function(uri) {
-		for (var i=0; i < this.modelArray.length; i++) {
-			if ((!_.isUndefined(this.modelArray[i].get) && this.modelArray[i].get("resource_uri") === uri)
-				 || (this.modelArray[i] === uri)) {
-				return i;
-			}
-		}
-		return -1;
-	},
-	
-  /*
-   * Removes model by:
-	 * - removing from parent model's list
-	 * - //backbone-destroying
-	 *  (currently not doing this in order to preserve manual entry saving idiom)
-   */
-  removeModel: function(index) {
-    console.log("removeModel");
-		this.modelArray.splice(index, 1);
-		this.model.set(this.field, this.modelArray);
-		
-    /*var that = this;
-    model.destroy({
-      success: function(m) {
-        console.log("Destroyed a model...");
-        console.log(m);
-      },
-      error: JJ.Util.backboneError,
-    });*/
-  },
-  
-  initialize: function(options) {
-		this.listViews = [];
-		
-    var vs = {};
-		vs.controls = ".list-controls";
-    vs.modalWrapper = ".modal-wrapper";
-    vs.clickAway = vs.modalWrapper + " .click-away-overlay";
-    vs.modal = vs.modalWrapper + " .modal";
-		vs.focus = vs.modal + " .focus";
-    vs.list = ".model-list";
-    
-    this.selectors = vs;
-    this.render();
-  },
-  
-  render: function() {
-    this.modelArray = this.model.get(this.field).slice(0);
-		var json = {models: JSON.parse(JSON.stringify(this.modelArray))};
-    this.$el.html(this.template(json));
-    
-    return this;
-  },
-});
-
-/*
- * JJ.Views.AbstractEditModelList instances
- */
-JJ.Views.EditNoteList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["entry/module/note/list"],
-  field: "notes",
-  insertViewConstructor: JJ.Views.EditNote,
-  insertModelConstructor: JJ.Models.NoteEntryModule,
-});
-JJ.Views.EditDrillList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["entry/module/drill/list"],
-  field: "drills",
-  insertViewConstructor: JJ.Views.EditDrill,
-  insertModelConstructor: JJ.Models.DrillEntryModule,
-});
-JJ.Views.EditSparringList = JJ.Views.AbstractEditModelList.extend({
-  template: Handlebars.templates["entry/module/sparring/list"],
-  field: "sparring",
-  insertViewConstructor: JJ.Views.EditSparring,
-  insertModelConstructor: JJ.Models.SparringEntryModule,
-});
-
 /************************************************************
  *
  * JJ.Views.TimeSelect
@@ -603,7 +614,7 @@ JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
  ************************************************************/
 JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   template: Handlebars.templates["entry/judo/single"],
-  extendEvents: {
+  extendedEvents: {
 		"change #date": "dateChanged",
     "click .click-away-overlay": "hideModals",
     "click .modal-trigger": "showModal",
@@ -727,9 +738,9 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     });
     
     // AbstractEditModelList's
-    new JJ.Views.EditNoteList({model: this.model, el: this.$el.find("#notes")});
     new JJ.Views.EditDrillList({model: this.model, el: this.$el.find("#drills")});
-    new JJ.Views.EditSparringList({model: this.model, el: this.$el.find("#sparring")});
+    //new JJ.Views.EditSparringList({model: this.model, el: this.$el.find("#sparring")});
+    //new JJ.Views.EditNoteList({model: this.model, el: this.$el.find("#notes")});
     
     // DOM JS linking
     this.linkDOM();
