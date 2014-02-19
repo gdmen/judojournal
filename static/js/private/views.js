@@ -159,12 +159,12 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
   extendedEvents: {
 		"click .edit-model": "editModel",
 		"click .view-model": "endEdit",
-		"click .delete-model": "deleteModel",
+		"click .delete-model": "removeModel",
   },
   
   editModel: function(e) {
     this.$el.find(".view").hide();
-    this.$el.find(".edit").css("display", "inline-block");
+    this.$el.find(".edit").show();
     this.$el.find("textarea").trigger("autosize.resize");
   },
   
@@ -178,7 +178,12 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
     this.$el.find(".view").show();
   },
   
-  deleteModel: function(e) {
+  removeModel: function(e) {
+    this.parentView.removeModel(this.model);
+    var that = this;
+    this.$el.animate({ height: 0, opacity: 0 }, 'slow', function() {
+      that.close();
+    });
   },
   
   // If this is the first save, add to parentView.
@@ -310,7 +315,7 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     var that = this;
     $.each(this.modelArray, function(index, model) {
       var div = $('<div></div>');
-      that.insertView(new that.insertViewConstructor({model: model, parentView: this}));
+      that.insertView(new that.insertViewConstructor({model: model, parentView: that}));
     });
     
     return this;
