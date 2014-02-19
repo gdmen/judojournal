@@ -6,6 +6,13 @@
 JJ.Models.Tastypie = Backbone.Model.extend({
   
   /*
+   * [gdm] Reverting changes to most recent save.
+   */
+  discardChanges: function() {
+    console.log(this.previousAttributes());
+    this.set(this.previousAttributes());
+  },
+  /*
    * [gdm] Expands elements for easier manipulation.
    */
   hydrate: function() {

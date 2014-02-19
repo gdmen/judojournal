@@ -131,25 +131,6 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
     this.$el.html(this.template(this.model.toJSON()));
     
     this.$el.find("textarea").trigger("autosize.destroy").autosize({append: "\n"});
-    /*
-    var textareas = this.$el.find("textarea");
-    console.log("start");
-    var revert;
-    textareas.each(function() {
-      console.log(this);
-      revert = false;
-      if (this.style.display === "none") {
-        this.style.display = "inline-block";
-        revert = true;
-        console.log("HERE");
-      }
-      console.log(this.height);
-      console.log(this.scrollHeight);
-      if (revert) {
-        this.style.display = "none";
-      }
-      //this.autosize();
-    });*/
   /*
 		// Handles all modals for the page.
 		var modalWrapper = $(".modal-wrapper");
@@ -177,7 +158,7 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
 
   extendedEvents: {
 		"click .edit-model": "editModel",
-		"click .view-model": "viewModel",
+		"click .view-model": "endEdit",
 		"click .delete-model": "deleteModel",
   },
   
@@ -185,6 +166,11 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
     this.$el.find(".view").hide();
     this.$el.find(".edit").css("display", "inline-block");
     this.$el.find("textarea").trigger("autosize.resize");
+  },
+  
+  endEdit: function(e) {
+    this.model.discardChanges();
+    this.render();
   },
   
   viewModel: function(e) {
@@ -200,20 +186,23 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
 		this.parentView.addModel(model);
 	},
 	endSave: function(model) {
-    this.viewModel();
+    this.render();
 	},
-	
+  
 	initialize: function(options) {
 		this.parentView = options.parentView;
     if (_.isUndefined(options.model)) {
       options.model = new this.insertModelConstructor();
     }
     this.model = options.model;
-		var ret = JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
-    this.render();
+		return JJ.Views.AbstractEditModel.prototype.initialize.call(this, options);
+	},
+  
+  render: function() {
+		var ret = JJ.Views.AbstractEditModel.prototype.render.call(this);
     this.viewModel();
     return ret;
-	},
+  },
 });
 
 JJ.Views.EditNote = JJ.Views.EditListElement.extend({
@@ -246,17 +235,17 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     "click .add-model": "newModel",
   },
 	
-	
   /*
    * Spawns list element view.
    */
 	newModel: function(e) {
     console.log("NEW");
+    this.insertView(new this.insertViewConstructor({parentView: this}));
 	},
 	
   /*
    * Adds a saved model to the parent model's list.
-	 * Triggers ui save for parent model's view.
+	 * Triggers ui save for parent model's view.c
    */
   addModel: function(model) {
     console.log("addModel");
@@ -287,7 +276,7 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
    */
   removeModel: function(model) {
     console.log("removeModel");
-		this.modelArray.splice(index, 1);
+		this.modelArray.splice(this._getIndexByURI(model.get("resource_uri")), 1);
 		this.model.set(this.field, this.modelArray);
 		
     /*var that = this;
@@ -310,14 +299,18 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
     this.render();
   },
   
+  insertView: function(view) {
+    view.render();
+    this.$el.find(this.selectors.list).append(view.el);
+  },
+  
   render: function() {
     this.modelArray = this.model.get(this.field).slice(0);
     this.$el.html(this.template());
     var that = this;
     $.each(this.modelArray, function(index, model) {
       var div = $('<div></div>');
-      new that.insertViewConstructor({model: model, parentView: this, el: div});
-      that.$el.find(that.selectors.list).append(div);
+      that.insertView(new that.insertViewConstructor({model: model, parentView: this}));
     });
     
     return this;

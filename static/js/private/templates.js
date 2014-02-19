@@ -32,46 +32,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['entry/module/drill/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  
-  return "has-body ";
-  }
 
-function program3(depth0,data) {
-  
-  
-  return "\r\n    <div class=\"model-body-cap\"></div>\r\n  ";
-  }
-
-function program5(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n    <div class=\"model-body\">\r\n      <span class=\"view\">";
-  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</span>\r\n      <textarea class=\"edit\" name=\"";
-  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ":details\" placeholder=\"Details\">";
-  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</textarea>\r\n    </div>\r\n  ";
-  return buffer;
-  }
-
-  buffer += "\r\n<li class=\"";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "model-entry columns\">\r\n  ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  <div class=\"model-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"view tiny alert radius delete-model\">remove</button>\r\n      <button class=\"view tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n      <button class=\"edit tiny secondary radius view-model\">done</button>\r\n      <div id=\"";
+  buffer += "\r\n<li class=\"has-body model-entry columns\">\r\n  <div class=\"model-body-cap\"></div>\r\n  <div class=\"model-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"view tiny alert radius delete-model\">remove</button>\r\n      <button class=\"view tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n      <button class=\"edit tiny secondary radius view-model\">close</button>\r\n      <div id=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -87,10 +51,19 @@ function program5(depth0,data) {
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n    </div>\r\n  </div>\r\n  ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</li>";
+    + "\" />\r\n    </div>\r\n  </div>\r\n  <div class=\"model-body\">\r\n    <span class=\"view\">";
+  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\r\n    <textarea class=\"edit\" name=\"";
+  if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":details\" placeholder=\"Details\">";
+  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</textarea>\r\n  </div>\r\n</li>";
   return buffer;
   });
 templates['entry/module/note/list'] = template(function (Handlebars,depth0,helpers,partials,data) {
