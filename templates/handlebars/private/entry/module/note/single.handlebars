@@ -1,12 +1,24 @@
 {{! private/entry/module/note/single }}
-<div id="{{ cid }}-save" class="modal-save disabled">
-	<i class="saving fa fa-spinner fa-spin"></i>
-	<i class="enabled fa fa-floppy-o"></i>
-	<i class="disabled fa fa-check"></i>
-</div>
-<div class="modal-header">
-	<div><h3>Note</h3></div>
-	<input required type="text" name="{{ cid }}:title" class="focus" placeholder="Title" value="{{ title }}" />
-</div>
-<textarea name="{{ cid }}:details" placeholder="Details">{{ details }}</textarea>
-<button class="tiny secondary radius left close-modal">close</button>
+<li class="has-body model-entry columns">
+  <div class="model-body-cap"></div>
+  <div class="model-header">
+    <div class="buttons">
+      <button class="view tiny alert radius delete-model">remove</button>
+      <button class="view tiny success radius edit-model">edit <i class="fa fa-pencil"></i ></button>
+      <button class="edit tiny secondary radius view-model">close</button>
+      <div id="{{ cid }}-save" class="edit save-model disabled">
+        <i class="saving fa fa-spinner fa-spin"></i>
+        <i class="enabled fa fa-floppy-o"></i>
+        <i class="disabled fa fa-check"></i>
+      </div>
+    </div>
+    <div class="model-title">
+      <span class="view">{{ title }}</span>
+      <input class="edit" type="text" name="{{ cid }}:title" class="focus" placeholder="Title" value="{{ title }}" />
+    </div>
+  </div>
+  <div class="model-body">
+    <span class="view">{{ details }}</span>
+    <textarea class="edit" name="{{ cid }}:details" placeholder="Details">{{ details }}</textarea>
+  </div>
+</li>

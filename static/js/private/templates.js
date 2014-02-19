@@ -69,58 +69,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['entry/module/note/list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "";
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n      <li class=\"";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "model-entry columns\">\r\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        <div class=\"model-header\">\r\n          <div class=\"buttons\" data-uri=\"";
-  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\r\n            <button class=\"tiny alert radius delete-model\">remove</button>\r\n            <button class=\"tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n          </div>\r\n          <div class=\"model-title\">\r\n            ";
-  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\r\n          </div>\r\n        </div>\r\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n      </li>\r\n    ";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  
-  return "has-body ";
-  }
 
-function program4(depth0,data) {
-  
-  
-  return "\r\n          <div class=\"model-body-cap\"></div>\r\n        ";
-  }
-
-function program6(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n          <div class=\"model-body\">\r\n            ";
-  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\r\n          </div>\r\n        ";
-  return buffer;
-  }
-
-  buffer += "\r\n<div class=\"module-section note\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add <i class=\"fa fa-plus\"></i></button>\r\n    </div>\r\n    <h3 class=\"list-title\">Notes</h3>\r\n  </div>\r\n  <div class=\"row modal-wrapper\">\r\n    <div class=\"click-away-overlay\"></div>\r\n    <div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n    ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </ul>\r\n</div>";
+  buffer += "\r\n<div class=\"module-section note\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add <i class=\"fa fa-plus\"></i></button>\r\n    </div>\r\n    <h3 class=\"list-title\">Notes</h3>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n  </ul>\r\n</div>";
   return buffer;
   });
 templates['entry/module/note/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -129,11 +81,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "\r\n<div id=\"";
+  buffer += "\r\n<li class=\"has-body model-entry columns\">\r\n  <div class=\"model-body-cap\"></div>\r\n  <div class=\"model-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"view tiny alert radius delete-model\">remove</button>\r\n      <button class=\"view tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n      <button class=\"edit tiny secondary radius view-model\">close</button>\r\n      <div id=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-save\" class=\"modal-save disabled\">\r\n	<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n	<i class=\"enabled fa fa-floppy-o\"></i>\r\n	<i class=\"disabled fa fa-check\"></i>\r\n</div>\r\n<div class=\"modal-header\">\r\n	<div><h3>Note</h3></div>\r\n	<input required type=\"text\" name=\"";
+    + "-save\" class=\"edit save-model disabled\">\r\n        <i class=\"saving fa fa-spinner fa-spin\"></i>\r\n        <i class=\"enabled fa fa-floppy-o\"></i>\r\n        <i class=\"disabled fa fa-check\"></i>\r\n      </div>\r\n    </div>\r\n    <div class=\"model-title\">\r\n      <span class=\"view\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\r\n      <input class=\"edit\" type=\"text\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -141,7 +97,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n</div>\r\n<textarea name=\"";
+    + "\" />\r\n    </div>\r\n  </div>\r\n  <div class=\"model-body\">\r\n    <span class=\"view\">";
+  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\r\n    <textarea class=\"edit\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -149,68 +109,16 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n<button class=\"tiny secondary radius left close-modal\">close</button>";
+    + "</textarea>\r\n  </div>\r\n</li>";
   return buffer;
   });
 templates['entry/module/sparring/list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "";
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n      <li class=\"";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "model-entry columns\">\r\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        <div class=\"model-header\">\r\n          <div class=\"buttons\" data-uri=\"";
-  if (helper = helpers.resource_uri) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.resource_uri); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\r\n            <button class=\"tiny alert radius delete-model\">remove</button>\r\n            <button class=\"tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n          </div>\r\n          <div class=\"model-title\">\r\n            ";
-  if (helper = helpers.partner) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.partner); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + " (";
-  if (helper = helpers.minutes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.minutes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + " minutes)\r\n          </div>\r\n        </div>\r\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.details), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n      </li>\r\n    ";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  
-  return "has-body ";
-  }
 
-function program4(depth0,data) {
-  
-  
-  return "\r\n          <div class=\"model-body-cap\"></div>\r\n        ";
-  }
-
-function program6(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n          <div class=\"model-body\">\r\n            ";
-  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\r\n          </div>\r\n        ";
-  return buffer;
-  }
-
-  buffer += "\r\n<div class=\"module-section sparring\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add <i class=\"fa fa-plus\"></i></button>\r\n    </div>\r\n    <h3 class=\"list-title\">Sparring</h3>\r\n  </div>\r\n  <div class=\"row modal-wrapper\">\r\n    <div class=\"click-away-overlay\"></div>\r\n    <div class=\"small-centered small-10 medium-8 large-6 columns modal\"></div>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n    ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  </ul>\r\n</div>";
+  buffer += "\r\n<div class=\"module-section sparring\">\r\n  <div class=\"section-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"tiny secondary radius add-model\">add <i class=\"fa fa-plus\"></i></button>\r\n    </div>\r\n    <h3 class=\"list-title\">Sparring</h3>\r\n  </div>\r\n  <ul class=\"model-list row\">\r\n  </ul>\r\n</div>";
   return buffer;
   });
 templates['entry/module/sparring/single'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -219,11 +127,19 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "\r\n<div id=\"";
+  buffer += "\r\n<li class=\"has-body model-entry columns\">\r\n  <div class=\"model-body-cap\"></div>\r\n  <div class=\"model-header\">\r\n    <div class=\"buttons\">\r\n      <button class=\"view tiny alert radius delete-model\">remove</button>\r\n      <button class=\"view tiny success radius edit-model\">edit <i class=\"fa fa-pencil\"></i ></button>\r\n      <button class=\"edit tiny secondary radius view-model\">close</button>\r\n      <div id=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "-save\" class=\"modal-save disabled\">\r\n	<i class=\"saving fa fa-spinner fa-spin\"></i>\r\n	<i class=\"enabled fa fa-floppy-o\"></i>\r\n	<i class=\"disabled fa fa-check\"></i>\r\n</div>\r\n<div class=\"modal-header\">\r\n	<div><h3>Sparring Round</h3></div>\r\n	<input required type=\"text\" name=\"";
+    + "-save\" class=\"edit save-model disabled\">\r\n        <i class=\"saving fa fa-spinner fa-spin\"></i>\r\n        <i class=\"enabled fa fa-floppy-o\"></i>\r\n        <i class=\"disabled fa fa-check\"></i>\r\n      </div>\r\n    </div>\r\n    <div class=\"model-title\">\r\n      <span class=\"view\">";
+  if (helper = helpers.partner) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.partner); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " (";
+  if (helper = helpers.minutes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.minutes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " minutes)</span>\r\n      <input class=\"edit\" type=\"text\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -231,7 +147,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.partner) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.partner); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n	<input required type=\"number\" name=\"";
+    + "\" />\r\n      <input class=\"edit\" type=\"number\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -239,7 +155,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.minutes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.minutes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" />\r\n</div>\r\n<textarea name=\"";
+    + "\" />\r\n    </div>\r\n  </div>\r\n  <div class=\"model-body\">\r\n    <span class=\"view\">";
+  if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\r\n    <textarea class=\"edit\" name=\"";
   if (helper = helpers.cid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.cid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -247,7 +167,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</textarea>\r\n<button class=\"tiny secondary radius left close-modal\">close</button>";
+    + "</textarea>\r\n  </div>\r\n</li>";
   return buffer;
   });
 templates['entry/select'] = template(function (Handlebars,depth0,helpers,partials,data) {

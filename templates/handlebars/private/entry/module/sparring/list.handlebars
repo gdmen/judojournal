@@ -6,31 +6,6 @@
     </div>
     <h3 class="list-title">Sparring</h3>
   </div>
-  <div class="row modal-wrapper">
-    <div class="click-away-overlay"></div>
-    <div class="small-centered small-10 medium-8 large-6 columns modal"></div>
-  </div>
   <ul class="model-list row">
-    {{#each models}}
-      <li class="{{#if details}}has-body {{/if}}model-entry columns">
-        {{#if details}}
-          <div class="model-body-cap"></div>
-        {{/if}}
-        <div class="model-header">
-          <div class="buttons" data-uri="{{ resource_uri }}">
-            <button class="tiny alert radius delete-model">remove</button>
-            <button class="tiny success radius edit-model">edit <i class="fa fa-pencil"></i ></button>
-          </div>
-          <div class="model-title">
-            {{ partner }} ({{ minutes }} minutes)
-          </div>
-        </div>
-        {{#if details}}
-          <div class="model-body">
-            {{ details }}
-          </div>
-        {{/if}}
-      </li>
-    {{/each}}
   </ul>
 </div>

@@ -791,6 +791,10 @@ footer {
                 padding-bottom: 0.125rem;
                 height: 2rem;
               }
+              input.edit +
+              input.edit {
+                margin-top: 0.5rem;
+              }
             }
             .buttons {
               float: right;

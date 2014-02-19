@@ -164,7 +164,7 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
   
   editModel: function(e) {
     this.$el.find(".view").hide();
-    this.$el.find(".edit").show();
+    this.$el.find(".edit").css("display", "block");
     this.$el.find("textarea").trigger("autosize.resize");
   },
   
@@ -737,8 +737,8 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
     
     // AbstractEditModelList's
     new JJ.Views.EditDrillList({model: this.model, el: this.$el.find("#drills")});
-    //new JJ.Views.EditSparringList({model: this.model, el: this.$el.find("#sparring")});
-    //new JJ.Views.EditNoteList({model: this.model, el: this.$el.find("#notes")});
+    new JJ.Views.EditSparringList({model: this.model, el: this.$el.find("#sparring")});
+    new JJ.Views.EditNoteList({model: this.model, el: this.$el.find("#notes")});
     
     // DOM JS linking
     this.linkDOM();
