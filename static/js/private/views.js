@@ -662,8 +662,14 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 		});
 		this.dateEl.datepicker("setDate", this.model.get("start"));
     this.$el.find(".entry-save").scrollToFixed({
-      preFixed: function() { $(this).css('margin-top', '1rem'); },
-      postFixed: function() { $(this).css('margin-top', ''); }
+      preFixed: function() {
+        $(this).css("margin-top", "1rem");
+        $(".entry-header").css("margin-top", "-1rem");
+      },
+      postFixed: function() {
+        $(this).css("margin-top", "");
+        $(".entry-header").css("margin-top", "");
+      }
     });
   },
   
