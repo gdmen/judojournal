@@ -282,9 +282,12 @@ JJ.Views.AbstractEditModelList = JJ.Views.AbstractView.extend({
   removeModel: function(model) {
     console.log("removeModel");
     var index = this._getIndexByURI(model.get("resource_uri"));
+    console.log(index);
     if (index > -1) {
       this.modelArray.splice(index, 1);
       this.model.set(this.field, this.modelArray);
+      this.modelArray = this.model.get(this.field).slice(0);
+      this.model.parentView.enableSave();
     }
 		
     /*var that = this;
