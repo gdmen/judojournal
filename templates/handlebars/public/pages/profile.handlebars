@@ -1,34 +1,45 @@
 {{! public/pages/profile }}
 <div class="row profile public">
-  <div class="large-2 columns profile-header">
-    <div class="profile-badge">
-      <div class="square-dummy"></div>
-      <div class="profile-badge-padding">
-        <div class="image"><img src="/static/img/profile.png"></div>
-      </div>
-    </div>
-    <div class="profile-meta">
-      <h5 class="username">
-        gary menezes
-      </h5>
-    </div>
-  </div>
-
-  <div class="large-6 columns profile-feed">
-    <ul class="entry-list">
-      {{#each entries }}
-        <li>
-          <div class="entry-right">
-            <a class="link" href="{{ link }}">view</a>
+  <div class="medium-11 large-8 large-centered columns">
+    <div class="row">
+      <div class="medium-3 columns profile-header">
+      
+        <div class="row">
+        
+          <div class="small-6 medium-12 columns">
+            <div class="profile-badge">
+              <div class="square-dummy"></div>
+              <div class="profile-badge-padding">
+                <div class="image"><img src="/static/img/profile.png"></div>
+              </div>
+            </div>
           </div>
-          <h2 class="title entry-left">{{> partials/rating }} {{ art.name }} {{ type.name }}</h2>
-          <div class="date entry-left">{{ date }}</div>
-        </li>
-      {{/each}}
-    </ul>
-  </div>
-  
-  <div class="large-4 columns end comments">
-    comments
+          
+          <div class="small-6 medium-12 columns">
+            <div class="profile-meta">
+              <h5 class="username">
+                gary menezes
+              </h5>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="medium-9 columns profile-feed">
+        <ul class="entry-list">
+          {{#each entries }}
+            <li>
+              <div class="entry-right">
+                <a class="link" href="{{ link }}">view</a>
+              </div>
+              <h2 class="title entry-left">{{> partials/rating }} {{ art.name }} {{ type.name }}</h2>
+              <div class="date entry-left">{{ date }}</div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      
+    </div>
   </div>
 </div>
