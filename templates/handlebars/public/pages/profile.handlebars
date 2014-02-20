@@ -18,8 +18,9 @@
           <div class="small-6 medium-12 columns">
             <div class="profile-meta">
               <h5 class="username">
-                TODO - username
+                {{ username }}
               </h5>
+              <a href="data:application/octet-stream,{{ exportContent }}" download="{{ exportName }}">Export JSON</a>
             </div>
           </div>
           

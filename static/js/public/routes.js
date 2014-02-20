@@ -24,10 +24,13 @@ function homeRoute() {
 function profileRoute(username) {
   console.log("PROFILE");
   console.log(username);
+  if (!username) {
+    username = JJ.Meta.user.username;
+  }
   var entries = new JJ.Models.JudoEntryCollection();
   entries.fetch({
     success: function(c) {
-      JJ.AppView.showView(new JJ.Views.Profile({entries: c}));
+      JJ.AppView.showView(new JJ.Views.Profile({entries: c, username: username}));
     },
     error: JJ.Util.backboneError,
   });

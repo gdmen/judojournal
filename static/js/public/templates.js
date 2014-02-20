@@ -197,7 +197,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['pages/profile'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -221,7 +221,19 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  buffer += "\r\n<div class=\"row profile public\">\r\n  <div class=\"medium-11 large-8 large-centered columns\">\r\n    <div class=\"row\">\r\n      <div class=\"medium-3 columns profile-header\">\r\n      \r\n        <div class=\"row\">\r\n        \r\n          <div class=\"small-6 medium-12 columns\">\r\n            <div class=\"profile-badge\">\r\n              <div class=\"square-dummy\"></div>\r\n              <div class=\"profile-badge-padding\">\r\n                <div class=\"image\"><img src=\"/static/img/profile.png\"></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          \r\n          <div class=\"small-6 medium-12 columns\">\r\n            <div class=\"profile-meta\">\r\n              <h5 class=\"username\">\r\n                gary menezes\r\n              </h5>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"medium-9 columns profile-feed\">\r\n        <ul class=\"entry-list\">\r\n          ";
+  buffer += "\r\n<div class=\"row profile public\">\r\n  <div class=\"medium-11 large-8 large-centered columns\">\r\n    <div class=\"row\">\r\n      <div class=\"medium-3 columns profile-header\">\r\n      \r\n        <div class=\"row\">\r\n        \r\n          <div class=\"small-6 medium-12 columns\">\r\n            <div class=\"profile-badge\">\r\n              <div class=\"square-dummy\"></div>\r\n              <div class=\"profile-badge-padding\">\r\n                <div class=\"image\"><img src=\"/static/img/profile.png\"></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          \r\n          <div class=\"small-6 medium-12 columns\">\r\n            <div class=\"profile-meta\">\r\n              <h5 class=\"username\">\r\n                ";
+  if (helper = helpers.username) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.username); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\r\n              </h5>\r\n              <a href=\"data:application/octet-stream,";
+  if (helper = helpers.exportContent) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.exportContent); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" download=\"";
+  if (helper = helpers.exportName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.exportName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Export JSON</a>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"medium-9 columns profile-feed\">\r\n        <ul class=\"entry-list\">\r\n          ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.entries), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n        </ul>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n</div>";

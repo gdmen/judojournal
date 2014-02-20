@@ -67,6 +67,8 @@ JJ.Views.Profile = JJ.Views.AbstractPage.extend({
       this.json.entries[i].link = JJ.Util.links.view.entry(this.json.entries[i].id);
       this.json.entries[i].date = dateFormat(this.json.entries[i].start, JJ.Views.Util.dateFormat.date);
     }
+    this.json.exportContent = escape(JSON.stringify(this.json));
+    this.json.exportName = this.json.username + "_" + dateFormat(new Date(), JJ.Views.Util.dateFormat.filename) + ".json";
     console.log(this.json);
     this.$el.html(this.template(this.json));
     return this;

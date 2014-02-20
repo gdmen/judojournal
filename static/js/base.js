@@ -67,6 +67,11 @@ JJ.Models = {};
 JJ.Views = {};
 
 JJ.Meta.name = "JudoJournal";
+if (djangoUser) {
+  JJ.Meta.user = {
+    username: djangoUser.username,
+  };
+}
 
 JJ.Util.log = function(s) {
   console.log(s);
@@ -125,12 +130,8 @@ JJ.Views.Util = {
     hour: "hh",
     min: "MM",
     period: "TT",
+    filename: "yyyymmdd_HHMMss",
   },
-}
-if (djangoUser) {
-  JJ.Views.Util.user = {
-    name: djangoUser.name,
-  };
 }
 
 /*

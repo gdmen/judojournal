@@ -522,6 +522,7 @@ footer {
         &.has-title {
           .model-body {
             border-top: none;
+            margin-top: 1px;
           }
         }
       }
@@ -760,6 +761,9 @@ footer {
       }
       .model-list {
         .model-entry {
+          .model-body {
+            border-top: none;
+          }
           .model-header {
             display: block;
             width: 100%;
