@@ -177,7 +177,8 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/entry/judo/",
 
 	defaults: function() {
-		var now = new Date;
+    var coeff = 1000 * 60 * 5;
+		var now = new Date(Math.round((new Date()).getTime() / coeff) * coeff);
 		return {
 			rating: 3,
 			start: now,

@@ -715,7 +715,8 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
       //var selectedDate = dateFormat(datetime, JJ.Views.Util.dateFormat.date);
       var selectedHour = dateFormat(datetime, JJ.Views.Util.dateFormat.hour);
       var selectedMinute = dateFormat(datetime, JJ.Views.Util.dateFormat.min);
-			selectedMinute = String(parseInt(selectedMinute) - parseInt(selectedMinute)%5);
+      selectedMinute = parseInt(selectedMinute) - parseInt(selectedMinute)%5;
+			selectedMinute = selectedMinute > 9 ? "" + selectedMinute: "0" + selectedMinute;
       var selectedPeriod = dateFormat(datetime, JJ.Views.Util.dateFormat.period);
 			var i;
 			for (i = 1; i <= 12; i++) {
