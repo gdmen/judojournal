@@ -82,9 +82,9 @@ JJ.Util.backboneError = function(response) {
 }
 
 JJ.Util.unknownRoute = function(url) {
-  //window.location = "/";
   console.log("UNKNOWN ROUTE");
   console.log(url);
+  window.location = "/";
 }
 
 JJ.Util.links = {
