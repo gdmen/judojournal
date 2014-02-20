@@ -10,6 +10,7 @@
     "date.format": "latest",
     "font-awesome": "latest",
 		"jquery-ui": "latest",
-		"jquery-autosize": "latest"
+		"jquery-autosize": "latest",
+    "showdown": "latest"
   }
 }

@@ -155,3 +155,5 @@ JJ.Views.AbstractView = Backbone.View.extend({
 	//onClose: function () {
 	//},
 });
+
+JJ.Markdown = new Showdown.converter();

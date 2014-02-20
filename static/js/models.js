@@ -11,12 +11,23 @@ JJ.Models.Tastypie = Backbone.Model.extend({
   discardChanges: function() {
     console.log(this.previousAttributes());
     this.set(this.previousAttributes());
+    return this;
+  },
+  /*
+   * [gdm] Compiles certain fields to markdown.
+   */
+  compileDisplay: function() {
+    return this;
+  },
+  _markdown: function(field) {
+    this.set(field, JJ.Markdown.makeHtml(this.get(field)));
   },
   /*
    * [gdm] Expands elements for easier manipulation.
    */
   hydrate: function() {
 		console.log("HYDRATING ENTRY " + this.cid);
+    return this;
   },
   /*
    * [gdm] Dehydrates elements for saving.
@@ -41,7 +52,15 @@ JJ.Models.Tastypie = Backbone.Model.extend({
     this._isSerializing = true;
     var json = _.clone(this.attributes);
     _.each(json, function(value, name) {
-      _.isFunction(value.toJSON) && (json[name] = value.toJSON());
+      if (_.isFunction(value.toJSON)) {
+        json[name] = value.toJSON();
+      } else if (_.isArray(value)) {
+        $.each(value, function(index, element) {
+          if (_.isFunction(element.toJSON)) {
+            json[name][index] = element.toJSON();
+          } 
+        });
+      }
     });
     this._isSerializing = false;
     // Also return cid
@@ -116,7 +135,11 @@ JJ.Models.LocationCollection = JJ.Models.TastypieCollection.extend({
 JJ.Models.NoteEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/module/note/",
   defaults: {
-  }
+  },
+  compileDisplay: function() {
+    this._markdown("details");
+    return this;
+  },
 });
 
 /*
@@ -125,7 +148,11 @@ JJ.Models.NoteEntryModule = JJ.Models.Tastypie.extend({
 JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/module/drill/",
   defaults: {
-  }
+  },
+  compileDisplay: function() {
+    this._markdown("details");
+    return this;
+  },
 });
 
 /*
@@ -134,7 +161,11 @@ JJ.Models.DrillEntryModule = JJ.Models.Tastypie.extend({
 JJ.Models.SparringEntryModule = JJ.Models.Tastypie.extend({
   urlRoot: "/api/v1/module/sparring/",
   defaults: {
-  }
+  },
+  compileDisplay: function() {
+    this._markdown("details");
+    return this;
+  },
 });
 
 /*
@@ -155,6 +186,20 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 		};
 	},
   
+  compileDisplay: function() {
+    this.hydrate();
+		this._markdownArray("notes");
+		this._markdownArray("drills");
+		this._markdownArray("sparring");
+    return this;
+  },
+	_markdownArray: function(field, type) {
+    var arr = this.get(field);
+    for (var i=arr.length; i--;) {
+      arr[i].compileDisplay();
+    }
+	},
+  
   /*
    * Expands elements for easier manipulation.
    */
@@ -171,6 +216,7 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 		this._hydrateArray("notes", JJ.Models.NoteEntryModule);
 		this._hydrateArray("drills", JJ.Models.DrillEntryModule);
 		this._hydrateArray("sparring", JJ.Models.SparringEntryModule);
+    return this;
   },
 	_hydrateArray: function(field, type) {
     var arr = this.get(field);

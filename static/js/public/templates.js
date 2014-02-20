@@ -61,8 +61,8 @@ function program9(depth0,data) {
   buffer += "\r\n                  <div class=\"model-body\">\r\n                    ";
   if (helper = helpers.details) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.details); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\r\n                  </div>\r\n                ";
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n                  </div>\r\n                ";
   return buffer;
   }
 
