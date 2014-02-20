@@ -40,7 +40,6 @@ JJ.Views.Home = JJ.Views.AbstractPage.extend({
   template: Handlebars.templates["pages/home"],
   
   render: function() {
-    this.json.name = JJ.Meta.name;
     this.json.links = {
       newEntry: JJ.Util.links.edit.entry("new"),
       profile: "/profile",
@@ -60,7 +59,6 @@ JJ.Views.Profile = JJ.Views.AbstractPage.extend({
   template: Handlebars.templates["pages/profile"],
   
   render: function() {
-    this.json.name = JJ.Meta.name;
     this.json.entries = this.json.entries.toJSON();
     var i;
     for (i = 0; i < this.json.entries.length; i++) {
