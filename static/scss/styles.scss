@@ -305,64 +305,38 @@ footer {
   .profile-header {
     $profile-header-height: 10rem;
     $profile-badge-padding: 0.5rem;
-    $profile-meta-height: (8/10 * $profile-header-height);
-    $profile-menu-height: (2/10 * $profile-header-height);
-    $profile-menu-color: $accent-gray;
-    border-bottom: 3px solid $profile-menu-color;
-    margin-bottom: 0.5rem;
     .profile-badge {
-      background-color: #FFF;
-      border: 1px solid $light-border-color;
-      float: left;
-      margin-right: 1rem;
-      padding: $profile-badge-padding;
+      display: inline-block;
       position: relative;
-      height: $profile-header-height;
-      width: $profile-header-height;
-      .image {
-        overflow: hidden;
-        height: 100%;
-        width: 100%;
-        img {
+      width: 100%;
+      .square-dummy {
+        margin-top: 100%;
+      }
+      .profile-badge-padding {
+        background-color: #FFF;
+        border: 1px solid $light-border-color;
+        padding: $profile-badge-padding;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        .image {
+          overflow: hidden;
+          height: 100%;
           width: 100%;
+          img {
+            width: 100%;
+          }
         }
       }
     }
     .profile-meta {
-      height: $profile-meta-height;
+      text-align: center;
       .username {
         @include text-ellipsis();
         display: block;
         white-space: normal;
-      }
-    }
-    .profile-menu {
-      $menu-tab-radius: 0.5rem;
-      display: inline-block;
-      height: $profile-menu-height;
-      list-style-type: none;
-      margin: 0;
-      white-space: nowrap;
-      li {
-        @include opacity(0.5);
-        @include side-radius("top", $menu-tab-radius);
-        background-color: $profile-menu-color;
-        display: inline-block;
-        padding: 0.25rem 0.75rem 0 0.75rem;
-        &:hover {
-          cursor: pointer;
-        }
-        &.inactive:hover {
-          @include opacity(0.75);
-        }
-        &.active {
-          @include opacity(1);
-        }
-        .title {
-          color: scale-color($profile-menu-color, $lightness: -75%, $saturation: +10%);
-          font-size: 1.25rem;
-          margin: 0;
-        }
       }
     }
   }
