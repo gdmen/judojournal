@@ -48,7 +48,7 @@
           </div>
           <ul class="model-list row">
             {{#each drills}}
-              <li class="{{#if details}}has-body {{/if}}model-entry columns">
+              <li class="{{#if name}}has-title {{/if}}{{#if details}}has-body {{/if}}model-entry columns">
                 {{#if details}}
                   <div class="model-body-cap"></div>
                 {{/if}}
@@ -61,7 +61,7 @@
                 {{/if}}
                 {{#if details}}
                   <div class="model-body">
-                    {{{ details }}}
+                    {{{ compiled_details }}}
                   </div>
                 {{/if}}
               </li>
@@ -79,7 +79,7 @@
           </div>
           <ul class="model-list row">
             {{#each sparring}}
-              <li class="{{#if details}}has-body {{/if}}model-entry columns">
+              <li class="{{#if partner}}has-title {{/if}}{{#if details}}has-body {{/if}}model-entry columns">
                 {{#if details}}
                   <div class="model-body-cap"></div>
                 {{/if}}
@@ -92,7 +92,7 @@
                 {{/if}}
                 {{#if details}}
                   <div class="model-body">
-                    {{{ details }}}
+                    {{{ compiled_details }}}
                   </div>
                 {{/if}}
               </li>
@@ -110,7 +110,7 @@
           </div>
           <ul class="model-list row">
             {{#each notes}}
-              <li class="{{#if details}}has-body {{/if}}model-entry columns">
+              <li class="{{#if title}}has-title {{/if}}{{#if details}}has-body {{/if}}model-entry columns">
                 {{#if details}}
                   <div class="model-body-cap"></div>
                 {{/if}}
@@ -123,7 +123,7 @@
                 {{/if}}
                 {{#if details}}
                   <div class="model-body">
-                    {{{ details }}}
+                    {{{ compiled_details }}}
                   </div>
                 {{/if}}
               </li>

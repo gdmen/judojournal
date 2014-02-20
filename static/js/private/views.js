@@ -121,6 +121,7 @@ JJ.Views.AbstractEditModel = JJ.Views.AbstractView.extend({
 		this.selectors = {};
 		this.selectors["save"] = "#" + this.model.cid + "-save";
 		this.baseEvents["click " + this.selectors.save + ".enabled"] = "save";
+    console.log(this.model);
 		this.model.on("change", this.enableSave, this);
 		// TODO - fix where this is used. It's weird.
 		this.model.parentView = this;

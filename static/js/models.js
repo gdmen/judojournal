@@ -20,13 +20,14 @@ JJ.Models.Tastypie = Backbone.Model.extend({
     return this;
   },
   _markdown: function(field) {
-    this.set(field, JJ.Markdown.makeHtml(this.get(field)));
+    !_.isUndefined(this.get(field)) && this.set("compiled_" + field, JJ.Markdown.makeHtml(this.get(field)));
   },
   /*
    * [gdm] Expands elements for easier manipulation.
    */
   hydrate: function() {
 		console.log("HYDRATING ENTRY " + this.cid);
+    this.compileDisplay();
     return this;
   },
   /*
@@ -55,10 +56,11 @@ JJ.Models.Tastypie = Backbone.Model.extend({
       if (_.isFunction(value.toJSON)) {
         json[name] = value.toJSON();
       } else if (_.isArray(value)) {
+        json[name] = _.clone(value);
         $.each(value, function(index, element) {
           if (_.isFunction(element.toJSON)) {
             json[name][index] = element.toJSON();
-          } 
+          }
         });
       }
     });
@@ -187,13 +189,12 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 	},
   
   compileDisplay: function() {
-    this.hydrate();
 		this._markdownArray("notes");
 		this._markdownArray("drills");
 		this._markdownArray("sparring");
     return this;
   },
-	_markdownArray: function(field, type) {
+	_markdownArray: function(field) {
     var arr = this.get(field);
     for (var i=arr.length; i--;) {
       arr[i].compileDisplay();
@@ -216,6 +217,7 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 		this._hydrateArray("notes", JJ.Models.NoteEntryModule);
 		this._hydrateArray("drills", JJ.Models.DrillEntryModule);
 		this._hydrateArray("sparring", JJ.Models.SparringEntryModule);
+    this.compileDisplay();
     return this;
   },
 	_hydrateArray: function(field, type) {

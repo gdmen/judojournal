@@ -516,6 +516,7 @@ footer {
           display: inline-block;
           padding: 0.25rem;
           .model-title {
+            font-size: 1.125rem;
             padding: 0.25rem;
           }
         }
@@ -537,11 +538,15 @@ footer {
             position: relative;
           }
           .model-body {
-            border-top: none;
             display: block;
             margin-left: 0.5rem;
             padding: 0.25rem 1rem 0.5rem 1rem;
             position: relative;
+          }
+        }
+        &.has-title {
+          .model-body {
+            border-top: none;
           }
         }
       }

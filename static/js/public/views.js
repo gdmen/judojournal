@@ -86,7 +86,7 @@ JJ.Views.ViewJudoEntry = JJ.Views.AbstractPage.extend({
   },
   
   render: function() {
-    this.model.compileDisplay();
+    this.model.hydrate();
     this.json = this.model.toJSON();
     this.json.links = {
       newEntry: JJ.Util.links.edit.entry("new"),
