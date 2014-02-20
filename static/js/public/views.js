@@ -92,6 +92,23 @@ JJ.Views.ViewJudoEntry = JJ.Views.AbstractPage.extend({
     this.json.links = {
       newEntry: JJ.Util.links.edit.entry("new"),
     };
+    var start = this.model.get("start");
+    var end = this.model.get("end");
+    var duration = (end - start) / (1000 * 60); //in total minutes
+    var hours = Math.floor(duration / 60);
+    var minutes = duration % 60;
+    this.json.displayStart = dateFormat(start, JJ.Views.Util.dateFormat.displayTime);
+    this.json.displayEnd = dateFormat(end, JJ.Views.Util.dateFormat.displayTime);
+    this.json.displayDuration = "";
+    if (hours > 0) {
+      this.json.displayDuration += hours + " hours";
+      if (minutes > 0) {
+        this.json.displayDuration += " "
+      } 
+    } if (minutes > 0) {
+      this.json.displayDuration += minutes + " minutes"
+    }
+    this.json.displayDate = dateFormat(start, JJ.Views.Util.dateFormat.displayDate);
     console.log(this.json);
     this.$el.html(this.template(this.json));
     return this;

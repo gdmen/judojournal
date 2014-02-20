@@ -582,6 +582,7 @@ JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
 		var datetime = new Date(date + " " + hour + ":" + minute + " " + period);
 		if (!isNaN(datetime.getTime())) {
 			this.model.set(this.field, datetime);
+      this.displayEl.html(dateFormat(datetime, JJ.Views.Util.dateFormat.displayTime));
 			console.log("Set " + this.field + " time:");
 			console.log(this.model.get(this.field));
 		} else {
@@ -595,6 +596,7 @@ JJ.Views.TimeSelect = JJ.Views.AbstractView.extend({
 		this.hours = options.hours;
 		this.minutes = options.minutes;
 		this.periods = options.periods;
+    this.displayEl = options.displayEl;
     this.render();
   },
   
@@ -656,6 +658,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 		$.each(this.timeSelects, function(index, view) {
 			view.change();
 		});
+    this.$el.find(".display.date").html(dateFormat(this.model.get("start"), JJ.Views.Util.dateFormat.displayDate));
 	},
   
   /*
@@ -690,6 +693,9 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 				checked: i === this.model.get("rating"),
 			});
 		}
+    json.displayStart = dateFormat(this.model.get("start"), JJ.Views.Util.dateFormat.displayTime);
+    json.displayEnd = dateFormat(this.model.get("end"), JJ.Views.Util.dateFormat.displayTime);
+    json.displayDate = dateFormat(this.model.get("start"), JJ.Views.Util.dateFormat.displayDate);
     this.$el.html(this.template(json));
     
     // AbstractSelectModelList's
@@ -744,6 +750,7 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
 					el: that.$el.find("#" + name),
 					field: name,
 					dateEl: that.dateEl,
+          displayEl: that.$el.find(".display." + name),
 					hours: hours,
 					minutes: minutes,
 					periods: periods

@@ -130,6 +130,8 @@ JJ.Views.Util = {
     hour: "hh",
     min: "MM",
     period: "TT",
+    displayTime: "h:MMTT",
+    displayDate: "dddd, dd mmm yyyy",
     filename: "yyyymmdd_HHMMss",
   },
 }
