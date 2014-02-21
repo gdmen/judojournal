@@ -94,9 +94,9 @@ JJ.Util.links = {
     },
   },
   edit: {
-    prefix: "/m",
+    prefix: "/m/",
     entry: function(id) {
-      return this.prefix + "/#/entry/" + id;
+      return this.prefix + "#/entry/" + id;
     },
   },
 }
@@ -122,6 +122,11 @@ JJ.Util.throttle = function(callback, delay) {
 			callback.apply(null, arguments);
 		}
 	};
+}
+
+JJ.Util.WrapVideos = function(el) {
+  var videos = el.find("iframe[src^='//www.youtube.com']");
+  videos.wrap("<div class='videoWrapper'></div>");
 }
 
 JJ.Views.Util = {

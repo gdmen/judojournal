@@ -53,12 +53,12 @@ JJ.Models.Tastypie = Backbone.Model.extend({
     this._isSerializing = true;
     var json = _.clone(this.attributes);
     _.each(json, function(value, name) {
-      if (_.isFunction(value.toJSON)) {
+      if (value !== null && _.isFunction(value.toJSON)) {
         json[name] = value.toJSON();
       } else if (_.isArray(value)) {
         json[name] = _.clone(value);
         $.each(value, function(index, element) {
-          if (_.isFunction(element.toJSON)) {
+          if (element !== null && _.isFunction(element.toJSON)) {
             json[name][index] = element.toJSON();
           }
         });

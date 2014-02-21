@@ -206,6 +206,7 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
   render: function() {
 		var ret = JJ.Views.AbstractEditModel.prototype.render.call(this);
     this.viewModel();
+    JJ.Util.WrapVideos(this.$el);
     return ret;
   },
 });
@@ -651,6 +652,8 @@ JJ.Views.EditJudoEntry = JJ.Views.AbstractEditModel.extend({
   // If this is the first save, redirect to the saved-model edit page.
 	firstSave: function(model) {
 		console.log("REDIRECT");
+    console.log(model.get("id"));
+    console.log(JJ.Util.links.edit.entry(model.get("id")));
     JJ.router.navigate(JJ.Util.links.edit.entry(model.get("id")), {trigger: true, replace: true});
 	},
 	
