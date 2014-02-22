@@ -129,13 +129,21 @@ JJ.Util.EmbedMedia = function(el) {
   var images = el.find(".image-embed");
   images.each(function() {
     id = this.innerHTML;
-    this.innerHTML = "<img src='http://i.imgur.com/"+ id +".jpg' />";
+    if (!id.match(/^[0-9a-zA-Z]+$/)) {
+      this.innerHTML = "";
+    } else {
+      this.innerHTML = "<img src='http://i.imgur.com/"+ id +".jpg' />";
+    }
   });
 
   var videos = el.find(".video-embed");
   videos.each(function() {
     id = this.innerHTML;
-    this.innerHTML = "<iframe width='560' height='315' src='//www.youtube.com/embed/"+ id +"?rel=0' frameborder='0' allowfullscreen></iframe>";
+    if (!id.match(/^[a-zA-Z0-9_-]{11}$/)) {
+      this.innerHTML = "";
+    } else {
+      this.innerHTML = "<iframe width='560' height='315' src='//www.youtube.com/embed/"+ id +"?rel=0' frameborder='0' allowfullscreen></iframe>";
+    }
   });
 }
 
