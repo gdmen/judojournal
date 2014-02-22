@@ -409,7 +409,7 @@ footer {
   /*
    * Fluid video embeds
    */
-  .videoWrapper {
+  .video-embed {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
@@ -531,8 +531,17 @@ footer {
           .model-body {
             display: block;
             margin-left: 0.5rem;
-            padding: 0.25rem 1rem 0.5rem 1rem;
+            padding: 1rem 1rem 1.5rem 1rem;
             position: relative;
+            p:last-child,
+            h1:last-child,
+            h2:last-child,
+            h3:last-child,
+            h4:last-child,
+            h5:last-child,
+            h6:last-child {
+              margin-bottom: 0;
+            }
           }
         }
         &.has-title {

@@ -14,13 +14,16 @@ JJ.Models.Tastypie = Backbone.Model.extend({
     return this;
   },
   /*
-   * [gdm] Compiles certain fields to markdown.
+   * [gdm] Compiles certain fields for display.
    */
   compileDisplay: function() {
     return this;
   },
+  /*
+   * [gdm] Compiles field to markdown and sanitizes output.
+   */
   _markdown: function(field) {
-    !_.isUndefined(this.get(field)) && this.set("compiled_" + field, JJ.Markdown.makeHtml(this.get(field)));
+    !_.isUndefined(this.get(field)) && this.set("compiled_" + field, html_sanitize(JJ.Markdown.makeHtml(this.get(field))));
   },
   /*
    * [gdm] Expands elements for easier manipulation.

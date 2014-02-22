@@ -8,7 +8,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n      <div class=\"medium-10 large-uncentered large-8 columns\">\r\n        <div class=\"module-section drill\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Drills</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
+  buffer += "\r\n      <div class=\"medium-10 large-8 columns\">\r\n        <div class=\"module-section drill\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Drills</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.drills), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    ";
@@ -77,7 +77,7 @@ function program11(depth0,data) {
 function program13(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n      <div class=\"medium-10 large-uncentered large-8 columns\">\r\n        <div class=\"module-section sparring\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Sparring</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
+  buffer += "\r\n      <div class=\"medium-10 large-8 columns\">\r\n        <div class=\"module-section sparring\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Sparring</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.sparring), {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    ";
@@ -121,7 +121,7 @@ function program15(depth0,data) {
 function program17(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n      <div class=\"medium-10 large-uncentered large-8 columns end\">\r\n        <div class=\"module-section note\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Notes</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
+  buffer += "\r\n      <div class=\"medium-10 large-8 columns end\">\r\n        <div class=\"module-section note\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Notes</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.notes), {hash:{},inverse:self.noop,fn:self.program(18, program18, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    ";

@@ -206,7 +206,7 @@ JJ.Views.EditListElement = JJ.Views.AbstractEditModel.extend({
   render: function() {
 		var ret = JJ.Views.AbstractEditModel.prototype.render.call(this);
     this.viewModel();
-    JJ.Util.WrapVideos(this.$el);
+    JJ.Util.EmbedMedia(this.$el);
     return ret;
   },
 });

@@ -109,7 +109,7 @@ JJ.Views.ViewJudoEntry = JJ.Views.AbstractPage.extend({
     this.json.displayDate = dateFormat(start, JJ.Views.Util.dateFormat.displayDate);
     console.log(this.json);
     this.$el.html(this.template(this.json));
-    JJ.Util.WrapVideos(this.$el);
+    JJ.Util.EmbedMedia(this.$el);
     return this;
   },
 });

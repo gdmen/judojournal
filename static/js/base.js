@@ -124,9 +124,19 @@ JJ.Util.throttle = function(callback, delay) {
 	};
 }
 
-JJ.Util.WrapVideos = function(el) {
-  var videos = el.find("iframe[src^='//www.youtube.com']");
-  videos.wrap("<div class='videoWrapper'></div>");
+JJ.Util.EmbedMedia = function(el) {
+  var id;
+  var images = el.find(".image-embed");
+  images.each(function() {
+    id = this.innerHTML;
+    this.innerHTML = "<img src='http://i.imgur.com/"+ id +".jpg' />";
+  });
+
+  var videos = el.find(".video-embed");
+  videos.each(function() {
+    id = this.innerHTML;
+    this.innerHTML = "<iframe width='560' height='315' src='//www.youtube.com/embed/"+ id +"?rel=0' frameborder='0' allowfullscreen></iframe>";
+  });
 }
 
 JJ.Views.Util = {
