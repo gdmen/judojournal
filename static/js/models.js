@@ -206,14 +206,21 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 	},
   
   /*
-   * Expands elements for easier manipulation.
+   * Minimal hydration for Collection sorting.
    */
-  hydrate: function() {
-		console.log("HYDRATING ENTRY " + this.cid);
+  hydrateForCompare: function() {
     var start = this.get("start");
     if (!(start instanceof Date)) {
       this.set({"start": new Date(Date.parse(start))},{silent:true});
     }
+  },
+  
+  /*
+   * Expands elements for easier manipulation.
+   */
+  hydrate: function() {
+		console.log("HYDRATING ENTRY " + this.cid);
+    this.hydrateForCompare();
     var end = this.get("end");
     if (!(end instanceof Date)) {
       this.set({"end": new Date(Date.parse(end))},{silent:true});
@@ -261,4 +268,8 @@ JJ.Models.JudoEntry = JJ.Models.Tastypie.extend({
 JJ.Models.JudoEntryCollection = JJ.Models.TastypieCollection.extend({
   model: JJ.Models.JudoEntry,
   url: "/api/v1/entry/judo/",
+  comparator: function(item) {
+    item.hydrateForCompare();
+    return -(item.get('start'));
+  }
 });
