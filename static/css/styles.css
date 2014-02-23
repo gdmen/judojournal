@@ -635,7 +635,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 71.42857rem;
+  max-width: 100rem;
   *zoom: 1;
 }
 /* line 165, ../bower/foundation/scss/foundation/components/_global.scss */
@@ -7163,7 +7163,7 @@ meta.foundation-mq-topbar {
 
   /* line 432, ../bower/foundation/scss/foundation/components/_top-bar.scss */
   .contain-to-grid .top-bar {
-    max-width: 71.42857rem;
+    max-width: 100rem;
     margin: 0 auto;
     margin-bottom: 1rem;
   }
@@ -12826,11 +12826,10 @@ footer div p:last-child {
 /* line 528, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry.has-body .model-body {
   display: block;
-  margin-left: 0.5rem;
   padding: 1rem 1rem 1.5rem 1rem;
   position: relative;
 }
-/* line 539, ../scss/styles.scss */
+/* line 538, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry.has-body .model-body p:last-child,
 .entry .module-section .model-list .model-entry.has-body .model-body h1:last-child,
 .entry .module-section .model-list .model-entry.has-body .model-body h2:last-child,
@@ -12840,10 +12839,11 @@ footer div p:last-child {
 .entry .module-section .model-list .model-entry.has-body .model-body h6:last-child {
   margin-bottom: 0;
 }
-/* line 545, ../scss/styles.scss */
+/* line 544, ../scss/styles.scss */
 .entry .module-section .model-list .model-entry.has-title .model-body {
   border-top: none;
   margin-top: 1px;
+  margin-left: 0.5rem;
 }
 /* line 554, ../scss/styles.scss */
 .entry .module-section.drill .section-header {
