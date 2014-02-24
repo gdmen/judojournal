@@ -92,6 +92,9 @@ JJ.Util.links = {
     entry: function(id) {
       return "/entry/" + id;
     },
+    profile: function(id) {
+      return "/profile/" + id;
+    },
   },
   edit: {
     prefix: "/m/",

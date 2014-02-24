@@ -107,6 +107,7 @@ JJ.Views.ViewJudoEntry = JJ.Views.AbstractPage.extend({
       this.json.displayDuration += minutes + " minutes"
     }
     this.json.displayDate = dateFormat(start, JJ.Views.Util.dateFormat.displayDate);
+    this.json.profileLink = JJ.Util.links.view.profile(this.json.user.username);
     console.log(this.json);
     this.$el.html(this.template(this.json));
     JJ.Util.EmbedMedia(this.$el);

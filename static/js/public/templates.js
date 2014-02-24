@@ -8,7 +8,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n      <div class=\"medium-10 large-8 xlarge-4 columns\">\r\n        <div class=\"module-section drill\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Drills</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
+  buffer += "\r\n      <div class=\"medium-10 large-8 columns\">\r\n        <div class=\"module-section drill\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Drills</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.drills), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    ";
@@ -77,7 +77,7 @@ function program11(depth0,data) {
 function program13(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n      <div class=\"medium-10 large-8 xlarge-4 columns\">\r\n        <div class=\"module-section sparring\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Sparring</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
+  buffer += "\r\n      <div class=\"medium-10 large-8 columns\">\r\n        <div class=\"module-section sparring\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Sparring</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.sparring), {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    ";
@@ -121,7 +121,7 @@ function program15(depth0,data) {
 function program17(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n      <div class=\"medium-10 large-8 xlarge-4 columns end\">\r\n        <div class=\"module-section note\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Notes</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
+  buffer += "\r\n      <div class=\"medium-10 large-8 columns end\">\r\n        <div class=\"module-section note\">\r\n          <div class=\"section-header\">\r\n            <h3 class=\"list-title\">Notes</h3>\r\n          </div>\r\n          <ul class=\"model-list row\">\r\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.notes), {hash:{},inverse:self.noop,fn:self.program(18, program18, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    ";
@@ -165,9 +165,13 @@ function program19(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.art)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</h1>\r\n        <h1 id=\"type\" class=\"headertext\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.type)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h1>\r\n      </div>\r\n      \r\n      <div class=\"entry-header-section\">\r\n      \r\n        <div class=\"entry-header-row\">\r\n          <h5 id=\"location\" class=\"headertext\">"
+    + "</h1>\r\n      </div>\r\n      \r\n      <div class=\"entry-header-section\">\r\n      \r\n        <div class=\"entry-header-row\">\r\n          <h5 id=\"location\" class=\"headertext\">\r\n            <a href=\"";
+  if (helper = helpers.profileLink) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.profileLink); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " @ "
+    + "</a> @ "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.location)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</h5>\r\n        </div>\r\n        \r\n        <div class=\"entry-header-row\">\r\n          <h5 id=\"date\" class=\"headertext\">\r\n            ";
   if (helper = helpers.displayDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -210,7 +214,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n            <li>\r\n              <div class=\"entry-right\">\r\n                <a class=\"link\" href=\"";
+  buffer += "\r\n            <li>\r\n              <div class=\"entry-right\">\r\n                <a class=\"button secondary tiny\" href=\"";
   if (helper = helpers.link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
